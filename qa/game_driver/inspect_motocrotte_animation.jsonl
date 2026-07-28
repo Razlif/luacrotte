@@ -1,0 +1,8 @@
+{"id":"start_playground","command":"press","key":"return"}
+{"id":"wait_for_scene","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"press_right","command":"press","key":"right"}
+{"id":"wait_moving","command":"wait","seconds":0.6}
+{"id":"capture_moving","command":"snapshot","name":"motocrotte_animation_moving"}
+{"id":"release_right","command":"release","key":"right"}
+{"id":"wait_idle","command":"wait","seconds":0.2}
+{"id":"capture_idle","command":"snapshot","name":"motocrotte_animation_idle"}

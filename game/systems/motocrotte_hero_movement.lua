@@ -51,6 +51,22 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   motion.vx = approach(motion.vx, target_vx, horizontal == 0 and deceleration_step or acceleration_step)
   motion.vy = approach(motion.vy, target_vy, vertical == 0 and deceleration_step or acceleration_step)
 
+  local animation_name = config.animation
+  if animation_name then
+    local moving = horizontal ~= 0 or vertical ~= 0
+    if moving then
+      if not hero.animation:is_playing() or hero.animation.current_name ~= animation_name then
+        local animation = hero.animation.animations[animation_name]
+        assert(animation, "Configured MotoCrotte movement animation is missing: " .. animation_name)
+        animation.loop = config.animation_loop == true
+        hero.animation:play(animation_name)
+      end
+    elseif hero.animation:is_playing() then
+      hero.animation:stop()
+    end
+  end
+  hero.animation:update(dt)
+
   hero.position.x = clamp(hero.position.x + motion.vx * dt, bounds.left, bounds.right)
   hero.position.ground_y = clamp(hero.position.ground_y + motion.vy * dt, bounds.top, bounds.bottom)
   motion.grounded = true

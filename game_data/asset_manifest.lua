@@ -141,7 +141,22 @@ return {
       },
     },
     motocrotte_hero_main = {
-      animations = {},
+      animations = {
+        hero_main_cycle = {
+          fps = 12.5,
+          frame_count = 5,
+          frame_height = 60,
+          frame_width = 60,
+          loop = false,
+          name = "hero_main_cycle",
+          prompt = nil,
+          provider = "legacy_motocrotte",
+          sheet_path = "media_assets/characters/motocrotte_hero_main/sprite_sheets/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.png",
+          source_image_version = 1,
+          source_sheet_path = "lab_assets/characters/motocrotte_hero_main/sprite_sheets/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.png",
+          version = 1,
+        },
+      },
       groups = {"characters/hero"},
       id = "motocrotte_hero_main",
       image = {

@@ -133,7 +133,22 @@
       "groups": [
         "characters/hero"
       ],
-      "animations": {},
+      "animations": {
+        "hero_main_cycle": {
+          "name": "hero_main_cycle",
+          "sheet_path": "media_assets/characters/motocrotte_hero_main/sprite_sheets/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.png",
+          "source_sheet_path": "lab_assets/characters/motocrotte_hero_main/sprite_sheets/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.png",
+          "version": 1,
+          "frame_width": 60,
+          "frame_height": 60,
+          "frame_count": 5,
+          "fps": 12.5,
+          "loop": false,
+          "provider": "legacy_motocrotte",
+          "prompt": null,
+          "source_image_version": 1
+        }
+      },
       "image": {
         "path": "media_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_001__hero_1.png",
         "source_path": "lab_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_001__hero_1.png",
@@ -144,10 +159,10 @@
         "prompt": null
       },
       "created_at": "2026-07-28T13:06:07",
-      "updated_at": "2026-07-28T13:06:07"
+      "updated_at": "2026-07-28T19:43:11"
     }
   },
-  "updated_at": "2026-07-28T13:06:07",
+  "updated_at": "2026-07-28T19:43:11",
   "audio": {
     "sounds": {
       "magic_bomb_spell": {

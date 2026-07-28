@@ -1,5 +1,4 @@
 {"id":"enter_playground","command":"press","key":"return"}
-{"id":"skip_demo_cutscene","command":"press","key":"escape"}
 {"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
 {"id":"record_start","command":"record_start","name":"motocrotte_playground_drive","fps":5}
 {"id":"drive_right","command":"hold","key":"right","duration":1.5}

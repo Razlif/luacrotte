@@ -1,0 +1,4 @@
+{"id":"select_intro","command":"press","key":"down"}
+{"id":"open_intro","command":"press","key":"return"}
+{"id":"wait_for_intro","command":"wait_until","condition":{"state_is":"cutscene"},"timeout":5}
+{"id":"skip_intro","command":"press","key":"escape"}

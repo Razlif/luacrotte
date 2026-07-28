@@ -7,6 +7,7 @@ local InputManager = require("game.systems.input_manager")
 local Menu = require("game.ui.ui_elements.default_menu")
 local ParallaxManager = require("game.systems.parallax")
 local Theme = require("game.ui.theme")
+local cutscene_menu = require("game_data.cutscenes")
 
 local Start = {
   camera = nil,
@@ -22,9 +23,9 @@ local function menu_layout()
   local width = math.min(300, love.graphics.getWidth() - 40)
   return {
     x = (love.graphics.getWidth() - width) / 2,
-    y = love.graphics.getHeight() * 0.58,
+    y = love.graphics.getHeight() * 0.46,
     width = width,
-    spacing = 56
+    spacing = 48
   }
 end
 
@@ -51,11 +52,22 @@ function Start.enter()
   })
   Start.parallax:set_camera(Start.camera)
   local layout = menu_layout()
-  Start.menu = Menu.new({
-    { label = "Start", on_confirm = function()
-      states_manager().change("cutscene", "duck_slime_date")
+  local menu_items = {
+    { label = "Playground", on_confirm = function()
+      states_manager().change("playground")
     end }
-  }, layout)
+  }
+  for _, scene in ipairs(cutscene_menu) do
+    local scene_id = scene.id
+    local scene_label = scene.label
+    menu_items[#menu_items + 1] = {
+      label = scene_label,
+      on_confirm = function()
+        states_manager().change("cutscene", scene_id)
+      end
+    }
+  end
+  Start.menu = Menu.new(menu_items, layout)
 end
 
 function Start.update(dt)

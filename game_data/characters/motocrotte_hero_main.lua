@@ -14,7 +14,9 @@ return {
     acceleration = 900,
     deceleration = 1100,
     max_speed = 260,
-    vertical_speed = 180
+    vertical_speed = 180,
+    animation = "hero_main_cycle",
+    animation_loop = true
   },
   collision = { enabled = false, auto_sensor = true, sensors = {} }
 }
