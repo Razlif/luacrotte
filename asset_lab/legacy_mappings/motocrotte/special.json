@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "domain": "special",
+  "assets": [
+    {
+      "source_paths": [
+        "media/images/cars/special/Asset_Dust_1.png",
+        "media/images/cars/special/Asset_Dust_2.png",
+        "media/images/cars/special/Asset_Dust_3.png",
+        "media/images/cars/special/Asset_Dust_4.png",
+        "media/images/cars/special/Asset_Dust_5.png",
+        "media/images/cars/special/Asset_Dust_6.png"
+      ],
+      "asset_id": "motocrotte_special_vehicle_dust",
+      "type": "effect",
+      "domain": "vehicles",
+      "subcategory": "vehicle_effects",
+      "groups": ["vehicles/effects/dust"],
+      "kind": "animation_frames",
+      "animation_name": "dust_cycle",
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "special_vehicle_dust_animation",
+      "source_references": []
+    },
+    {
+      "source_paths": ["media/images/cars/special/car_1.png"],
+      "asset_id": "motocrotte_special_car",
+      "type": "prop",
+      "groups": ["vehicles/cars/special"],
+      "kind": "sprite_sheet",
+      "animation_name": "special_car_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "special_car_sprite_sheet",
+      "source_references": []
+    },
+    {
+      "source_paths": ["media/images/cars/special/Tank.png"],
+      "asset_id": "motocrotte_tank_boss",
+      "type": "character",
+      "groups": ["enemies/boss/tank"],
+      "kind": "sprite_sheet",
+      "animation_name": "tank_boss_cycle",
+      "frame_count": 6,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "boss_enemy_animation",
+      "source_references": ["enemies.py:304"]
+    },
+    {
+      "source_paths": ["media/images/cars/special/Asset_Tank.png"],
+      "asset_id": "motocrotte_tank_asset",
+      "type": "character",
+      "groups": ["enemies/boss/tank"],
+      "kind": "sprite_sheet",
+      "animation_name": "tank_asset_cycle",
+      "frame_count": 6,
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "tank_sprite_sheet_variant",
+      "source_references": []
+    },
+    {
+      "source_paths": ["media/images/cars/special/Asset_Tank_Run.png"],
+      "asset_id": "motocrotte_tank_run",
+      "type": "character",
+      "groups": ["enemies/boss/tank"],
+      "kind": "sprite_sheet",
+      "animation_name": "tank_run_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "tank_run_sprite_sheet",
+      "source_references": []
+    },
+    {
+      "source_paths": ["media/images/cars/special/Asset_Tank_Shot.png"],
+      "asset_id": "motocrotte_tank_shot",
+      "type": "character",
+      "groups": ["enemies/boss/tank"],
+      "kind": "sprite_sheet",
+      "animation_name": "tank_shot_cycle",
+      "frame_count": 4,
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "tank_shot_sprite_sheet",
+      "source_references": []
+    }
+  ]
+}

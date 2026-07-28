@@ -1,27 +1,7 @@
 -- Centralizes keyboard and mouse state for controllers and game states.
+local bindings = require("game_data.input_bindings")
 local InputManager = {
-  bindings = {
-    move_left = { left = true, a = true },
-    move_right = { right = true, d = true },
-    move_up = { up = true, w = true },
-    move_down = { down = true, s = true },
-    jump = { space = true },
-    trigger_effect = { e = true },
-    ui_up = { up = true, w = true },
-    ui_down = { down = true, s = true },
-    ui_left = { left = true, a = true },
-    ui_right = { right = true, d = true },
-    ui_confirm = { ["return"] = true, space = true },
-    ui_back = { escape = true },
-    debug_toggle = { f3 = true },
-    debug_masks = { f4 = true },
-    debug_sensors = { f5 = true },
-    debug_collisions = { f6 = true },
-    debug_entities = { f7 = true },
-    debug_camera = { f8 = true },
-    debug_state = { f9 = true },
-    debug_input = { f10 = true }
-  },
+  bindings = bindings,
   keys_down = {},
   pressed = {},
   mouse_buttons_down = {},

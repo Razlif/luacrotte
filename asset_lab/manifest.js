@@ -200,8 +200,5528 @@ window.ASSET_LAB_MANIFEST = {
       "animations": [],
       "created_at": "2026-07-25T21:10:17",
       "updated_at": "2026-07-25T21:10:17"
+    },
+    {
+      "id": "motocrotte_gameplay_background_05",
+      "type": "background",
+      "folder": "lab_assets/backgrounds/motocrotte_gameplay_background_05",
+      "images": [
+        {
+          "id": "motocrotte_gameplay_background_05__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/backgrounds/motocrotte_gameplay_background_05/original_images/motocrotte_gameplay_background_05__legacy_motocrotte__image__v001.png",
+          "width": 1200,
+          "height": 686,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/new_background5.png",
+          "source_role": "gameplay_background",
+          "source_references": [
+            "motorcrottee.py:96"
+          ]
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/new_background5.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T11:32:49.577570+00:00",
+      "created_at": "2026-07-27T14:32:49",
+      "updated_at": "2026-07-27T14:32:49"
+    },
+    {
+      "id": "motocrotte_bike_variant_01",
+      "type": "prop",
+      "folder": "lab_assets/props/motocrotte_bike_variant_01",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_01__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_01/original_images/motocrotte_bike_variant_01__legacy_motocrotte__frame_001__1_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/1_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_01__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_01/original_images/motocrotte_bike_variant_01__legacy_motocrotte__frame_002__1_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/1_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_01__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_01/original_images/motocrotte_bike_variant_01__legacy_motocrotte__frame_003__1_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/1_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_01__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_01/original_images/motocrotte_bike_variant_01__legacy_motocrotte__frame_004__1_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/1_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_01__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_01/sprite_sheets/motocrotte_bike_variant_01__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_01/animation_gifs/motocrotte_bike_variant_01__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/1_1.png",
+            "media/images/cars/bikes/1_2.png",
+            "media/images/cars/bikes/1_3.png",
+            "media/images/cars/bikes/1_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/1_1.png",
+        "media/images/cars/bikes/1_2.png",
+        "media/images/cars/bikes/1_3.png",
+        "media/images/cars/bikes/1_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:08:30.393641+00:00",
+      "created_at": "2026-07-27T14:43:05",
+      "updated_at": "2026-07-27T21:08:30",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ]
+    },
+    {
+      "id": "motocrotte_car_regular_01",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "folder": "lab_assets/props/motocrotte_car_regular_01",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_01__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_01/original_images/motocrotte_car_regular_01__legacy_motocrotte__sheet__v001.png",
+          "width": 260,
+          "height": 42,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_01__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_01/original_images/motocrotte_car_regular_01__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_01/animation_gifs/motocrotte_car_regular_01__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 130,
+          "frame_height": 42,
+          "sheet_width": 260,
+          "sheet_height": 42,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_1.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_1.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:08:30.856645+00:00",
+      "created_at": "2026-07-27T14:55:59",
+      "updated_at": "2026-07-27T21:08:30",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ]
+    },
+    {
+      "id": "motocrotte_special_vehicle_dust",
+      "type": "effect",
+      "domain": "vehicles",
+      "subcategory": "vehicle_effects",
+      "folder": "lab_assets/effects/motocrotte_special_vehicle_dust",
+      "images": [
+        {
+          "id": "motocrotte_special_vehicle_dust__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/effects/motocrotte_special_vehicle_dust/original_images/motocrotte_special_vehicle_dust__legacy_motocrotte__frame_001__Asset_Dust_1.png",
+          "width": 127,
+          "height": 48,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Dust_1.png",
+          "source_role": "special_vehicle_dust_animation",
+          "source_references": [],
+          "source_frame_count": 6
+        },
+        {
+          "id": "motocrotte_special_vehicle_dust__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/effects/motocrotte_special_vehicle_dust/original_images/motocrotte_special_vehicle_dust__legacy_motocrotte__frame_002__Asset_Dust_2.png",
+          "width": 127,
+          "height": 48,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Dust_2.png",
+          "source_role": "special_vehicle_dust_animation",
+          "source_references": [],
+          "source_frame_count": 6
+        },
+        {
+          "id": "motocrotte_special_vehicle_dust__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/effects/motocrotte_special_vehicle_dust/original_images/motocrotte_special_vehicle_dust__legacy_motocrotte__frame_003__Asset_Dust_3.png",
+          "width": 127,
+          "height": 48,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Dust_3.png",
+          "source_role": "special_vehicle_dust_animation",
+          "source_references": [],
+          "source_frame_count": 6
+        },
+        {
+          "id": "motocrotte_special_vehicle_dust__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/effects/motocrotte_special_vehicle_dust/original_images/motocrotte_special_vehicle_dust__legacy_motocrotte__frame_004__Asset_Dust_4.png",
+          "width": 127,
+          "height": 48,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Dust_4.png",
+          "source_role": "special_vehicle_dust_animation",
+          "source_references": [],
+          "source_frame_count": 6
+        },
+        {
+          "id": "motocrotte_special_vehicle_dust__legacy_motocrotte__frame_005",
+          "provider": "legacy_motocrotte",
+          "version": 5,
+          "frame_index": 5,
+          "path": "lab_assets/effects/motocrotte_special_vehicle_dust/original_images/motocrotte_special_vehicle_dust__legacy_motocrotte__frame_005__Asset_Dust_5.png",
+          "width": 127,
+          "height": 48,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Dust_5.png",
+          "source_role": "special_vehicle_dust_animation",
+          "source_references": [],
+          "source_frame_count": 6
+        },
+        {
+          "id": "motocrotte_special_vehicle_dust__legacy_motocrotte__frame_006",
+          "provider": "legacy_motocrotte",
+          "version": 6,
+          "frame_index": 6,
+          "path": "lab_assets/effects/motocrotte_special_vehicle_dust/original_images/motocrotte_special_vehicle_dust__legacy_motocrotte__frame_006__Asset_Dust_6.png",
+          "width": 127,
+          "height": 48,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Dust_6.png",
+          "source_role": "special_vehicle_dust_animation",
+          "source_references": [],
+          "source_frame_count": 6
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_special_vehicle_dust__legacy_motocrotte__dust_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "dust_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/effects/motocrotte_special_vehicle_dust/sprite_sheets/motocrotte_special_vehicle_dust__legacy_motocrotte__dust_cycle__v001.png",
+          "gif_path": "lab_assets/effects/motocrotte_special_vehicle_dust/animation_gifs/motocrotte_special_vehicle_dust__legacy_motocrotte__dust_cycle__v001.gif",
+          "frame_count": 6,
+          "frame_width": 127,
+          "frame_height": 48,
+          "sheet_width": 762,
+          "sheet_height": 48,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/special/Asset_Dust_1.png",
+            "media/images/cars/special/Asset_Dust_2.png",
+            "media/images/cars/special/Asset_Dust_3.png",
+            "media/images/cars/special/Asset_Dust_4.png",
+            "media/images/cars/special/Asset_Dust_5.png",
+            "media/images/cars/special/Asset_Dust_6.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/special/Asset_Dust_1.png",
+        "media/images/cars/special/Asset_Dust_2.png",
+        "media/images/cars/special/Asset_Dust_3.png",
+        "media/images/cars/special/Asset_Dust_4.png",
+        "media/images/cars/special/Asset_Dust_5.png",
+        "media/images/cars/special/Asset_Dust_6.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:08:32.957481+00:00",
+      "created_at": "2026-07-27T14:57:09",
+      "updated_at": "2026-07-27T21:08:33",
+      "size_class": null,
+      "groups": [
+        "vehicles/effects/dust"
+      ]
+    },
+    {
+      "id": "motocrotte_car_xl_01",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "folder": "lab_assets/props/motocrotte_car_xl_01",
+      "images": [
+        {
+          "id": "motocrotte_car_xl_01__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_xl_01/original_images/motocrotte_car_xl_01__legacy_motocrotte__sheet__v001.png",
+          "width": 366,
+          "height": 62,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/XL/car_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_xl_01__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_xl_01/original_images/motocrotte_car_xl_01__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_xl_01/animation_gifs/motocrotte_car_xl_01__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 183,
+          "frame_height": 62,
+          "sheet_width": 366,
+          "sheet_height": 62,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/XL/car_1.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/XL/car_1.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:08:31.359807+00:00",
+      "created_at": "2026-07-27T14:59:30",
+      "updated_at": "2026-07-27T21:08:31",
+      "size_class": "XL",
+      "groups": [
+        "vehicles/cars/xl"
+      ]
+    },
+    {
+      "id": "motocrotte_car_xl_02",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "folder": "lab_assets/props/motocrotte_car_xl_02",
+      "images": [
+        {
+          "id": "motocrotte_car_xl_02__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_xl_02/original_images/motocrotte_car_xl_02__legacy_motocrotte__sheet__v001.png",
+          "width": 428,
+          "height": 102,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/XL/car_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_xl_02__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_xl_02/original_images/motocrotte_car_xl_02__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_xl_02/animation_gifs/motocrotte_car_xl_02__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 214,
+          "frame_height": 102,
+          "sheet_width": 428,
+          "sheet_height": 102,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/XL/car_2.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/XL/car_2.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:08:31.967959+00:00",
+      "created_at": "2026-07-27T14:59:31",
+      "updated_at": "2026-07-27T21:08:31",
+      "size_class": "XL",
+      "groups": [
+        "vehicles/cars/xl"
+      ]
+    },
+    {
+      "id": "motocrotte_car_xl_03",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "folder": "lab_assets/props/motocrotte_car_xl_03",
+      "images": [
+        {
+          "id": "motocrotte_car_xl_03__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_xl_03/original_images/motocrotte_car_xl_03__legacy_motocrotte__sheet__v001.png",
+          "width": 494,
+          "height": 106,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/XL/car_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_xl_03__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_xl_03/original_images/motocrotte_car_xl_03__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_xl_03/animation_gifs/motocrotte_car_xl_03__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 247,
+          "frame_height": 106,
+          "sheet_width": 494,
+          "sheet_height": 106,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/XL/car_3.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/XL/car_3.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:08:32.431963+00:00",
+      "created_at": "2026-07-27T14:59:31",
+      "updated_at": "2026-07-27T21:08:32",
+      "size_class": "XL",
+      "groups": [
+        "vehicles/cars/xl"
+      ]
+    },
+    {
+      "id": "motocrotte_bike_variant_02",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_02",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_02__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_02/original_images/motocrotte_bike_variant_02__legacy_motocrotte__frame_001__2_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/2_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_02__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_02/original_images/motocrotte_bike_variant_02__legacy_motocrotte__frame_002__2_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/2_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_02__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_02/original_images/motocrotte_bike_variant_02__legacy_motocrotte__frame_003__2_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/2_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_02__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_02/original_images/motocrotte_bike_variant_02__legacy_motocrotte__frame_004__2_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/2_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_02__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_02/sprite_sheets/motocrotte_bike_variant_02__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_02/animation_gifs/motocrotte_bike_variant_02__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/2_1.png",
+            "media/images/cars/bikes/2_2.png",
+            "media/images/cars/bikes/2_3.png",
+            "media/images/cars/bikes/2_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/2_1.png",
+        "media/images/cars/bikes/2_2.png",
+        "media/images/cars/bikes/2_3.png",
+        "media/images/cars/bikes/2_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:39.178063+00:00",
+      "created_at": "2026-07-27T21:34:39",
+      "updated_at": "2026-07-27T21:34:39"
+    },
+    {
+      "id": "motocrotte_bike_variant_03",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_03",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_03__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_03/original_images/motocrotte_bike_variant_03__legacy_motocrotte__frame_001__3_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/3_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_03__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_03/original_images/motocrotte_bike_variant_03__legacy_motocrotte__frame_002__3_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/3_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_03__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_03/original_images/motocrotte_bike_variant_03__legacy_motocrotte__frame_003__3_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/3_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_03__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_03/original_images/motocrotte_bike_variant_03__legacy_motocrotte__frame_004__3_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/3_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_03__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_03/sprite_sheets/motocrotte_bike_variant_03__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_03/animation_gifs/motocrotte_bike_variant_03__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/3_1.png",
+            "media/images/cars/bikes/3_2.png",
+            "media/images/cars/bikes/3_3.png",
+            "media/images/cars/bikes/3_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/3_1.png",
+        "media/images/cars/bikes/3_2.png",
+        "media/images/cars/bikes/3_3.png",
+        "media/images/cars/bikes/3_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:39.669127+00:00",
+      "created_at": "2026-07-27T21:34:39",
+      "updated_at": "2026-07-27T21:34:39"
+    },
+    {
+      "id": "motocrotte_bike_variant_04",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_04",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_04__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_04/original_images/motocrotte_bike_variant_04__legacy_motocrotte__frame_001__4_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/4_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_04__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_04/original_images/motocrotte_bike_variant_04__legacy_motocrotte__frame_002__4_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/4_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_04__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_04/original_images/motocrotte_bike_variant_04__legacy_motocrotte__frame_003__4_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/4_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_04__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_04/original_images/motocrotte_bike_variant_04__legacy_motocrotte__frame_004__4_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/4_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_04__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_04/sprite_sheets/motocrotte_bike_variant_04__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_04/animation_gifs/motocrotte_bike_variant_04__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/4_1.png",
+            "media/images/cars/bikes/4_2.png",
+            "media/images/cars/bikes/4_3.png",
+            "media/images/cars/bikes/4_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/4_1.png",
+        "media/images/cars/bikes/4_2.png",
+        "media/images/cars/bikes/4_3.png",
+        "media/images/cars/bikes/4_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:40.093700+00:00",
+      "created_at": "2026-07-27T21:34:40",
+      "updated_at": "2026-07-27T21:34:40"
+    },
+    {
+      "id": "motocrotte_bike_variant_05",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_05",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_05__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_05/original_images/motocrotte_bike_variant_05__legacy_motocrotte__frame_001__5_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/5_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_05__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_05/original_images/motocrotte_bike_variant_05__legacy_motocrotte__frame_002__5_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/5_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_05__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_05/original_images/motocrotte_bike_variant_05__legacy_motocrotte__frame_003__5_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/5_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_05__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_05/original_images/motocrotte_bike_variant_05__legacy_motocrotte__frame_004__5_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/5_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_05__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_05/sprite_sheets/motocrotte_bike_variant_05__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_05/animation_gifs/motocrotte_bike_variant_05__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/5_1.png",
+            "media/images/cars/bikes/5_2.png",
+            "media/images/cars/bikes/5_3.png",
+            "media/images/cars/bikes/5_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/5_1.png",
+        "media/images/cars/bikes/5_2.png",
+        "media/images/cars/bikes/5_3.png",
+        "media/images/cars/bikes/5_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:41.064741+00:00",
+      "created_at": "2026-07-27T21:34:41",
+      "updated_at": "2026-07-27T21:34:41"
+    },
+    {
+      "id": "motocrotte_bike_variant_06",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_06",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_06__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_06/original_images/motocrotte_bike_variant_06__legacy_motocrotte__frame_001__6_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/6_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_06__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_06/original_images/motocrotte_bike_variant_06__legacy_motocrotte__frame_002__6_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/6_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_06__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_06/original_images/motocrotte_bike_variant_06__legacy_motocrotte__frame_003__6_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/6_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_06__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_06/original_images/motocrotte_bike_variant_06__legacy_motocrotte__frame_004__6_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/6_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_06__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_06/sprite_sheets/motocrotte_bike_variant_06__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_06/animation_gifs/motocrotte_bike_variant_06__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/6_1.png",
+            "media/images/cars/bikes/6_2.png",
+            "media/images/cars/bikes/6_3.png",
+            "media/images/cars/bikes/6_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/6_1.png",
+        "media/images/cars/bikes/6_2.png",
+        "media/images/cars/bikes/6_3.png",
+        "media/images/cars/bikes/6_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:41.740343+00:00",
+      "created_at": "2026-07-27T21:34:41",
+      "updated_at": "2026-07-27T21:34:41"
+    },
+    {
+      "id": "motocrotte_bike_variant_07",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_07",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_07__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_07/original_images/motocrotte_bike_variant_07__legacy_motocrotte__frame_001__7_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/7_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_07__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_07/original_images/motocrotte_bike_variant_07__legacy_motocrotte__frame_002__7_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/7_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_07__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_07/original_images/motocrotte_bike_variant_07__legacy_motocrotte__frame_003__7_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/7_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_07__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_07/original_images/motocrotte_bike_variant_07__legacy_motocrotte__frame_004__7_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/7_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_07__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_07/sprite_sheets/motocrotte_bike_variant_07__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_07/animation_gifs/motocrotte_bike_variant_07__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/7_1.png",
+            "media/images/cars/bikes/7_2.png",
+            "media/images/cars/bikes/7_3.png",
+            "media/images/cars/bikes/7_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/7_1.png",
+        "media/images/cars/bikes/7_2.png",
+        "media/images/cars/bikes/7_3.png",
+        "media/images/cars/bikes/7_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:42.529530+00:00",
+      "created_at": "2026-07-27T21:34:42",
+      "updated_at": "2026-07-27T21:34:42"
+    },
+    {
+      "id": "motocrotte_bike_variant_08",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_08",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_08__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_08/original_images/motocrotte_bike_variant_08__legacy_motocrotte__frame_001__8_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/8_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_08__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_08/original_images/motocrotte_bike_variant_08__legacy_motocrotte__frame_002__8_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/8_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_08__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_08/original_images/motocrotte_bike_variant_08__legacy_motocrotte__frame_003__8_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/8_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_08__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_08/original_images/motocrotte_bike_variant_08__legacy_motocrotte__frame_004__8_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/8_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_08__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_08/sprite_sheets/motocrotte_bike_variant_08__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_08/animation_gifs/motocrotte_bike_variant_08__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/8_1.png",
+            "media/images/cars/bikes/8_2.png",
+            "media/images/cars/bikes/8_3.png",
+            "media/images/cars/bikes/8_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/8_1.png",
+        "media/images/cars/bikes/8_2.png",
+        "media/images/cars/bikes/8_3.png",
+        "media/images/cars/bikes/8_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:43.370646+00:00",
+      "created_at": "2026-07-27T21:34:43",
+      "updated_at": "2026-07-27T21:34:43"
+    },
+    {
+      "id": "motocrotte_bike_variant_09",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_09",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_09__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_09/original_images/motocrotte_bike_variant_09__legacy_motocrotte__frame_001__9_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/9_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_09__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_09/original_images/motocrotte_bike_variant_09__legacy_motocrotte__frame_002__9_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/9_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_09__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_09/original_images/motocrotte_bike_variant_09__legacy_motocrotte__frame_003__9_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/9_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_09__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_09/original_images/motocrotte_bike_variant_09__legacy_motocrotte__frame_004__9_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/9_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_09__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_09/sprite_sheets/motocrotte_bike_variant_09__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_09/animation_gifs/motocrotte_bike_variant_09__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/9_1.png",
+            "media/images/cars/bikes/9_2.png",
+            "media/images/cars/bikes/9_3.png",
+            "media/images/cars/bikes/9_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/9_1.png",
+        "media/images/cars/bikes/9_2.png",
+        "media/images/cars/bikes/9_3.png",
+        "media/images/cars/bikes/9_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:44.110246+00:00",
+      "created_at": "2026-07-27T21:34:44",
+      "updated_at": "2026-07-27T21:34:44"
+    },
+    {
+      "id": "motocrotte_bike_variant_10",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_10",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_10__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_10/original_images/motocrotte_bike_variant_10__legacy_motocrotte__frame_001__10_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/10_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_10__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_10/original_images/motocrotte_bike_variant_10__legacy_motocrotte__frame_002__10_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/10_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_10__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_10/original_images/motocrotte_bike_variant_10__legacy_motocrotte__frame_003__10_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/10_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_10__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_10/original_images/motocrotte_bike_variant_10__legacy_motocrotte__frame_004__10_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/10_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_10__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_10/sprite_sheets/motocrotte_bike_variant_10__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_10/animation_gifs/motocrotte_bike_variant_10__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/10_1.png",
+            "media/images/cars/bikes/10_2.png",
+            "media/images/cars/bikes/10_3.png",
+            "media/images/cars/bikes/10_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/10_1.png",
+        "media/images/cars/bikes/10_2.png",
+        "media/images/cars/bikes/10_3.png",
+        "media/images/cars/bikes/10_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:44.651354+00:00",
+      "created_at": "2026-07-27T21:34:44",
+      "updated_at": "2026-07-27T21:34:44"
+    },
+    {
+      "id": "motocrotte_bike_variant_11",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_11",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_11__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_11/original_images/motocrotte_bike_variant_11__legacy_motocrotte__frame_001__11_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/11_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_11__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_11/original_images/motocrotte_bike_variant_11__legacy_motocrotte__frame_002__11_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/11_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_11__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_11/original_images/motocrotte_bike_variant_11__legacy_motocrotte__frame_003__11_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/11_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_11__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_11/original_images/motocrotte_bike_variant_11__legacy_motocrotte__frame_004__11_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/11_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_11__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_11/sprite_sheets/motocrotte_bike_variant_11__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_11/animation_gifs/motocrotte_bike_variant_11__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/11_1.png",
+            "media/images/cars/bikes/11_2.png",
+            "media/images/cars/bikes/11_3.png",
+            "media/images/cars/bikes/11_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/11_1.png",
+        "media/images/cars/bikes/11_2.png",
+        "media/images/cars/bikes/11_3.png",
+        "media/images/cars/bikes/11_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:45.128686+00:00",
+      "created_at": "2026-07-27T21:34:45",
+      "updated_at": "2026-07-27T21:34:45"
+    },
+    {
+      "id": "motocrotte_bike_variant_12",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_12",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_12__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_12/original_images/motocrotte_bike_variant_12__legacy_motocrotte__frame_001__12_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/12_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_12__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_12/original_images/motocrotte_bike_variant_12__legacy_motocrotte__frame_002__12_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/12_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_12__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_12/original_images/motocrotte_bike_variant_12__legacy_motocrotte__frame_003__12_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/12_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_12__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_12/original_images/motocrotte_bike_variant_12__legacy_motocrotte__frame_004__12_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/12_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_12__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_12/sprite_sheets/motocrotte_bike_variant_12__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_12/animation_gifs/motocrotte_bike_variant_12__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/12_1.png",
+            "media/images/cars/bikes/12_2.png",
+            "media/images/cars/bikes/12_3.png",
+            "media/images/cars/bikes/12_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/12_1.png",
+        "media/images/cars/bikes/12_2.png",
+        "media/images/cars/bikes/12_3.png",
+        "media/images/cars/bikes/12_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:45.646691+00:00",
+      "created_at": "2026-07-27T21:34:45",
+      "updated_at": "2026-07-27T21:34:45"
+    },
+    {
+      "id": "motocrotte_bike_variant_13",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_13",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_13__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_13/original_images/motocrotte_bike_variant_13__legacy_motocrotte__frame_001__13_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/13_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_13__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_13/original_images/motocrotte_bike_variant_13__legacy_motocrotte__frame_002__13_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/13_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_13__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_13/original_images/motocrotte_bike_variant_13__legacy_motocrotte__frame_003__13_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/13_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_13__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_13/original_images/motocrotte_bike_variant_13__legacy_motocrotte__frame_004__13_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/13_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_13__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_13/sprite_sheets/motocrotte_bike_variant_13__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_13/animation_gifs/motocrotte_bike_variant_13__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/13_1.png",
+            "media/images/cars/bikes/13_2.png",
+            "media/images/cars/bikes/13_3.png",
+            "media/images/cars/bikes/13_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/13_1.png",
+        "media/images/cars/bikes/13_2.png",
+        "media/images/cars/bikes/13_3.png",
+        "media/images/cars/bikes/13_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:46.286303+00:00",
+      "created_at": "2026-07-27T21:34:46",
+      "updated_at": "2026-07-27T21:34:46"
+    },
+    {
+      "id": "motocrotte_bike_variant_14",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_14",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_14__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_14/original_images/motocrotte_bike_variant_14__legacy_motocrotte__frame_001__14_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/14_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_14__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_14/original_images/motocrotte_bike_variant_14__legacy_motocrotte__frame_002__14_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/14_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_14__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_14/original_images/motocrotte_bike_variant_14__legacy_motocrotte__frame_003__14_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/14_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_14__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_14/original_images/motocrotte_bike_variant_14__legacy_motocrotte__frame_004__14_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/14_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_14__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_14/sprite_sheets/motocrotte_bike_variant_14__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_14/animation_gifs/motocrotte_bike_variant_14__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/14_1.png",
+            "media/images/cars/bikes/14_2.png",
+            "media/images/cars/bikes/14_3.png",
+            "media/images/cars/bikes/14_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/14_1.png",
+        "media/images/cars/bikes/14_2.png",
+        "media/images/cars/bikes/14_3.png",
+        "media/images/cars/bikes/14_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:46.942935+00:00",
+      "created_at": "2026-07-27T21:34:46",
+      "updated_at": "2026-07-27T21:34:46"
+    },
+    {
+      "id": "motocrotte_bike_variant_15",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_15",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_15__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_15/original_images/motocrotte_bike_variant_15__legacy_motocrotte__frame_001__15_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/15_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_15__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_15/original_images/motocrotte_bike_variant_15__legacy_motocrotte__frame_002__15_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/15_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_15__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_15/original_images/motocrotte_bike_variant_15__legacy_motocrotte__frame_003__15_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/15_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_15__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_15/original_images/motocrotte_bike_variant_15__legacy_motocrotte__frame_004__15_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/15_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_15__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_15/sprite_sheets/motocrotte_bike_variant_15__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_15/animation_gifs/motocrotte_bike_variant_15__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/15_1.png",
+            "media/images/cars/bikes/15_2.png",
+            "media/images/cars/bikes/15_3.png",
+            "media/images/cars/bikes/15_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/15_1.png",
+        "media/images/cars/bikes/15_2.png",
+        "media/images/cars/bikes/15_3.png",
+        "media/images/cars/bikes/15_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:47.443479+00:00",
+      "created_at": "2026-07-27T21:34:47",
+      "updated_at": "2026-07-27T21:34:47"
+    },
+    {
+      "id": "motocrotte_bike_variant_16",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_16",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_16__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_16/original_images/motocrotte_bike_variant_16__legacy_motocrotte__frame_001__16_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/16_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_16__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_16/original_images/motocrotte_bike_variant_16__legacy_motocrotte__frame_002__16_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/16_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_16__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_16/original_images/motocrotte_bike_variant_16__legacy_motocrotte__frame_003__16_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/16_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_16__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_16/original_images/motocrotte_bike_variant_16__legacy_motocrotte__frame_004__16_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/16_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_16__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_16/sprite_sheets/motocrotte_bike_variant_16__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_16/animation_gifs/motocrotte_bike_variant_16__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/16_1.png",
+            "media/images/cars/bikes/16_2.png",
+            "media/images/cars/bikes/16_3.png",
+            "media/images/cars/bikes/16_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/16_1.png",
+        "media/images/cars/bikes/16_2.png",
+        "media/images/cars/bikes/16_3.png",
+        "media/images/cars/bikes/16_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:47.966511+00:00",
+      "created_at": "2026-07-27T21:34:48",
+      "updated_at": "2026-07-27T21:34:48"
+    },
+    {
+      "id": "motocrotte_bike_variant_17",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_17",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_17__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_17/original_images/motocrotte_bike_variant_17__legacy_motocrotte__frame_001__17_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/17_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_17__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_17/original_images/motocrotte_bike_variant_17__legacy_motocrotte__frame_002__17_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/17_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_17__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_17/original_images/motocrotte_bike_variant_17__legacy_motocrotte__frame_003__17_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/17_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_17__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_17/original_images/motocrotte_bike_variant_17__legacy_motocrotte__frame_004__17_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/17_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_17__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_17/sprite_sheets/motocrotte_bike_variant_17__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_17/animation_gifs/motocrotte_bike_variant_17__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/17_1.png",
+            "media/images/cars/bikes/17_2.png",
+            "media/images/cars/bikes/17_3.png",
+            "media/images/cars/bikes/17_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/17_1.png",
+        "media/images/cars/bikes/17_2.png",
+        "media/images/cars/bikes/17_3.png",
+        "media/images/cars/bikes/17_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:48.415515+00:00",
+      "created_at": "2026-07-27T21:34:48",
+      "updated_at": "2026-07-27T21:34:48"
+    },
+    {
+      "id": "motocrotte_bike_variant_18",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_18",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_18__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_18/original_images/motocrotte_bike_variant_18__legacy_motocrotte__frame_001__18_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/18_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_18__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_18/original_images/motocrotte_bike_variant_18__legacy_motocrotte__frame_002__18_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/18_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_18__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_18/original_images/motocrotte_bike_variant_18__legacy_motocrotte__frame_003__18_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/18_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_18__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_18/original_images/motocrotte_bike_variant_18__legacy_motocrotte__frame_004__18_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/18_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_18__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_18/sprite_sheets/motocrotte_bike_variant_18__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_18/animation_gifs/motocrotte_bike_variant_18__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/18_1.png",
+            "media/images/cars/bikes/18_2.png",
+            "media/images/cars/bikes/18_3.png",
+            "media/images/cars/bikes/18_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/18_1.png",
+        "media/images/cars/bikes/18_2.png",
+        "media/images/cars/bikes/18_3.png",
+        "media/images/cars/bikes/18_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:49.083521+00:00",
+      "created_at": "2026-07-27T21:34:49",
+      "updated_at": "2026-07-27T21:34:49"
+    },
+    {
+      "id": "motocrotte_bike_variant_19",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "size_class": null,
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "folder": "lab_assets/props/motocrotte_bike_variant_19",
+      "images": [
+        {
+          "id": "motocrotte_bike_variant_19__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/props/motocrotte_bike_variant_19/original_images/motocrotte_bike_variant_19__legacy_motocrotte__frame_001__19_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/19_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_19__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/props/motocrotte_bike_variant_19/original_images/motocrotte_bike_variant_19__legacy_motocrotte__frame_002__19_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/19_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_19__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/props/motocrotte_bike_variant_19/original_images/motocrotte_bike_variant_19__legacy_motocrotte__frame_003__19_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/19_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_bike_variant_19__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/props/motocrotte_bike_variant_19/original_images/motocrotte_bike_variant_19__legacy_motocrotte__frame_004__19_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/bikes/19_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_bike_variant_19__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_bike_variant_19/sprite_sheets/motocrotte_bike_variant_19__legacy_motocrotte__traffic_cycle__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_bike_variant_19/animation_gifs/motocrotte_bike_variant_19__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/bikes/19_1.png",
+            "media/images/cars/bikes/19_2.png",
+            "media/images/cars/bikes/19_3.png",
+            "media/images/cars/bikes/19_4.png"
+          ],
+          "source_references": [
+            "traffic.py:176",
+            "enemies.py:78"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/bikes/19_1.png",
+        "media/images/cars/bikes/19_2.png",
+        "media/images/cars/bikes/19_3.png",
+        "media/images/cars/bikes/19_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:34:49.756591+00:00",
+      "created_at": "2026-07-27T21:34:49",
+      "updated_at": "2026-07-27T21:34:49"
+    },
+    {
+      "id": "motocrotte_car_l_01",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "L",
+      "groups": [
+        "vehicles/cars/l"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_l_01",
+      "images": [
+        {
+          "id": "motocrotte_car_l_01__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_l_01/original_images/motocrotte_car_l_01__legacy_motocrotte__sheet__v001.png",
+          "width": 290,
+          "height": 71,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/L/car_1.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_l_01__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_l_01/original_images/motocrotte_car_l_01__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_l_01/animation_gifs/motocrotte_car_l_01__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 145,
+          "frame_height": 71,
+          "sheet_width": 290,
+          "sheet_height": 71,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/L/car_1.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/L/car_1.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:49.587067+00:00",
+      "created_at": "2026-07-27T21:38:49",
+      "updated_at": "2026-07-27T21:38:49"
+    },
+    {
+      "id": "motocrotte_car_l_02",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "L",
+      "groups": [
+        "vehicles/cars/l"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_l_02",
+      "images": [
+        {
+          "id": "motocrotte_car_l_02__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_l_02/original_images/motocrotte_car_l_02__legacy_motocrotte__sheet__v001.png",
+          "width": 236,
+          "height": 65,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/L/car_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_l_02__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_l_02/original_images/motocrotte_car_l_02__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_l_02/animation_gifs/motocrotte_car_l_02__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 118,
+          "frame_height": 65,
+          "sheet_width": 236,
+          "sheet_height": 65,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/L/car_2.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/L/car_2.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:50.037505+00:00",
+      "created_at": "2026-07-27T21:38:50",
+      "updated_at": "2026-07-27T21:38:50"
+    },
+    {
+      "id": "motocrotte_car_l_03",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "L",
+      "groups": [
+        "vehicles/cars/l"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_l_03",
+      "images": [
+        {
+          "id": "motocrotte_car_l_03__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_l_03/original_images/motocrotte_car_l_03__legacy_motocrotte__sheet__v001.png",
+          "width": 286,
+          "height": 68,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/L/car_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_l_03__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_l_03/original_images/motocrotte_car_l_03__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_l_03/animation_gifs/motocrotte_car_l_03__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 143,
+          "frame_height": 68,
+          "sheet_width": 286,
+          "sheet_height": 68,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/L/car_3.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/L/car_3.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:50.571593+00:00",
+      "created_at": "2026-07-27T21:38:50",
+      "updated_at": "2026-07-27T21:38:50"
+    },
+    {
+      "id": "motocrotte_car_l_04",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "L",
+      "groups": [
+        "vehicles/cars/l"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_l_04",
+      "images": [
+        {
+          "id": "motocrotte_car_l_04__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_l_04/original_images/motocrotte_car_l_04__legacy_motocrotte__sheet__v001.png",
+          "width": 314,
+          "height": 76,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/L/car_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_l_04__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_l_04/original_images/motocrotte_car_l_04__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_l_04/animation_gifs/motocrotte_car_l_04__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 157,
+          "frame_height": 76,
+          "sheet_width": 314,
+          "sheet_height": 76,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/L/car_4.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/L/car_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:51.309268+00:00",
+      "created_at": "2026-07-27T21:38:51",
+      "updated_at": "2026-07-27T21:38:51"
+    },
+    {
+      "id": "motocrotte_car_l_05",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "L",
+      "groups": [
+        "vehicles/cars/l"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_l_05",
+      "images": [
+        {
+          "id": "motocrotte_car_l_05__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_l_05/original_images/motocrotte_car_l_05__legacy_motocrotte__sheet__v001.png",
+          "width": 280,
+          "height": 64,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/L/car_5.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_l_05__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_l_05/original_images/motocrotte_car_l_05__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_l_05/animation_gifs/motocrotte_car_l_05__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 140,
+          "frame_height": 64,
+          "sheet_width": 280,
+          "sheet_height": 64,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/L/car_5.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/L/car_5.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:51.880768+00:00",
+      "created_at": "2026-07-27T21:38:51",
+      "updated_at": "2026-07-27T21:38:51"
+    },
+    {
+      "id": "motocrotte_car_l_06",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "L",
+      "groups": [
+        "vehicles/cars/l"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_l_06",
+      "images": [
+        {
+          "id": "motocrotte_car_l_06__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_l_06/original_images/motocrotte_car_l_06__legacy_motocrotte__sheet__v001.png",
+          "width": 278,
+          "height": 71,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/L/car_6.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_l_06__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_l_06/original_images/motocrotte_car_l_06__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_l_06/animation_gifs/motocrotte_car_l_06__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 139,
+          "frame_height": 71,
+          "sheet_width": 278,
+          "sheet_height": 71,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/L/car_6.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/L/car_6.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:52.385842+00:00",
+      "created_at": "2026-07-27T21:38:52",
+      "updated_at": "2026-07-27T21:38:52"
+    },
+    {
+      "id": "motocrotte_car_regular_02",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_02",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_02__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_02/original_images/motocrotte_car_regular_02__legacy_motocrotte__sheet__v001.png",
+          "width": 262,
+          "height": 54,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_2.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_02__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_02/original_images/motocrotte_car_regular_02__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_02/animation_gifs/motocrotte_car_regular_02__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 131,
+          "frame_height": 54,
+          "sheet_width": 262,
+          "sheet_height": 54,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_2.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_2.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:52.898847+00:00",
+      "created_at": "2026-07-27T21:38:52",
+      "updated_at": "2026-07-27T21:38:52"
+    },
+    {
+      "id": "motocrotte_car_regular_03",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_03",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_03__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_03/original_images/motocrotte_car_regular_03__legacy_motocrotte__sheet__v001.png",
+          "width": 256,
+          "height": 55,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_3.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_03__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_03/original_images/motocrotte_car_regular_03__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_03/animation_gifs/motocrotte_car_regular_03__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 128,
+          "frame_height": 55,
+          "sheet_width": 256,
+          "sheet_height": 55,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_3.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_3.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:53.467276+00:00",
+      "created_at": "2026-07-27T21:38:53",
+      "updated_at": "2026-07-27T21:38:53"
+    },
+    {
+      "id": "motocrotte_car_regular_04",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_04",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_04__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_04/original_images/motocrotte_car_regular_04__legacy_motocrotte__sheet__v001.png",
+          "width": 258,
+          "height": 53,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_4.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_04__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_04/original_images/motocrotte_car_regular_04__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_04/animation_gifs/motocrotte_car_regular_04__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 129,
+          "frame_height": 53,
+          "sheet_width": 258,
+          "sheet_height": 53,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_4.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:54.122312+00:00",
+      "created_at": "2026-07-27T21:38:54",
+      "updated_at": "2026-07-27T21:38:54"
+    },
+    {
+      "id": "motocrotte_car_regular_05",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_05",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_05__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_05/original_images/motocrotte_car_regular_05__legacy_motocrotte__sheet__v001.png",
+          "width": 290,
+          "height": 64,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_5.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_05__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_05/original_images/motocrotte_car_regular_05__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_05/animation_gifs/motocrotte_car_regular_05__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 145,
+          "frame_height": 64,
+          "sheet_width": 290,
+          "sheet_height": 64,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_5.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_5.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:54.731753+00:00",
+      "created_at": "2026-07-27T21:38:54",
+      "updated_at": "2026-07-27T21:38:54"
+    },
+    {
+      "id": "motocrotte_car_regular_06",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_06",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_06__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_06/original_images/motocrotte_car_regular_06__legacy_motocrotte__sheet__v001.png",
+          "width": 254,
+          "height": 49,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_6.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_06__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_06/original_images/motocrotte_car_regular_06__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_06/animation_gifs/motocrotte_car_regular_06__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 127,
+          "frame_height": 49,
+          "sheet_width": 254,
+          "sheet_height": 49,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_6.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_6.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:55.259144+00:00",
+      "created_at": "2026-07-27T21:38:55",
+      "updated_at": "2026-07-27T21:38:55"
+    },
+    {
+      "id": "motocrotte_car_regular_07",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_07",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_07__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_07/original_images/motocrotte_car_regular_07__legacy_motocrotte__sheet__v001.png",
+          "width": 216,
+          "height": 41,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_7.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_07__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_07/original_images/motocrotte_car_regular_07__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_07/animation_gifs/motocrotte_car_regular_07__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 108,
+          "frame_height": 41,
+          "sheet_width": 216,
+          "sheet_height": 41,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_7.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_7.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:55.712661+00:00",
+      "created_at": "2026-07-27T21:38:55",
+      "updated_at": "2026-07-27T21:38:55"
+    },
+    {
+      "id": "motocrotte_car_regular_08",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_08",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_08__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_08/original_images/motocrotte_car_regular_08__legacy_motocrotte__sheet__v001.png",
+          "width": 254,
+          "height": 41,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_8.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_08__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_08/original_images/motocrotte_car_regular_08__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_08/animation_gifs/motocrotte_car_regular_08__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 127,
+          "frame_height": 41,
+          "sheet_width": 254,
+          "sheet_height": 41,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_8.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_8.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:56.281741+00:00",
+      "created_at": "2026-07-27T21:38:56",
+      "updated_at": "2026-07-27T21:38:56"
+    },
+    {
+      "id": "motocrotte_car_regular_09",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_09",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_09__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_09/original_images/motocrotte_car_regular_09__legacy_motocrotte__sheet__v001.png",
+          "width": 200,
+          "height": 36,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_9.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_09__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_09/original_images/motocrotte_car_regular_09__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_09/animation_gifs/motocrotte_car_regular_09__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 100,
+          "frame_height": 36,
+          "sheet_width": 200,
+          "sheet_height": 36,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_9.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_9.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:56.695745+00:00",
+      "created_at": "2026-07-27T21:38:56",
+      "updated_at": "2026-07-27T21:38:56"
+    },
+    {
+      "id": "motocrotte_car_regular_10",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_10",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_10__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_10/original_images/motocrotte_car_regular_10__legacy_motocrotte__sheet__v001.png",
+          "width": 192,
+          "height": 41,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_10.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_10__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_10/original_images/motocrotte_car_regular_10__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_10/animation_gifs/motocrotte_car_regular_10__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 96,
+          "frame_height": 41,
+          "sheet_width": 192,
+          "sheet_height": 41,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_10.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_10.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:57.302322+00:00",
+      "created_at": "2026-07-27T21:38:57",
+      "updated_at": "2026-07-27T21:38:57"
+    },
+    {
+      "id": "motocrotte_car_regular_11",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": [
+        "vehicles/cars/regular"
+      ],
+      "folder": "lab_assets/props/motocrotte_car_regular_11",
+      "images": [
+        {
+          "id": "motocrotte_car_regular_11__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_car_regular_11/original_images/motocrotte_car_regular_11__legacy_motocrotte__sheet__v001.png",
+          "width": 254,
+          "height": 50,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/regular/car_11.png",
+          "source_role": "traffic_vehicle_animation",
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_regular_11__legacy_motocrotte__traffic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "traffic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_car_regular_11/original_images/motocrotte_car_regular_11__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_car_regular_11/animation_gifs/motocrotte_car_regular_11__legacy_motocrotte__traffic_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 127,
+          "frame_height": 50,
+          "sheet_width": 254,
+          "sheet_height": 50,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/regular/car_11.png"
+          ],
+          "source_references": [
+            "traffic.py:143"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/regular/car_11.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:38:57.787364+00:00",
+      "created_at": "2026-07-27T21:38:57",
+      "updated_at": "2026-07-27T21:38:57"
+    },
+    {
+      "id": "motocrotte_main_screen",
+      "type": "background",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [],
+      "folder": "lab_assets/backgrounds/motocrotte_main_screen",
+      "images": [
+        {
+          "id": "motocrotte_main_screen__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/backgrounds/motocrotte_main_screen/original_images/motocrotte_main_screen__legacy_motocrotte__image__v001.png",
+          "width": 1024,
+          "height": 1024,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/main1.png",
+          "source_role": "title_and_end_screen",
+          "source_references": [
+            "motorcrottee.py:60",
+            "motorcrottee.py:133"
+          ]
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/main1.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:50:39.953244+00:00",
+      "created_at": "2026-07-27T21:50:39",
+      "updated_at": "2026-07-27T21:50:39"
+    },
+    {
+      "id": "motocrotte_background_01",
+      "type": "background",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [],
+      "folder": "lab_assets/backgrounds/motocrotte_background_01",
+      "images": [
+        {
+          "id": "motocrotte_background_01__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/backgrounds/motocrotte_background_01/original_images/motocrotte_background_01__legacy_motocrotte__image__v001.png",
+          "width": 1200,
+          "height": 683,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/new_background.png",
+          "source_role": null,
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/new_background.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:50:40.398248+00:00",
+      "created_at": "2026-07-27T21:50:40",
+      "updated_at": "2026-07-27T21:50:40"
+    },
+    {
+      "id": "motocrotte_background_02",
+      "type": "background",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [],
+      "folder": "lab_assets/backgrounds/motocrotte_background_02",
+      "images": [
+        {
+          "id": "motocrotte_background_02__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/backgrounds/motocrotte_background_02/original_images/motocrotte_background_02__legacy_motocrotte__image__v001.png",
+          "width": 800,
+          "height": 455,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/new_background2.png",
+          "source_role": null,
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/new_background2.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:50:40.965796+00:00",
+      "created_at": "2026-07-27T21:50:40",
+      "updated_at": "2026-07-27T21:50:40"
+    },
+    {
+      "id": "motocrotte_background_03",
+      "type": "background",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [],
+      "folder": "lab_assets/backgrounds/motocrotte_background_03",
+      "images": [
+        {
+          "id": "motocrotte_background_03__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/backgrounds/motocrotte_background_03/original_images/motocrotte_background_03__legacy_motocrotte__image__v001.png",
+          "width": 1200,
+          "height": 524,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/new_background3.png",
+          "source_role": null,
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/new_background3.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:50:41.760915+00:00",
+      "created_at": "2026-07-27T21:50:41",
+      "updated_at": "2026-07-27T21:50:41"
+    },
+    {
+      "id": "motocrotte_background_04",
+      "type": "background",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [],
+      "folder": "lab_assets/backgrounds/motocrotte_background_04",
+      "images": [
+        {
+          "id": "motocrotte_background_04__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/backgrounds/motocrotte_background_04/original_images/motocrotte_background_04__legacy_motocrotte__image__v001.png",
+          "width": 1199,
+          "height": 600,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/new_background4.png",
+          "source_role": null,
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/new_background4.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:50:42.465523+00:00",
+      "created_at": "2026-07-27T21:50:42",
+      "updated_at": "2026-07-27T21:50:42"
+    },
+    {
+      "id": "motocrotte_poop_05",
+      "type": "effect",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "gameplay/effects/poop"
+      ],
+      "folder": "lab_assets/effects/motocrotte_poop_05",
+      "images": [
+        {
+          "id": "motocrotte_poop_05__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/effects/motocrotte_poop_05/original_images/motocrotte_poop_05__legacy_motocrotte__image__v001.png",
+          "width": 2048,
+          "height": 2048,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/poop5.png",
+          "source_role": "standalone_poop_image",
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/poop5.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:50:43.101155+00:00",
+      "created_at": "2026-07-27T21:50:43",
+      "updated_at": "2026-07-27T21:50:43"
+    },
+    {
+      "id": "motocrotte_poop_55",
+      "type": "effect",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "gameplay/effects/poop"
+      ],
+      "folder": "lab_assets/effects/motocrotte_poop_55",
+      "images": [
+        {
+          "id": "motocrotte_poop_55__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/effects/motocrotte_poop_55/original_images/motocrotte_poop_55__legacy_motocrotte__sheet__v001.png",
+          "width": 500,
+          "height": 109,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/poop55.png",
+          "source_role": "collectible_animation",
+          "source_references": [
+            "collectibles.py:33"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_poop_55__legacy_motocrotte__poop_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "poop_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/effects/motocrotte_poop_55/original_images/motocrotte_poop_55__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/effects/motocrotte_poop_55/animation_gifs/motocrotte_poop_55__legacy_motocrotte__poop_cycle__v001.gif",
+          "frame_count": 5,
+          "frame_width": 100,
+          "frame_height": 109,
+          "sheet_width": 500,
+          "sheet_height": 109,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/poop55.png"
+          ],
+          "source_references": [
+            "collectibles.py:33"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/poop55.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:50:43.608213+00:00",
+      "created_at": "2026-07-27T21:50:43",
+      "updated_at": "2026-07-27T21:50:43"
+    },
+    {
+      "id": "motocrotte_poop_fly",
+      "type": "effect",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "gameplay/effects/poop"
+      ],
+      "folder": "lab_assets/effects/motocrotte_poop_fly",
+      "images": [
+        {
+          "id": "motocrotte_poop_fly__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/effects/motocrotte_poop_fly/original_images/motocrotte_poop_fly__legacy_motocrotte__image__v001.png",
+          "width": 60,
+          "height": 53,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/poopfly.png",
+          "source_role": "projectile_sprite",
+          "source_references": [
+            "player.py:327"
+          ]
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/poopfly.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:50:44.376281+00:00",
+      "created_at": "2026-07-27T21:50:44",
+      "updated_at": "2026-07-27T21:50:44"
+    },
+    {
+      "id": "motocrotte_poop_gun",
+      "type": "effect",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "gameplay/effects/poop"
+      ],
+      "folder": "lab_assets/effects/motocrotte_poop_gun",
+      "images": [
+        {
+          "id": "motocrotte_poop_gun__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/effects/motocrotte_poop_gun/original_images/motocrotte_poop_gun__legacy_motocrotte__image__v001.png",
+          "width": 1000,
+          "height": 230,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/poopgun.png",
+          "source_role": "standalone_poop_image",
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/poopgun.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:50:44.849831+00:00",
+      "created_at": "2026-07-27T21:50:44",
+      "updated_at": "2026-07-27T21:50:44"
+    },
+    {
+      "id": "motocrotte_poop_impact",
+      "type": "effect",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "gameplay/effects/poop"
+      ],
+      "folder": "lab_assets/effects/motocrotte_poop_impact",
+      "images": [
+        {
+          "id": "motocrotte_poop_impact__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/effects/motocrotte_poop_impact/original_images/motocrotte_poop_impact__legacy_motocrotte__image__v001.png",
+          "width": 70,
+          "height": 52,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/poopimpact.png",
+          "source_role": "projectile_impact_sprite",
+          "source_references": [
+            "player.py:328",
+            "game_configuration.py:16"
+          ]
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/poopimpact.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:50:45.362405+00:00",
+      "created_at": "2026-07-27T21:50:45",
+      "updated_at": "2026-07-27T21:50:45"
+    },
+    {
+      "id": "motocrotte_tank_rocket",
+      "type": "effect",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "gameplay/projectiles/tank"
+      ],
+      "folder": "lab_assets/effects/motocrotte_tank_rocket",
+      "images": [
+        {
+          "id": "motocrotte_tank_rocket__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/effects/motocrotte_tank_rocket/original_images/motocrotte_tank_rocket__legacy_motocrotte__image__v001.png",
+          "width": 503,
+          "height": 215,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/tank_rocket.png",
+          "source_role": "boss_projectile_sprite",
+          "source_references": [
+            "enemies.py:404"
+          ]
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/tank_rocket.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:50:45.801495+00:00",
+      "created_at": "2026-07-27T21:50:45",
+      "updated_at": "2026-07-27T21:50:45"
+    },
+    {
+      "id": "motocrotte_tank_rocket_raw",
+      "type": "effect",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "gameplay/projectiles/tank"
+      ],
+      "folder": "lab_assets/effects/motocrotte_tank_rocket_raw",
+      "images": [
+        {
+          "id": "motocrotte_tank_rocket_raw__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/effects/motocrotte_tank_rocket_raw/original_images/motocrotte_tank_rocket_raw__legacy_motocrotte__image__v001.png",
+          "width": 2048,
+          "height": 2048,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/tank_rocket_raw.png",
+          "source_role": "raw_projectile_image",
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/tank_rocket_raw.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:50:46.322639+00:00",
+      "created_at": "2026-07-27T21:50:46",
+      "updated_at": "2026-07-27T21:50:46"
+    },
+    {
+      "id": "motocrotte_hero_strip",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_strip",
+      "images": [
+        {
+          "id": "motocrotte_hero_strip__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_strip/original_images/motocrotte_hero_strip__legacy_motocrotte__sheet__v001.png",
+          "width": 200,
+          "height": 51,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/hero_strip.png",
+          "source_role": "hero_existing_sprite_sheet",
+          "source_references": []
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_strip__legacy_motocrotte__hero_strip_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "hero_strip_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_strip/original_images/motocrotte_hero_strip__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_strip/animation_gifs/motocrotte_hero_strip__legacy_motocrotte__hero_strip_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 50,
+          "frame_height": 51,
+          "sheet_width": 200,
+          "sheet_height": 51,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/hero_strip.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/hero_strip.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:57:47.549619+00:00",
+      "created_at": "2026-07-27T21:57:47",
+      "updated_at": "2026-07-27T21:57:47"
+    },
+    {
+      "id": "motocrotte_hero_main",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_main",
+      "images": [
+        {
+          "id": "motocrotte_hero_main__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_001__hero_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/hero_1.png",
+          "source_role": "hero_animation_frames",
+          "source_references": [
+            "player.py:54",
+            "controls.py:42"
+          ],
+          "source_frame_count": 5
+        },
+        {
+          "id": "motocrotte_hero_main__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_002__hero_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/hero_2.png",
+          "source_role": "hero_animation_frames",
+          "source_references": [
+            "player.py:54",
+            "controls.py:42"
+          ],
+          "source_frame_count": 5
+        },
+        {
+          "id": "motocrotte_hero_main__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_003__hero_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/hero_3.png",
+          "source_role": "hero_animation_frames",
+          "source_references": [
+            "player.py:54",
+            "controls.py:42"
+          ],
+          "source_frame_count": 5
+        },
+        {
+          "id": "motocrotte_hero_main__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_004__hero_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/hero_4.png",
+          "source_role": "hero_animation_frames",
+          "source_references": [
+            "player.py:54",
+            "controls.py:42"
+          ],
+          "source_frame_count": 5
+        },
+        {
+          "id": "motocrotte_hero_main__legacy_motocrotte__frame_005",
+          "provider": "legacy_motocrotte",
+          "version": 5,
+          "frame_index": 5,
+          "path": "lab_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_005__hero_5.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/hero_5.png",
+          "source_role": "hero_animation_frames",
+          "source_references": [
+            "player.py:54",
+            "controls.py:42"
+          ],
+          "source_frame_count": 5
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "hero_main_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_main/sprite_sheets/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_main/animation_gifs/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.gif",
+          "frame_count": 5,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 300,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/hero_1.png",
+            "media/images/hero/hero_2.png",
+            "media/images/hero/hero_3.png",
+            "media/images/hero/hero_4.png",
+            "media/images/hero/hero_5.png"
+          ],
+          "source_references": [
+            "player.py:54",
+            "controls.py:42"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/hero_1.png",
+        "media/images/hero/hero_2.png",
+        "media/images/hero/hero_3.png",
+        "media/images/hero/hero_4.png",
+        "media/images/hero/hero_5.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T18:57:48.005145+00:00",
+      "created_at": "2026-07-27T21:57:48",
+      "updated_at": "2026-07-27T21:57:48"
+    },
+    {
+      "id": "motocrotte_hero_special_01",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_01",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_01__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_01/original_images/motocrotte_hero_special_01__legacy_motocrotte__sheet__v001.png",
+          "width": 190,
+          "height": 87,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_1.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_01__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_01/original_images/motocrotte_hero_special_01__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_01/animation_gifs/motocrotte_hero_special_01__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 95,
+          "frame_height": 87,
+          "sheet_width": 190,
+          "sheet_height": 87,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_1.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_1.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:48.697182+00:00",
+      "created_at": "2026-07-27T21:57:48",
+      "updated_at": "2026-07-27T21:57:48"
+    },
+    {
+      "id": "motocrotte_hero_special_02",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_02",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_02__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_02/original_images/motocrotte_hero_special_02__legacy_motocrotte__sheet__v001.png",
+          "width": 1098,
+          "height": 437,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_2.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_02__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_02/original_images/motocrotte_hero_special_02__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_02/animation_gifs/motocrotte_hero_special_02__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 549,
+          "frame_height": 437,
+          "sheet_width": 1098,
+          "sheet_height": 437,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_2.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_2.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:49.169186+00:00",
+      "created_at": "2026-07-27T21:57:49",
+      "updated_at": "2026-07-27T21:57:49"
+    },
+    {
+      "id": "motocrotte_hero_special_03",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_03",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_03__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_03/original_images/motocrotte_hero_special_03__legacy_motocrotte__sheet__v001.png",
+          "width": 400,
+          "height": 67,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_3.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_03__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_03/original_images/motocrotte_hero_special_03__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_03/animation_gifs/motocrotte_hero_special_03__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 200,
+          "frame_height": 67,
+          "sheet_width": 400,
+          "sheet_height": 67,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_3.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_3.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:49.731104+00:00",
+      "created_at": "2026-07-27T21:57:49",
+      "updated_at": "2026-07-27T21:57:49"
+    },
+    {
+      "id": "motocrotte_hero_special_04",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_04",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_04__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_04/original_images/motocrotte_hero_special_04__legacy_motocrotte__sheet__v001.png",
+          "width": 196,
+          "height": 76,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_4.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_04__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_04/original_images/motocrotte_hero_special_04__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_04/animation_gifs/motocrotte_hero_special_04__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 98,
+          "frame_height": 76,
+          "sheet_width": 196,
+          "sheet_height": 76,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_4.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_4.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:50.180133+00:00",
+      "created_at": "2026-07-27T21:57:50",
+      "updated_at": "2026-07-27T21:57:50"
+    },
+    {
+      "id": "motocrotte_hero_special_05",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_05",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_05__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_05/original_images/motocrotte_hero_special_05__legacy_motocrotte__sheet__v001.png",
+          "width": 940,
+          "height": 355,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_5.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_05__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_05/original_images/motocrotte_hero_special_05__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_05/animation_gifs/motocrotte_hero_special_05__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 470,
+          "frame_height": 355,
+          "sheet_width": 940,
+          "sheet_height": 355,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_5.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_5.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:50.657421+00:00",
+      "created_at": "2026-07-27T21:57:50",
+      "updated_at": "2026-07-27T21:57:50"
+    },
+    {
+      "id": "motocrotte_hero_special_06",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_06",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_06__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_06/original_images/motocrotte_hero_special_06__legacy_motocrotte__sheet__v001.png",
+          "width": 1200,
+          "height": 600,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_6.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_06__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_06/original_images/motocrotte_hero_special_06__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_06/animation_gifs/motocrotte_hero_special_06__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 600,
+          "frame_height": 600,
+          "sheet_width": 1200,
+          "sheet_height": 600,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_6.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_6.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:51.207437+00:00",
+      "created_at": "2026-07-27T21:57:51",
+      "updated_at": "2026-07-27T21:57:51"
+    },
+    {
+      "id": "motocrotte_hero_special_07",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_07",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_07__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_07/original_images/motocrotte_hero_special_07__legacy_motocrotte__sheet__v001.png",
+          "width": 920,
+          "height": 388,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_7.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_07__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_07/original_images/motocrotte_hero_special_07__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_07/animation_gifs/motocrotte_hero_special_07__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 460,
+          "frame_height": 388,
+          "sheet_width": 920,
+          "sheet_height": 388,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_7.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_7.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:51.909444+00:00",
+      "created_at": "2026-07-27T21:57:51",
+      "updated_at": "2026-07-27T21:57:51"
+    },
+    {
+      "id": "motocrotte_hero_special_08",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_08",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_08__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_08/original_images/motocrotte_hero_special_08__legacy_motocrotte__sheet__v001.png",
+          "width": 1114,
+          "height": 508,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_8.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_08__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_08/original_images/motocrotte_hero_special_08__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_08/animation_gifs/motocrotte_hero_special_08__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 557,
+          "frame_height": 508,
+          "sheet_width": 1114,
+          "sheet_height": 508,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_8.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_8.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:52.436093+00:00",
+      "created_at": "2026-07-27T21:57:52",
+      "updated_at": "2026-07-27T21:57:52"
+    },
+    {
+      "id": "motocrotte_hero_special_09",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_09",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_09__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_09/original_images/motocrotte_hero_special_09__legacy_motocrotte__sheet__v001.png",
+          "width": 878,
+          "height": 369,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_9.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_09__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_09/original_images/motocrotte_hero_special_09__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_09/animation_gifs/motocrotte_hero_special_09__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 439,
+          "frame_height": 369,
+          "sheet_width": 878,
+          "sheet_height": 369,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_9.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_9.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:52.987668+00:00",
+      "created_at": "2026-07-27T21:57:53",
+      "updated_at": "2026-07-27T21:57:53"
+    },
+    {
+      "id": "motocrotte_hero_special_10",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_10",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_10__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_10/original_images/motocrotte_hero_special_10__legacy_motocrotte__sheet__v001.png",
+          "width": 1200,
+          "height": 504,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_10.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_10__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_10/original_images/motocrotte_hero_special_10__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_10/animation_gifs/motocrotte_hero_special_10__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 600,
+          "frame_height": 504,
+          "sheet_width": 1200,
+          "sheet_height": 504,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_10.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_10.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:53.488673+00:00",
+      "created_at": "2026-07-27T21:57:53",
+      "updated_at": "2026-07-27T21:57:53"
+    },
+    {
+      "id": "motocrotte_hero_special_11",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "characters/hero/special"
+      ],
+      "folder": "lab_assets/characters/motocrotte_hero_special_11",
+      "images": [
+        {
+          "id": "motocrotte_hero_special_11__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_hero_special_11/original_images/motocrotte_hero_special_11__legacy_motocrotte__sheet__v001.png",
+          "width": 545,
+          "height": 178,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/hero/special/special_11.png",
+          "source_role": "hero_special_sprite_sheet",
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_hero_special_11__legacy_motocrotte__special_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_hero_special_11/original_images/motocrotte_hero_special_11__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_hero_special_11/animation_gifs/motocrotte_hero_special_11__legacy_motocrotte__special_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 273,
+          "frame_height": 178,
+          "sheet_width": 545,
+          "sheet_height": 178,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/hero/special/special_11.png"
+          ],
+          "source_references": [
+            "controls.py:172"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/hero/special/special_11.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T18:57:54.049191+00:00",
+      "created_at": "2026-07-27T21:57:54",
+      "updated_at": "2026-07-27T21:57:54"
+    },
+    {
+      "id": "motocrotte_basic_enemy",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/basic"
+      ],
+      "folder": "lab_assets/characters/motocrotte_basic_enemy",
+      "images": [
+        {
+          "id": "motocrotte_basic_enemy__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/characters/motocrotte_basic_enemy/original_images/motocrotte_basic_enemy__legacy_motocrotte__frame_001__basicEnemy_1.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/basicEnemy_1.png",
+          "source_role": "basic_enemy_animation",
+          "source_references": [
+            "enemies.py:191"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_basic_enemy__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/characters/motocrotte_basic_enemy/original_images/motocrotte_basic_enemy__legacy_motocrotte__frame_002__basicEnemy_2.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/basicEnemy_2.png",
+          "source_role": "basic_enemy_animation",
+          "source_references": [
+            "enemies.py:191"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_basic_enemy__legacy_motocrotte__frame_003",
+          "provider": "legacy_motocrotte",
+          "version": 3,
+          "frame_index": 3,
+          "path": "lab_assets/characters/motocrotte_basic_enemy/original_images/motocrotte_basic_enemy__legacy_motocrotte__frame_003__basicEnemy_3.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/basicEnemy_3.png",
+          "source_role": "basic_enemy_animation",
+          "source_references": [
+            "enemies.py:191"
+          ],
+          "source_frame_count": 4
+        },
+        {
+          "id": "motocrotte_basic_enemy__legacy_motocrotte__frame_004",
+          "provider": "legacy_motocrotte",
+          "version": 4,
+          "frame_index": 4,
+          "path": "lab_assets/characters/motocrotte_basic_enemy/original_images/motocrotte_basic_enemy__legacy_motocrotte__frame_004__basicEnemy_4.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/basicEnemy_4.png",
+          "source_role": "basic_enemy_animation",
+          "source_references": [
+            "enemies.py:191"
+          ],
+          "source_frame_count": 4
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_basic_enemy__legacy_motocrotte__basic_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "basic_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_basic_enemy/sprite_sheets/motocrotte_basic_enemy__legacy_motocrotte__basic_cycle__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_basic_enemy/animation_gifs/motocrotte_basic_enemy__legacy_motocrotte__basic_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 240,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/enemies/basicEnemy_1.png",
+            "media/images/enemies/basicEnemy_2.png",
+            "media/images/enemies/basicEnemy_3.png",
+            "media/images/enemies/basicEnemy_4.png"
+          ],
+          "source_references": [
+            "enemies.py:191"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/enemies/basicEnemy_1.png",
+        "media/images/enemies/basicEnemy_2.png",
+        "media/images/enemies/basicEnemy_3.png",
+        "media/images/enemies/basicEnemy_4.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T19:08:54.752849+00:00",
+      "created_at": "2026-07-27T22:08:54",
+      "updated_at": "2026-07-27T22:08:54"
+    },
+    {
+      "id": "motocrotte_car_enemy",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/cars"
+      ],
+      "folder": "lab_assets/characters/motocrotte_car_enemy",
+      "images": [
+        {
+          "id": "motocrotte_car_enemy__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_car_enemy/original_images/motocrotte_car_enemy__legacy_motocrotte__sheet__v001.png",
+          "width": 254,
+          "height": 50,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/carEnemy.png",
+          "source_role": "car_enemy_sprite_sheet",
+          "source_references": []
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_enemy__legacy_motocrotte__car_enemy_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "car_enemy_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_car_enemy/original_images/motocrotte_car_enemy__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_car_enemy/animation_gifs/motocrotte_car_enemy__legacy_motocrotte__car_enemy_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 127,
+          "frame_height": 50,
+          "sheet_width": 254,
+          "sheet_height": 50,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/enemies/carEnemy.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/enemies/carEnemy.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T19:08:55.298855+00:00",
+      "created_at": "2026-07-27T22:08:55",
+      "updated_at": "2026-07-27T22:08:55"
+    },
+    {
+      "id": "motocrotte_car_enemy_with_gun",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/cars"
+      ],
+      "folder": "lab_assets/characters/motocrotte_car_enemy_with_gun",
+      "images": [
+        {
+          "id": "motocrotte_car_enemy_with_gun__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_car_enemy_with_gun/original_images/motocrotte_car_enemy_with_gun__legacy_motocrotte__sheet__v001.png",
+          "width": 254,
+          "height": 50,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/carEnemyWithGun.png",
+          "source_role": "car_enemy_gun_sprite_sheet",
+          "source_references": []
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_car_enemy_with_gun__legacy_motocrotte__car_enemy_gun_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "car_enemy_gun_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_car_enemy_with_gun/original_images/motocrotte_car_enemy_with_gun__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_car_enemy_with_gun/animation_gifs/motocrotte_car_enemy_with_gun__legacy_motocrotte__car_enemy_gun_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 127,
+          "frame_height": 50,
+          "sheet_width": 254,
+          "sheet_height": 50,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/enemies/carEnemyWithGun.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/enemies/carEnemyWithGun.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T19:08:55.775862+00:00",
+      "created_at": "2026-07-27T22:08:55",
+      "updated_at": "2026-07-27T22:08:55"
+    },
+    {
+      "id": "motocrotte_basic_enemy_attack",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/basic/attacks"
+      ],
+      "folder": "lab_assets/characters/motocrotte_basic_enemy_attack",
+      "images": [
+        {
+          "id": "motocrotte_basic_enemy_attack__legacy_motocrotte__frame_001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "frame_index": 1,
+          "path": "lab_assets/characters/motocrotte_basic_enemy_attack/original_images/motocrotte_basic_enemy_attack__legacy_motocrotte__frame_001__front_attack.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/front_attack.png",
+          "source_role": "enemy_attack_states_with_sword",
+          "source_references": [
+            "enemies.py:195"
+          ],
+          "source_frame_count": 2
+        },
+        {
+          "id": "motocrotte_basic_enemy_attack__legacy_motocrotte__frame_002",
+          "provider": "legacy_motocrotte",
+          "version": 2,
+          "frame_index": 2,
+          "path": "lab_assets/characters/motocrotte_basic_enemy_attack/original_images/motocrotte_basic_enemy_attack__legacy_motocrotte__frame_002__back_attack.png",
+          "width": 60,
+          "height": 60,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/back_attack.png",
+          "source_role": "enemy_attack_states_with_sword",
+          "source_references": [
+            "enemies.py:195"
+          ],
+          "source_frame_count": 2
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_basic_enemy_attack__legacy_motocrotte__attack_states__v001",
+          "provider": "legacy_motocrotte",
+          "name": "attack_states",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_basic_enemy_attack/sprite_sheets/motocrotte_basic_enemy_attack__legacy_motocrotte__attack_states__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_basic_enemy_attack/animation_gifs/motocrotte_basic_enemy_attack__legacy_motocrotte__attack_states__v001.gif",
+          "frame_count": 2,
+          "frame_width": 60,
+          "frame_height": 60,
+          "sheet_width": 120,
+          "sheet_height": 60,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/enemies/front_attack.png",
+            "media/images/enemies/back_attack.png"
+          ],
+          "source_references": [
+            "enemies.py:195"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/enemies/front_attack.png",
+        "media/images/enemies/back_attack.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T19:08:56.481382+00:00",
+      "created_at": "2026-07-27T22:08:56",
+      "updated_at": "2026-07-27T22:08:56"
+    },
+    {
+      "id": "motocrotte_enemy_sword",
+      "type": "prop",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/weapons"
+      ],
+      "folder": "lab_assets/props/motocrotte_enemy_sword",
+      "images": [
+        {
+          "id": "motocrotte_enemy_sword__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_enemy_sword/original_images/motocrotte_enemy_sword__legacy_motocrotte__image__v001.png",
+          "width": 38,
+          "height": 11,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/enemies/sword.png",
+          "source_role": "standalone_enemy_weapon_image",
+          "source_references": []
+        }
+      ],
+      "animations": [],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/enemies/sword.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T19:08:56.962900+00:00",
+      "created_at": "2026-07-27T22:08:56",
+      "updated_at": "2026-07-27T22:08:56"
+    },
+    {
+      "id": "motocrotte_special_car",
+      "type": "prop",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "vehicles/cars/special"
+      ],
+      "folder": "lab_assets/props/motocrotte_special_car",
+      "images": [
+        {
+          "id": "motocrotte_special_car__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/props/motocrotte_special_car/original_images/motocrotte_special_car__legacy_motocrotte__sheet__v001.png",
+          "width": 260,
+          "height": 42,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/car_1.png",
+          "source_role": "special_car_sprite_sheet",
+          "source_references": []
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_special_car__legacy_motocrotte__special_car_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "special_car_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/props/motocrotte_special_car/original_images/motocrotte_special_car__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/props/motocrotte_special_car/animation_gifs/motocrotte_special_car__legacy_motocrotte__special_car_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 130,
+          "frame_height": 42,
+          "sheet_width": 260,
+          "sheet_height": 42,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/special/car_1.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/special/car_1.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T19:23:36.344316+00:00",
+      "created_at": "2026-07-27T22:23:36",
+      "updated_at": "2026-07-27T22:23:36"
+    },
+    {
+      "id": "motocrotte_tank_boss",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/boss/tank"
+      ],
+      "folder": "lab_assets/characters/motocrotte_tank_boss",
+      "images": [
+        {
+          "id": "motocrotte_tank_boss__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_tank_boss/original_images/motocrotte_tank_boss__legacy_motocrotte__sheet__v001.png",
+          "width": 1200,
+          "height": 100,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Tank.png",
+          "source_role": "boss_enemy_animation",
+          "source_references": [
+            "enemies.py:304"
+          ]
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_tank_boss__legacy_motocrotte__tank_boss_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "tank_boss_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_tank_boss/original_images/motocrotte_tank_boss__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_tank_boss/animation_gifs/motocrotte_tank_boss__legacy_motocrotte__tank_boss_cycle__v001.gif",
+          "frame_count": 6,
+          "frame_width": 200,
+          "frame_height": 100,
+          "sheet_width": 1200,
+          "sheet_height": 100,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/special/Tank.png"
+          ],
+          "source_references": [
+            "enemies.py:304"
+          ]
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/special/Tank.png"
+      ],
+      "status": "active",
+      "imported_at": "2026-07-27T19:23:36.845520+00:00",
+      "created_at": "2026-07-27T22:23:36",
+      "updated_at": "2026-07-27T22:23:36"
+    },
+    {
+      "id": "motocrotte_tank_asset",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/boss/tank"
+      ],
+      "folder": "lab_assets/characters/motocrotte_tank_asset",
+      "images": [
+        {
+          "id": "motocrotte_tank_asset__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_tank_asset/original_images/motocrotte_tank_asset__legacy_motocrotte__sheet__v001.png",
+          "width": 1200,
+          "height": 100,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Tank.png",
+          "source_role": "tank_sprite_sheet_variant",
+          "source_references": []
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_tank_asset__legacy_motocrotte__tank_asset_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "tank_asset_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_tank_asset/original_images/motocrotte_tank_asset__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_tank_asset/animation_gifs/motocrotte_tank_asset__legacy_motocrotte__tank_asset_cycle__v001.gif",
+          "frame_count": 6,
+          "frame_width": 200,
+          "frame_height": 100,
+          "sheet_width": 1200,
+          "sheet_height": 100,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/special/Asset_Tank.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/special/Asset_Tank.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T19:23:37.303038+00:00",
+      "created_at": "2026-07-27T22:23:37",
+      "updated_at": "2026-07-27T22:23:37"
+    },
+    {
+      "id": "motocrotte_tank_run",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/boss/tank"
+      ],
+      "folder": "lab_assets/characters/motocrotte_tank_run",
+      "images": [
+        {
+          "id": "motocrotte_tank_run__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_tank_run/original_images/motocrotte_tank_run__legacy_motocrotte__sheet__v001.png",
+          "width": 400,
+          "height": 100,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Tank_Run.png",
+          "source_role": "tank_run_sprite_sheet",
+          "source_references": []
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_tank_run__legacy_motocrotte__tank_run_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "tank_run_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_tank_run/original_images/motocrotte_tank_run__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_tank_run/animation_gifs/motocrotte_tank_run__legacy_motocrotte__tank_run_cycle__v001.gif",
+          "frame_count": 2,
+          "frame_width": 200,
+          "frame_height": 100,
+          "sheet_width": 400,
+          "sheet_height": 100,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/special/Asset_Tank_Run.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/special/Asset_Tank_Run.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T19:23:37.973560+00:00",
+      "created_at": "2026-07-27T22:23:38",
+      "updated_at": "2026-07-27T22:23:38"
+    },
+    {
+      "id": "motocrotte_tank_shot",
+      "type": "character",
+      "domain": null,
+      "subcategory": null,
+      "size_class": null,
+      "groups": [
+        "enemies/boss/tank"
+      ],
+      "folder": "lab_assets/characters/motocrotte_tank_shot",
+      "images": [
+        {
+          "id": "motocrotte_tank_shot__legacy_motocrotte__image__v001",
+          "provider": "legacy_motocrotte",
+          "version": 1,
+          "path": "lab_assets/characters/motocrotte_tank_shot/original_images/motocrotte_tank_shot__legacy_motocrotte__sheet__v001.png",
+          "width": 803,
+          "height": 100,
+          "source_project": "motorcrotte",
+          "source_path": "media/images/cars/special/Asset_Tank_Shot.png",
+          "source_role": "tank_shot_sprite_sheet",
+          "source_references": []
+        }
+      ],
+      "animations": [
+        {
+          "id": "motocrotte_tank_shot__legacy_motocrotte__tank_shot_cycle__v001",
+          "provider": "legacy_motocrotte",
+          "name": "tank_shot_cycle",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/motocrotte_tank_shot/original_images/motocrotte_tank_shot__legacy_motocrotte__sheet__v001.png",
+          "gif_path": "lab_assets/characters/motocrotte_tank_shot/animation_gifs/motocrotte_tank_shot__legacy_motocrotte__tank_shot_cycle__v001.gif",
+          "frame_count": 4,
+          "frame_width": 201,
+          "frame_height": 100,
+          "sheet_width": 803,
+          "sheet_height": 100,
+          "fps": 12.5,
+          "frame_duration_ms": 80,
+          "source_paths": [
+            "media/images/cars/special/Asset_Tank_Shot.png"
+          ],
+          "source_references": []
+        }
+      ],
+      "source_project": "motorcrotte",
+      "source_paths": [
+        "media/images/cars/special/Asset_Tank_Shot.png"
+      ],
+      "status": "unclassified",
+      "imported_at": "2026-07-27T19:23:38.514165+00:00",
+      "created_at": "2026-07-27T22:23:38",
+      "updated_at": "2026-07-27T22:23:38"
     }
   ],
-  "updated_at": "2026-07-25T21:10:17",
+  "updated_at": "2026-07-27T22:23:38",
   "orphans": []
 };

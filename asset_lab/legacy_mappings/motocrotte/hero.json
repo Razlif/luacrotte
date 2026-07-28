@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "domain": "hero",
+  "assets": [
+    {
+      "source_paths": ["media/images/hero/hero_strip.png"],
+      "asset_id": "motocrotte_hero_strip",
+      "type": "character",
+      "groups": ["characters/hero"],
+      "kind": "sprite_sheet",
+      "animation_name": "hero_strip_cycle",
+      "frame_count": 4,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "hero_existing_sprite_sheet",
+      "source_references": []
+    },
+    {
+      "source_paths": [
+        "media/images/hero/hero_1.png",
+        "media/images/hero/hero_2.png",
+        "media/images/hero/hero_3.png",
+        "media/images/hero/hero_4.png",
+        "media/images/hero/hero_5.png"
+      ],
+      "asset_id": "motocrotte_hero_main",
+      "type": "character",
+      "groups": ["characters/hero"],
+      "kind": "animation_frames",
+      "animation_name": "hero_main_cycle",
+      "target_frame_width": 60,
+      "target_frame_height": 60,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "hero_animation_frames",
+      "source_references": ["player.py:54", "controls.py:42"]
+    }
+  ],
+  "generated_assets": [
+    {
+      "asset_id_template": "motocrotte_hero_special_{variant:02d}",
+      "source_template": "media/images/hero/special/special_{variant}.png",
+      "variant_values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "frame_values": [1],
+      "type": "character",
+      "groups": ["characters/hero/special"],
+      "kind": "sprite_sheet",
+      "animation_name": "special_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "hero_special_sprite_sheet",
+      "source_references": ["controls.py:172"]
+    }
+  ]
+}

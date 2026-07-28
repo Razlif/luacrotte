@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "domain": "enemies",
+  "assets": [
+    {
+      "source_paths": [
+        "media/images/enemies/basicEnemy_1.png",
+        "media/images/enemies/basicEnemy_2.png",
+        "media/images/enemies/basicEnemy_3.png",
+        "media/images/enemies/basicEnemy_4.png"
+      ],
+      "asset_id": "motocrotte_basic_enemy",
+      "type": "character",
+      "groups": ["enemies/basic"],
+      "kind": "animation_frames",
+      "animation_name": "basic_cycle",
+      "target_frame_width": 60,
+      "target_frame_height": 60,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "basic_enemy_animation",
+      "source_references": ["enemies.py:191"]
+    },
+    {
+      "source_paths": ["media/images/enemies/carEnemy.png"],
+      "asset_id": "motocrotte_car_enemy",
+      "type": "character",
+      "groups": ["enemies/cars"],
+      "kind": "sprite_sheet",
+      "animation_name": "car_enemy_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "car_enemy_sprite_sheet",
+      "source_references": []
+    },
+    {
+      "source_paths": ["media/images/enemies/carEnemyWithGun.png"],
+      "asset_id": "motocrotte_car_enemy_with_gun",
+      "type": "character",
+      "groups": ["enemies/cars"],
+      "kind": "sprite_sheet",
+      "animation_name": "car_enemy_gun_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "unclassified",
+      "source_role": "car_enemy_gun_sprite_sheet",
+      "source_references": []
+    },
+    {
+      "source_paths": [
+        "media/images/enemies/front_attack.png",
+        "media/images/enemies/back_attack.png"
+      ],
+      "asset_id": "motocrotte_basic_enemy_attack",
+      "type": "character",
+      "groups": ["enemies/basic/attacks"],
+      "kind": "animation_frames",
+      "animation_name": "attack_states",
+      "target_frame_width": 60,
+      "target_frame_height": 60,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "enemy_attack_states_with_sword",
+      "source_references": ["enemies.py:195"]
+    },
+    {
+      "source_paths": ["media/images/enemies/sword.png"],
+      "asset_id": "motocrotte_enemy_sword",
+      "type": "prop",
+      "groups": ["enemies/weapons"],
+      "kind": "static",
+      "status": "unclassified",
+      "source_role": "standalone_enemy_weapon_image",
+      "source_references": []
+    }
+  ]
+}

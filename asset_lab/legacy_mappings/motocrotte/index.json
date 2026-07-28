@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "source_project": "motorcrotte",
+  "source_root": "..\\..\\..\\..\\motorcrotte",
+  "mapping_files": [
+    "backgrounds.json",
+    "vehicles.json",
+    "cars.json",
+    "special.json",
+    "root_images.json",
+    "hero.json",
+    "enemies.json"
+  ]
+}

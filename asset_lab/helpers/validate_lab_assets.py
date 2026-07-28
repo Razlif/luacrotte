@@ -8,7 +8,7 @@ HELPERS_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(HELPERS_DIR))
 
 import manifest
-from common import ASSET_LAB_DIR, LAB_ASSETS_DIR, TYPE_FOLDERS, relative_to_asset_lab
+from common import ASSET_LAB_DIR, LAB_ASSETS_DIR, TYPE_FOLDERS, groups_from_asset, normalize_groups, relative_to_asset_lab
 
 
 ASSET_SUFFIXES = {".png", ".gif"}
@@ -84,6 +84,13 @@ def validate_manifest(data: dict[str, Any]) -> list[str]:
             issues.append(f"{asset_id}: folder should be {expected_folder}, got {folder}.")
         if folder and not lab_path(folder).exists():
             issues.append(f"{asset_id}: manifest folder missing on disk: {folder}")
+
+        try:
+            groups = normalize_groups(asset.get("groups", [])) if asset.get("groups") else groups_from_asset(asset)
+            if asset.get("groups") is not None and groups != asset.get("groups"):
+                issues.append(f"{asset_id}: groups must be normalized unique paths: {asset.get('groups')}")
+        except ValueError as exc:
+            issues.append(f"{asset_id}: invalid groups: {exc}")
 
         image_versions: set[int] = set()
         for image in asset.get("images", []):

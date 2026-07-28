@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "domain": "audio",
+  "assets": [
+    {"asset_id": "motocrotte_main_riff", "kind": "music", "source_paths": ["media/mainRiff.wav"], "groups": ["music/motocrotte"]},
+    {"asset_id": "motocrotte_break", "kind": "sound", "source_paths": ["media/sounds/break.mp3"], "groups": ["sounds/motocrotte/vehicles"]},
+    {"asset_id": "motocrotte_collect", "kind": "sound", "source_paths": ["media/sounds/collect.mp3"], "groups": ["sounds/motocrotte/gameplay"]},
+    {"asset_id": "motocrotte_horn", "kind": "sound", "source_paths": ["media/sounds/horn_sound.mp3"], "groups": ["sounds/motocrotte/vehicles"]},
+    {"asset_id": "motocrotte_idle", "kind": "sound", "source_paths": ["media/sounds/idle.mp3"], "groups": ["sounds/motocrotte/player"]},
+    {"asset_id": "motocrotte_oh_no", "kind": "sound", "source_paths": ["media/sounds/oh_no.mp3"], "groups": ["sounds/motocrotte/gameplay"]},
+    {"asset_id": "motocrotte_pew", "kind": "sound", "source_paths": ["media/sounds/pew.wav"], "groups": ["sounds/motocrotte/gameplay"]},
+    {"asset_id": "motocrotte_poop_sound", "kind": "sound", "source_paths": ["media/sounds/poop.mp3"], "groups": ["sounds/motocrotte/player"]},
+    {"asset_id": "motocrotte_running", "kind": "sound", "source_paths": ["media/sounds/running.mp3"], "groups": ["sounds/motocrotte/player"]}
+  ]
+}

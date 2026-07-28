@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "asset_id": "motocrotte_ghoust_outline",
+  "source_project": "motorcrotte",
+  "source_root": "..\\..\\..\\..\\motorcrotte",
+  "source_path": "media/Ghoust_Outline.otf",
+  "groups": ["fonts/motocrotte"],
+  "status": "unclassified",
+  "code_reference": "player.py:46 (requests missing Ghoust_Solid.otf)"
+}

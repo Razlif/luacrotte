@@ -16,6 +16,8 @@ COMMANDS = {
     "assert",
     "pause",
     "run_cutscene",
+    "record_start",
+    "record_stop",
 }
 
 PROTOCOL_VERSION = 1
@@ -57,6 +59,11 @@ def validate_command(command: Any) -> dict[str, Any]:
         raise ProtocolError("snapshot name must be a string")
     if name == "run_cutscene" and not isinstance(command.get("scene"), str):
         raise ProtocolError("run_cutscene requires scene")
+    if name == "record_start":
+        if command.get("name") is not None and not isinstance(command["name"], str):
+            raise ProtocolError("record_start name must be a string")
+        if command.get("fps") is not None and (not isinstance(command["fps"], (int, float)) or command["fps"] <= 0):
+            raise ProtocolError("record_start fps must be positive")
     return command
 
 

@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "domain": "vehicles",
+  "assets": [
+    {
+      "source_paths": [
+        "media/images/cars/regular/car_1.png"
+      ],
+      "asset_id": "motocrotte_car_regular_01",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": ["vehicles/cars/regular"],
+      "kind": "sprite_sheet",
+      "animation_name": "traffic_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": [
+        "traffic.py:143"
+      ]
+    },
+    {
+      "source_paths": ["media/images/cars/XL/car_1.png"],
+      "asset_id": "motocrotte_car_xl_01",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "XL",
+      "groups": ["vehicles/cars/XL"],
+      "kind": "sprite_sheet",
+      "animation_name": "traffic_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": ["traffic.py:143"]
+    },
+    {
+      "source_paths": ["media/images/cars/XL/car_2.png"],
+      "asset_id": "motocrotte_car_xl_02",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "XL",
+      "groups": ["vehicles/cars/XL"],
+      "kind": "sprite_sheet",
+      "animation_name": "traffic_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": ["traffic.py:143"]
+    },
+    {
+      "source_paths": ["media/images/cars/XL/car_3.png"],
+      "asset_id": "motocrotte_car_xl_03",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "XL",
+      "groups": ["vehicles/cars/XL"],
+      "kind": "sprite_sheet",
+      "animation_name": "traffic_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": ["traffic.py:143"]
+    }
+  ],
+  "generated_assets": [
+    {
+      "asset_id_template": "motocrotte_car_l_{variant:02d}",
+      "source_template": "media/images/cars/L/car_{variant}.png",
+      "variant_values": [1, 2, 3, 4, 5, 6],
+      "frame_values": [1],
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "L",
+      "groups": ["vehicles/cars/L"],
+      "kind": "sprite_sheet",
+      "animation_name": "traffic_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": ["traffic.py:143"]
+    },
+    {
+      "asset_id_template": "motocrotte_car_regular_{variant:02d}",
+      "source_template": "media/images/cars/regular/car_{variant}.png",
+      "variant_values": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "frame_values": [1],
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "cars",
+      "size_class": "regular",
+      "groups": ["vehicles/cars/regular"],
+      "kind": "sprite_sheet",
+      "animation_name": "traffic_cycle",
+      "frame_count": 2,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": ["traffic.py:143"]
+    }
+  ]
+}

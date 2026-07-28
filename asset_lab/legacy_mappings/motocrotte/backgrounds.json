@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "domain": "backgrounds",
+  "assets": [
+    {
+      "source_paths": [
+        "media/images/main1.png"
+      ],
+      "asset_id": "motocrotte_main_screen",
+      "type": "background",
+      "kind": "static",
+      "status": "active",
+      "source_role": "title_and_end_screen",
+      "source_references": [
+        "motorcrottee.py:60",
+        "motorcrottee.py:133"
+      ]
+    },
+    {
+      "source_paths": [
+        "media/images/new_background5.png"
+      ],
+      "asset_id": "motocrotte_gameplay_background_05",
+      "type": "background",
+      "kind": "static",
+      "status": "active",
+      "source_role": "gameplay_background",
+      "source_references": [
+        "motorcrottee.py:96"
+      ]
+    },
+    {
+      "source_paths": [
+        "media/images/new_background.png"
+      ],
+      "asset_id": "motocrotte_background_01",
+      "type": "background",
+      "kind": "static",
+      "status": "unclassified",
+      "source_references": []
+    },
+    {
+      "source_paths": [
+        "media/images/new_background2.png"
+      ],
+      "asset_id": "motocrotte_background_02",
+      "type": "background",
+      "kind": "static",
+      "status": "unclassified",
+      "source_references": []
+    },
+    {
+      "source_paths": [
+        "media/images/new_background3.png"
+      ],
+      "asset_id": "motocrotte_background_03",
+      "type": "background",
+      "kind": "static",
+      "status": "unclassified",
+      "source_references": []
+    },
+    {
+      "source_paths": [
+        "media/images/new_background4.png"
+      ],
+      "asset_id": "motocrotte_background_04",
+      "type": "background",
+      "kind": "static",
+      "status": "unclassified",
+      "source_references": []
+    }
+  ]
+}

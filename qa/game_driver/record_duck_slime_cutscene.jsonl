@@ -1,0 +1,3 @@
+{"id":"record_start","command":"record_start","name":"duck_slime_date","fps":5}
+{"id":"run_cutscene","command":"run_cutscene","scene":"duck_slime_date"}
+{"id":"record_stop","command":"record_stop"}

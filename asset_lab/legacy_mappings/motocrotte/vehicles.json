@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "domain": "vehicles",
+  "assets": [
+    {
+      "source_paths": [
+        "media/images/cars/bikes/1_1.png",
+        "media/images/cars/bikes/1_2.png",
+        "media/images/cars/bikes/1_3.png",
+        "media/images/cars/bikes/1_4.png"
+      ],
+      "asset_id": "motocrotte_bike_variant_01",
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "groups": ["vehicles/bikes"],
+      "kind": "animation_frames",
+      "animation_name": "traffic_cycle",
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": [
+        "traffic.py:176",
+        "enemies.py:78"
+      ]
+    }
+  ],
+  "generated_assets": [
+    {
+      "asset_id_template": "motocrotte_bike_variant_{variant:02d}",
+      "source_template": "media/images/cars/bikes/{variant}_{frame}.png",
+      "variant_values": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+      "frame_values": [1, 2, 3, 4],
+      "type": "prop",
+      "domain": "vehicles",
+      "subcategory": "bikes",
+      "groups": ["vehicles/bikes"],
+      "kind": "animation_frames",
+      "animation_name": "traffic_cycle",
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "traffic_vehicle_animation",
+      "source_references": ["traffic.py:176", "enemies.py:78"]
+    }
+  ]
+}

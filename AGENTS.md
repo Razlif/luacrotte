@@ -73,6 +73,33 @@ examples. They are disposable demo content, not required game content.
 5. Use dry runs before provider calls.
 6. Use exact manifest paths and literal names; never guess a source path.
 
+Asset organization is manifest-driven. Keep physical asset folders stable as
+`asset_lab/lab_assets/<type>/<asset_id>/`; do not create arbitrary taxonomy
+directories on disk. Use canonical virtual groups for dynamic organization:
+
+```json
+"groups": ["vehicles/cars/XL"]
+```
+
+Groups may be any safe nested path, may be repeated for multiple collections,
+and are created automatically by the browser. New assets must be assigned
+groups during creation with repeatable `--group` flags. Legacy
+`domain`/`subcategory`/`size_class` metadata is compatibility-only; new
+mappings should use `groups`.
+
+Example:
+
+```cmd
+python asset_lab/helpers/create_lab_asset.py create-new --type prop --provider self --name dog --prompt "..." --group animals/dogs
+```
+
+After intake or creation, run the validator and regenerate `manifest.js`:
+
+```cmd
+python asset_lab/helpers/validate_lab_assets.py
+python asset_lab/helpers/export_browser_manifest.py
+```
+
 Creation modes are explicit:
 
 - `brand_new`: text-only creation.
@@ -99,6 +126,19 @@ CC0 assets. API keys stay in `.env`; local catalogs and previews stay ignored.
 
 Promote selected audio with `promote_audio_asset.py`, then regenerate the
 runtime manifest. Do not scrape curated sites.
+
+For legacy project audio whose license is unknown, use the dedicated intake:
+
+```cmd
+python asset_lab/helpers/import_legacy_audio.py --mapping asset_lab/legacy_mappings/motocrotte/audio_index.json --asset-id ASSET_ID --execute
+```
+
+This preserves source provenance and records `license: unknown`; do not claim
+that legacy audio is CC0 or CC-BY without evidence. Fonts are staged separately
+with `import_legacy_font.py` under `asset_lab/font_library/`. Love2D supports
+OTF and TTF through `love.graphics.newFont`, but agents must verify the actual
+filename before using it. The MotoCrotte source requests `Ghoust_Solid.otf`,
+while the available file is `Ghoust_Outline.otf`.
 
 ## Cutscene Rules
 
@@ -145,6 +185,17 @@ the bridge beyond `127.0.0.1`.
 Bridge command submission is asynchronous. A `202` response means the command
 was accepted; wait for its matching result in `results.jsonl` or through the
 bridge result endpoint before judging the outcome.
+
+For visual QA recordings, use `record_start` and `record_stop` commands in a
+game-driver JSONL recipe. Frames are written under the run's `video/frames/`
+folder with telemetry in `video_manifest.jsonl`. Export a shareable GIF with:
+
+```cmd
+python qa/video_export.py RUN_ID --format gif
+```
+
+MP4 export additionally requires `ffmpeg`. Recordings are visual-only for
+now; Love2D QA does not capture system audio.
 
 ## Current Status
 

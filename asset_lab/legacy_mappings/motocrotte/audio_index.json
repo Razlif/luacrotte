@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "source_project": "motorcrotte",
+  "source_root": "..\\..\\..\\..\\motorcrotte",
+  "mapping_files": ["audio.json"]
+}

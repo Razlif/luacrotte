@@ -25,7 +25,7 @@ def new_run_dir(root: Path, run_id: str | None = None) -> Path:
     while run_dir.exists():
         suffix = "".join(random.choices(string.ascii_lowercase + string.digits, k=4))
         run_dir = root / f"{run_id}-{suffix}"
-    for child in ("snapshots", "screenshots"):
+    for child in ("snapshots", "screenshots", "video", "video/frames"):
         (run_dir / child).mkdir(parents=True, exist_ok=False)
     return run_dir
 

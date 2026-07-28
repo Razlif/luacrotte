@@ -12,7 +12,15 @@ local Bridge = {
   pending_capture = nil,
   pending_final = false,
   paused = false,
-  seen_action_ids = {}
+  seen_action_ids = {},
+  recording = false,
+  recording_name = nil,
+  recording_fps = 30,
+  recording_interval = 1 / 30,
+  recording_elapsed = 0,
+  recording_frame = 0,
+  recording_due = false,
+  recording_dir = nil
 }
 
 local function append_result(value)
@@ -44,6 +52,7 @@ local function validate_command(command)
     press = true, release = true, hold = true, mouse_click = true,
     wait = true, wait_until = true, snapshot = true, assert = true,
     pause = true, run_cutscene = true
+    , record_start = true, record_stop = true
   }
   if not supported[command.command] then return false, "unknown command: " .. tostring(command.command) end
   if (command.command == "press" or command.command == "release" or command.command == "hold") and type(command.key) ~= "string" then
@@ -68,8 +77,47 @@ local function validate_command(command)
   if command.command == "run_cutscene" and type(command.scene) ~= "string" then
     return false, "run_cutscene requires scene"
   end
+  if command.command == "record_start" and command.fps ~= nil and (type(command.fps) ~= "number" or command.fps <= 0) then
+    return false, "record_start fps must be positive"
+  end
   Bridge.seen_action_ids[command.id] = true
   return true
+end
+
+local function append_recording_metadata(value)
+  local handle = io.open(Bridge.recording_dir .. "/video_manifest.jsonl", "a")
+  if not handle then return end
+  handle:write(Json.encode(value), "\n")
+  handle:close()
+end
+
+local function start_recording(command)
+  Bridge.recording = true
+  Bridge.recording_name = safe_name(command.name or command.id or "qa_recording")
+  Bridge.recording_fps = command.fps or 30
+  Bridge.recording_interval = 1 / Bridge.recording_fps
+  Bridge.recording_elapsed = 0
+  Bridge.recording_frame = 0
+  Bridge.recording_due = true
+  Bridge.recording_dir = Bridge.run_dir .. "/video"
+  append_recording_metadata({
+    event = "recording_started",
+    name = Bridge.recording_name,
+    fps = Bridge.recording_fps,
+    run_id = Bridge.run_dir:match("([^/\\]+)$")
+  })
+end
+
+local function stop_recording()
+  if not Bridge.recording then return end
+  append_recording_metadata({
+    event = "recording_stopped",
+    name = Bridge.recording_name,
+    frame_count = Bridge.recording_frame,
+    fps = Bridge.recording_fps
+  })
+  Bridge.recording = false
+  Bridge.recording_due = false
 end
 
 local function write_png(image_data, path)
@@ -164,6 +212,12 @@ local function start_command(command, states_manager)
   elseif name == "run_cutscene" then
     states_manager.change("cutscene", command.scene)
     Bridge.active = { command = command, wait_for_scene = true }
+  elseif name == "record_start" then
+    start_recording(command)
+    request_capture(command, command.name or command.id)
+  elseif name == "record_stop" then
+    stop_recording()
+    request_capture(command, command.name or command.id)
   else
     request_capture(command, nil, false, "unsupported command: " .. tostring(name))
   end
@@ -179,6 +233,14 @@ function Bridge.configure(config)
   Bridge.pending_final = false
   Bridge.paused = false
   Bridge.seen_action_ids = {}
+  Bridge.recording = false
+  Bridge.recording_name = nil
+  Bridge.recording_fps = 30
+  Bridge.recording_interval = 1 / 30
+  Bridge.recording_elapsed = 0
+  Bridge.recording_frame = 0
+  Bridge.recording_due = false
+  Bridge.recording_dir = nil
   if Bridge.enabled then
     local handle = io.open(Bridge.run_dir .. "/ready.json", "w")
     if handle then handle:write(Json.encode({ ready = true }), "\n"); handle:close() end
@@ -197,6 +259,13 @@ function Bridge.before_update()
 end
 
 function Bridge.after_update(dt, states_manager)
+  if Bridge.recording then
+    Bridge.recording_elapsed = Bridge.recording_elapsed + (dt or 0)
+    if Bridge.recording_elapsed >= Bridge.recording_interval then
+      Bridge.recording_elapsed = Bridge.recording_elapsed - Bridge.recording_interval
+      Bridge.recording_due = true
+    end
+  end
   if not Bridge.enabled or not Bridge.active then return end
   local active = Bridge.active
   if active.wait_for_scene then
@@ -227,13 +296,32 @@ function Bridge.draw(states_manager)
     end
   end
   local capture = Bridge.pending_capture
-  if not capture then return end
+  local recording_capture = not capture and Bridge.recording and Bridge.recording_due
+  if not capture and not recording_capture then return end
   local state_name = states_manager.current_name
   local context = states_manager.get_debug_context()
-  local capture_name = safe_name(capture.name)
+  local capture_name = safe_name(capture and capture.name or Bridge.recording_name)
   local screenshot_path = Bridge.run_dir .. "/screenshots/" .. capture_name .. "_frame_" .. Telemetry.frame .. ".png"
   local snapshot_path = Bridge.run_dir .. "/snapshots/" .. capture_name .. "_frame_" .. Telemetry.frame .. ".json"
   local function finish(image_data)
+    if recording_capture then
+      Bridge.recording_due = false
+      Bridge.recording_frame = Bridge.recording_frame + 1
+      local frame_name = string.format("frame_%06d.png", Bridge.recording_frame)
+      local frame_path = Bridge.recording_dir .. "/frames/" .. frame_name
+      local frame_saved = write_png(image_data, frame_path)
+      local snapshot = Telemetry.snapshot(state_name, context, {})
+      append_recording_metadata({
+        event = "frame",
+        frame = Bridge.recording_frame,
+        file = "frames/" .. frame_name,
+        saved = frame_saved,
+        sim_time = Telemetry.sim_time,
+        state = state_name,
+        snapshot = snapshot
+      })
+      return
+    end
     local screenshot_saved = write_png(image_data, screenshot_path)
     local snapshot = Telemetry.write_snapshot(snapshot_path, state_name, context, {})
     local final = capture.final == true or Bridge.pending_final

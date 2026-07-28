@@ -31,6 +31,8 @@ from common import (
     type_folder,
     version_tag,
     write_json,
+    groups_from_asset,
+    normalize_groups,
 )
 import mock
 import pixellab
@@ -57,6 +59,7 @@ def add_shared_provider_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--mock-image", help="Local PNG used by --provider mock for image generation.")
     parser.add_argument("--mock-frames-dir", help="Local frame_*.png folder used by --provider mock for animation.")
     parser.add_argument("--variation-group-id", help="Optional shared id for sibling variations from one request.")
+    parser.add_argument("--group", dest="groups", action="append", default=[], help="Virtual taxonomy path; repeatable, e.g. vehicles/cars/XL.")
     parser.add_argument("--execute", action="store_true", help="Actually call provider API. Default is dry run.")
 
 
@@ -99,11 +102,12 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def base_manifest_record(asset_id: str, asset_type: str, folder: Path) -> dict[str, Any]:
+def base_manifest_record(asset_id: str, asset_type: str, folder: Path, groups: list[str] | None = None) -> dict[str, Any]:
     return {
         "id": asset_id,
         "type": asset_type,
         "folder": relative_to_asset_lab(folder),
+        "groups": normalize_groups(groups),
         "images": [],
         "animations": [],
     }
@@ -203,6 +207,7 @@ def write_dry_run(args: argparse.Namespace, paths: dict[str, Any], extra: dict[s
         "with_background": args.with_background,
         "mock_image": args.mock_image,
         "mock_frames_dir": args.mock_frames_dir,
+        "groups": normalize_groups(args.groups),
         **extra,
         "planned_outputs": {
             key: relative_to_asset_lab(value)
@@ -323,7 +328,7 @@ def execute_image(args: argparse.Namespace, provider: Any, paths: dict[str, Any]
     if getattr(args, "mode", "brand_new") == "with_reference":
         entry["source_image_version"] = getattr(args, "source_image_version_number")
         entry["init_image_strength"] = args.init_image_strength
-    manifest.add_image(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"]))
+    manifest.add_image(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"], args.groups))
     write_json(paths["metadata_path"], {"last_result": entry})
     print(f"Saved image: {relative_to_asset_lab(paths['image_path'])}")
 
@@ -356,7 +361,7 @@ def execute_self_image(args: argparse.Namespace, paths: dict[str, Any]) -> None:
         entry["source_image_path"] = relative_to_asset_lab(getattr(args, "source_image_path"))
         entry["init_image_strength"] = args.init_image_strength
 
-    manifest.add_image(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"]))
+    manifest.add_image(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"], args.groups))
     write_json(paths["metadata_path"], {"last_result": entry})
     append_trace(paths["trace_path"], "self_instruction", {"kind": "image", **entry})
     print_self_image_instruction(args, paths, entry)
@@ -397,7 +402,7 @@ def execute_animation(args: argparse.Namespace, provider: Any, paths: dict[str, 
         "prompt_metadata": metadata,
         **animation_meta,
     }
-    manifest.add_animation(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"]))
+    manifest.add_animation(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"], args.groups))
     write_json(paths["metadata_path"], {"last_result": entry})
     print(f"Saved sprite sheet: {relative_to_asset_lab(paths['sheet_path'])}")
     print(f"Saved animation gif: {relative_to_asset_lab(paths['gif_path'])}")
@@ -435,7 +440,7 @@ def execute_self_animation(args: argparse.Namespace, paths: dict[str, Any], sour
         "fps": args.fps,
         "status": "pending_self_creation",
     }
-    manifest.add_animation(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"]))
+    manifest.add_animation(paths["asset_id"], entry, base_manifest_record(paths["asset_id"], paths["asset_type"], paths["folder"], args.groups))
     write_json(paths["metadata_path"], {"last_result": entry})
     append_trace(paths["trace_path"], "self_instruction", {"kind": "animation", **entry})
     print_self_animation_instruction(args, paths, source_image_path, entry)

@@ -70,7 +70,7 @@ local function entity_snapshot(entity, camera)
     screen_x, screen_y = camera:world_to_screen(screen_x, screen_y)
   end
   local animation = entity.animation
-  return {
+  local snapshot = {
     id = entity.id,
     type = entity.qa_type or "entity",
     visible = entity.active ~= false,
@@ -81,6 +81,15 @@ local function entity_snapshot(entity, camera)
     facing = entity.facing,
     draw_layer = entity.draw_layer or 0
   }
+  if entity.motocrotte_motion then
+    snapshot.motion = {
+      vx = entity.motocrotte_motion.vx,
+      vy = entity.motocrotte_motion.vy,
+      grounded = entity.motocrotte_motion.grounded,
+      jump_pressed = entity.motocrotte_motion.jump_pressed
+    }
+  end
+  return snapshot
 end
 
 function Telemetry.snapshot(state_name, context, extra)

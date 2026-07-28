@@ -54,6 +54,36 @@ def slugify(value: str) -> str:
     return slug
 
 
+def normalize_group_path(value: str) -> str:
+    """Return a safe, canonical virtual taxonomy path such as vehicles/cars/xl."""
+    raw = str(value).strip().replace("\\", "/")
+    if not raw or raw.startswith("/") or raw.endswith("/"):
+        raise ValueError(f"Invalid asset group path: {value!r}")
+    segments = raw.split("/")
+    if any(segment in {"", ".", ".."} for segment in segments):
+        raise ValueError(f"Invalid asset group path: {value!r}")
+    return "/".join(slugify(segment) for segment in segments)
+
+
+def normalize_groups(values: Any = None) -> list[str]:
+    if values is None:
+        return []
+    if isinstance(values, str):
+        values = [values]
+    if not isinstance(values, (list, tuple)):
+        raise ValueError("Asset groups must be a string or list of strings.")
+    return sorted({normalize_group_path(value) for value in values})
+
+
+def groups_from_asset(asset: dict[str, Any]) -> list[str]:
+    """Read canonical groups, with compatibility for the original taxonomy fields."""
+    if asset.get("groups"):
+        return normalize_groups(asset["groups"])
+    legacy = [asset.get("domain"), asset.get("subcategory"), asset.get("size_class")]
+    legacy = [str(value) for value in legacy if value]
+    return normalize_groups(["/".join(legacy)]) if legacy else []
+
+
 def type_folder(asset_type: str) -> str:
     try:
         return TYPE_FOLDERS[asset_type]

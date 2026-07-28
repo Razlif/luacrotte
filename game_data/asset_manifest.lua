@@ -54,6 +54,7 @@ return {
   backgrounds = {
     enchanted_wizard_training_meadow = {
       animations = {},
+      groups = {},
       id = "enchanted_wizard_training_meadow",
       image = {
         height = 941,
@@ -63,6 +64,20 @@ return {
         source_path = "lab_assets/backgrounds/enchanted_wizard_training_meadow/original_images/enchanted_wizard_training_meadow__self__image__v001.png",
         version = 1,
         width = 1672,
+      },
+    },
+    motocrotte_background_01 = {
+      animations = {},
+      groups = {},
+      id = "motocrotte_background_01",
+      image = {
+        height = 683,
+        path = "media_assets/backgrounds/motocrotte_background_01/original_images/motocrotte_background_01__legacy_motocrotte__image__v001.png",
+        prompt = nil,
+        provider = "legacy_motocrotte",
+        source_path = "lab_assets/backgrounds/motocrotte_background_01/original_images/motocrotte_background_01__legacy_motocrotte__image__v001.png",
+        version = 1,
+        width = 1200,
       },
     },
   },
@@ -84,6 +99,7 @@ return {
           version = 1,
         },
       },
+      groups = {},
       id = "barbarian_duck_wizard",
       image = {
         height = 64,
@@ -112,6 +128,7 @@ return {
           version = 1,
         },
       },
+      groups = {},
       id = "funky_blue_slime",
       image = {
         height = 64,
@@ -121,6 +138,20 @@ return {
         source_path = "lab_assets/characters/funky_blue_slime/original_images/funky_blue_slime__pixellab__image__v001.png",
         version = 1,
         width = 64,
+      },
+    },
+    motocrotte_hero_main = {
+      animations = {},
+      groups = {"characters/hero"},
+      id = "motocrotte_hero_main",
+      image = {
+        height = 60,
+        path = "media_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_001__hero_1.png",
+        prompt = nil,
+        provider = "legacy_motocrotte",
+        source_path = "lab_assets/characters/motocrotte_hero_main/original_images/motocrotte_hero_main__legacy_motocrotte__frame_001__hero_1.png",
+        version = 1,
+        width = 60,
       },
     },
   },
@@ -142,6 +173,7 @@ return {
           version = 1,
         },
       },
+      groups = {},
       id = "magic_explosion",
       image = {
         height = 1254,

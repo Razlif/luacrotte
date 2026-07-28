@@ -1,17 +1,24 @@
--- World bounds for the small asset playground.
+-- Static MotoCrotte asset checkpoint.
 return {
-  background_id = "enchanted_wizard_training_meadow",
+  background_id = "motocrotte_background_01",
   world = {
     left = 0,
     top = 0,
     right = 1672,
     bottom = 941
   },
-  walkable_ground = {
-    left = 515,
-    right = 1186,
-    top = 612,
-    bottom = 766
+  ground_y = 700,
+  hero_position = { x = 836, ground_y = 700, z = 0 },
+  hero_bounds = {
+    left = 80,
+    right = 1590,
+    top = 350,
+    bottom = 680
   },
-  ground_y = 700
+  camera = {
+    width = 960,
+    height = 540,
+    smoothing = 8,
+    zoom = 1
+  }
 }

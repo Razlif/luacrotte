@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "domain": "root_images",
+  "assets": [
+    {
+      "source_paths": ["media/images/poop5.png"],
+      "asset_id": "motocrotte_poop_05",
+      "type": "effect",
+      "groups": ["gameplay/effects/poop"],
+      "kind": "static",
+      "status": "unclassified",
+      "source_role": "standalone_poop_image",
+      "source_references": []
+    },
+    {
+      "source_paths": ["media/images/poop55.png"],
+      "asset_id": "motocrotte_poop_55",
+      "type": "effect",
+      "groups": ["gameplay/effects/poop"],
+      "kind": "sprite_sheet",
+      "animation_name": "poop_cycle",
+      "frame_count": 5,
+      "frame_duration_ms": 80,
+      "status": "active",
+      "source_role": "collectible_animation",
+      "source_references": ["collectibles.py:33"]
+    },
+    {
+      "source_paths": ["media/images/poopfly.png"],
+      "asset_id": "motocrotte_poop_fly",
+      "type": "effect",
+      "groups": ["gameplay/effects/poop"],
+      "kind": "static",
+      "status": "active",
+      "source_role": "projectile_sprite",
+      "source_references": ["player.py:327"]
+    },
+    {
+      "source_paths": ["media/images/poopgun.png"],
+      "asset_id": "motocrotte_poop_gun",
+      "type": "effect",
+      "groups": ["gameplay/effects/poop"],
+      "kind": "static",
+      "status": "unclassified",
+      "source_role": "standalone_poop_image",
+      "source_references": []
+    },
+    {
+      "source_paths": ["media/images/poopimpact.png"],
+      "asset_id": "motocrotte_poop_impact",
+      "type": "effect",
+      "groups": ["gameplay/effects/poop"],
+      "kind": "static",
+      "status": "active",
+      "source_role": "projectile_impact_sprite",
+      "source_references": ["player.py:328", "game_configuration.py:16"]
+    },
+    {
+      "source_paths": ["media/images/tank_rocket.png"],
+      "asset_id": "motocrotte_tank_rocket",
+      "type": "effect",
+      "groups": ["gameplay/projectiles/tank"],
+      "kind": "static",
+      "status": "active",
+      "source_role": "boss_projectile_sprite",
+      "source_references": ["enemies.py:404"]
+    },
+    {
+      "source_paths": ["media/images/tank_rocket_raw.png"],
+      "asset_id": "motocrotte_tank_rocket_raw",
+      "type": "effect",
+      "groups": ["gameplay/projectiles/tank"],
+      "kind": "static",
+      "status": "unclassified",
+      "source_role": "raw_projectile_image",
+      "source_references": []
+    }
+  ]
+}

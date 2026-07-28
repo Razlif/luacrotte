@@ -103,6 +103,24 @@ def run_cli(*args: str) -> int:
 
 
 class AssetLabCliTests(unittest.TestCase):
+    def test_dynamic_groups_are_normalized_and_created_without_disk_subfolders(self) -> None:
+        self.assertEqual(common.normalize_groups(["Vehicles/Cars/XL", "animals/dogs"]), ["animals/dogs", "vehicles/cars/xl"])
+        with self.assertRaises(ValueError):
+            common.normalize_groups(["animals/../dogs"])
+
+        with TempAssetLab() as lab:
+            self.assertEqual(
+                run_cli(
+                    "create-new", "--type", "prop", "--provider", "self", "--name", "dog",
+                    "--prompt", "friendly dog", "--group", "animals/dogs", "--execute"
+                ),
+                0,
+            )
+            asset = manifest.find_asset("dog", "prop")
+            self.assertEqual(asset["groups"], ["animals/dogs"])
+            self.assertEqual(asset["folder"], "lab_assets/props/dog")
+            self.assertFalse((lab.assets / "props" / "animals" / "dogs").exists())
+
     def test_full_mock_flow_and_validation(self) -> None:
         with TempAssetLab() as lab:
             image_one = lab.lab / "fixtures" / "one.png"

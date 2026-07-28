@@ -1,0 +1,7 @@
+{"id":"start_playground","command":"press","key":"return"}
+{"id":"skip_demo_cutscene","command":"press","key":"escape"}
+{"id":"wait_for_scene","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"move_right","command":"hold","key":"right","duration":0.6}
+{"id":"capture_right","command":"snapshot","name":"motocrotte_move_right"}
+{"id":"move_up","command":"hold","key":"up","duration":0.6}
+{"id":"capture_up","command":"snapshot","name":"motocrotte_move_up"}

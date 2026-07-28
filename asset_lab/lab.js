@@ -6,7 +6,9 @@
     manifest: window.ASSET_LAB_MANIFEST || { assets: [], orphans: [] },
     audioCatalog: window.ASSET_LAB_AUDIO_CATALOG || { candidates: [] },
     selectedAssetId: null,
-    selectedMediaKey: null
+    selectedMediaKey: null,
+    filterQuery: "",
+    treeOpen: true
   };
   const LAST_ASSET_STORAGE_KEY = "asset-lab:last-asset";
 
@@ -15,6 +17,9 @@
     audioButton: document.getElementById("audio-button"),
     reload: document.getElementById("reload-button"),
     count: document.getElementById("asset-count"),
+    search: document.getElementById("asset-search"),
+    collapse: document.getElementById("collapse-assets"),
+    expand: document.getElementById("expand-assets"),
     tree: document.getElementById("asset-tree"),
     warnings: document.getElementById("asset-warnings"),
     previewTitle: document.getElementById("preview-title"),
@@ -57,11 +62,67 @@
     return "";
   }
 
+  function taxonomyLabel(asset) {
+    if (Array.isArray(asset.groups) && asset.groups.length) return asset.groups.join(" / ");
+    const parts = [asset.domain, asset.subcategory, asset.size_class].filter(Boolean);
+    return parts.length ? parts.join(" / ") : "General";
+  }
+
+  function taxonomyPaths(asset) {
+    if (Array.isArray(asset.groups) && asset.groups.length) return asset.groups;
+    return [taxonomyLabel(asset).toLowerCase().replace(/\s*\/\s*/g, "/")];
+  }
+
+  function addToTaxonomy(root, path, asset) {
+    let node = root;
+    path.split("/").filter(Boolean).forEach((segment) => {
+      if (!node.children.has(segment)) node.children.set(segment, { children: new Map(), assets: [] });
+      node = node.children.get(segment);
+    });
+    node.assets.push(asset);
+  }
+
+  function taxonomyAssetCount(node) {
+    return node.assets.length + [...node.children.values()].reduce((total, child) => total + taxonomyAssetCount(child), 0);
+  }
+
+  function renderTaxonomyNode(parent, node) {
+    [...node.children.entries()].sort(([left], [right]) => left.localeCompare(right)).forEach(([segment, child]) => {
+      const subgroup = document.createElement("details");
+      subgroup.className = "asset-subgroup";
+      subgroup.open = state.treeOpen || Boolean(state.filterQuery);
+      const summary = document.createElement("summary");
+      summary.textContent = `${segment} (${taxonomyAssetCount(child)})`;
+      subgroup.append(summary);
+      renderTaxonomyNode(subgroup, child);
+      if (child.assets.length) renderAssetList(subgroup, child.assets);
+      parent.append(subgroup);
+    });
+  }
+
+  function renderAssetList(parent, assets) {
+    const list = create("div", "asset-list");
+    assets.sort((left, right) => left.id.localeCompare(right.id)).forEach((asset) => {
+      const button = create("button", `asset-button${asset.id === state.selectedAssetId ? " is-selected" : ""}`);
+      button.type = "button";
+      button.addEventListener("click", () => selectAsset(asset.id));
+      const row = create("span", "asset-row");
+      row.append(create("span", "asset-name", asset.id));
+      const dot = create("span", `asset-status-dot ${statusClass(asset)}`);
+      dot.title = statusClass(asset) === "is-danger" ? "Missing file" : "Asset status";
+      row.append(dot);
+      button.append(row);
+      list.append(button);
+    });
+    parent.append(list);
+  }
+
   function renderTree() {
     elements.tree.replaceChildren();
-    elements.count.textContent = state.manifest.assets.length;
+    const assetsToShow = state.manifest.assets.filter((asset) => assetMatches(asset, state.filterQuery));
+    elements.count.textContent = state.filterQuery ? `${assetsToShow.length}/${state.manifest.assets.length}` : state.manifest.assets.length;
     const grouped = new Map(groupOrder.map(([type]) => [type, []]));
-    state.manifest.assets.forEach((asset) => {
+    assetsToShow.forEach((asset) => {
       if (!grouped.has(asset.type)) grouped.set(asset.type, []);
       grouped.get(asset.type).push(asset);
     });
@@ -70,29 +131,34 @@
       const assets = grouped.get(type) || [];
       const group = document.createElement("details");
       group.className = "asset-group";
-      group.open = assets.length > 0;
+      group.open = Boolean(state.filterQuery) || state.treeOpen;
       const summary = document.createElement("summary");
       summary.textContent = `${label} (${assets.length})`;
       group.append(summary);
-      const list = create("div", "asset-list");
-      assets.forEach((asset) => {
-        const button = create("button", `asset-button${asset.id === state.selectedAssetId ? " is-selected" : ""}`);
-        button.type = "button";
-        button.addEventListener("click", () => selectAsset(asset.id));
-        const row = create("span", "asset-row");
-        row.append(create("span", "asset-name", asset.id));
-        const dot = create("span", `asset-status-dot ${statusClass(asset)}`);
-        dot.title = statusClass(asset) === "is-danger" ? "Missing file" : "Asset status";
-        row.append(dot);
-        button.append(row);
-        list.append(button);
-      });
-      if (!assets.length) list.append(create("p", "muted", "Empty"));
-      group.append(list);
+      const taxonomy = { children: new Map(), assets: [] };
+      assets.forEach((asset) => taxonomyPaths(asset).forEach((path) => addToTaxonomy(taxonomy, path, asset)));
+      renderTaxonomyNode(group, taxonomy);
+      if (!assets.length) group.append(create("p", "muted", "Empty"));
       elements.tree.append(group);
     });
 
     renderWarnings();
+  }
+
+  function assetMatches(asset, query) {
+    if (!query) return true;
+    const haystack = [
+      asset.id, asset.type, asset.domain, asset.subcategory, asset.size_class,
+      ...(asset.groups || []), ...(asset.source_paths || []),
+      ...(asset.images || []).flatMap((image) => [image.path, image.source_path]),
+      ...(asset.animations || []).flatMap((animation) => [animation.name, animation.sheet_path, animation.gif_path, ...(animation.source_paths || [])])
+    ].filter(Boolean).join(" ").toLowerCase();
+    return haystack.includes(query);
+  }
+
+  function setAssetGroupsOpen(open) {
+    state.treeOpen = open;
+    elements.tree.querySelectorAll("details").forEach((details) => { details.open = open; });
   }
 
   function renderWarnings() {
@@ -112,11 +178,11 @@
       // Local file storage can be unavailable in some browser settings.
     }
     const asset = getAsset();
-    if (asset && asset.images && asset.images.length) {
-      state.selectedMediaKey = `image:${asset.images[0].id}`;
-    } else if (asset && asset.animations && asset.animations.length) {
+    if (asset && asset.animations && asset.animations.length) {
       const animation = asset.animations[0];
       state.selectedMediaKey = `animation:${animation.id}:${animation.gif_path ? "gif" : "sheet"}`;
+    } else if (asset && asset.images && asset.images.length) {
+      state.selectedMediaKey = `image:${asset.images[0].id}`;
     } else {
       state.selectedMediaKey = null;
     }
@@ -338,6 +404,12 @@
       setStatus(`${state.manifest.assets.length} assets loaded`);
     }
     elements.reload.addEventListener("click", () => window.location.reload());
+    elements.search.addEventListener("input", (event) => {
+      state.filterQuery = event.target.value.trim().toLowerCase();
+      renderTree();
+    });
+    elements.collapse.addEventListener("click", () => setAssetGroupsOpen(false));
+    elements.expand.addEventListener("click", () => setAssetGroupsOpen(true));
     elements.audioButton.addEventListener("click", () => {
       document.querySelector(".audio-library").scrollIntoView({ behavior: "smooth", block: "start" });
     });

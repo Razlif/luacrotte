@@ -16,7 +16,7 @@ from typing import Any
 HELPERS_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(HELPERS_DIR))
 
-from common import TYPE_FOLDERS, read_json, slugify, type_folder, write_json
+from common import TYPE_FOLDERS, groups_from_asset, read_json, slugify, type_folder, write_json
 
 
 PROMOTED_STATE_RELATIVE = Path("game_data") / "promoted_assets.json"
@@ -260,6 +260,7 @@ def merge_state(plan: dict[str, Any]) -> dict[str, Any]:
     existing = dict(plan["existing"] or {})
     existing.setdefault("id", asset_id)
     existing["type"] = plan["asset_type"]
+    existing["groups"] = groups_from_asset(plan["source_asset"])
     existing.setdefault("animations", {})
     if plan["changes"]["image"]:
         existing["image"] = plan["changes"]["image"]["record"]
@@ -300,6 +301,7 @@ def runtime_manifest_data(state: dict[str, Any]) -> dict[str, Any]:
         group = type_folder(asset_type)
         result.setdefault(group, {})[asset_id] = {
             "id": asset_id,
+            "groups": asset.get("groups", []),
             "image": asset.get("image"),
             "animations": asset.get("animations", {}),
         }
