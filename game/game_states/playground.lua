@@ -99,6 +99,11 @@ function Playground.update(dt)
   local intent = MotocrotteDriver.get_intent()
   if intent.toggle_visual_lab_pressed then
     Playground.visual_lab_active = not Playground.visual_lab_active
+    if Playground.visual_lab_active then
+      Playground.reset_visual_lab()
+    else
+      Playground.hero.animation:stop()
+    end
   end
   if Playground.visual_lab_active then
     if intent.cycle_drift_mode_pressed then

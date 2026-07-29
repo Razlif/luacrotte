@@ -1,6 +1,5 @@
 {"id":"enter_playground","command":"press","key":"return"}
 {"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
-{"id":"exit_visual_lab","command":"press","key":"v"}
 {"id":"record_start","command":"record_start","name":"motocrotte_playground_drive","fps":5}
 {"id":"drive_right","command":"hold","key":"right","duration":1.5}
 {"id":"capture_facing_right","command":"snapshot","name":"motocrotte_facing_right"}

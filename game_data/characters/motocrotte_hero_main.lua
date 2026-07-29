@@ -33,7 +33,7 @@ return {
     }
   },
   visual = {
-    test_enabled = true,
+    test_enabled = false,
     test_mode = "yaw_squash",
     yaw_speed = math.rad(90),
     orientation_enabled = true,

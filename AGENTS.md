@@ -78,10 +78,10 @@ hero. Configure drift values and the default mode in
 - `hybrid`: combines snapped directional slots with a reduced smooth drift
   rotation.
 
-In the Playground, the Visual Lab starts enabled. Use Q/E to change yaw, Tab
-to cycle visual modes, R to reset, and V to exit the Visual Lab. Visual Lab
-mode bypasses movement and drift mechanics; it tests only the sprite's visual
-orientation. Outside the Visual Lab, use Shift or Space to drift and the
+In the Playground, normal movement starts enabled. Press V to enter the
+Visual Lab. Inside it, use Q/E to change yaw, Tab to cycle visual modes, and R
+to reset. Visual Lab mode bypasses movement and drift mechanics; it tests only
+the sprite's visual orientation. Outside the Visual Lab, use Shift or Space to drift and the
 arrow/WASD controls to move; the yaw-squash renderer follows the movement
 velocity smoothly. Do not add collision response, traffic, or world-scroll
 logic to this experiment until the visual and movement behavior is accepted.
