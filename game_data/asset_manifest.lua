@@ -144,7 +144,7 @@ return {
       animations = {
         hero_main_cycle = {
           fps = 12.5,
-          frame_count = 5,
+          frame_count = 4,
           frame_height = 60,
           frame_width = 60,
           loop = false,

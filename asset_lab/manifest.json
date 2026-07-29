@@ -35,7 +35,7 @@
           "sheet_path": "lab_assets/characters/barbarian_duck_wizard/sprite_sheets/barbarian_duck_wizard__pixellab__jump_from_image_v001__v001.png",
           "gif_path": "lab_assets/characters/barbarian_duck_wizard/animation_gifs/barbarian_duck_wizard__pixellab__jump_from_image_v001__v001.gif",
           "prompt": "jump",
-          "frame_count": 5,
+          "frame_count": 4,
           "frame_width": 64,
           "frame_height": 64,
           "sheet_width": 320,
@@ -4421,10 +4421,10 @@
           "source_image_version": 1,
           "sheet_path": "lab_assets/characters/motocrotte_hero_main/sprite_sheets/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.png",
           "gif_path": "lab_assets/characters/motocrotte_hero_main/animation_gifs/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.gif",
-          "frame_count": 5,
+          "frame_count": 4,
           "frame_width": 60,
           "frame_height": 60,
-          "sheet_width": 300,
+          "sheet_width": 240,
           "sheet_height": 60,
           "fps": 12.5,
           "frame_duration_ms": 80,
@@ -4432,7 +4432,9 @@
             "media/images/hero/hero_1.png",
             "media/images/hero/hero_2.png",
             "media/images/hero/hero_3.png",
-            "media/images/hero/hero_4.png",
+            "media/images/hero/hero_4.png"
+          ],
+          "excluded_source_paths": [
             "media/images/hero/hero_5.png"
           ],
           "source_references": [
