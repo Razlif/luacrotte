@@ -1,0 +1,11 @@
+{"id":"start_playground","command":"press","key":"return"}
+{"id":"wait_for_scene","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"exit_visual_lab","command":"press","key":"v"}
+{"id":"move_right","command":"hold","key":"right","duration":0.8}
+{"id":"capture_right","command":"snapshot","name":"motocrotte_orientation_right"}
+{"id":"move_down","command":"hold","key":"down","duration":0.8}
+{"id":"capture_down","command":"snapshot","name":"motocrotte_orientation_down"}
+{"id":"move_left","command":"hold","key":"left","duration":0.8}
+{"id":"capture_left","command":"snapshot","name":"motocrotte_orientation_left"}
+{"id":"move_up","command":"hold","key":"up","duration":0.8}
+{"id":"capture_up","command":"snapshot","name":"motocrotte_orientation_up"}

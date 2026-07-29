@@ -1,3 +1,4 @@
 {"id":"start_playground","command":"press","key":"return"}
 {"id":"wait_for_scene","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"exit_visual_lab","command":"press","key":"v"}
 {"id":"capture_static_motocrotte","command":"snapshot","name":"static_motocrotte"}

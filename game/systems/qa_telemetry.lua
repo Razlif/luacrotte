@@ -79,12 +79,21 @@ local function entity_snapshot(entity, camera)
     animation = animation and animation.current_name or nil,
     frame = animation and animation.current_frame or 1,
     facing = entity.facing,
+    visual_yaw = entity.visual_yaw,
     draw_layer = entity.draw_layer or 0
   }
   if entity.motocrotte_motion then
     snapshot.motion = {
       vx = entity.motocrotte_motion.vx,
       vy = entity.motocrotte_motion.vy,
+      speed = entity.motocrotte_motion.speed,
+      heading = entity.motocrotte_motion.heading,
+      desired_heading = entity.motocrotte_motion.desired_heading,
+      slip_angle = entity.motocrotte_motion.slip_angle,
+      drift_amount = entity.motocrotte_motion.drift_amount,
+      drift_active = entity.motocrotte_motion.drift_active,
+      visual_rotation = entity.motocrotte_motion.visual_rotation,
+      directional_index = entity.motocrotte_motion.directional_index,
       grounded = entity.motocrotte_motion.grounded,
       jump_pressed = entity.motocrotte_motion.jump_pressed
     }

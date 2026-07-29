@@ -63,6 +63,32 @@ Use these existing systems before adding a new one:
 The current duck, slime, bomb, background, and cutscene are integration
 examples. They are disposable demo content, not required game content.
 
+## MotoCrotte Drift Lab
+
+The Playground includes a data-driven visual experiment for the MotoCrotte
+hero. Configure drift values and the default mode in
+`game_data/characters/motocrotte_hero_main.lua`; configure controls in
+`game_data/input_bindings.lua`. The available modes are:
+
+- `flat_rotate`: uses the current hero art and smoothly rotates it through the
+  movement heading, with drift rotation layered on top.
+- `directional_views`: selects one of the configured directional slots. It
+  currently falls back to the existing sprite while the directional artwork
+  is unavailable.
+- `hybrid`: combines snapped directional slots with a reduced smooth drift
+  rotation.
+
+In the Playground, the Visual Lab starts enabled. Use Q/E to change yaw, Tab
+to cycle visual modes, R to reset, and V to exit the Visual Lab. Visual Lab
+mode bypasses movement and drift mechanics; it tests only the sprite's visual
+orientation. Outside the Visual Lab, use Shift or Space to drift and the
+arrow/WASD controls to move; the yaw-squash renderer follows the movement
+velocity smoothly. Do not add collision response, traffic, or world-scroll
+logic to this experiment until the visual and movement behavior is accepted.
+Use `qa/game_driver/record_visual_*.jsonl` for orientation GIFs,
+`qa/game_driver/inspect_motocrotte_orientation.jsonl` for cardinal-heading
+checks, and `qa/game_driver/record_drift_*.jsonl` for movement/drift GIFs.
+
 ## Asset Lab Workflow
 
 1. Read `asset_lab/manifest.json` before an operation.

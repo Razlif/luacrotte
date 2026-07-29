@@ -18,5 +18,29 @@ return {
     animation = "hero_main_cycle",
     animation_loop = true
   },
+  drift = {
+    enabled = true,
+    action = "drift",
+    traction = 0.36,
+    rotation_response = 8,
+    max_visual_angle = math.rad(28),
+    drift_threshold = 0.25,
+    visual_mode = "flat_rotate",
+    modes = { "flat_rotate", "directional_views", "hybrid" },
+    directional_views = {
+      count = 8,
+      fallback_to_flat_rotation = true
+    }
+  },
+  visual = {
+    test_enabled = true,
+    test_mode = "yaw_squash",
+    yaw_speed = math.rad(90),
+    orientation_enabled = true,
+    yaw_response = 10,
+    minimum_speed_for_turn = 8,
+    directional_view_count = 8,
+    modes = { "yaw_squash", "directional_views", "hybrid" }
+  },
   collision = { enabled = false, auto_sensor = true, sensors = {} }
 }

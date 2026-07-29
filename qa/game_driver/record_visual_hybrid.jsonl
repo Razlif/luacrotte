@@ -1,0 +1,9 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"select_hybrid","command":"press","key":"tab"}
+{"id":"select_hybrid_again","command":"press","key":"tab"}
+{"id":"record_start","command":"record_start","name":"visual_hybrid","fps":5}
+{"id":"yaw_left","command":"hold","key":"q","duration":1.0}
+{"id":"yaw_right","command":"hold","key":"e","duration":2.0}
+{"id":"capture_hybrid","command":"snapshot","name":"visual_hybrid"}
+{"id":"record_stop","command":"record_stop"}

@@ -78,13 +78,13 @@ function AnimationManager:update(dt)
   end
 end
 
-function AnimationManager:draw(x, y, scale_x, scale_y, anchor_x, anchor_y)
+function AnimationManager:draw(x, y, scale_x, scale_y, anchor_x, anchor_y, rotation)
   if not self.playing then
     return
   end
   local animation = self.animations[self.current_name]
   local quad = animation.quads[self.current_frame]
-  love.graphics.draw(animation.texture, quad, x, y, 0, scale_x, scale_y, anchor_x, anchor_y)
+  love.graphics.draw(animation.texture, quad, x, y, rotation or 0, scale_x, scale_y, anchor_x, anchor_y)
 end
 
 return AnimationManager
