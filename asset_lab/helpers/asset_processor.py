@@ -65,3 +65,19 @@ def write_sheet_and_gif(
         "sheet_height": sheet.height,
         "fps": fps,
     }
+
+
+def write_gif_from_sheet(*, sheet_path: Path, gif_path: Path, frame_count: int, frame_width: int, frame_height: int, columns: int, fps: int) -> dict[str, Any]:
+    from PIL import Image
+
+    with Image.open(sheet_path) as sheet:
+        frames = []
+        for index in range(frame_count):
+            x = (index % columns) * frame_width
+            y = (index // columns) * frame_height
+            frames.append(sheet.crop((x, y, x + frame_width, y + frame_height)).convert("RGBA"))
+    if not frames:
+        raise ValueError("AutoSprite sheet contains no frames.")
+    gif_path.parent.mkdir(parents=True, exist_ok=True)
+    frames[0].save(gif_path, save_all=True, append_images=frames[1:], duration=max(1, round(1000 / max(1, fps))), loop=0, disposal=2)
+    return {"frame_count": frame_count, "frame_width": frame_width, "frame_height": frame_height, "fps": fps}

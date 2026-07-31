@@ -89,6 +89,22 @@ Use `qa/game_driver/record_visual_*.jsonl` for orientation GIFs,
 `qa/game_driver/inspect_motocrotte_orientation.jsonl` for cardinal-heading
 checks, and `qa/game_driver/record_drift_*.jsonl` for movement/drift GIFs.
 
+## Gameplay Profiles
+
+Gameplay profiles are first-class runtime configuration. Production profiles
+live under `game_data/gameplay_profiles/`; experimental profiles may be
+developed under `game_data/experiments/gameplay_profiles/` before promotion.
+Profiles configure camera behavior, control schema, movement constraints, drift
+availability, visual orientation, and transition policy. Levels reference a
+profile with `gameplay_profile_id`; the Playground can also receive a profile
+ID from the menu or cycle profiles with Tab during normal movement.
+
+The shared systems remain responsible for behavior. Do not create a separate
+movement or camera implementation per profile. Add a validated profile option
+or adapter when a new experiment needs a capability that the shared system
+does not yet expose. QA snapshots should include the active profile ID and
+version so runs remain comparable.
+
 ## Asset Lab Workflow
 
 1. Read `asset_lab/manifest.json` before an operation.
@@ -125,6 +141,15 @@ After intake or creation, run the validator and regenerate `manifest.js`:
 python asset_lab/helpers/validate_lab_assets.py
 python asset_lab/helpers/export_browser_manifest.py
 ```
+
+AutoSprite is a provider-backed animation route. Upload a reviewed source image
+with `prepare-provider-character`, then use `create-spritesheets` for custom
+animations. The helper stores provider character, job, and spritesheet IDs,
+downloads the sheet and atlas, and creates the Asset Lab GIF preview. Keep
+`AUTOSPRITE_API_KEY` in the ignored root `.env`; never copy it into manifests,
+traces, prompts, or committed files. Use `--video-tier turbo`, two seconds,
+and 16 frames for the first motorcycle test. AutoSprite generation is
+asynchronous, so allow the helper to poll until completion.
 
 Creation modes are explicit:
 

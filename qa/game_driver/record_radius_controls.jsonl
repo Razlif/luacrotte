@@ -1,0 +1,7 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"enter_visual_lab","command":"press","key":"v"}
+{"id":"increase_radius_once","command":"press","key":"m"}
+{"id":"increase_radius_twice","command":"press","key":"m"}
+{"id":"rotate_with_larger_radius","command":"hold","key":"e","duration":1.5}
+{"id":"capture_radius_test","command":"snapshot","name":"radius_controls"}

@@ -36,10 +36,40 @@ Repeat `--group` when an asset belongs to multiple collections. Legacy
 `domain`, `subcategory`, and `size_class` fields remain readable for migration,
 but new mappings should use `groups`.
 
+## AutoSprite workflow
+
+AutoSprite uses a two-step character workflow: upload a reviewed image, then
+generate an animation spritesheet from the provider character.
+
+```cmd
+python asset_lab/helpers/create_lab_asset.py prepare-provider-character --provider autosprite --type character --name ASSET_ID --source-image-version 1 --description "Detailed character description" --is-humanoid --execute
+python asset_lab/helpers/create_lab_asset.py create-spritesheets --provider autosprite --type character --name ASSET_ID --source-image-version 1 --animation motorcycle_ride --prompt "A rider performs a smooth motorcycle riding cycle" --video-tier turbo --duration 2 --frame-count 16 --frame-size 256 --remove-bg ultra --fps 8 --group characters/hero/motorcycle --execute
+```
+
+The first command stores the AutoSprite character ID in `provider_state`.
+The second polls the asynchronous job, downloads the PNG sheet and atlas JSON,
+creates the local GIF preview, and records provider IDs and generation settings
+in the animation manifest entry. Run the first command before the second; use
+the dry-run form without `--execute` to inspect the planned request.
+
 For repeated reviewed variants, mappings may use `generated_assets` with an
 `asset_id_template`, `source_template`, `variant_values`, and `frame_values`.
 This keeps numbered families such as bikes explicit and reproducible without
 hand-writing duplicate mapping records.
+
+## Reordering a grid sprite sheet
+
+Keep the provider sheet as the source and create a runtime-ready horizontal
+animation from selected cells with `r1c1` notation:
+
+```cmd
+python asset_lab/helpers/reorder_sprite_sheet.py --source-sheet SOURCE.png --output-stem OUTPUT --rows 4 --columns 4 --frame-width 64 --frame-height 64 --fps 8 --order r1c1 r2c4 r4c3 r1c2
+```
+
+The helper writes a horizontal PNG sheet, a GIF preview, and JSON metadata with
+the exact source-cell order. Register the derived animation in the manifest;
+the Love2D runtime consumes the horizontal sheet while the original grid stays
+available for future experiments.
 
 ## Intake and validation
 

@@ -43,7 +43,9 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     heading = 0,
     slip_angle = 0,
     drift_amount = 0,
-    visual_rotation = 0
+    visual_rotation = 0,
+    drift_spin_phase = 0,
+    drift_spin_direction = 1
   }
   local motion = hero.motocrotte_motion
   local horizontal = intent.horizontal or 0
@@ -62,6 +64,7 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   local acceleration_step = acceleration * dt
   local deceleration_step = deceleration * dt
   local drift_config = definition.drift or {}
+  local was_drifting = motion.drift_active == true
   local drift_active = drift_config.enabled == true and intent.drift_active == true
   local traction = drift_active and (drift_config.traction or 1) or 1
   local horizontal_step = horizontal == 0 and deceleration_step or acceleration_step
@@ -80,6 +83,22 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   motion.slip_angle = normalize_angle(motion.heading - desired_heading)
   motion.drift_active = drift_active
   motion.drift_amount = drift_active and math.min(1, math.abs(motion.slip_angle) / math.pi) or 0
+  local spin_direction = motion.drift_spin_direction or drift_config.spin_default_direction or 1
+  local spin_phase = motion.drift_spin_phase or 0
+  if drift_active then
+    local pivot = (drift_config.directional_views or {}).directional_pivot or {}
+    if not was_drifting then
+      spin_phase = motion.heading - (pivot.facing_offset or math.pi)
+    end
+    local steering_delta = normalize_angle(desired_heading - motion.heading)
+    local steering_threshold = drift_config.spin_steering_threshold or math.rad(10)
+    if math.abs(steering_delta) >= steering_threshold then
+      spin_direction = steering_delta >= 0 and 1 or -1
+    end
+    spin_phase = spin_phase + spin_direction * (drift_config.spin_speed or math.pi * 2) * dt
+  end
+  motion.drift_spin_phase = spin_phase
+  motion.drift_spin_direction = spin_direction
   local visual_target = drift_active and motion.slip_angle or 0
   local max_visual_angle = drift_config.max_visual_angle or math.rad(28)
   visual_target = math.max(-max_visual_angle, math.min(max_visual_angle, visual_target))
@@ -96,7 +115,7 @@ function Movement.update(hero, intent, definition, level_definition, dt)
         animation.loop = config.animation_loop == true
         hero.animation:play(animation_name)
       end
-    elseif hero.animation:is_playing() then
+    elseif hero.animation:is_playing() and config.animation_idle ~= true then
       hero.animation:stop()
     end
   end

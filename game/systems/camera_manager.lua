@@ -29,6 +29,11 @@ function CameraManager.new(config)
     target = nil,
     bounds = config.bounds,
     smoothing = config.smoothing or 8,
+    behavior = config.behavior or "smooth_follow",
+    follow_x = config.follow_x ~= false,
+    follow_y = config.follow_y ~= false,
+    look_ahead_x = config.look_ahead_x or 0,
+    look_ahead_y = config.look_ahead_y or 0,
     shake_remaining = 0,
     shake_duration = 0,
     shake_amplitude = 0,
@@ -58,22 +63,34 @@ function CameraManager:follow(position)
   self.target = position
 end
 
+function CameraManager:set_policy(config)
+  config = config or {}
+  self.behavior = config.behavior or self.behavior
+  self.follow_x = config.follow_x ~= false
+  self.follow_y = config.follow_y ~= false
+  self.smoothing = config.smoothing or self.smoothing
+  self.look_ahead_x = config.look_ahead_x or 0
+  self.look_ahead_y = config.look_ahead_y or 0
+  if config.zoom then self:set_zoom(config.zoom) end
+  if self.behavior == "static" then self.target = nil end
+end
+
 function CameraManager:set_bounds(bounds)
   self.bounds = bounds
 end
 
 function CameraManager:update(dt)
   self:refresh_viewport()
-  if self.target then
+  if self.target and self.behavior ~= "static" then
     local target = self.target
     if target.get_camera_focus then
       target = target:get_camera_focus()
     end
-    local desired_x = target.x - self.width / (2 * self.zoom)
-    local desired_y = target.ground_y - self.height / (2 * self.zoom)
+    local desired_x = target.x + self.look_ahead_x - self.width / (2 * self.zoom)
+    local desired_y = target.ground_y + self.look_ahead_y - self.height / (2 * self.zoom)
     local amount = math.min(1, dt * self.smoothing)
-    self.x = self.x + (desired_x - self.x) * amount
-    self.y = self.y + (desired_y - self.y) * amount
+    if self.follow_x then self.x = self.x + (desired_x - self.x) * amount end
+    if self.follow_y then self.y = self.y + (desired_y - self.y) * amount end
   end
 
   clamp_to_bounds(self)

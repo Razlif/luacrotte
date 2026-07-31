@@ -87,4 +87,14 @@ function AnimationManager:draw(x, y, scale_x, scale_y, anchor_x, anchor_y, rotat
   love.graphics.draw(animation.texture, quad, x, y, rotation or 0, scale_x, scale_y, anchor_x, anchor_y)
 end
 
+function AnimationManager:draw_frame(frame, x, y, scale_x, scale_y, anchor_x, anchor_y, rotation)
+  if not self.current_name then
+    return
+  end
+  local animation = self.animations[self.current_name]
+  local selected_frame = math.max(1, math.min(animation.frame_count, frame or self.current_frame))
+  local quad = animation.quads[selected_frame]
+  love.graphics.draw(animation.texture, quad, x, y, rotation or 0, scale_x, scale_y, anchor_x, anchor_y)
+end
+
 return AnimationManager

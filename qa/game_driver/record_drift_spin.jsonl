@@ -1,0 +1,9 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"drive_right","command":"hold","key":"right","duration":0.8}
+{"id":"start_drift","command":"press","key":"lshift"}
+{"id":"steer_down_clockwise","command":"hold","key":"down","duration":1.2}
+{"id":"capture_drift","command":"snapshot","name":"drift_spin_clockwise"}
+{"id":"release_drift","command":"release","key":"lshift"}
+{"id":"continue_moving","command":"hold","key":"down","duration":0.5}
+{"id":"capture_exit","command":"snapshot","name":"drift_exit"}

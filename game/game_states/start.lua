@@ -8,6 +8,7 @@ local Menu = require("game.ui.ui_elements.default_menu")
 local ParallaxManager = require("game.systems.parallax")
 local Theme = require("game.ui.theme")
 local cutscene_menu = require("game_data.cutscenes")
+local GameplayProfile = require("game.systems.gameplay_profile")
 
 local Start = {
   camera = nil,
@@ -52,11 +53,22 @@ function Start.enter()
   })
   Start.parallax:set_camera(Start.camera)
   local layout = menu_layout()
+  local profiles = GameplayProfile.list()
   local menu_items = {
     { label = "Playground", on_confirm = function()
-      states_manager().change("playground")
+      states_manager().change("playground", profiles[1].id)
     end }
   }
+  for _, profile in ipairs(profiles) do
+    local profile_id = profile.id
+    local profile_label = profile.label
+    menu_items[#menu_items + 1] = {
+      label = "Playground: " .. profile_label,
+      on_confirm = function()
+        states_manager().change("playground", profile_id)
+      end
+    }
+  end
   for _, scene in ipairs(cutscene_menu) do
     local scene_id = scene.id
     local scene_label = scene.label

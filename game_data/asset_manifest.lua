@@ -140,6 +140,35 @@ return {
         width = 64,
       },
     },
+    luacrotte_hero_motorcycle_direction_set_v001 = {
+      animations = {
+        motorcycle_direction_set = {
+          fps = 8,
+          frame_count = 8,
+          frame_height = 64,
+          frame_width = 64,
+          loop = true,
+          name = "motorcycle_direction_set",
+          prompt = nil,
+          provider = "asset_lab_reorder",
+          sheet_path = "media_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/sprite_sheets/luacrotte_hero_motorcycle_direction_set_v001.png",
+          source_image_version = 3,
+          source_sheet_path = "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001.png",
+          version = 1,
+        },
+      },
+      groups = {"characters/hero/motorcycle_direction_sets"},
+      id = "luacrotte_hero_motorcycle_direction_set_v001",
+      image = {
+        height = 400,
+        path = "media_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/original_images/luacrotte_hero_omni__self__image__v003.png",
+        prompt = nil,
+        provider = "derived_source",
+        source_path = "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+        version = 3,
+        width = 400,
+      },
+    },
     motocrotte_hero_main = {
       animations = {
         hero_main_cycle = {

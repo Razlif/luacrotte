@@ -10,14 +10,75 @@ local function mode_index(mode, modes)
   return 1
 end
 
-local function draw_sprite(hero, rotation, scale_x)
-  local x = hero.position.x
-  local y = PositionManager.get_screen_y(hero.position)
+local function draw_sprite(hero, rotation, scale_x, frame, position, anchor)
+  local x = (position and position.x) or hero.position.x
+  local y = (position and position.y) or PositionManager.get_screen_y(hero.position)
+  local anchor_x = (anchor and anchor.x) or hero.anchor_x
+  local anchor_y = (anchor and anchor.y) or hero.anchor_y
   if hero.animation:is_playing() then
-    hero.animation:draw(x, y, scale_x, hero.scale, hero.anchor_x, hero.anchor_y, rotation)
-  else
-    love.graphics.draw(hero.asset.image.texture, x, y, rotation, scale_x, hero.scale, hero.anchor_x, hero.anchor_y)
+    if frame then
+      hero.animation:draw_frame(frame, x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation)
+    else
+      hero.animation:draw(x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation)
+    end
+  elseif hero.asset.image then
+    love.graphics.draw(hero.asset.image.texture, x, y, rotation, scale_x, hero.scale, anchor_x, anchor_y)
   end
+end
+
+local function orbit_angles(visual, yaw)
+  local pivot = visual.directional_pivot or {}
+  local orbit_angle = yaw + (pivot.angle_offset or 0)
+  local facing_angle = orbit_angle + (pivot.facing_offset or math.pi)
+  return orbit_angle, facing_angle
+end
+
+local function orbit_position(hero, visual, yaw, radius_override)
+  local pivot = visual.directional_pivot or {}
+  local radius = radius_override
+  if radius == nil then radius = pivot.radius or 0 end
+  local angle = orbit_angles(visual, yaw)
+  local center_x = hero.position.x + (pivot.center_offset_x or 0)
+  local center_y = PositionManager.get_screen_y(hero.position) + (pivot.center_offset_y or 0)
+  return {
+    x = center_x + math.cos(angle) * radius,
+    y = center_y + math.sin(angle) * radius
+  }
+end
+
+local function orbit_anchor(hero, visual)
+  local pivot = visual.directional_pivot or {}
+  return {
+    x = pivot.anchor_x or hero.anchor_x,
+    y = pivot.anchor_y or hero.anchor_y
+  }
+end
+
+local function draw_orbit_guide(hero, visual, yaw, radius_override)
+  local pivot = visual.directional_pivot or {}
+  local radius = radius_override
+  if radius == nil then radius = pivot.radius or 0 end
+  if pivot.show_orbit ~= true or radius <= 0 then
+    return
+  end
+  local center_x = hero.position.x + (pivot.center_offset_x or 0)
+  local center_y = PositionManager.get_screen_y(hero.position) + (pivot.center_offset_y or 0)
+  local orbit = orbit_position(hero, visual, yaw, radius)
+  love.graphics.setColor(0.4, 0.85, 1, 0.45)
+  love.graphics.circle("line", center_x, center_y, radius)
+  love.graphics.line(center_x, center_y, orbit.x, orbit.y)
+  love.graphics.circle("fill", orbit.x, orbit.y, 2)
+  love.graphics.setColor(1, 1, 1, 1)
+end
+
+local function directional_frame(visual, slot)
+  local mapping = visual.directional_frame_map
+  return (mapping and mapping[slot]) or slot
+end
+
+local function directional_slot(angle, count)
+  local step = (math.pi * 2) / count
+  return math.floor((angle + step * 0.5) / step) % count
 end
 
 local function draw_direction_marker(hero, heading, label)
@@ -35,21 +96,34 @@ local function draw_visual_test(hero, definition, visual_state)
   local yaw = visual_state.yaw or 0
   local count = visual.directional_view_count or 8
   local scale_x = hero.scale * hero.source_facing
-  local marker_heading = yaw
+  local _, facing_angle = orbit_angles(visual, yaw)
+  local marker_heading = facing_angle
+  local orbit_radius = visual_state.orbit_radius
 
   if mode == "yaw_squash" then
     -- Faux vertical-axis rotation: keep screen rotation at zero and compress
     -- only the horizontal axis around the hero's vertical pivot.
-    scale_x = scale_x * math.cos(yaw)
+    scale_x = scale_x * math.abs(math.cos(facing_angle))
+    draw_orbit_guide(hero, visual, yaw, orbit_radius)
+    local slot = directional_slot(facing_angle, count)
+    draw_sprite(hero, 0, scale_x, directional_frame(visual, slot + 1), orbit_position(hero, visual, yaw, orbit_radius), orbit_anchor(hero, visual))
+    return
   elseif mode == "directional_views" then
-    local step = (math.pi * 2) / count
-    local slot = math.floor((yaw + step * 0.5) / step) % count
+    local slot = directional_slot(facing_angle, count)
     visual_state.directional_index = slot + 1
+    draw_orbit_guide(hero, visual, yaw, orbit_radius)
+    draw_sprite(hero, 0, scale_x, directional_frame(visual, slot + 1), orbit_position(hero, visual, yaw, orbit_radius), orbit_anchor(hero, visual))
+    draw_direction_marker(hero, marker_heading, string.format("%s  %d/%d", mode, visual_state.directional_index or 1, count))
+    return
   elseif mode == "hybrid" then
-    local step = (math.pi * 2) / count
-    local slot = math.floor((yaw + step * 0.5) / step) % count
+    local slot = directional_slot(facing_angle, count)
     visual_state.directional_index = slot + 1
-    scale_x = scale_x * math.cos(yaw - slot * step)
+    local step = (math.pi * 2) / count
+    scale_x = scale_x * math.abs(math.cos(facing_angle - slot * step))
+    draw_orbit_guide(hero, visual, yaw, orbit_radius)
+    draw_sprite(hero, 0, scale_x, directional_frame(visual, slot + 1), orbit_position(hero, visual, yaw, orbit_radius), orbit_anchor(hero, visual))
+    draw_direction_marker(hero, marker_heading, string.format("%s  %d/%d", mode, visual_state.directional_index or 1, count))
+    return
   end
 
   draw_sprite(hero, 0, scale_x)
@@ -65,18 +139,34 @@ local function draw_gameplay_visual(hero, definition)
   local yaw = hero.visual_yaw or motion.heading or 0
   local rotation = 0
   local scale_x = hero.scale * hero.source_facing
+  local visual = definition.visual or {}
+  local count = (drift.directional_views and drift.directional_views.count) or 8
+  local slot = directional_slot(yaw, count)
 
-  if mode == "yaw_squash" then
-    scale_x = scale_x * math.cos(yaw)
-  elseif mode == "directional_views" or mode == "hybrid" then
-    local count = (drift.directional_views and drift.directional_views.count) or 8
-    local step = (math.pi * 2) / count
-    local slot = math.floor((yaw + step * 0.5) / step) % count
-    motion.directional_index = slot + 1
-    scale_x = scale_x * math.cos(yaw - slot * step)
+  if motion.drift_active and motion.drift_spin_phase then
+    local spin_phase = motion.drift_spin_phase
+    local _, facing_angle = orbit_angles(visual, spin_phase)
+    local spin_slot = directional_slot(facing_angle, count)
+    local pivot = visual.directional_pivot or {}
+    local radius = pivot.radius or 0
+    motion.directional_index = spin_slot + 1
+    draw_sprite(hero, 0, scale_x, directional_frame(visual, spin_slot + 1), orbit_position(hero, visual, spin_phase, radius), orbit_anchor(hero, visual))
+    return
   end
 
-  draw_sprite(hero, rotation, scale_x)
+  if mode == "yaw_squash" then
+    scale_x = scale_x * math.abs(math.cos(yaw))
+  elseif mode == "directional_views" or mode == "hybrid" then
+    local directional = drift.directional_views or {}
+    count = directional.count or 8
+    slot = directional_slot(yaw, count)
+    local step = (math.pi * 2) / count
+    motion.directional_index = slot + 1
+    scale_x = scale_x * math.abs(math.cos(yaw - slot * step))
+    visual = directional
+  end
+
+  draw_sprite(hero, rotation, scale_x, directional_frame(visual, slot + 1))
 end
 
 function Renderer.draw(hero, definition, visual_state)

@@ -402,7 +402,7 @@ class PixelLabProviderTests(unittest.TestCase):
             self.assertNotIn("init_images", brand_new)
             with_reference = pixellab.static_payload("duck", 64, 64, False, image, 650)
             self.assertEqual(with_reference["init_image_strength"], 650)
-            self.assertEqual(with_reference["init_images"][0]["type"], "base64")
+            self.assertEqual(with_reference["init_image"]["type"], "base64")
 
     def test_generate_static_errors_are_clear(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -468,6 +468,27 @@ class AutoSpriteProviderTests(unittest.TestCase):
                 self.assertEqual(result["id"], "char_123")
             with self.assertRaises(FileNotFoundError):
                 autosprite.create_character_from_image(api_key="key", name="duck", image_path=Path(tmp) / "missing.png", character_description="duck", is_humanoid=True, trace_path=trace)
+
+    def test_generate_spritesheet_success(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            trace = Path(tmp) / "trace.jsonl"
+            calls = [
+                (202, {"workflows": [{"jobId": "job_1"}], "creditsUsed": 5}),
+                (200, {"status": "succeeded", "spritesheetId": "ss_1"}),
+                (200, {"id": "ss_1", "status": "succeeded", "sheetUrl": "https://example.test/sheet.png", "atlasUrl": "https://example.test/atlas.json", "frameWidth": 64, "frameHeight": 64, "frameCount": 16, "columns": 4}),
+            ]
+
+            def fake_request(*_args, **_kwargs):
+                return calls.pop(0)
+
+            with patch.object(autosprite, "request_json", side_effect=fake_request), patch.object(autosprite.time, "sleep", return_value=None):
+                result = autosprite.generate_spritesheet(
+                    api_key="key", character_id="char_1", animation_name="ride", prompt="ride",
+                    video_tier="turbo", duration_sec=2, frame_count=16, frame_size=64,
+                    remove_bg="ultra", trace_path=trace,
+                )
+            self.assertEqual(result["job_id"], "job_1")
+            self.assertEqual(result["spritesheet_id"], "ss_1")
 
 
 if __name__ == "__main__":

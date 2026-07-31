@@ -179,10 +179,13 @@
     }
     const asset = getAsset();
     if (asset && asset.animations && asset.animations.length) {
-      const animation = asset.animations[0];
+      // Manifest entries are appended in creation order; show the newest
+      // animation when an asset is opened so new provider results are visible.
+      const animation = asset.animations[asset.animations.length - 1];
       state.selectedMediaKey = `animation:${animation.id}:${animation.gif_path ? "gif" : "sheet"}`;
     } else if (asset && asset.images && asset.images.length) {
-      state.selectedMediaKey = `image:${asset.images[0].id}`;
+      const image = asset.images[asset.images.length - 1];
+      state.selectedMediaKey = `image:${image.id}`;
     } else {
       state.selectedMediaKey = null;
     }
@@ -403,7 +406,12 @@
     } else {
       setStatus(`${state.manifest.assets.length} assets loaded`);
     }
-    elements.reload.addEventListener("click", () => window.location.reload());
+    elements.reload.addEventListener("click", () => {
+      // file:// browsers may cache manifest.js; a cache-busting reload makes
+      // newly exported provider results appear immediately.
+      const separator = window.location.href.includes("?") ? "&" : "?";
+      window.location.href = `${window.location.href}${separator}refresh=${Date.now()}`;
+    });
     elements.search.addEventListener("input", (event) => {
       state.filterQuery = event.target.value.trim().toLowerCase();
       renderTree();

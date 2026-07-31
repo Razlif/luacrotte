@@ -1,3 +1,6 @@
+{"id":"skip_default_playground","command":"press","key":"down"}
+{"id":"skip_arena_profile","command":"press","key":"down"}
+{"id":"skip_lane_profile","command":"press","key":"down"}
 {"id":"select_intro","command":"press","key":"down"}
 {"id":"open_intro","command":"press","key":"return"}
 {"id":"wait_for_intro","command":"wait_until","condition":{"state_is":"cutscene"},"timeout":5}

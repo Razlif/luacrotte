@@ -1,6 +1,8 @@
 -- Static MotoCrotte asset checkpoint.
 return {
+  id = "playground",
   background_id = "motocrotte_background_01",
+  gameplay_profile_id = "arena_follow",
   world = {
     left = 0,
     top = 0,

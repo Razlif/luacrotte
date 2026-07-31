@@ -4422,7 +4422,7 @@ window.ASSET_LAB_MANIFEST = {
           "source_image_version": 1,
           "sheet_path": "lab_assets/characters/motocrotte_hero_main/sprite_sheets/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.png",
           "gif_path": "lab_assets/characters/motocrotte_hero_main/animation_gifs/motocrotte_hero_main__legacy_motocrotte__hero_main_cycle__v001.gif",
-          "frame_count": 5,
+          "frame_count": 4,
           "frame_width": 60,
           "frame_height": 60,
           "sheet_width": 240,
@@ -5722,8 +5722,2196 @@ window.ASSET_LAB_MANIFEST = {
       "imported_at": "2026-07-27T19:23:38.514165+00:00",
       "created_at": "2026-07-27T22:23:38",
       "updated_at": "2026-07-27T22:23:38"
+    },
+    {
+      "id": "luacrotte_hero_omni",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_omni",
+      "groups": [
+        "characters/hero/omnidirectional"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_omni__self__image__v001",
+          "provider": "self",
+          "version": 1,
+          "mode": "brand_new",
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+          "prompt": "Create a highly consistent pixel-art character reference for a game sprite project. Subject: a rugged young adult man with long black hair, slightly messy and falling around his shoulders, a mildly scruffy face, strong eyebrows, and a tired but determined expression. He wears a plain black short-sleeved shirt, faded blue jeans, a worn brown leather belt, and dark work boots. His build is lean and athletic, with natural proportions. Show him standing in a neutral relaxed pose, fully visible from head to boots, centered on the canvas. Use detailed hand-crafted pixel art with clean readable silhouettes, deliberate pixel clusters, subtle shading, and a restrained retro game palette. Keep the character's face, hairstyle, clothing, colors, body proportions, and accessories extremely clear for future directional sprite generation. The final character must have a transparent background. Generate it first on a perfectly flat solid #00ff00 chroma-key background for clean alpha extraction; no shadows, gradients, floor, reflections, text, logos, watermark, extra objects, or additional characters.",
+          "variation_group_id": "luacrotte_hero_omni_self_create_new_20260730_212620_069295",
+          "prompt_metadata": {
+            "prompt": "Create a highly consistent pixel-art character reference for a game sprite project. Subject: a rugged young adult man with long black hair, slightly messy and falling around his shoulders, a mildly scruffy face, strong eyebrows, and a tired but determined expression. He wears a plain black short-sleeved shirt, faded blue jeans, a worn brown leather belt, and dark work boots. His build is lean and athletic, with natural proportions. Show him standing in a neutral relaxed pose, fully visible from head to boots, centered on the canvas. Use detailed hand-crafted pixel art with clean readable silhouettes, deliberate pixel clusters, subtle shading, and a restrained retro game palette. Keep the character's face, hairstyle, clothing, colors, body proportions, and accessories extremely clear for future directional sprite generation. The final character must have a transparent background. Generate it first on a perfectly flat solid #00ff00 chroma-key background for clean alpha extraction; no shadows, gradients, floor, reflections, text, logos, watermark, extra objects, or additional characters.",
+            "asset_id": "luacrotte_hero_omni",
+            "asset_type": "character",
+            "provider": "self",
+            "action": "create-new",
+            "variation_group_id": "luacrotte_hero_omni_self_create_new_20260730_212620_069295"
+          },
+          "status": "pending_self_creation"
+        },
+        {
+          "id": "luacrotte_hero_omni__pixellab__image__v002",
+          "provider": "pixellab",
+          "version": 2,
+          "mode": "with_reference",
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__pixellab__image__v002.png",
+          "prompt": "Using the supplied reference image as the strict identity reference, create one clean pixel-art omnidirectional character sheet containing exactly eight separate full-body views of the same man. Arrange the views in a clear 4-by-2 grid: front, front-right, right, back-right on the first row; back, back-left, left, front-left on the second row. Preserve the exact same man in every view: rugged young adult, long messy black hair, mildly scruffy face, strong eyebrows, tired but determined expression, plain black short-sleeved shirt, faded blue jeans, worn brown leather belt, and dark work boots. Keep identical proportions, clothing, colors, hairstyle, pixel-art style, scale, camera distance, lighting, canvas cell size, and ground alignment in every cell. Each view must be isolated, centered, fully visible, and facing the specified direction. The background must be transparent with no floor, shadows, reflections, text, logos, watermark, extra objects, or additional characters. This is a directional reference sheet, not an animation sequence: do not change the pose between views.",
+          "variation_group_id": "luacrotte_hero_omni_pixellab_add_image_version_with_reference_20260730_213904_924664",
+          "prompt_metadata": {
+            "prompt": "Using the supplied reference image as the strict identity reference, create one clean pixel-art omnidirectional character sheet containing exactly eight separate full-body views of the same man. Arrange the views in a clear 4-by-2 grid: front, front-right, right, back-right on the first row; back, back-left, left, front-left on the second row. Preserve the exact same man in every view: rugged young adult, long messy black hair, mildly scruffy face, strong eyebrows, tired but determined expression, plain black short-sleeved shirt, faded blue jeans, worn brown leather belt, and dark work boots. Keep identical proportions, clothing, colors, hairstyle, pixel-art style, scale, camera distance, lighting, canvas cell size, and ground alignment in every cell. Each view must be isolated, centered, fully visible, and facing the specified direction. The background must be transparent with no floor, shadows, reflections, text, logos, watermark, extra objects, or additional characters. This is a directional reference sheet, not an animation sequence: do not change the pose between views.",
+            "asset_id": "luacrotte_hero_omni",
+            "asset_type": "character",
+            "provider": "pixellab",
+            "action": "add-image-version",
+            "variation_group_id": "luacrotte_hero_omni_pixellab_add_image_version_with_reference_20260730_213904_924664",
+            "mode": "with_reference",
+            "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+            "source_prompt_snapshot": "Create a highly consistent pixel-art character reference for a game sprite project. Subject: a rugged young adult man with long black hair, slightly messy and falling around his shoulders, a mildly scruffy face, strong eyebrows, and a tired but determined expression. He wears a plain black short-sleeved shirt, faded blue jeans, a worn brown leather belt, and dark work boots. His build is lean and athletic, with natural proportions. Show him standing in a neutral relaxed pose, fully visible from head to boots, centered on the canvas. Use detailed hand-crafted pixel art with clean readable silhouettes, deliberate pixel clusters, subtle shading, and a restrained retro game palette. Keep the character's face, hairstyle, clothing, colors, body proportions, and accessories extremely clear for future directional sprite generation. The final character must have a transparent background. Generate it first on a perfectly flat solid #00ff00 chroma-key background for clean alpha extraction; no shadows, gradients, floor, reflections, text, logos, watermark, extra objects, or additional characters."
+          },
+          "width": 400,
+          "height": 400,
+          "source_image_version": 1,
+          "init_image_strength": 750
+        },
+        {
+          "id": "luacrotte_hero_omni__self__image__v003",
+          "provider": "self",
+          "version": 3,
+          "mode": "with_reference",
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "prompt": "Using the supplied standing character reference as the exact identity reference, create the same rugged young adult man seated naturally on a motorcycle. Preserve his long messy black hair, mildly scruffy face, strong eyebrows, tired determined expression, plain black short-sleeved shirt, faded blue jeans, worn brown leather belt, dark work boots, body proportions, colors, and detailed pixel-art style. Show the complete motorcycle and the complete rider in a clear three-quarter side view, with both hands on the handlebars, feet positioned naturally, and the character seated convincingly on the motorcycle. Use a clean transparent background with a crisp readable silhouette, consistent pixel clusters, restrained retro game palette, and generous canvas padding. The final character and motorcycle are centered and ready for sprite-sheet production.",
+          "variation_group_id": "luacrotte_hero_omni_self_add_image_version_with_reference_20260730_220043_760958",
+          "prompt_metadata": {
+            "prompt": "Using the supplied standing character reference as the exact identity reference, create the same rugged young adult man seated naturally on a motorcycle. Preserve his long messy black hair, mildly scruffy face, strong eyebrows, tired determined expression, plain black short-sleeved shirt, faded blue jeans, worn brown leather belt, dark work boots, body proportions, colors, and detailed pixel-art style. Show the complete motorcycle and the complete rider in a clear three-quarter side view, with both hands on the handlebars, feet positioned naturally, and the character seated convincingly on the motorcycle. Use a clean transparent background with a crisp readable silhouette, consistent pixel clusters, restrained retro game palette, and generous canvas padding. The final character and motorcycle are centered and ready for sprite-sheet production.",
+            "asset_id": "luacrotte_hero_omni",
+            "asset_type": "character",
+            "provider": "self",
+            "action": "add-image-version",
+            "variation_group_id": "luacrotte_hero_omni_self_add_image_version_with_reference_20260730_220043_760958",
+            "mode": "with_reference",
+            "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+            "source_prompt_snapshot": "Create a highly consistent pixel-art character reference for a game sprite project. Subject: a rugged young adult man with long black hair, slightly messy and falling around his shoulders, a mildly scruffy face, strong eyebrows, and a tired but determined expression. He wears a plain black short-sleeved shirt, faded blue jeans, a worn brown leather belt, and dark work boots. His build is lean and athletic, with natural proportions. Show him standing in a neutral relaxed pose, fully visible from head to boots, centered on the canvas. Use detailed hand-crafted pixel art with clean readable silhouettes, deliberate pixel clusters, subtle shading, and a restrained retro game palette. Keep the character's face, hairstyle, clothing, colors, body proportions, and accessories extremely clear for future directional sprite generation. The final character must have a transparent background. Generate it first on a perfectly flat solid #00ff00 chroma-key background for clean alpha extraction; no shadows, gradients, floor, reflections, text, logos, watermark, extra objects, or additional characters."
+          },
+          "status": "pending_self_creation",
+          "source_image_version": 1,
+          "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+          "init_image_strength": 800
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_omni__pixellab__omnidirectional_sprites_from_image_v001__v001",
+          "provider": "pixellab",
+          "name": "omnidirectional_sprites",
+          "version": 1,
+          "source_image_version": 1,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_omni/sprite_sheets/luacrotte_hero_omni__pixellab__omnidirectional_sprites_from_image_v001__v001.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_omni/animation_gifs/luacrotte_hero_omni__pixellab__omnidirectional_sprites_from_image_v001__v001.gif",
+          "prompt": "PixelLab eight-direction rotation generation",
+          "variation_group_id": "luacrotte_hero_omni_pixellab_create_rotations_omnidirectional_sprites_from_v001_20260730_215154_849659",
+          "prompt_metadata": {
+            "prompt": "PixelLab eight-direction rotation generation",
+            "asset_id": "luacrotte_hero_omni",
+            "asset_type": "character",
+            "provider": "pixellab",
+            "action": "create-rotations",
+            "variation_group_id": "luacrotte_hero_omni_pixellab_create_rotations_omnidirectional_sprites_from_v001_20260730_215154_849659",
+            "animation": "omnidirectional_sprites",
+            "source_image_version": 1,
+            "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+            "source_prompt_snapshot": "Create a highly consistent pixel-art character reference for a game sprite project. Subject: a rugged young adult man with long black hair, slightly messy and falling around his shoulders, a mildly scruffy face, strong eyebrows, and a tired but determined expression. He wears a plain black short-sleeved shirt, faded blue jeans, a worn brown leather belt, and dark work boots. His build is lean and athletic, with natural proportions. Show him standing in a neutral relaxed pose, fully visible from head to boots, centered on the canvas. Use detailed hand-crafted pixel art with clean readable silhouettes, deliberate pixel clusters, subtle shading, and a restrained retro game palette. Keep the character's face, hairstyle, clothing, colors, body proportions, and accessories extremely clear for future directional sprite generation. The final character must have a transparent background. Generate it first on a perfectly flat solid #00ff00 chroma-key background for clean alpha extraction; no shadows, gradients, floor, reflections, text, logos, watermark, extra objects, or additional characters."
+          },
+          "frame_count": 8,
+          "frame_width": 256,
+          "frame_height": 256,
+          "sheet_width": 2048,
+          "sheet_height": 256,
+          "fps": 8
+        },
+        {
+          "id": "luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites",
+          "provider": "retro_diffusion",
+          "name": "omnidirectional_sprites",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.json",
+          "prompt": "Create a coherent pixel-art animation sheet from the supplied motorcycle rider reference, exploring omnidirectional movement and rotation while preserving the same rider, motorcycle, palette, proportions, and transparent-background sprite presentation.",
+          "frame_count": 16,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 256,
+          "sheet_height": 256,
+          "fps": 8,
+          "status": "created_on_disk",
+          "prompt_metadata": {
+            "provider": "retro_diffusion",
+            "action": "omnidirectional-sprites",
+            "source_image_version": 3,
+            "frames_duration": 4,
+            "return_spritesheet": true
+          }
+        },
+        {
+          "id": "luacrotte_hero_motorcycle__rotation_test__v001",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_rotation_test",
+          "version": 1,
+          "source_animation": "luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites",
+          "sheet_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__rotation_test__v001.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__rotation_test__v001.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__rotation_test__v001.json",
+          "prompt": "Ordered rotation test from user-specified source cells.",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r4c3",
+            "r1c2",
+            "r1c3",
+            "r2c2",
+            "r3c4",
+            "r2c1",
+            "r4c1",
+            "r4c2",
+            "r1c4",
+            "r2c3",
+            "r3c3",
+            "r3c2",
+            "r3c1"
+          ],
+          "frame_count": 15,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 960,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk",
+          "source_image_version": 3,
+          "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png"
+        },
+        {
+          "id": "luacrotte_hero_motorcycle__cardinal_directions__v001",
+          "provider": "asset_lab_reorder",
+          "name": "cardinal_directions",
+          "version": 1,
+          "source_animation": "luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites",
+          "source_image_version": 3,
+          "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "sheet_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__cardinal_directions__v001.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__cardinal_directions__v001.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_omni/provider_outputs/retro_diffusion/luacrotte_hero_motorcycle__cardinal_directions__v001.json",
+          "frame_labels": [
+            "front",
+            "right",
+            "back",
+            "left"
+          ],
+          "frame_order": [
+            "r1c1",
+            "r1c3",
+            "r2c1",
+            "r2c3"
+          ],
+          "frame_count": 4,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 256,
+          "sheet_height": 64,
+          "fps": 4,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-30T21:26:20",
+      "updated_at": "2026-07-31T16:11:12"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v001",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v001__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v001__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v002",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v002",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v002__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v002__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v002/luacrotte_hero_motorcycle_direction_set_v002.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v002/luacrotte_hero_motorcycle_direction_set_v002.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v002/luacrotte_hero_motorcycle_direction_set_v002.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v003",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v003",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v003__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v003__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v003/luacrotte_hero_motorcycle_direction_set_v003.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v003/luacrotte_hero_motorcycle_direction_set_v003.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v003/luacrotte_hero_motorcycle_direction_set_v003.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v004",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v004",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v004__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v004__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v004/luacrotte_hero_motorcycle_direction_set_v004.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v004/luacrotte_hero_motorcycle_direction_set_v004.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v004/luacrotte_hero_motorcycle_direction_set_v004.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v005",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v005",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v005__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v005__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v005/luacrotte_hero_motorcycle_direction_set_v005.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v005/luacrotte_hero_motorcycle_direction_set_v005.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v005/luacrotte_hero_motorcycle_direction_set_v005.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v006",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v006",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v006__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v006__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v006/luacrotte_hero_motorcycle_direction_set_v006.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v006/luacrotte_hero_motorcycle_direction_set_v006.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v006/luacrotte_hero_motorcycle_direction_set_v006.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v007",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v007",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v007__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v007__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v007/luacrotte_hero_motorcycle_direction_set_v007.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v007/luacrotte_hero_motorcycle_direction_set_v007.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v007/luacrotte_hero_motorcycle_direction_set_v007.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v008",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v008",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v008__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v008__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v008/luacrotte_hero_motorcycle_direction_set_v008.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v008/luacrotte_hero_motorcycle_direction_set_v008.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v008/luacrotte_hero_motorcycle_direction_set_v008.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v009",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v009",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v009__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v009__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v009/luacrotte_hero_motorcycle_direction_set_v009.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v009/luacrotte_hero_motorcycle_direction_set_v009.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v009/luacrotte_hero_motorcycle_direction_set_v009.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v010",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v010",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v010__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v010__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v010/luacrotte_hero_motorcycle_direction_set_v010.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v010/luacrotte_hero_motorcycle_direction_set_v010.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v010/luacrotte_hero_motorcycle_direction_set_v010.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v011",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v011",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v011__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v011__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v011/luacrotte_hero_motorcycle_direction_set_v011.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v011/luacrotte_hero_motorcycle_direction_set_v011.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v011/luacrotte_hero_motorcycle_direction_set_v011.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v012",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v012",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v012__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v012__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v012/luacrotte_hero_motorcycle_direction_set_v012.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v012/luacrotte_hero_motorcycle_direction_set_v012.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v012/luacrotte_hero_motorcycle_direction_set_v012.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v013",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v013",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v013__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v013__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v013/luacrotte_hero_motorcycle_direction_set_v013.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v013/luacrotte_hero_motorcycle_direction_set_v013.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v013/luacrotte_hero_motorcycle_direction_set_v013.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v014",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v014",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v014__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v014__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v014/luacrotte_hero_motorcycle_direction_set_v014.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v014/luacrotte_hero_motorcycle_direction_set_v014.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v014/luacrotte_hero_motorcycle_direction_set_v014.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v015",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v015",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v015__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v015__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v015/luacrotte_hero_motorcycle_direction_set_v015.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v015/luacrotte_hero_motorcycle_direction_set_v015.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v015/luacrotte_hero_motorcycle_direction_set_v015.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v016",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v016",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v016__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v016__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v016/luacrotte_hero_motorcycle_direction_set_v016.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v016/luacrotte_hero_motorcycle_direction_set_v016.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v016/luacrotte_hero_motorcycle_direction_set_v016.json",
+          "frame_order": [
+            "r1c1",
+            "r2c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v017",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v017",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v017__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v017__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v017/luacrotte_hero_motorcycle_direction_set_v017.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v017/luacrotte_hero_motorcycle_direction_set_v017.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v017/luacrotte_hero_motorcycle_direction_set_v017.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v018",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v018",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v018__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v018__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v018/luacrotte_hero_motorcycle_direction_set_v018.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v018/luacrotte_hero_motorcycle_direction_set_v018.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v018/luacrotte_hero_motorcycle_direction_set_v018.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v019",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v019",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v019__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v019__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v019/luacrotte_hero_motorcycle_direction_set_v019.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v019/luacrotte_hero_motorcycle_direction_set_v019.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v019/luacrotte_hero_motorcycle_direction_set_v019.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v020",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v020",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v020__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v020__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v020/luacrotte_hero_motorcycle_direction_set_v020.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v020/luacrotte_hero_motorcycle_direction_set_v020.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v020/luacrotte_hero_motorcycle_direction_set_v020.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v021",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v021",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v021__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v021__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v021/luacrotte_hero_motorcycle_direction_set_v021.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v021/luacrotte_hero_motorcycle_direction_set_v021.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v021/luacrotte_hero_motorcycle_direction_set_v021.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v022",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v022",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v022__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v022__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v022/luacrotte_hero_motorcycle_direction_set_v022.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v022/luacrotte_hero_motorcycle_direction_set_v022.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v022/luacrotte_hero_motorcycle_direction_set_v022.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v023",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v023",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v023__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v023__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v023/luacrotte_hero_motorcycle_direction_set_v023.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v023/luacrotte_hero_motorcycle_direction_set_v023.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v023/luacrotte_hero_motorcycle_direction_set_v023.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v024",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v024",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v024__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v024__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v024/luacrotte_hero_motorcycle_direction_set_v024.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v024/luacrotte_hero_motorcycle_direction_set_v024.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v024/luacrotte_hero_motorcycle_direction_set_v024.json",
+          "frame_order": [
+            "r1c1",
+            "r4c3",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v025",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v025",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v025__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v025__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v025/luacrotte_hero_motorcycle_direction_set_v025.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v025/luacrotte_hero_motorcycle_direction_set_v025.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v025/luacrotte_hero_motorcycle_direction_set_v025.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v026",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v026",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v026__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v026__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v026/luacrotte_hero_motorcycle_direction_set_v026.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v026/luacrotte_hero_motorcycle_direction_set_v026.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v026/luacrotte_hero_motorcycle_direction_set_v026.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v027",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v027",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v027__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v027__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v027/luacrotte_hero_motorcycle_direction_set_v027.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v027/luacrotte_hero_motorcycle_direction_set_v027.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v027/luacrotte_hero_motorcycle_direction_set_v027.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v028",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v028",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v028__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v028__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v028/luacrotte_hero_motorcycle_direction_set_v028.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v028/luacrotte_hero_motorcycle_direction_set_v028.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v028/luacrotte_hero_motorcycle_direction_set_v028.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r2c2",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v029",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v029",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v029__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v029__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v029/luacrotte_hero_motorcycle_direction_set_v029.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v029/luacrotte_hero_motorcycle_direction_set_v029.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v029/luacrotte_hero_motorcycle_direction_set_v029.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v030",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v030",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v030__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v030__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v030/luacrotte_hero_motorcycle_direction_set_v030.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v030/luacrotte_hero_motorcycle_direction_set_v030.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v030/luacrotte_hero_motorcycle_direction_set_v030.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r1c4",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v031",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v031",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v031__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v031__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v031/luacrotte_hero_motorcycle_direction_set_v031.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v031/luacrotte_hero_motorcycle_direction_set_v031.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v031/luacrotte_hero_motorcycle_direction_set_v031.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c2"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "luacrotte_hero_motorcycle_direction_set_v032",
+      "type": "character",
+      "folder": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v032",
+      "groups": [
+        "characters/hero/motorcycle_direction_sets"
+      ],
+      "images": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v032__source__image__v003",
+          "provider": "derived_source",
+          "version": 3,
+          "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+          "width": 400,
+          "height": 400,
+          "source_asset_id": "luacrotte_hero_omni",
+          "status": "created_on_disk"
+        }
+      ],
+      "animations": [
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v032__animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_set",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v032/luacrotte_hero_motorcycle_direction_set_v032.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v032/luacrotte_hero_motorcycle_direction_set_v032.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v032/luacrotte_hero_motorcycle_direction_set_v032.json",
+          "frame_order": [
+            "r1c1",
+            "r4c4",
+            "r1c3",
+            "r3c4",
+            "r2c1",
+            "r4c2",
+            "r2c3",
+            "r3c3"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_right",
+            "back",
+            "up_left",
+            "left",
+            "down_left"
+          ],
+          "frame_count": 8,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-07-31T16:19:14",
+      "updated_at": "2026-07-31T16:20:19"
     }
   ],
-  "updated_at": "2026-07-27T22:23:38",
+  "updated_at": "2026-07-31T16:20:19",
   "orphans": []
 };

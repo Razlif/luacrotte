@@ -86,6 +86,33 @@ def parse_args() -> argparse.Namespace:
     create_animation.add_argument("--frame-count", type=int, default=4)
     create_animation.add_argument("--fps", type=int, default=8)
 
+    create_rotations = subparsers.add_parser("create-rotations", help="Create an eight-direction sprite sheet/GIF from an existing image version.")
+    create_rotations.add_argument("--provider", choices=["pixellab"], required=True)
+    create_rotations.add_argument("--type", choices=["character", "prop", "background", "effect"], default="character")
+    create_rotations.add_argument("--name", required=True)
+    create_rotations.add_argument("--animation", required=True, help="Directional animation name, slugified.")
+    create_rotations.add_argument("--source-image-version", required=True)
+    create_rotations.add_argument("--fps", type=int, default=8)
+    create_rotations.add_argument("--seed", type=int, default=42)
+    create_rotations.add_argument("--group", dest="groups", action="append", default=[])
+    create_rotations.add_argument("--execute", action="store_true")
+
+    create_spritesheets = subparsers.add_parser("create-spritesheets", help="Generate an AutoSprite animation spritesheet from a provider character.")
+    create_spritesheets.add_argument("--provider", choices=["autosprite"], required=True)
+    create_spritesheets.add_argument("--type", choices=["character"], default="character")
+    create_spritesheets.add_argument("--name", required=True)
+    create_spritesheets.add_argument("--source-image-version", required=True)
+    create_spritesheets.add_argument("--animation", required=True)
+    create_spritesheets.add_argument("--prompt", required=True)
+    create_spritesheets.add_argument("--video-tier", choices=["turbo", "pro", "ultra", "max"], default="turbo")
+    create_spritesheets.add_argument("--duration", type=int, default=2)
+    create_spritesheets.add_argument("--frame-count", type=int, default=16)
+    create_spritesheets.add_argument("--frame-size", type=int, default=256)
+    create_spritesheets.add_argument("--remove-bg", choices=["default", "ultra"], default="default")
+    create_spritesheets.add_argument("--fps", type=int, default=8)
+    create_spritesheets.add_argument("--group", dest="groups", action="append", default=[])
+    create_spritesheets.add_argument("--execute", action="store_true")
+
     check_account = subparsers.add_parser("check-provider-account", help="Check provider account/credit state.")
     check_account.add_argument("--provider", choices=["autosprite"], required=True)
     check_account.add_argument("--name", default="_provider_check")
@@ -497,6 +524,139 @@ def handle_create_animation(args: argparse.Namespace) -> int:
     return run_animation_action(args, paths, source_image_path)
 
 
+def handle_create_rotations(args: argparse.Namespace) -> int:
+    asset_type = args.type
+    asset_id = slugify(args.name)
+    args.prompt = "PixelLab eight-direction rotation generation"
+    args.width = 256
+    args.height = 256
+    args.with_background = False
+    args.mock_image = None
+    args.mock_frames_dir = None
+    folder = require_existing_asset(asset_id, asset_type)
+    ensure_asset_dirs(folder)
+    source_version, source_image_path = source_image_from_manifest(asset_id, asset_type, args.source_image_version)
+    source_image = manifest.find_image_version(asset_id, asset_type, source_version)
+    args.source_prompt_snapshot = source_image.get("prompt") if source_image else None
+    paths = animation_paths(args, asset_type, folder, source_version)
+    print(f"Asset Lab: create-rotations | {args.provider} | {paths['asset_id']} | {paths['animation']} from {version_tag(source_version)} | {paths['version_tag']}")
+    append_trace(paths["trace_path"], "start", {"action": "create-rotations", "provider": args.provider, "execute": args.execute})
+    if not args.execute:
+        write_dry_run(args, paths, {"animation": paths["animation"], "source_image_version": source_version, "source_image_path": relative_to_asset_lab(source_image_path)})
+        print("Dry run only. No provider call, no manifest update.")
+        print(f"Wrote trace: {relative_to_asset_lab(paths['trace_path'])}")
+        print(f"Wrote request: {relative_to_asset_lab(paths['request_path'])}")
+        return 0
+    provider = PROVIDERS[args.provider]
+    result = provider.generate_rotations(
+        api_key=provider.api_key_from_env(),
+        input_image=source_image_path,
+        seed=args.seed,
+        trace_path=paths["trace_path"],
+    )
+    animation_meta = asset_processor.write_sheet_and_gif(
+        frame_images_base64=result["frame_images_base64"],
+        sheet_path=paths["sheet_path"],
+        gif_path=paths["gif_path"],
+        fps=args.fps,
+    )
+    metadata = prompt_metadata(args, paths, source_image_path=source_image_path)
+    entry = {
+        "id": paths["gif_path"].stem,
+        "provider": paths["provider"],
+        "name": paths["animation"],
+        "version": paths["version"],
+        "source_image_version": source_version,
+        "sheet_path": relative_to_asset_lab(paths["sheet_path"]),
+        "gif_path": relative_to_asset_lab(paths["gif_path"]),
+        "prompt": "PixelLab eight-direction rotation generation",
+        "variation_group_id": metadata["variation_group_id"],
+        "prompt_metadata": metadata,
+        **animation_meta,
+    }
+    manifest.add_animation(asset_id, entry, base_manifest_record(asset_id, asset_type, folder, args.groups))
+    write_json(paths["metadata_path"], {"last_result": entry})
+    append_trace(paths["trace_path"], "complete", {"action": "create-rotations", "manifest_updated": True})
+    print(f"Saved sprite sheet: {relative_to_asset_lab(paths['sheet_path'])}")
+    print(f"Saved animation gif: {relative_to_asset_lab(paths['gif_path'])}")
+    return 0
+
+
+def handle_create_spritesheets(args: argparse.Namespace) -> int:
+    asset_id = slugify(args.name)
+    folder = require_existing_asset(asset_id, args.type)
+    source_version, source_image_path = source_image_from_manifest(asset_id, args.type, args.source_image_version)
+    provider_state = manifest.get_provider_state(asset_id, args.type, args.provider)
+    character_id = provider_state.get("character_id")
+    if not character_id:
+        raise ValueError("AutoSprite character is not prepared. Run prepare-provider-character first.")
+    args.width = args.frame_size
+    args.height = args.frame_size
+    args.with_background = False
+    args.seed = 42
+    args.mock_image = None
+    args.mock_frames_dir = None
+    args.source_prompt_snapshot = None
+    paths = animation_paths(args, args.type, folder, source_version)
+    append_trace(paths["trace_path"], "start", {"action": "create-spritesheets", "provider": args.provider, "execute": args.execute})
+    print(f"Asset Lab: create-spritesheets | {args.provider} | {asset_id} | {args.animation}")
+    if not args.execute:
+        write_dry_run(args, paths, {"character_id": character_id, "source_image_version": source_version, "source_image_path": relative_to_asset_lab(source_image_path)})
+        print("Dry run only. No provider call, no manifest update.")
+        print(f"Wrote request: {relative_to_asset_lab(paths['request_path'])}")
+        return 0
+    provider = PROVIDERS[args.provider]
+    result = provider.generate_spritesheet(
+        api_key=provider.api_key_from_env(),
+        character_id=character_id,
+        animation_name=args.animation,
+        prompt=args.prompt,
+        video_tier=args.video_tier,
+        duration_sec=args.duration,
+        frame_count=args.frame_count,
+        frame_size=args.frame_size,
+        remove_bg=args.remove_bg,
+        trace_path=paths["trace_path"],
+    )
+    detail = result["detail"]
+    sheet_url = detail.get("sheetUrl") or detail.get("sheet_url")
+    atlas_url = detail.get("atlasUrl") or detail.get("atlas_url")
+    if not sheet_url or not atlas_url:
+        raise RuntimeError("AutoSprite spritesheet detail did not include sheetUrl and atlasUrl.")
+    provider.download_file(url=sheet_url, destination=paths["sheet_path"], api_key=provider.api_key_from_env())
+    atlas_path = paths["sheet_path"].with_suffix(".json")
+    provider.download_file(url=atlas_url, destination=atlas_path, api_key=provider.api_key_from_env())
+    frame_count = int(detail.get("frameCount", args.frame_count))
+    frame_width = int(detail.get("frameWidth", args.frame_size))
+    frame_height = int(detail.get("frameHeight", args.frame_size))
+    columns = int(detail.get("columns", max(1, args.frame_size // max(1, frame_width))))
+    gif_meta = asset_processor.write_gif_from_sheet(sheet_path=paths["sheet_path"], gif_path=paths["gif_path"], frame_count=frame_count, frame_width=frame_width, frame_height=frame_height, columns=columns, fps=args.fps)
+    entry = {
+        "id": paths["gif_path"].stem,
+        "provider": "autosprite",
+        "name": args.animation,
+        "version": paths["version"],
+        "source_image_version": source_version,
+        "sheet_path": relative_to_asset_lab(paths["sheet_path"]),
+        "atlas_path": relative_to_asset_lab(atlas_path),
+        "gif_path": relative_to_asset_lab(paths["gif_path"]),
+        "provider_character_id": character_id,
+        "provider_job_id": result["job_id"],
+        "provider_spritesheet_id": result["spritesheet_id"],
+        "video_tier": args.video_tier,
+        "remove_bg": args.remove_bg,
+        "prompt": args.prompt,
+        **gif_meta,
+    }
+    manifest.add_animation(asset_id, entry, base_manifest_record(asset_id, args.type, folder, args.groups))
+    write_json(paths["metadata_path"], {"last_result": entry})
+    append_trace(paths["trace_path"], "complete", {"action": "create-spritesheets", "manifest_updated": True, "provider_spritesheet_id": result["spritesheet_id"]})
+    print(f"Saved sprite sheet: {relative_to_asset_lab(paths['sheet_path'])}")
+    print(f"Saved atlas: {relative_to_asset_lab(atlas_path)}")
+    print(f"Saved animation gif: {relative_to_asset_lab(paths['gif_path'])}")
+    return 0
+
+
 def handle_check_provider_account(args: argparse.Namespace) -> int:
     provider = PROVIDERS[args.provider]
     trace_path = provider_check_trace_path(args.provider, args.name)
@@ -622,6 +782,10 @@ def main() -> int:
             return handle_add_image_version(args)
         if args.action == "create-animation":
             return handle_create_animation(args)
+        if args.action == "create-rotations":
+            return handle_create_rotations(args)
+        if args.action == "create-spritesheets":
+            return handle_create_spritesheets(args)
         if args.action == "check-provider-account":
             return handle_check_provider_account(args)
         if args.action == "prepare-provider-character":

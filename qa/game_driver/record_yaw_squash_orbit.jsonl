@@ -1,0 +1,9 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"enter_visual_lab","command":"press","key":"v"}
+{"id":"select_yaw_squash","command":"press","key":"tab"}
+{"id":"select_yaw_squash_again","command":"press","key":"tab"}
+{"id":"record_start","command":"record_start","name":"yaw_squash_orbit","fps":5}
+{"id":"yaw_clockwise","command":"hold","key":"e","duration":2.5}
+{"id":"capture_yaw_squash","command":"snapshot","name":"yaw_squash_orbit"}
+{"id":"record_stop","command":"record_stop"}
