@@ -1,7 +1,5 @@
-{"id":"enter_default_playground","command":"press","key":"return"}
+{"id":"enter_playground","command":"press","key":"return"}
 {"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
-{"id":"capture_arena_profile","command":"snapshot","name":"profile_arena_follow"}
-{"id":"next_profile","command":"press","key":"tab"}
-{"id":"capture_lane_profile","command":"snapshot","name":"profile_beat_em_up_lane"}
-{"id":"next_profile_again","command":"press","key":"tab"}
-{"id":"capture_scroller_profile","command":"snapshot","name":"profile_side_scroller"}
+{"id":"capture_arena_baseline","command":"snapshot","name":"profile_arena_follow"}
+{"id":"toggle_experiment_random","command":"press","key":"r"}
+{"id":"capture_experiment_random","command":"snapshot","name":"profile_experiment_random"}
