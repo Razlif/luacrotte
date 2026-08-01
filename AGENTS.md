@@ -82,7 +82,7 @@ In the Playground, normal movement starts enabled. Press V to enter the
 Visual Lab. Inside it, use Q/E to change yaw, Tab to cycle visual modes, and R
 to reset. Visual Lab mode bypasses movement and drift mechanics; it tests only
  the sprite's visual orientation. Outside the Visual Lab, use Shift to drift and the
- arrow/WASD controls to move; Space remains available for jump. The modular
+  arrow controls to move; Space remains available for jump. The modular
  movement solver provides acceleration, coasting, braking by opposite input,
  and profile-owned turning. Drift uses normal/entering/holding/exiting phases,
  preserves momentum on release, derives physical turning radius from speed and
@@ -92,15 +92,18 @@ logic to this experiment until the visual and movement behavior is accepted.
 The current Playground uses the promoted `motorcycle_direction_full` 16-frame
 row-major atlas. The original 8-frame `motorcycle_direction_set` animation is
 kept in the same asset for comparison and rollback. Cardinal frame selection
-is fixed; diagonal drift variants select from the reviewed source-cell groups.
+is fixed; random mode selects a new diagonal variant after each completed drift
+spin, using the reviewed source-cell groups.
 Use `qa/game_driver/record_visual_*.jsonl` for orientation GIFs,
 `qa/game_driver/inspect_motocrotte_orientation.jsonl` for cardinal-heading
 checks, `qa/game_driver/record_drift_*.jsonl` for movement/drift GIFs, and
 `qa/game_driver/inspect_modular_movement.jsonl` plus
 `qa/game_driver/validate_modular_run.py` for modular movement assertions.
-Press Tab in the Playground to compare the production `arena_follow` mode
-with the experimental `legacy_direct_drift` mode. The legacy mode is an
-isolated compatibility experiment and must not replace the modular solver.
+The Playground experiment layer uses R for fixed/random sprite variants, Y for
+yaw, Tab for control schema, M for movement mode, C for camera, B for background,
+and 1 for the baseline slot. V still opens the isolated Visual Lab. The legacy
+direct-drift mode remains a compatibility experiment and must not replace the
+modular solver.
 
 ## Gameplay Profiles
 
@@ -110,7 +113,8 @@ developed under `game_data/experiments/gameplay_profiles/` before promotion.
 Profiles configure camera behavior, control schema, movement constraints, drift
 availability, visual orientation, and transition policy. Levels reference a
 profile with `gameplay_profile_id`; the Playground can also receive a profile
-ID from the menu or cycle profiles with Tab during normal movement.
+ID from the menu. Temporary Playground experiments are layered over the active
+profile and can be restored with slot 1.
 
 The shared systems remain responsible for behavior. Do not create a separate
 movement or camera implementation per profile. Add a validated profile option

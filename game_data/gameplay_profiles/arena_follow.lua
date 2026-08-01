@@ -13,10 +13,14 @@ return {
     look_ahead_x = 0,
     look_ahead_y = 0
   },
-  controls = { schema = "omnidirectional", binding_set = "keyboard_arrows_wasd" },
+  controls = { schema = "omnidirectional_arrows", binding_set = "keyboard_arrows" },
   movement = {
     constraint = "free",
     allowed_axes = { x = true, y = true },
+    acceleration = 900,
+    max_speed = 260,
+    brake_deceleration = 700,
+    cone_angle = math.rad(45),
     coast_deceleration = 250,
     steering_response = 8,
     max_turn_rate = math.rad(180)
@@ -34,7 +38,8 @@ return {
     spin_default_direction = 1,
     spin_steering_threshold = math.rad(10)
   },
-  visual = { orientation = "yaw_squash" },
-  directional_animation = { variant_policy = "random_per_drift" },
+  visual = { orientation = "yaw_squash", yaw_enabled = true },
+  directional_animation = { variant_policy = "random_per_spin" },
+  environment = { background_id = "motocrotte_background_01" },
   transitions = { preserve_velocity = true, preserve_yaw = true, clear_drift = true }
 }

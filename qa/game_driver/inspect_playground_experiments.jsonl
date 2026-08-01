@@ -1,0 +1,16 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"toggle_random","command":"press","key":"r"}
+{"id":"capture_random","command":"snapshot","name":"experiment_random"}
+{"id":"toggle_yaw","command":"press","key":"y"}
+{"id":"capture_no_yaw","command":"snapshot","name":"experiment_no_yaw"}
+{"id":"cycle_controls","command":"press","key":"tab"}
+{"id":"capture_throttle_controls","command":"snapshot","name":"experiment_throttle_controls"}
+{"id":"cycle_movement","command":"press","key":"m"}
+{"id":"capture_heading_cone","command":"snapshot","name":"experiment_heading_cone"}
+{"id":"cycle_camera","command":"press","key":"c"}
+{"id":"capture_camera","command":"snapshot","name":"experiment_camera"}
+{"id":"cycle_background","command":"press","key":"b"}
+{"id":"capture_background","command":"snapshot","name":"experiment_background"}
+{"id":"restore_slot_one","command":"press","key":"1"}
+{"id":"capture_baseline","command":"snapshot","name":"experiment_baseline"}

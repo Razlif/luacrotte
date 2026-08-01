@@ -93,6 +93,8 @@ local function entity_snapshot(entity, camera)
       drift_amount = entity.motocrotte_motion.drift_amount,
       drift_active = entity.motocrotte_motion.drift_active,
       drift_spin_phase = entity.motocrotte_motion.drift_spin_phase,
+      drift_yaw_phase = entity.motocrotte_motion.drift_yaw_phase,
+      visual_yaw_phase = entity.motocrotte_motion.visual_yaw_phase,
       drift_spin_direction = entity.motocrotte_motion.drift_spin_direction,
       drift_phase = entity.motocrotte_motion.drift_phase,
       drift_variant_index = entity.motocrotte_motion.drift_variant_index,

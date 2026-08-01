@@ -1,0 +1,11 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"accelerate","command":"hold","key":"right","duration":1.2}
+{"id":"start_drift","command":"press","key":"lshift"}
+{"id":"capture_first_spin","command":"wait","seconds":0.35}
+{"id":"snapshot_first_spin","command":"snapshot","name":"variant_spin_one"}
+{"id":"capture_second_spin","command":"wait","seconds":1.1}
+{"id":"snapshot_second_spin","command":"snapshot","name":"variant_spin_two"}
+{"id":"capture_third_spin","command":"wait","seconds":1.1}
+{"id":"snapshot_third_spin","command":"snapshot","name":"variant_spin_three"}
+{"id":"release_drift","command":"release","key":"lshift"}

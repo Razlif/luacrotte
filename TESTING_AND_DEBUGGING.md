@@ -90,8 +90,10 @@ python qa/video_export.py modular_drift --format gif --preview
 
 The arena profile enables drift. The beat-em-up lane and side-scroller
 profiles use the same schema with drift disabled. During manual testing use
-arrows/WASD to move, hold Shift to drift, Q/E and K/M for the visual orbit
-experiment, Tab to cycle profiles or modes, and R to reset.
+the arrow keys to move, hold Shift to drift, and use R for fixed/random sprite
+variants, Y for yaw, Tab for control schema, M for movement mode, C for camera,
+B for background, and 1 for the baseline experiment. V opens the existing
+Visual Lab, where Q/E and K/M remain available for visual orbit testing.
 
 To inspect the previous direct-drift behavior, use Tab twice from the default
 arena profile to select `Legacy: Direct Drift`, or run:

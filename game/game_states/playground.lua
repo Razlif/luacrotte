@@ -10,6 +10,7 @@ local HeroMovement = require("game.systems.motocrotte_hero_movement")
 local HeroOrientation = require("game.systems.motocrotte_hero_orientation")
 local HeroRenderer = require("game.systems.motocrotte_hero_renderer")
 local GameplayProfile = require("game.systems.gameplay_profile")
+local PlaygroundExperiment = require("game.systems.playground_experiment")
 local CameraManager = require("game.systems.camera_manager")
 local ParallaxManager = require("game.systems.parallax")
 
@@ -29,10 +30,40 @@ local Playground = {
   visual_orbit_radius = 20,
   profile_id = nil,
   profile = nil,
+  base_profile = nil,
+  experiment = PlaygroundExperiment.default(),
   profile_index = 1,
   hero_definition = hero_definition,
   active_level_definition = level_definition
 }
+
+local function background_registry()
+  return {
+    motocrotte_background_01 = asset_manifest.backgrounds.motocrotte_background_01,
+    enchanted_wizard_training_meadow = asset_manifest.backgrounds.enchanted_wizard_training_meadow
+  }
+end
+
+local function background_definition_for(id)
+  return background_registry()[id] or background_definition
+end
+
+local function rebuild_parallax()
+  if not Playground.camera then return end
+  local selected = background_definition_for(Playground.experiment.background_id)
+  Playground.parallax = ParallaxManager.new({
+    {
+      id = selected.id,
+      image_path = selected.image.path,
+      speed_x = 1,
+      speed_y = 1,
+      repeat_x = false,
+      repeat_y = false,
+      layer = 0
+    }
+  })
+  Playground.parallax:set_camera(Playground.camera)
+end
 
 local function visual_modes()
   local definition = Playground.hero_definition or hero_definition
@@ -64,7 +95,8 @@ function Playground.set_profile(index_or_id)
     end
   end
   assert(selected, "Unknown gameplay profile: " .. tostring(index_or_id))
-  Playground.profile = GameplayProfile.load(selected.id)
+  Playground.base_profile = GameplayProfile.load(selected.id)
+  Playground.profile = Playground.base_profile
   Playground.profile_id = Playground.profile.id
   Playground.profile_index = selected_index
   Playground.hero_definition = GameplayProfile.resolve_hero_definition(hero_definition, Playground.profile)
@@ -103,6 +135,44 @@ function Playground.set_profile(index_or_id)
   if Playground.hero and not Playground.profile.transitions.preserve_yaw then
     Playground.hero.visual_yaw = 0
   end
+end
+
+function Playground.apply_experiment(rebuild_background)
+  local base = Playground.base_profile or GameplayProfile.load(Playground.profile_id or "arena_follow")
+  local effective = PlaygroundExperiment.resolve(base, Playground.experiment)
+  GameplayProfile.validate(effective)
+  Playground.profile = effective
+  Playground.hero_definition = GameplayProfile.resolve_hero_definition(hero_definition, effective)
+  Playground.active_level_definition.hero_bounds = GameplayProfile.bounds(level_definition, effective)
+
+  if Playground.hero then
+    Playground.hero.definition = Playground.hero_definition
+    local bounds = Playground.active_level_definition.hero_bounds
+    Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
+    Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
+  end
+  if Playground.camera then
+    Playground.camera:set_policy(effective.camera)
+    if effective.camera.behavior == "static" then
+      Playground.camera:follow(nil)
+    else
+      Playground.camera:follow(Playground.hero.position)
+    end
+  end
+  if rebuild_background then rebuild_parallax() end
+end
+
+function Playground.reset_experiment()
+  Playground.experiment = PlaygroundExperiment.default()
+  Playground.apply_experiment()
+end
+
+function Playground.load_slot(slot)
+  if slot == 1 then
+    Playground.reset_experiment()
+    return true
+  end
+  return false
 end
 
 function Playground.get_save_data()
@@ -162,6 +232,7 @@ end
 
 function Playground.enter(profile_id)
   AssetLoader.load_manifest(asset_manifest)
+  Playground.experiment = PlaygroundExperiment.default()
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.hero = Character.new(Playground.hero_definition, AssetLoader.get_character(hero_definition.asset_id))
   Playground.hero.position.x = level_definition.hero_position.x
@@ -204,6 +275,7 @@ function Playground.enter(profile_id)
     }
   })
   Playground.parallax:set_camera(Playground.camera)
+  Playground.apply_experiment()
 end
 
 function Playground.update(dt)
@@ -240,8 +312,36 @@ function Playground.update(dt)
     Playground.hero.visual_yaw = Playground.visual_yaw
     Playground.hero.animation:update(dt)
   else
-    if intent.cycle_profile_pressed then
-      Playground.set_profile(Playground.profile_index + 1)
+    local changed = false
+    if intent.toggle_sprite_policy_pressed then
+      PlaygroundExperiment.cycle(Playground.experiment, "sprite_policy")
+      changed = true
+    end
+    if intent.toggle_yaw_pressed then
+      Playground.experiment.yaw_enabled = not Playground.experiment.yaw_enabled
+      changed = true
+    end
+    if intent.cycle_control_schema_pressed then
+      PlaygroundExperiment.cycle(Playground.experiment, "control_schema")
+      changed = true
+    end
+    if intent.cycle_movement_mode_pressed then
+      PlaygroundExperiment.cycle(Playground.experiment, "movement_mode")
+      changed = true
+    end
+    if intent.cycle_camera_mode_pressed then
+      PlaygroundExperiment.cycle(Playground.experiment, "camera_mode")
+      changed = true
+    end
+    if intent.cycle_background_pressed then
+      PlaygroundExperiment.cycle(Playground.experiment, "background_id")
+      changed = true
+    end
+    if intent.profile_slot_pressed then
+      changed = Playground.load_slot(intent.profile_slot_pressed) or changed
+    end
+    if changed then
+      Playground.apply_experiment(intent.cycle_background_pressed == true)
     end
     intent = GameplayProfile.prepare_intent(intent, Playground.profile)
     HeroMovement.update(Playground.hero, intent, Playground.hero_definition, Playground.active_level_definition, dt)
@@ -258,7 +358,16 @@ function Playground.get_debug_context()
     hero_motion = Playground.hero and Playground.hero.motocrotte_motion or nil,
     camera = Playground.camera,
     collision_events = Playground.last_collision_events,
-    background_id = background_definition.id,
+    background_id = Playground.experiment.background_id,
+    experiment = {
+      sprite_policy = Playground.experiment.sprite_policy,
+      yaw_enabled = Playground.experiment.yaw_enabled,
+      control_schema = Playground.experiment.control_schema,
+      movement_mode = Playground.experiment.movement_mode,
+      camera_mode = Playground.experiment.camera_mode,
+      background_id = Playground.experiment.background_id,
+      profile_slot = Playground.experiment.profile_slot
+    },
     visual_lab = {
       active = Playground.visual_lab_active,
       mode = Playground.hero and Playground.hero.motocrotte_visual_mode or nil,
@@ -302,17 +411,22 @@ function Playground.draw()
   local mode = Playground.hero.motocrotte_visual_mode or "unknown"
   if Playground.visual_lab_active then
     love.graphics.print("MotoCrotte Visual Lab", 24, 24)
-    love.graphics.print("Q/E: orbit   K: smaller   M: larger   Tab: visual mode   V: exit   R: reset", 24, 48)
+    love.graphics.print("Q/E: orbit   K: smaller   M: larger   Tab: visual mode   V: exit", 24, 48)
     love.graphics.print(string.format("Mode: %s   Yaw: %.0f°   Radius: %.0f   Horizontal scale: %.2f", mode, math.deg(Playground.visual_yaw), Playground.visual_orbit_radius, math.cos(Playground.visual_yaw)), 24, 72)
   else
     local motion = Playground.hero.motocrotte_motion or {}
     love.graphics.print("MotoCrotte Gameplay Profile", 24, 24)
-    love.graphics.print("Arrows/WASD: move   Shift: drift   Tab: next movement/profile   V: visual lab", 24, 48)
-    love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.profile.controls.schema, Playground.profile.movement.constraint, Playground.profile.camera.behavior), 24, 72)
+    local control_hint = Playground.experiment.control_schema == "throttle_steering"
+      and "Left/Right: steer   T: accelerate   X: brake"
+      or "Arrows: move"
+    love.graphics.print(control_hint .. "   Shift: drift   Space: jump   V: visual lab", 24, 48)
+    love.graphics.print("R: sprites   Y: yaw   Tab: controls   M: movement   C: camera   B: background   1-9: slots", 24, 72)
+    love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.experiment.control_schema, Playground.experiment.movement_mode, Playground.experiment.camera_mode), 24, 96)
+    love.graphics.print(string.format("Sprites: %s   Yaw: %s   Background: %s   Slot: %d", Playground.experiment.sprite_policy, Playground.experiment.yaw_enabled and "on" or "off", Playground.experiment.background_id, Playground.experiment.profile_slot), 24, 120)
     local radius = motion.turning_radius or math.huge
     local radius_text = radius <= 0 and "∞" or string.format("%.0f", radius)
-    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal"), 24, 96)
-    love.graphics.print(string.format("Turn radius: %s   Variant: %s   Braking: %s", radius_text, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no"), 24, 120)
+    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal"), 24, 144)
+    love.graphics.print(string.format("Turn radius: %s   Variant: %s   Braking: %s", radius_text, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no"), 24, 168)
   end
 end
 

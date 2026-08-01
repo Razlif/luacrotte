@@ -136,11 +136,11 @@ end
 local function draw_gameplay_visual(hero, definition)
   local drift = definition.drift or {}
   local motion = hero.motocrotte_motion or {}
+  local visual = definition.visual or {}
   local mode = hero.motocrotte_visual_mode or drift.visual_mode or "flat_rotate"
-  local yaw = hero.visual_yaw or motion.heading or 0
+  local yaw = visual.yaw_enabled == false and (motion.heading or 0) or (hero.visual_yaw or motion.heading or 0)
   local rotation = 0
   local scale_x = hero.scale * hero.source_facing
-  local visual = definition.visual or {}
   local count = (drift.directional_views and drift.directional_views.count) or 8
   local slot = directional_slot(yaw, count)
 
@@ -163,19 +163,24 @@ local function draw_gameplay_visual(hero, definition)
     motion.directional_index = resolved.slot
     motion.directional_direction = resolved.direction
     motion.directional_frame = resolved.frame
+    if visual.yaw_enabled ~= false then
+      local yaw_phase = motion.drift_yaw_phase or facing_phase
+      scale_x = scale_x * math.abs(math.cos(yaw_phase))
+      motion.visual_yaw_phase = yaw_phase
+    end
     draw_sprite(hero, 0, scale_x, resolved.frame, orbit_position(hero, visual, spin_phase, radius), orbit_anchor(hero, visual), resolved.animation_source)
     return
   end
 
-  if mode == "yaw_squash" then
+  if visual.yaw_enabled ~= false then
     scale_x = scale_x * math.abs(math.cos(yaw))
-  elseif mode == "directional_views" or mode == "hybrid" then
+  end
+
+  if mode == "directional_views" or mode == "hybrid" then
     local directional = drift.directional_views or {}
     count = directional.count or 8
     slot = directional_slot(yaw, count)
-    local step = (math.pi * 2) / count
     motion.directional_index = slot + 1
-    scale_x = scale_x * math.abs(math.cos(yaw - slot * step))
     visual = directional
   end
 

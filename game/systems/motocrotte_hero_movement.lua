@@ -5,6 +5,38 @@ local LegacyMovement = require("game.systems.motocrotte_legacy_movement")
 
 local Movement = {}
 
+local function normalize_angle(angle)
+  while angle > math.pi do angle = angle - math.pi * 2 end
+  while angle < -math.pi do angle = angle + math.pi * 2 end
+  return angle
+end
+
+local function prepare_control_intent(intent, motion, config, controls, dt)
+  if controls and controls.schema == "throttle_steering" then
+    local throttle = intent.throttle or 0
+    local steering = intent.steering or 0
+    local turn_rate = config.max_turn_rate or math.rad(180)
+    local heading = (motion.heading or 0) + steering * turn_rate * dt
+    intent.horizontal = math.cos(heading) * throttle
+    intent.vertical = math.sin(heading) * throttle
+  end
+  if config.constraint == "heading_cone" and not intent.drift_active then
+    local x = intent.horizontal or 0
+    local y = intent.vertical or 0
+    local length = math.sqrt(x * x + y * y)
+    if length > 0 then
+      local current = motion.heading or 0
+      local delta = normalize_angle(math.atan2(y, x) - current)
+      local cone = config.cone_angle or math.rad(45)
+      delta = math.max(-cone, math.min(cone, delta))
+      local target = current + delta
+      intent.horizontal = math.cos(target) * length
+      intent.vertical = math.sin(target) * length
+    end
+  end
+  return intent
+end
+
 local function required_number(table_value, key, label)
   local value = table_value and table_value[key]
   assert(type(value) == "number", label .. "." .. key .. " must be configured")
@@ -33,6 +65,7 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     drift_spin_phase = 0, drift_spin_direction = 1, drift_phase = "normal"
   }
   local motion = hero.motocrotte_motion
+  prepare_control_intent(intent, motion, config, definition.controls, dt)
   local drift_context = Drift.update(motion, intent, definition, dt)
   local horizontal, vertical, input_length = Locomotion.update(motion, intent, config, drift_context, dt)
 

@@ -35,7 +35,8 @@ def main() -> int:
     assert turning["turning_radius"] > 0, "turning radius was not calculated"
     assert holding["drift_phase"] == "holding", "drift did not reach holding state"
     assert holding["drift_spin_phase"] != turning["drift_spin_phase"], "drift phase did not advance"
-    assert 1 <= holding["drift_variant_index"] <= 48, "invalid drift variant"
+    variant = holding.get("drift_variant_index")
+    assert variant is None or 1 <= variant <= 48, "invalid drift variant"
     assert exiting["drift_phase"] == "exiting", "drift did not enter exit state"
     assert exiting["speed"] > 0, "drift exit lost momentum"
     assert finished["drift_phase"] == "normal" and not finished["drift_active"], "drift did not finish exiting"

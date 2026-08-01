@@ -24,6 +24,7 @@ local function state(motion)
     phase_time = 0,
     spin_phase = motion.drift_spin_phase or 0,
     spin_direction = motion.drift_spin_direction or 1,
+    spin_distance = 0,
     slip_angle = 0,
     variant_index = nil
   }
@@ -32,7 +33,7 @@ end
 
 local function choose_variant(config)
   local animation = config.directional_animation or {}
-  if animation.variant_policy ~= "random_per_drift" then return nil end
+  if animation.variant_policy ~= "random_per_drift" and animation.variant_policy ~= "random_per_spin" then return nil end
   local variants = animation.variant_sets or {}
   if #variants == 0 then return nil end
   return math.random(#variants)
@@ -55,6 +56,7 @@ function Drift.update(motion, intent, definition, dt)
     current.phase = "entering"
     current.phase_time = 0
     current.variant_index = choose_variant(definition)
+    current.spin_distance = 0
     local pivot = (config.directional_views or {}).directional_pivot or {}
     current.spin_phase = (motion.heading or 0) - (pivot.facing_offset or math.pi)
   elseif not requested and (phase == "entering" or phase == "holding") then
@@ -92,11 +94,19 @@ function Drift.update(motion, intent, definition, dt)
     current.spin_direction = steering_delta >= 0 and 1 or -1
   end
   if active then
-    current.spin_phase = current.spin_phase + current.spin_direction * (config.spin_speed or math.rad(360)) * dt
+    local spin_delta = current.spin_direction * (config.spin_speed or math.rad(360)) * dt
+    current.spin_phase = current.spin_phase + spin_delta
+    current.spin_distance = (current.spin_distance or 0) + math.abs(spin_delta)
+    local animation = definition.directional_animation or {}
+    if (animation.variant_policy == "random_per_drift" or animation.variant_policy == "random_per_spin") and current.spin_distance >= math.pi * 2 then
+      current.spin_distance = current.spin_distance % (math.pi * 2)
+      current.variant_index = choose_variant(definition)
+    end
   end
 
   current.slip_angle = normalize_angle((motion.heading or 0) - (motion.desired_heading or motion.heading or 0))
   motion.drift_spin_phase = current.spin_phase
+  motion.drift_yaw_phase = current.spin_phase
   motion.drift_spin_direction = current.spin_direction
   motion.drift_active = active
   motion.drift_amount = active and math.min(1, math.abs(current.slip_angle) / math.pi) or 0

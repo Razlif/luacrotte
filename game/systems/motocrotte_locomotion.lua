@@ -37,7 +37,7 @@ end
 function Locomotion.update(motion, intent, config, drift_context, dt)
   local horizontal, vertical, input_length = Locomotion.input_vector(intent)
   local acceleration = config.acceleration
-  local coast_deceleration = config.coast_deceleration or config.deceleration
+  local coast_deceleration = intent.brake and (config.brake_deceleration or config.deceleration) or (config.coast_deceleration or config.deceleration)
   local max_speed = config.max_speed
   local vertical_speed = config.vertical_speed or max_speed
   local acceleration_step = acceleration * dt

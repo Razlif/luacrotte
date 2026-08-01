@@ -4,9 +4,9 @@ local registry = require("game_data.gameplay_profiles.index")
 local Profile = {}
 
 local allowed = {
-  controls = { omnidirectional = true, beat_em_up = true, side_scroller = true },
-  movement = { free = true, lane = true, horizontal_only = true },
-  camera = { smooth_follow = true, follow_x_only = true, follow_x_lookahead = true },
+  controls = { omnidirectional = true, omnidirectional_arrows = true, throttle_steering = true, beat_em_up = true, side_scroller = true },
+  movement = { free = true, heading_cone = true, lane = true, horizontal_only = true },
+  camera = { static = true, smooth_follow = true, follow_x_only = true, follow_x_lookahead = true, lookahead_follow = true },
   visual = { yaw_squash = true }
 }
 
@@ -62,13 +62,15 @@ function Profile.resolve_hero_definition(hero_definition, profile)
   resolved.drift = merge(hero_definition.drift, profile.drift)
   resolved.visual = merge(hero_definition.visual, profile.visual)
   resolved.directional_animation = merge(hero_definition.directional_animation, profile.directional_animation)
+  resolved.controls = merge(hero_definition.controls, profile.controls)
+  resolved.environment = merge(hero_definition.environment, profile.environment)
   return resolved
 end
 
 function Profile.prepare_intent(intent, profile)
   local result = copy(intent)
   local schema = profile.controls.schema
-  if schema == "side_scroller" then
+  if schema == "side_scroller" or schema == "throttle_steering" then
     result.vertical = 0
   elseif schema == "beat_em_up" then
     result.horizontal = result.horizontal or 0
