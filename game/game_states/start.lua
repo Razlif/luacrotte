@@ -47,7 +47,8 @@ function Start.enter()
       speed_x = 1,
       speed_y = 1,
       repeat_x = false,
-      repeat_y = false
+      repeat_y = false,
+      fit = "cover"
     }
   })
   Start.parallax:set_camera(Start.camera)

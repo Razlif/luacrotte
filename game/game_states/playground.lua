@@ -40,7 +40,8 @@ local Playground = {
 local function background_registry()
   return {
     motocrotte_background_01 = asset_manifest.backgrounds.motocrotte_background_01,
-    enchanted_wizard_training_meadow = asset_manifest.backgrounds.enchanted_wizard_training_meadow
+    enchanted_wizard_training_meadow = asset_manifest.backgrounds.enchanted_wizard_training_meadow,
+    rear_sky_horizon = asset_manifest.backgrounds.rear_sky_horizon
   }
 end
 
@@ -59,6 +60,7 @@ local function rebuild_parallax()
       speed_y = 1,
       repeat_x = false,
       repeat_y = false,
+      fit = "cover",
       layer = 0
     }
   })
@@ -105,6 +107,9 @@ function Playground.set_profile(index_or_id)
   Playground.active_level_definition.hero_bounds = GameplayProfile.bounds(level_definition, Playground.profile)
   if Playground.hero then
     Playground.hero.definition = Playground.hero_definition
+    Playground.hero.position.x = level_definition.hero_position.x
+    Playground.hero.position.ground_y = level_definition.hero_position.ground_y
+    Playground.hero.position.z = level_definition.hero_position.z
     local bounds = Playground.active_level_definition.hero_bounds
     Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
     Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
@@ -118,21 +123,24 @@ function Playground.set_profile(index_or_id)
       Playground.camera:follow(Playground.hero.position)
     end
   end
-  if Playground.hero and not Playground.profile.transitions.preserve_velocity then
-    Playground.hero.motocrotte_motion.vx = 0
-    Playground.hero.motocrotte_motion.vy = 0
-  end
   if Playground.hero then
     local motion = Playground.hero.motocrotte_motion
+    motion.vx = 0
+    motion.vy = 0
+    motion.speed = 0
+    motion.heading = 0
+    motion.desired_heading = 0
+    motion.steering_heading = 0
     motion.drift_active = false
     motion.drift_phase = "normal"
     motion.drift_spin_phase = motion.heading or 0
+    motion.steering_heading = motion.heading or 0
     motion.drift_spin_direction = 1
     motion.drift_variant_index = nil
     motion.drift_state = { phase = "normal", phase_time = 0, spin_phase = motion.drift_spin_phase, spin_direction = 1, slip_angle = 0 }
     motion._legacy_was_drifting = false
   end
-  if Playground.hero and not Playground.profile.transitions.preserve_yaw then
+  if Playground.hero then
     Playground.hero.visual_yaw = 0
   end
 end
@@ -155,6 +163,10 @@ function Playground.apply_experiment(rebuild_background)
     Playground.camera:set_policy(effective.camera)
     if effective.camera.behavior == "static" then
       Playground.camera:follow(nil)
+      Playground.camera:set_center(
+        Playground.hero.position.x,
+        effective.camera.center_y or Playground.hero.position.ground_y
+      )
     else
       Playground.camera:follow(Playground.hero.position)
     end
@@ -163,13 +175,18 @@ function Playground.apply_experiment(rebuild_background)
 end
 
 function Playground.reset_experiment()
-  Playground.experiment = PlaygroundExperiment.default()
+  Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.apply_experiment()
 end
 
 function Playground.load_slot(slot)
-  if slot == 1 then
-    Playground.reset_experiment()
+  local profiles = { [1] = "arena_follow", [2] = "side_view", [3] = "rear_view" }
+  local profile_id = profiles[slot]
+  if profile_id then
+    Playground.set_profile(profile_id)
+    Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
+    Playground.experiment.profile_slot = slot
+    Playground.apply_experiment(true)
     return true
   end
   return false
@@ -232,8 +249,8 @@ end
 
 function Playground.enter(profile_id)
   AssetLoader.load_manifest(asset_manifest)
-  Playground.experiment = PlaygroundExperiment.default()
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
+  Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.hero = Character.new(Playground.hero_definition, AssetLoader.get_character(hero_definition.asset_id))
   Playground.hero.position.x = level_definition.hero_position.x
   Playground.hero.position.ground_y = level_definition.hero_position.ground_y
@@ -262,15 +279,24 @@ function Playground.enter(profile_id)
     Playground.camera:follow(Playground.hero.position)
   end
   -- Start framed on the hero; smoothing applies only after the initial view.
-  Playground.camera:set_center(Playground.hero.position.x, Playground.hero.position.ground_y)
+  Playground.camera:set_center(
+    Playground.hero.position.x,
+    Playground.profile.camera.center_y or Playground.hero.position.ground_y
+  )
+  -- Use the profile-owned environment on initial entry. The experiment layer
+  -- is applied immediately afterward and may still contain its base defaults.
+  local selected_background = background_definition_for(
+    Playground.profile.environment.background_id or Playground.experiment.background_id
+  )
   Playground.parallax = ParallaxManager.new({
     {
-      id = background_definition.id,
-      image_path = background_definition.image.path,
+      id = selected_background.id,
+      image_path = selected_background.image.path,
       speed_x = 1,
       speed_y = 1,
       repeat_x = false,
       repeat_y = false,
+      fit = "cover",
       layer = 0
     }
   })
@@ -318,7 +344,7 @@ function Playground.update(dt)
       changed = true
     end
     if intent.toggle_yaw_pressed then
-      Playground.experiment.yaw_enabled = not Playground.experiment.yaw_enabled
+      PlaygroundExperiment.cycle(Playground.experiment, "yaw_mode")
       changed = true
     end
     if intent.cycle_control_schema_pressed then
@@ -347,7 +373,11 @@ function Playground.update(dt)
     HeroMovement.update(Playground.hero, intent, Playground.hero_definition, Playground.active_level_definition, dt)
     HeroOrientation.update(Playground.hero, Playground.hero_definition, dt)
   end
-  Playground.camera:follow(Playground.hero.position)
+  if Playground.profile.camera.behavior == "static" then
+    Playground.camera:follow(nil)
+  else
+    Playground.camera:follow(Playground.hero.position)
+  end
   Playground.camera:update(dt)
   Playground.parallax:update(dt)
 end
@@ -359,9 +389,12 @@ function Playground.get_debug_context()
     camera = Playground.camera,
     collision_events = Playground.last_collision_events,
     background_id = Playground.experiment.background_id,
+    background_path = Playground.parallax and Playground.parallax.layers[1] and Playground.parallax.layers[1].image_path or nil,
+    movement_bounds = Playground.active_level_definition and Playground.active_level_definition.hero_bounds or nil,
     experiment = {
       sprite_policy = Playground.experiment.sprite_policy,
-      yaw_enabled = Playground.experiment.yaw_enabled,
+      yaw_mode = Playground.experiment.yaw_mode,
+      yaw_enabled = Playground.experiment.yaw_mode ~= "off",
       control_schema = Playground.experiment.control_schema,
       movement_mode = Playground.experiment.movement_mode,
       camera_mode = Playground.experiment.camera_mode,
@@ -416,17 +449,27 @@ function Playground.draw()
   else
     local motion = Playground.hero.motocrotte_motion or {}
     love.graphics.print("MotoCrotte Gameplay Profile", 24, 24)
-    local control_hint = Playground.experiment.control_schema == "throttle_steering"
-      and "Left/Right: steer   T: accelerate   X: brake"
-      or "Arrows: move"
-    love.graphics.print(control_hint .. "   Shift: drift   Space: jump   V: visual lab", 24, 48)
+    local control_hint = Playground.experiment.control_schema == "gas_steering"
+      and "Up: gas   Down: brake   Left/Right: steer"
+      or Playground.experiment.control_schema == "gas_steering_fd"
+        and "F: gas   D: brake   Left/Right: steer"
+        or Playground.experiment.control_schema == "throttle_steering"
+          and "Left/Right: steer   T: accelerate   X: brake"
+          or "Arrows: move"
+    local drift_hint = Playground.experiment.control_schema == "gas_steering_fd" and "S: drift" or "Shift: drift"
+    love.graphics.print(control_hint .. "   " .. drift_hint .. "   Space: jump   V: visual lab", 24, 48)
     love.graphics.print("R: sprites   Y: yaw   Tab: controls   M: movement   C: camera   B: background   1-9: slots", 24, 72)
     love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.experiment.control_schema, Playground.experiment.movement_mode, Playground.experiment.camera_mode), 24, 96)
-    love.graphics.print(string.format("Sprites: %s   Yaw: %s   Background: %s   Slot: %d", Playground.experiment.sprite_policy, Playground.experiment.yaw_enabled and "on" or "off", Playground.experiment.background_id, Playground.experiment.profile_slot), 24, 120)
+    love.graphics.print(string.format("Sprites: %s   Yaw: %s   Background: %s   Slot: %d", Playground.experiment.sprite_policy, Playground.experiment.yaw_mode, Playground.experiment.background_id, Playground.experiment.profile_slot), 24, 120)
     local radius = motion.turning_radius or math.huge
     local radius_text = radius <= 0 and "∞" or string.format("%.0f", radius)
     love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal"), 24, 144)
-    love.graphics.print(string.format("Turn radius: %s   Variant: %s   Braking: %s", radius_text, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no"), 24, 168)
+     love.graphics.print(string.format("Turn radius: %s   Variant: %s   Braking: %s", radius_text, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no"), 24, 168)
+     local position = Playground.hero.position or {}
+     local screen_x, screen_y = Playground.camera:world_to_screen(position.x or 0, position.ground_y or 0)
+     local bounds = Playground.active_level_definition.hero_bounds or {}
+     love.graphics.print(string.format("Hero world: X %.0f   Y %.0f   Screen: X %.0f   Y %.0f", position.x or 0, position.ground_y or 0, screen_x, screen_y), 24, 192)
+     love.graphics.print(string.format("Bounds world: X %.0f-%.0f   Y %.0f-%.0f", bounds.left or 0, bounds.right or 0, bounds.top or 0, bounds.bottom or 0), 24, 216)
   end
 end
 

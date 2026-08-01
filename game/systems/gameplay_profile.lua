@@ -4,8 +4,8 @@ local registry = require("game_data.gameplay_profiles.index")
 local Profile = {}
 
 local allowed = {
-  controls = { omnidirectional = true, omnidirectional_arrows = true, throttle_steering = true, beat_em_up = true, side_scroller = true },
-  movement = { free = true, heading_cone = true, lane = true, horizontal_only = true },
+  controls = { omnidirectional = true, omnidirectional_arrows = true, gas_steering = true, gas_steering_fd = true, throttle_steering = true, beat_em_up = true, side_scroller = true },
+  movement = { free = true, heading_cone = true, lane = true, horizontal_only = true, side_scroll = true, rear_depth = true },
   camera = { static = true, smooth_follow = true, follow_x_only = true, follow_x_lookahead = true, lookahead_follow = true },
   visual = { yaw_squash = true }
 }
@@ -70,7 +70,7 @@ end
 function Profile.prepare_intent(intent, profile)
   local result = copy(intent)
   local schema = profile.controls.schema
-  if schema == "side_scroller" or schema == "throttle_steering" then
+  if schema == "side_scroller" or schema == "throttle_steering" or schema == "gas_steering" or schema == "gas_steering_fd" or profile.movement.constraint == "side_scroll" then
     result.vertical = 0
   elseif schema == "beat_em_up" then
     result.horizontal = result.horizontal or 0
@@ -88,6 +88,9 @@ function Profile.bounds(level_definition, profile)
   if movement.constraint == "horizontal_only" then
     bounds.top = level_definition.hero_position.ground_y
     bounds.bottom = level_definition.hero_position.ground_y
+  elseif movement.constraint == "rear_depth" and movement.depth_bounds then
+    bounds.top = movement.depth_bounds.min
+    bounds.bottom = movement.depth_bounds.max
   elseif movement.constraint == "lane" and movement.lane_depth then
     bounds.top = movement.lane_depth.min
     bounds.bottom = movement.lane_depth.max

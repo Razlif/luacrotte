@@ -101,7 +101,7 @@ checks, `qa/game_driver/record_drift_*.jsonl` for movement/drift GIFs, and
 `qa/game_driver/validate_modular_run.py` for modular movement assertions.
 The Playground experiment layer uses R for fixed/random sprite variants, Y for
 yaw, Tab for control schema, M for movement mode, C for camera, B for background,
-and 1 for the baseline slot. V still opens the isolated Visual Lab. The legacy
+and 1/2/3 for arena, side, and rear view slots. V still opens the isolated Visual Lab. The legacy
 direct-drift mode remains a compatibility experiment and must not replace the
 modular solver.
 
@@ -112,9 +112,9 @@ live under `game_data/gameplay_profiles/`; experimental profiles may be
 developed under `game_data/experiments/gameplay_profiles/` before promotion.
 Profiles configure camera behavior, control schema, movement constraints, drift
 availability, visual orientation, and transition policy. Levels reference a
-profile with `gameplay_profile_id`; the Playground can also receive a profile
-ID from the menu. Temporary Playground experiments are layered over the active
-profile and can be restored with slot 1.
+profile with `gameplay_profile_id`; the main menu opens the arena Playground.
+Temporary Playground experiments are layered over the active profile. Slots 1,
+2, and 3 load arena, side, and rear view profiles respectively.
 
 The shared systems remain responsible for behavior. Do not create a separate
 movement or camera implementation per profile. Add a validated profile option

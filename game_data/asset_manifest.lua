@@ -80,6 +80,20 @@ return {
         width = 1200,
       },
     },
+    rear_sky_horizon = {
+      animations = {},
+      groups = {"environments/rear_view"},
+      id = "rear_sky_horizon",
+      image = {
+        height = 540,
+        path = "media_assets/backgrounds/rear_sky_horizon/original_images/rear_sky_horizon__self__image__v001.png",
+        prompt = "Static pixel-art rear-view driving horizon for a 2D motorcycle game. Wide blue-to-warm sky, distant low mountains and roadside silhouettes, a clear central vanishing point, soft atmospheric perspective, open lower ground area reserved for a procedurally rendered road, cohesive restrained retro arcade palette, crisp readable pixel clusters, wide cinematic composition.",
+        provider = "self",
+        source_path = "lab_assets/backgrounds/rear_sky_horizon/original_images/rear_sky_horizon__self__image__v001.png",
+        version = 1,
+        width = 960,
+      },
+    },
   },
   characters = {
     barbarian_duck_wizard = {

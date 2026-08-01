@@ -9,13 +9,24 @@ function Driver.get_intent(profile)
   local steering = 0
   local throttle = 0
   local brake = false
+  local drift_action = "drift"
   local schema = profile and profile.controls and profile.controls.schema or "omnidirectional_arrows"
 
-  if schema == "throttle_steering" then
+  if schema == "gas_steering" or schema == "gas_steering_fd" or schema == "throttle_steering" then
     if InputManager.is_down("move_left") then steering = steering - 1 end
     if InputManager.is_down("move_right") then steering = steering + 1 end
-    if InputManager.is_down("throttle") then throttle = 1 end
-    brake = InputManager.is_down("brake")
+    if schema == "gas_steering" then
+      throttle = InputManager.is_down("gas_primary") and 1 or 0
+      brake = InputManager.is_down("brake_primary")
+      drift_action = "drift_primary"
+    elseif schema == "gas_steering_fd" then
+      throttle = InputManager.is_down("gas_fd") and 1 or 0
+      brake = InputManager.is_down("brake_fd")
+      drift_action = "drift_fd"
+    else
+      throttle = InputManager.is_down("throttle") and 1 or 0
+      brake = InputManager.is_down("brake")
+    end
     horizontal = steering
   else
     if InputManager.is_down("move_left") then horizontal = horizontal - 1 end
@@ -42,7 +53,7 @@ function Driver.get_intent(profile)
     throttle = throttle,
     brake = brake,
     jump_pressed = InputManager.consume_pressed("jump"),
-    drift_active = InputManager.is_down("drift") and (not profile or not profile.drift or profile.drift.enabled == true),
+    drift_active = InputManager.is_down(drift_action) and (not profile or not profile.drift or profile.drift.enabled == true),
     cycle_drift_mode_pressed = InputManager.consume_pressed("cycle_drift_mode"),
     cycle_control_schema_pressed = InputManager.consume_pressed("cycle_control_schema"),
     toggle_sprite_policy_pressed = InputManager.consume_pressed("toggle_sprite_policy"),

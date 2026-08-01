@@ -1,0 +1,7 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"load_rear_view","command":"press","key":"3"}
+{"id":"cycle_to_omni","command":"press","key":"tab"}
+{"id":"cycle_to_omni_again","command":"press","key":"tab"}
+{"id":"move_to_lower_depth","command":"hold","key":"down","duration":3.0}
+{"id":"capture_lower_depth","command":"snapshot","name":"rear_lower_depth"}

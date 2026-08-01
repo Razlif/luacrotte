@@ -5984,6 +5984,60 @@ window.ASSET_LAB_MANIFEST = {
           "fps": 8,
           "loop": true,
           "status": "created_on_disk"
+        },
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v001__full_grid_animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_full",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001__full_grid.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001__full_grid.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001__full_grid.json",
+          "frame_order": [
+            "r1c1",
+            "r1c2",
+            "r1c3",
+            "r1c4",
+            "r2c1",
+            "r2c2",
+            "r2c3",
+            "r2c4",
+            "r3c1",
+            "r3c2",
+            "r3c3",
+            "r3c4",
+            "r4c1",
+            "r4c2",
+            "r4c3",
+            "r4c4"
+          ],
+          "frame_labels": [
+            "front",
+            "down_right",
+            "right",
+            "up_left",
+            "back",
+            "up_right",
+            "left",
+            "down_right",
+            "excluded",
+            "down_left",
+            "down_left",
+            "up_right",
+            "up_left",
+            "up_left",
+            "down_right",
+            "down_right"
+          ],
+          "frame_count": 16,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 1024,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
         }
       ],
       "created_at": "2026-07-31T16:19:14",
@@ -7910,8 +7964,39 @@ window.ASSET_LAB_MANIFEST = {
       ],
       "created_at": "2026-07-31T16:19:14",
       "updated_at": "2026-07-31T16:20:19"
+    },
+    {
+      "id": "rear_sky_horizon",
+      "type": "background",
+      "folder": "lab_assets/backgrounds/rear_sky_horizon",
+      "groups": [
+        "environments/rear_view"
+      ],
+      "images": [
+        {
+          "id": "rear_sky_horizon__self__image__v001",
+          "provider": "self",
+          "version": 1,
+          "mode": "brand_new",
+          "path": "lab_assets/backgrounds/rear_sky_horizon/original_images/rear_sky_horizon__self__image__v001.png",
+          "prompt": "Static pixel-art rear-view driving horizon for a 2D motorcycle game. Wide blue-to-warm sky, distant low mountains and roadside silhouettes, a clear central vanishing point, soft atmospheric perspective, open lower ground area reserved for a procedurally rendered road, cohesive restrained retro arcade palette, crisp readable pixel clusters, wide cinematic composition.",
+          "variation_group_id": "rear_sky_horizon_self_create_new_20260801_123633_047628",
+          "prompt_metadata": {
+            "prompt": "Static pixel-art rear-view driving horizon for a 2D motorcycle game. Wide blue-to-warm sky, distant low mountains and roadside silhouettes, a clear central vanishing point, soft atmospheric perspective, open lower ground area reserved for a procedurally rendered road, cohesive restrained retro arcade palette, crisp readable pixel clusters, wide cinematic composition.",
+            "asset_id": "rear_sky_horizon",
+            "asset_type": "background",
+            "provider": "self",
+            "action": "create-new",
+            "variation_group_id": "rear_sky_horizon_self_create_new_20260801_123633_047628"
+          },
+          "status": "pending_self_creation"
+        }
+      ],
+      "animations": [],
+      "created_at": "2026-08-01T12:36:33",
+      "updated_at": "2026-08-01T12:36:33"
     }
   ],
-  "updated_at": "2026-07-31T16:20:19",
+  "updated_at": "2026-08-01T12:36:33",
   "orphans": []
 };

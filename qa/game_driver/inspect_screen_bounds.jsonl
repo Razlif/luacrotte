@@ -1,0 +1,14 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"switch_to_omnidirectional","command":"press","key":"tab"}
+{"id":"switch_to_omnidirectional_again","command":"press","key":"tab"}
+{"id":"disable_yaw_for_edge_visibility","command":"press","key":"y"}
+{"id":"capture_center","command":"snapshot","name":"arena_screen_bounds_center"}
+{"id":"move_left_to_edge","command":"hold","key":"left","duration":3.0}
+{"id":"capture_left_edge","command":"snapshot","name":"arena_screen_bounds_left"}
+{"id":"move_right_to_edge","command":"hold","key":"right","duration":6.0}
+{"id":"capture_right_edge","command":"snapshot","name":"arena_screen_bounds_right"}
+{"id":"move_up_to_edge","command":"hold","key":"up","duration":3.0}
+{"id":"capture_top_edge","command":"snapshot","name":"arena_screen_bounds_top"}
+{"id":"move_down_to_edge","command":"hold","key":"down","duration":6.0}
+{"id":"capture_bottom_edge","command":"snapshot","name":"arena_screen_bounds_bottom"}

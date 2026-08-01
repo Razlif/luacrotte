@@ -23,8 +23,12 @@ function ParallaxManager:load_layer(layer)
     self.loaded[layer.id] = false
     return nil
   end
-  local image = love.graphics.newImage(layer.image_path)
+  -- Load through ImageData, matching the validated runtime asset loader path.
+  -- This avoids decoder differences for promoted PNGs with embedded metadata.
+  local image_data = love.image.newImageData(layer.image_path)
+  local image = love.graphics.newImage(image_data)
   image:setFilter("nearest", "nearest")
+  image:setWrap("clamp", "clamp")
   self.loaded[layer.id] = image
   return image
 end
@@ -36,6 +40,19 @@ function ParallaxManager:draw()
   for _, layer in ipairs(self.layers) do
     local image = self:load_layer(layer)
     if image then
+      if layer.fit == "cover" then
+        -- Backgrounds are presentation layers: fit them to the camera viewport
+        -- instead of leaving them anchored at world origin, where camera motion
+        -- exposes empty space. Cover preserves aspect ratio and center-crops.
+        local viewport_width = self.camera.width / self.camera.zoom
+        local viewport_height = self.camera.height / self.camera.zoom
+        local scale = math.max(viewport_width / image:getWidth(), viewport_height / image:getHeight())
+        local draw_width = image:getWidth() * scale
+        local draw_height = image:getHeight() * scale
+        local draw_x = self.camera.x + (viewport_width - draw_width) / 2
+        local draw_y = self.camera.y + (viewport_height - draw_height) / 2
+        love.graphics.draw(image, draw_x, draw_y, 0, scale, scale)
+      else
       local speed_x = layer.speed_x or 1
       local speed_y = layer.speed_y or 1
       local x = self.camera.x * (1 - speed_x)
@@ -54,6 +71,7 @@ function ParallaxManager:draw()
           draw_y = draw_y + height
         end
         draw_x = draw_x + width
+      end
       end
     end
   end

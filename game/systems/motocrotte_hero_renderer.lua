@@ -91,6 +91,27 @@ local function draw_direction_marker(hero, heading, label)
   if label then love.graphics.print(label, x + 34, y - 8) end
 end
 
+local function projection_state(hero, definition)
+  local environment = definition.environment or {}
+  local projection = environment.projection or "flat"
+  local scale = environment.hero_scale or 1
+  if projection ~= "perspective_ground" then
+    return nil, scale
+  end
+  local movement = definition.movement or {}
+  local depth = movement.depth_bounds or { min = 365, max = 680 }
+  local range = math.max(1, depth.max - depth.min)
+  local amount = math.max(0, math.min(1, (hero.position.ground_y - depth.min) / range))
+  local min_scale = environment.min_scale or 0.55
+  local max_scale = environment.max_scale or 1.35
+  local horizon_y = environment.horizon_y or 315
+  local ground_y = environment.ground_y or 690
+  return {
+    x = hero.position.x,
+    y = horizon_y + amount * (ground_y - horizon_y)
+  }, scale * (min_scale + amount * (max_scale - min_scale))
+end
+
 local function draw_visual_test(hero, definition, visual_state)
   local visual = definition.visual or {}
   local mode = visual_state.mode or visual.test_mode or "yaw_squash"
@@ -138,9 +159,15 @@ local function draw_gameplay_visual(hero, definition)
   local motion = hero.motocrotte_motion or {}
   local visual = definition.visual or {}
   local mode = hero.motocrotte_visual_mode or drift.visual_mode or "flat_rotate"
-  local yaw = visual.yaw_enabled == false and (motion.heading or 0) or (hero.visual_yaw or motion.heading or 0)
+  local schema = definition.controls and definition.controls.schema
+  local steering_heading = (schema == "gas_steering" or schema == "gas_steering_fd" or schema == "throttle_steering")
+    and (motion.steering_heading or motion.heading)
+    or motion.heading
+  local yaw_mode = visual.yaw_mode or (visual.yaw_enabled == false and "off" or "all_movement")
+  local yaw = yaw_mode == "all_movement" and (hero.visual_yaw or steering_heading or 0) or (steering_heading or 0)
   local rotation = 0
-  local scale_x = hero.scale * hero.source_facing
+  local projected_position, projection_scale = projection_state(hero, definition)
+  local scale_x = hero.scale * projection_scale * hero.source_facing
   local count = (drift.directional_views and drift.directional_views.count) or 8
   local slot = directional_slot(yaw, count)
 
@@ -163,16 +190,17 @@ local function draw_gameplay_visual(hero, definition)
     motion.directional_index = resolved.slot
     motion.directional_direction = resolved.direction
     motion.directional_frame = resolved.frame
-    if visual.yaw_enabled ~= false then
+    if yaw_mode ~= "off" then
       local yaw_phase = motion.drift_yaw_phase or facing_phase
       scale_x = scale_x * math.abs(math.cos(yaw_phase))
       motion.visual_yaw_phase = yaw_phase
     end
-    draw_sprite(hero, 0, scale_x, resolved.frame, orbit_position(hero, visual, spin_phase, radius), orbit_anchor(hero, visual), resolved.animation_source)
+    local position = projected_position or orbit_position(hero, visual, spin_phase, radius)
+    draw_sprite(hero, 0, scale_x, resolved.frame, position, orbit_anchor(hero, visual), resolved.animation_source)
     return
   end
 
-  if visual.yaw_enabled ~= false then
+  if yaw_mode == "all_movement" then
     scale_x = scale_x * math.abs(math.cos(yaw))
   end
 
@@ -192,7 +220,7 @@ local function draw_gameplay_visual(hero, definition)
   motion.directional_index = resolved.slot
   motion.directional_direction = resolved.direction
   motion.directional_frame = resolved.frame
-  draw_sprite(hero, rotation, scale_x, resolved.frame, nil, nil, resolved.animation_source)
+  draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil, resolved.animation_source)
 end
 
 function Renderer.draw(hero, definition, visual_state)

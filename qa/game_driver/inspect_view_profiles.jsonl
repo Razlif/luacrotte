@@ -1,0 +1,8 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"load_side_view","command":"press","key":"2"}
+{"id":"capture_side_view","command":"snapshot","name":"profile_side_view"}
+{"id":"load_rear_view","command":"press","key":"3"}
+{"id":"capture_rear_view","command":"snapshot","name":"profile_rear_view"}
+{"id":"restore_arena","command":"press","key":"1"}
+{"id":"capture_arena_view","command":"snapshot","name":"profile_arena_view"}

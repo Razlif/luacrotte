@@ -1,0 +1,11 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"capture_arena_spawn","command":"snapshot","name":"arena_fixed_camera_spawn"}
+{"id":"accelerate_arena","command":"hold","key":"up","duration":0.8}
+{"id":"move_arena_right","command":"hold","key":"right","duration":2.0}
+{"id":"capture_arena_right","command":"snapshot","name":"arena_fixed_camera_right"}
+{"id":"load_side_view","command":"press","key":"2"}
+{"id":"capture_side_spawn","command":"snapshot","name":"side_fixed_camera_spawn"}
+{"id":"accelerate_side","command":"hold","key":"up","duration":0.8}
+{"id":"move_side_right","command":"hold","key":"right","duration":2.0}
+{"id":"capture_side_right","command":"snapshot","name":"side_fixed_camera_right"}

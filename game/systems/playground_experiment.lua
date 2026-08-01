@@ -3,10 +3,11 @@ local Experiment = {}
 
 Experiment.options = {
   sprite_policy = { "fixed", "random_per_spin" },
-  control_schema = { "omnidirectional_arrows", "throttle_steering" },
+  yaw_mode = { "drift_only", "all_movement", "off" },
+  control_schema = { "gas_steering", "gas_steering_fd", "omnidirectional_arrows" },
   movement_mode = { "free", "heading_cone", "lane" },
-  camera_mode = { "static", "smooth_follow", "lookahead_follow" },
-  background_id = { "motocrotte_background_01", "enchanted_wizard_training_meadow" }
+  camera_mode = { "static", "smooth_follow", "follow_x_lookahead" },
+  background_id = { "motocrotte_background_01", "enchanted_wizard_training_meadow", "rear_sky_horizon" }
 }
 
 local function copy(value)
@@ -28,14 +29,20 @@ local function merge(base, override)
   return result
 end
 
-function Experiment.default()
+function Experiment.default(profile)
+  profile = profile or {}
+  local controls = profile.controls or {}
+  local movement = profile.movement or {}
+  local camera = profile.camera or {}
+  local environment = profile.environment or {}
   return {
     sprite_policy = "random_per_spin",
+    yaw_mode = "drift_only",
     yaw_enabled = true,
-    control_schema = "omnidirectional_arrows",
-    movement_mode = "free",
-    camera_mode = "smooth_follow",
-    background_id = "motocrotte_background_01",
+    control_schema = controls.schema or "omnidirectional_arrows",
+    movement_mode = movement.constraint or "free",
+    camera_mode = camera.behavior or "smooth_follow",
+    background_id = environment.background_id or "motocrotte_background_01",
     profile_slot = 1
   }
 end
@@ -57,16 +64,15 @@ function Experiment.resolve(profile, state)
   result.controls = merge(result.controls, { schema = state.control_schema })
   result.movement = merge(result.movement, { constraint = state.movement_mode })
   result.camera = merge(result.camera, {
-    behavior = state.camera_mode,
-    follow_x = state.camera_mode ~= "static",
-    follow_y = state.camera_mode ~= "static"
+    behavior = state.camera_mode
   })
   result.directional_animation = merge(result.directional_animation, {
     variant_policy = state.sprite_policy
   })
   result.visual = merge(result.visual, {
-    yaw_enabled = state.yaw_enabled,
-    orientation_enabled = state.yaw_enabled
+    yaw_mode = state.yaw_mode,
+    yaw_enabled = state.yaw_mode ~= "off",
+    orientation_enabled = state.yaw_mode == "all_movement"
   })
   result.environment = merge(result.environment, { background_id = state.background_id })
   return result

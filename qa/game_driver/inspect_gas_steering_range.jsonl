@@ -1,0 +1,6 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"hold_right_steering","command":"press","key":"right"}
+{"id":"gas_while_steering","command":"hold","key":"up","duration":1.05}
+{"id":"capture_full_range","command":"snapshot","name":"gas_steering_full_range"}
+{"id":"release_right_steering","command":"release","key":"right"}

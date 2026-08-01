@@ -89,6 +89,7 @@ local function entity_snapshot(entity, camera)
       speed = entity.motocrotte_motion.speed,
       heading = entity.motocrotte_motion.heading,
       desired_heading = entity.motocrotte_motion.desired_heading,
+      steering_heading = entity.motocrotte_motion.steering_heading,
       slip_angle = entity.motocrotte_motion.slip_angle,
       drift_amount = entity.motocrotte_motion.drift_amount,
       drift_active = entity.motocrotte_motion.drift_active,

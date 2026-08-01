@@ -1,0 +1,12 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"capture_default_yaw_mode","command":"snapshot","name":"yaw_drift_only_default"}
+{"id":"move_before_profile_change","command":"hold","key":"up","duration":0.8}
+{"id":"change_to_side_profile","command":"press","key":"2"}
+{"id":"capture_side_respawn","command":"snapshot","name":"profile_change_respawn"}
+{"id":"yaw_all_movement","command":"press","key":"y"}
+{"id":"capture_yaw_all_movement","command":"snapshot","name":"yaw_all_movement"}
+{"id":"yaw_off","command":"press","key":"y"}
+{"id":"capture_yaw_off","command":"snapshot","name":"yaw_off"}
+{"id":"yaw_drift_only_again","command":"press","key":"y"}
+{"id":"capture_yaw_drift_only_again","command":"snapshot","name":"yaw_drift_only_again"}

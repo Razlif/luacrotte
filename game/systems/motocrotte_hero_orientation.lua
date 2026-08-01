@@ -14,7 +14,7 @@ function Orientation.update(hero, definition, dt)
 
   local config = definition.visual
   hero.visual_yaw = hero.visual_yaw or 0
-  if config.orientation_enabled == false then
+  if config.yaw_mode ~= "all_movement" or config.orientation_enabled == false then
     return
   end
 
@@ -24,7 +24,11 @@ function Orientation.update(hero, definition, dt)
     return
   end
 
-  local target = motion.heading or hero.visual_yaw
+  local schema = definition.controls and definition.controls.schema
+  local target = (schema == "gas_steering" or schema == "gas_steering_fd" or schema == "throttle_steering")
+    and (motion.steering_heading or motion.heading)
+    or motion.heading
+  target = target or hero.visual_yaw
   local difference = normalize_angle(target - hero.visual_yaw)
   local response = config.yaw_response or 10
   local blend = math.min(1, response * dt)

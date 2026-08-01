@@ -12,11 +12,13 @@ local function normalize_angle(angle)
 end
 
 local function prepare_control_intent(intent, motion, config, controls, dt)
-  if controls and controls.schema == "throttle_steering" then
+  if controls and (controls.schema == "throttle_steering" or controls.schema == "gas_steering" or controls.schema == "gas_steering_fd") then
     local throttle = intent.throttle or 0
     local steering = intent.steering or 0
-    local turn_rate = config.max_turn_rate or math.rad(180)
-    local heading = (motion.heading or 0) + steering * turn_rate * dt
+    local turn_rate = config.steering_rate or config.max_turn_rate or math.rad(180)
+    local heading = motion.steering_heading or motion.heading or 0
+    heading = heading + steering * turn_rate * dt
+    motion.steering_heading = heading
     intent.horizontal = math.cos(heading) * throttle
     intent.vertical = math.sin(heading) * throttle
   end

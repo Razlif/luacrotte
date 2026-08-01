@@ -1,0 +1,17 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"capture_default_gas_schema","command":"snapshot","name":"schema_default_gas"}
+{"id":"gas_primary","command":"hold","key":"up","duration":0.6}
+{"id":"capture_primary_motion","command":"snapshot","name":"schema_primary_motion"}
+{"id":"cycle_to_fd","command":"press","key":"tab"}
+{"id":"capture_fd_schema","command":"snapshot","name":"schema_fd"}
+{"id":"gas_fd","command":"hold","key":"f","duration":0.6}
+{"id":"capture_fd_motion","command":"snapshot","name":"schema_fd_motion"}
+{"id":"brake_fd","command":"hold","key":"d","duration":0.25}
+{"id":"capture_fd_brake","command":"snapshot","name":"schema_fd_brake"}
+{"id":"drift_fd","command":"hold","key":"s","duration":0.2}
+{"id":"capture_fd_drift","command":"snapshot","name":"schema_fd_drift"}
+{"id":"cycle_to_omni","command":"press","key":"tab"}
+{"id":"capture_omni_schema","command":"snapshot","name":"schema_omni"}
+{"id":"move_omni","command":"hold","key":"up","duration":0.5}
+{"id":"capture_omni_motion","command":"snapshot","name":"schema_omni_motion"}
