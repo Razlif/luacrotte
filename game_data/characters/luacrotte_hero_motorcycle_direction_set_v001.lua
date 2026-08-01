@@ -1,3 +1,28 @@
+local function make_variant(down_right, down_left, up_left, up_right)
+  return {
+    animation_source = "motorcycle_direction_full",
+    frame_map = { 3, down_right, 1, down_left, 7, up_left, 5, up_right }
+  }
+end
+
+local diagonal_variants = {}
+-- Full-atlas runtime frame numbers, in row-major order from the reviewed 4x4
+-- source grid. The four cardinal frames are fixed; only these diagonal lists
+-- participate in per-drift randomization.
+local down_right_frames = { 2, 8, 15, 16 }
+local down_left_frames = { 10, 11 }
+local up_left_frames = { 4, 13, 14 }
+local up_right_frames = { 6, 12 }
+for _, down_right in ipairs(down_right_frames) do
+  for _, down_left in ipairs(down_left_frames) do
+    for _, up_left in ipairs(up_left_frames) do
+      for _, up_right in ipairs(up_right_frames) do
+        diagonal_variants[#diagonal_variants + 1] = make_variant(down_right, down_left, up_left, up_right)
+      end
+    end
+  end
+end
+
 return {
   asset_id = "luacrotte_hero_motorcycle_direction_set_v001",
   position = { x = 0, ground_y = 0, z = 0 },
@@ -13,6 +38,9 @@ return {
   movement = {
     acceleration = 900,
     deceleration = 1100,
+    coast_deceleration = 250,
+    steering_response = 8,
+    max_turn_rate = math.rad(180),
     max_speed = 260,
     vertical_speed = 180,
     animation = "motorcycle_direction_set",
@@ -23,6 +51,13 @@ return {
     enabled = true,
     action = "drift",
     traction = 0.36,
+    normal_grip = 1.0,
+    drift_grip = 0.36,
+    entry_time = 0.08,
+    exit_time = 0.35,
+    minimum_speed = 1,
+    drift_deceleration = 120,
+    drift_turn_rate = math.rad(140),
     rotation_response = 8,
     max_visual_angle = math.rad(28),
     drift_threshold = 0.25,
@@ -69,6 +104,14 @@ return {
       anchor_y = 56
     },
     modes = { "directional_views", "hybrid", "yaw_squash" }
+  },
+  directional_animation = {
+    canonical_source = "motorcycle_direction_full",
+    direction_count = 8,
+    cardinal_frames = { [1] = 3, [3] = 1, [5] = 7, [7] = 5 },
+    frame_map = { 3, 2, 1, 10, 7, 4, 5, 6 },
+    variant_policy = "random_per_drift",
+    variant_sets = diagonal_variants
   },
   collision = { enabled = false, auto_sensor = true, sensors = {} }
 }

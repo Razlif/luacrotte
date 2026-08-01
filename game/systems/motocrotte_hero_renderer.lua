@@ -1,5 +1,6 @@
 -- MotoCrotte-specific renderer for visual experiments and gameplay fallback.
 local PositionManager = require("game.systems.position_manager")
+local AnimationResolver = require("game.systems.directional_animation_resolver")
 
 local Renderer = {}
 
@@ -10,14 +11,14 @@ local function mode_index(mode, modes)
   return 1
 end
 
-local function draw_sprite(hero, rotation, scale_x, frame, position, anchor)
+local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source)
   local x = (position and position.x) or hero.position.x
   local y = (position and position.y) or PositionManager.get_screen_y(hero.position)
   local anchor_x = (anchor and anchor.x) or hero.anchor_x
   local anchor_y = (anchor and anchor.y) or hero.anchor_y
   if hero.animation:is_playing() then
     if frame then
-      hero.animation:draw_frame(frame, x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation)
+      hero.animation:draw_frame(frame, x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation, animation_source)
     else
       hero.animation:draw(x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation)
     end
@@ -145,12 +146,24 @@ local function draw_gameplay_visual(hero, definition)
 
   if motion.drift_active and motion.drift_spin_phase then
     local spin_phase = motion.drift_spin_phase
-    local _, facing_angle = orbit_angles(visual, spin_phase)
-    local spin_slot = directional_slot(facing_angle, count)
     local pivot = visual.directional_pivot or {}
     local radius = pivot.radius or 0
-    motion.directional_index = spin_slot + 1
-    draw_sprite(hero, 0, scale_x, directional_frame(visual, spin_slot + 1), orbit_position(hero, visual, spin_phase, radius), orbit_anchor(hero, visual))
+    -- The spin phase describes the bike's position around the visual orbit.
+    -- Directional frame selection has its own facing offset: the promoted
+    -- motorcycle sheet's canonical front is opposite the orbit's zero angle.
+    -- Keep these angles separate so the bike rotates in the same direction as
+    -- the orbit without choosing the opposite sprite.
+    local facing_phase = spin_phase + (pivot.angle_offset or 0) + (pivot.facing_offset or math.pi)
+    local resolved = AnimationResolver.resolve(definition, {
+      movement_heading = yaw,
+      drift_active = true,
+      drift_spin_phase = facing_phase,
+      variant_index = motion.drift_variant_index
+    })
+    motion.directional_index = resolved.slot
+    motion.directional_direction = resolved.direction
+    motion.directional_frame = resolved.frame
+    draw_sprite(hero, 0, scale_x, resolved.frame, orbit_position(hero, visual, spin_phase, radius), orbit_anchor(hero, visual), resolved.animation_source)
     return
   end
 
@@ -166,7 +179,15 @@ local function draw_gameplay_visual(hero, definition)
     visual = directional
   end
 
-  draw_sprite(hero, rotation, scale_x, directional_frame(visual, slot + 1))
+  local resolved = AnimationResolver.resolve(definition, {
+    movement_heading = yaw,
+    drift_active = false,
+    variant_index = nil
+  })
+  motion.directional_index = resolved.slot
+  motion.directional_direction = resolved.direction
+  motion.directional_frame = resolved.frame
+  draw_sprite(hero, rotation, scale_x, resolved.frame, nil, nil, resolved.animation_source)
 end
 
 function Renderer.draw(hero, definition, visual_state)

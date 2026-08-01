@@ -1,6 +1,6 @@
 return {
   id = "side_scroller",
-  version = 1,
+  version = 2,
   status = "production",
   label = "Side-Scroller",
   camera = {
@@ -16,9 +16,13 @@ return {
   controls = { schema = "side_scroller", binding_set = "keyboard_arrows_wasd" },
   movement = {
     constraint = "horizontal_only",
-    allowed_axes = { x = true, y = false }
+    allowed_axes = { x = true, y = false },
+    coast_deceleration = 250,
+    steering_response = 8,
+    max_turn_rate = math.rad(180)
   },
   drift = { enabled = false },
   visual = { orientation = "yaw_squash" },
+  directional_animation = { variant_policy = "fixed" },
   transitions = { preserve_velocity = false, preserve_yaw = true, clear_drift = true }
 }

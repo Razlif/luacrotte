@@ -160,12 +160,32 @@ local function condition_matches(condition, states_manager)
   local context = states_manager.get_debug_context() or {}
   if condition.state_is then return states_manager.current_name == condition.state_is end
   if condition.scene_finished then return states_manager.current_name == "playground" end
+  if condition.entity == "hero" and context.hero_motion then
+    local motion = context.hero_motion
+    if condition.drift_active ~= nil and motion.drift_active ~= condition.drift_active then return false end
+    if condition.drift_phase and motion.drift_phase ~= condition.drift_phase then return false end
+    if condition.drift_spin_direction and motion.drift_spin_direction ~= condition.drift_spin_direction then return false end
+    if condition.min_speed and (motion.speed or 0) < condition.min_speed then return false end
+    if condition.max_speed and (motion.speed or 0) > condition.max_speed then return false end
+    if condition.min_turning_radius and (motion.turning_radius or 0) < condition.min_turning_radius then return false end
+    if condition.max_turning_radius and (motion.turning_radius or 0) > condition.max_turning_radius then return false end
+    return true
+  end
   for _, entity in ipairs(context.entities or {}) do
-    if condition.entity and entity.id == condition.entity then
+    local entity_id = entity.id or (entity.definition and entity.definition.asset_id)
+    if condition.entity and (condition.entity == "hero" or entity_id == condition.entity) then
       if condition.entity_visible ~= nil and (entity.active ~= false) ~= condition.entity_visible then return false end
       if condition.animation and (not entity.animation or entity.animation.current_name ~= condition.animation) then return false end
       if condition.x ~= nil and math.abs((entity.position.x or 0) - condition.x) > (condition.tolerance or 1) then return false end
       if condition.ground_y ~= nil and math.abs((entity.position.ground_y or 0) - condition.ground_y) > (condition.tolerance or 1) then return false end
+      local motion = entity.motocrotte_motion or {}
+      if condition.drift_active ~= nil and motion.drift_active ~= condition.drift_active then return false end
+      if condition.drift_phase and motion.drift_phase ~= condition.drift_phase then return false end
+      if condition.drift_spin_direction and motion.drift_spin_direction ~= condition.drift_spin_direction then return false end
+      if condition.min_speed and (motion.speed or 0) < condition.min_speed then return false end
+      if condition.max_speed and (motion.speed or 0) > condition.max_speed then return false end
+      if condition.min_turning_radius and (motion.turning_radius or 0) < condition.min_turning_radius then return false end
+      if condition.max_turning_radius and (motion.turning_radius or 0) > condition.max_turning_radius then return false end
       return true
     end
   end

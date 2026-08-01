@@ -1,0 +1,17 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"accelerate","command":"hold","key":"right","duration":0.8}
+{"id":"capture_accelerated","command":"snapshot","name":"modular_accelerated"}
+{"id":"coast","command":"wait","seconds":0.5}
+{"id":"capture_coast","command":"snapshot","name":"modular_coast"}
+{"id":"start_drift","command":"press","key":"lshift"}
+{"id":"steer_down","command":"press","key":"down"}
+{"id":"wait_for_turn","command":"wait","seconds":0.12}
+{"id":"capture_turning","command":"snapshot","name":"modular_drift_turning"}
+{"id":"hold_drift","command":"wait","seconds":0.33}
+{"id":"capture_drift","command":"snapshot","name":"modular_drift_holding"}
+{"id":"release_down","command":"release","key":"down"}
+{"id":"release_drift","command":"release","key":"lshift"}
+{"id":"capture_exiting","command":"snapshot","name":"modular_drift_exiting"}
+{"id":"wait_for_drift_exit","command":"wait","seconds":0.45}
+{"id":"capture_exit","command":"snapshot","name":"modular_drift_exit"}

@@ -1,0 +1,17 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"record_start","command":"record_start","name":"modular_drift","fps":8}
+{"id":"accelerate_right","command":"hold","key":"right","duration":0.8}
+{"id":"start_clockwise","command":"press","key":"lshift"}
+{"id":"steer_down","command":"press","key":"down"}
+{"id":"hold_clockwise","command":"wait","seconds":0.45}
+{"id":"release_down_clockwise","command":"release","key":"down"}
+{"id":"release_clockwise","command":"release","key":"lshift"}
+{"id":"exit_clockwise","command":"wait","seconds":0.45}
+{"id":"start_counterclockwise","command":"press","key":"lshift"}
+{"id":"steer_up","command":"press","key":"up"}
+{"id":"hold_counterclockwise","command":"wait","seconds":0.45}
+{"id":"release_up_counterclockwise","command":"release","key":"up"}
+{"id":"release_counterclockwise","command":"release","key":"lshift"}
+{"id":"finish_exit","command":"wait","seconds":0.45}
+{"id":"record_stop","command":"record_stop"}

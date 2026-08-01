@@ -1,0 +1,9 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"select_legacy_mode","command":"press","key":"tab"}
+{"id":"select_legacy_mode_2","command":"press","key":"tab"}
+{"id":"capture_legacy_profile","command":"snapshot","name":"profile_legacy_direct_drift"}
+{"id":"move_right","command":"hold","key":"right","duration":0.8}
+{"id":"start_legacy_drift","command":"press","key":"lshift"}
+{"id":"steer_down","command":"hold","key":"down","duration":0.45}
+{"id":"capture_legacy_drift","command":"snapshot","name":"legacy_drift_holding"}

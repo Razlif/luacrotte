@@ -77,6 +77,29 @@ Each run is stored under `qa/runtime_logs/` with `events.jsonl`,
 `results.jsonl`, snapshots, screenshots, and a final report. Runtime logs are
 local QA artifacts and are ignored by Git. Use `python3` on Linux/macOS.
 
+The modular movement and drift checks cover acceleration, coasting, drift
+phase transitions, spin direction, continuous animation phase, turning radius,
+momentum preservation, and randomized diagonal variants:
+
+```cmd
+python qa/game_driver/drive_game.py --commands qa/game_driver/inspect_modular_movement.jsonl --run-id modular_movement
+python qa/game_driver/validate_modular_run.py qa/runtime_logs/modular_movement
+python qa/game_driver/drive_game.py --commands qa/game_driver/record_modular_drift.jsonl --run-id modular_drift
+python qa/video_export.py modular_drift --format gif --preview
+```
+
+The arena profile enables drift. The beat-em-up lane and side-scroller
+profiles use the same schema with drift disabled. During manual testing use
+arrows/WASD to move, hold Shift to drift, Q/E and K/M for the visual orbit
+experiment, Tab to cycle profiles or modes, and R to reset.
+
+To inspect the previous direct-drift behavior, use Tab twice from the default
+arena profile to select `Legacy: Direct Drift`, or run:
+
+```cmd
+python qa/game_driver/drive_game.py --commands qa/game_driver/inspect_legacy_movement_mode.jsonl --run-id legacy_movement_mode
+```
+
 ## Managed QA Session
 
 Use the process manager when the user wants to keep one game session open for

@@ -61,6 +61,7 @@ function Profile.resolve_hero_definition(hero_definition, profile)
   resolved.movement = merge(hero_definition.movement, profile.movement)
   resolved.drift = merge(hero_definition.drift, profile.drift)
   resolved.visual = merge(hero_definition.visual, profile.visual)
+  resolved.directional_animation = merge(hero_definition.directional_animation, profile.directional_animation)
   return resolved
 end
 

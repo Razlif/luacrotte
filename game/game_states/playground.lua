@@ -90,6 +90,16 @@ function Playground.set_profile(index_or_id)
     Playground.hero.motocrotte_motion.vx = 0
     Playground.hero.motocrotte_motion.vy = 0
   end
+  if Playground.hero then
+    local motion = Playground.hero.motocrotte_motion
+    motion.drift_active = false
+    motion.drift_phase = "normal"
+    motion.drift_spin_phase = motion.heading or 0
+    motion.drift_spin_direction = 1
+    motion.drift_variant_index = nil
+    motion.drift_state = { phase = "normal", phase_time = 0, spin_phase = motion.drift_spin_phase, spin_direction = 1, slip_angle = 0 }
+    motion._legacy_was_drifting = false
+  end
   if Playground.hero and not Playground.profile.transitions.preserve_yaw then
     Playground.hero.visual_yaw = 0
   end
@@ -133,7 +143,9 @@ function Playground.reset_visual_lab()
     vx = 0, vy = 0, speed = 0, heading = 0, desired_heading = 0,
     slip_angle = 0, drift_amount = 0, visual_rotation = 0,
     drift_spin_phase = 0, drift_spin_direction = 1,
-    drift_active = false, grounded = true, jump_pressed = false
+    drift_phase = "normal", drift_variant_index = nil,
+    drift_state = { phase = "normal", phase_time = 0, spin_phase = 0, spin_direction = 1, slip_angle = 0 },
+    grounded = true, jump_pressed = false
   }
   Playground.hero.visual_yaw = 0
   local animation_name = Playground.hero_definition.movement and Playground.hero_definition.movement.animation
@@ -243,6 +255,7 @@ end
 function Playground.get_debug_context()
   return {
     entities = { Playground.hero },
+    hero_motion = Playground.hero and Playground.hero.motocrotte_motion or nil,
     camera = Playground.camera,
     collision_events = Playground.last_collision_events,
     background_id = background_definition.id,
@@ -294,9 +307,12 @@ function Playground.draw()
   else
     local motion = Playground.hero.motocrotte_motion or {}
     love.graphics.print("MotoCrotte Gameplay Profile", 24, 24)
-    love.graphics.print("Arrows/WASD: move   Shift: drift   Tab: next profile   V: visual lab", 24, 48)
+    love.graphics.print("Arrows/WASD: move   Shift: drift   Tab: next movement/profile   V: visual lab", 24, 48)
     love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.profile.controls.schema, Playground.profile.movement.constraint, Playground.profile.camera.behavior), 24, 72)
-    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off"), 24, 96)
+    local radius = motion.turning_radius or math.huge
+    local radius_text = radius <= 0 and "∞" or string.format("%.0f", radius)
+    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal"), 24, 96)
+    love.graphics.print(string.format("Turn radius: %s   Variant: %s   Braking: %s", radius_text, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no"), 24, 120)
   end
 end
 

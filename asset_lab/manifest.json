@@ -5921,7 +5921,7 @@
           "fps": 4,
           "loop": true,
           "status": "created_on_disk"
-        }
+         }
       ],
       "created_at": "2026-07-30T21:26:20",
       "updated_at": "2026-07-31T16:11:12"
@@ -5979,6 +5979,36 @@
           "frame_width": 64,
           "frame_height": 64,
           "sheet_width": 512,
+          "sheet_height": 64,
+          "fps": 8,
+          "loop": true,
+          "status": "created_on_disk"
+        },
+        {
+          "id": "luacrotte_hero_motorcycle_direction_set_v001__full_grid_animation",
+          "provider": "asset_lab_reorder",
+          "name": "motorcycle_direction_full",
+          "version": 1,
+          "source_image_version": 3,
+          "sheet_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001__full_grid.png",
+          "gif_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001__full_grid.gif",
+          "provider_metadata_path": "lab_assets/characters/luacrotte_hero_motorcycle_direction_set_v001/luacrotte_hero_motorcycle_direction_set_v001__full_grid.json",
+          "frame_order": [
+            "r1c1", "r1c2", "r1c3", "r1c4",
+            "r2c1", "r2c2", "r2c3", "r2c4",
+            "r3c1", "r3c2", "r3c3", "r3c4",
+            "r4c1", "r4c2", "r4c3", "r4c4"
+          ],
+          "frame_labels": [
+            "front", "down_right", "right", "up_left",
+            "back", "up_right", "left", "down_right",
+            "excluded", "down_left", "down_left", "up_right",
+            "up_left", "up_left", "down_right", "down_right"
+          ],
+          "frame_count": 16,
+          "frame_width": 64,
+          "frame_height": 64,
+          "sheet_width": 1024,
           "sheet_height": 64,
           "fps": 8,
           "loop": true,

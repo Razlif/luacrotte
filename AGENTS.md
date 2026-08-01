@@ -81,13 +81,26 @@ hero. Configure drift values and the default mode in
 In the Playground, normal movement starts enabled. Press V to enter the
 Visual Lab. Inside it, use Q/E to change yaw, Tab to cycle visual modes, and R
 to reset. Visual Lab mode bypasses movement and drift mechanics; it tests only
-the sprite's visual orientation. Outside the Visual Lab, use Shift or Space to drift and the
-arrow/WASD controls to move; the yaw-squash renderer follows the movement
-velocity smoothly. Do not add collision response, traffic, or world-scroll
+ the sprite's visual orientation. Outside the Visual Lab, use Shift to drift and the
+ arrow/WASD controls to move; Space remains available for jump. The modular
+ movement solver provides acceleration, coasting, braking by opposite input,
+ and profile-owned turning. Drift uses normal/entering/holding/exiting phases,
+ preserves momentum on release, derives physical turning radius from speed and
+ turn rate, and records its phase, spin direction, radius, and selected diagonal
+variant in QA telemetry. Do not add collision response, traffic, or world-scroll
 logic to this experiment until the visual and movement behavior is accepted.
+The current Playground uses the promoted `motorcycle_direction_full` 16-frame
+row-major atlas. The original 8-frame `motorcycle_direction_set` animation is
+kept in the same asset for comparison and rollback. Cardinal frame selection
+is fixed; diagonal drift variants select from the reviewed source-cell groups.
 Use `qa/game_driver/record_visual_*.jsonl` for orientation GIFs,
 `qa/game_driver/inspect_motocrotte_orientation.jsonl` for cardinal-heading
-checks, and `qa/game_driver/record_drift_*.jsonl` for movement/drift GIFs.
+checks, `qa/game_driver/record_drift_*.jsonl` for movement/drift GIFs, and
+`qa/game_driver/inspect_modular_movement.jsonl` plus
+`qa/game_driver/validate_modular_run.py` for modular movement assertions.
+Press Tab in the Playground to compare the production `arena_follow` mode
+with the experimental `legacy_direct_drift` mode. The legacy mode is an
+isolated compatibility experiment and must not replace the modular solver.
 
 ## Gameplay Profiles
 

@@ -1,6 +1,6 @@
 return {
   id = "beat_em_up_lane",
-  version = 1,
+  version = 2,
   status = "production",
   label = "Beat-em-Up: Lane",
   camera = {
@@ -17,9 +17,13 @@ return {
   movement = {
     constraint = "lane",
     allowed_axes = { x = true, y = true },
-    lane_depth = { min = 560, max = 700 }
+    lane_depth = { min = 560, max = 700 },
+    coast_deceleration = 250,
+    steering_response = 8,
+    max_turn_rate = math.rad(180)
   },
   drift = { enabled = false },
   visual = { orientation = "yaw_squash" },
+  directional_animation = { variant_policy = "fixed" },
   transitions = { preserve_velocity = false, preserve_yaw = true, clear_drift = true }
 }
