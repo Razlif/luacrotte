@@ -109,11 +109,12 @@ function Drift.update(motion, intent, definition, dt, position)
     local pivot = (config.directional_views or {}).directional_pivot or {}
     local minimum_radius = config.orbit_radius_min or pivot.radius_min or 0
     local maximum_radius = config.orbit_radius_max or pivot.radius_max or 100
-    local radius_rate = config.orbit_radius_rate or 80
+    local increase_rate = config.orbit_radius_rate or 80
+    local decrease_rate = config.orbit_radius_decrease_rate or increase_rate
     if intent.drift_radius_increase then
-      current.orbit_radius = clamp((current.orbit_radius or pivot.radius or 0) + radius_rate * dt, minimum_radius, maximum_radius)
+      current.orbit_radius = clamp((current.orbit_radius or pivot.radius or 0) + increase_rate * dt, minimum_radius, maximum_radius)
     elseif intent.drift_radius_decrease then
-      current.orbit_radius = clamp((current.orbit_radius or pivot.radius or 0) - radius_rate * dt, minimum_radius, maximum_radius)
+      current.orbit_radius = clamp((current.orbit_radius or pivot.radius or 0) - decrease_rate * dt, minimum_radius, maximum_radius)
     end
     local spin_delta = current.spin_direction * (config.spin_speed or math.rad(360)) * dt
     current.spin_phase = current.spin_phase + spin_delta
