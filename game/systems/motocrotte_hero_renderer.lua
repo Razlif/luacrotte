@@ -207,6 +207,15 @@ local function draw_gameplay_visual(hero, definition)
       drift_spin_phase = facing_phase,
       variant_index = motion.drift_variant_index
     })
+    local wheelie = ((definition.dash or {}).front_wheelie or {})
+    if motion.dash_axial_spin_active then
+      -- A combined wheelie spin uses one stable side silhouette. Directional
+      -- frames would redefine the front/rear wheel and allow them to swap.
+      resolved.frame = wheelie.frame or 3
+      resolved.animation_source = wheelie.animation_source or "motorcycle_direction_full"
+      resolved.flip_x = wheelie.flip_x == true
+      resolved.direction = "front_wheelie"
+    end
     motion.directional_index = resolved.slot
     motion.directional_direction = resolved.direction
     motion.directional_frame = resolved.frame
@@ -221,8 +230,13 @@ local function draw_gameplay_visual(hero, definition)
       y = PositionManager.get_screen_y(hero.position)
     }
     local draw_rotation = motion.dash_active and (motion.dash_visual_angle or 0) or 0
-    local draw_anchor = motion.dash_axial_spin_active and wheelie_anchor(hero, definition, resolved.direction)
-      or orbit_anchor(hero, visual)
+    local draw_anchor
+    if motion.dash_axial_spin_active then
+      local contact = wheelie.contact_anchor or { x = 48, y = 56 }
+      draw_anchor = { x = contact.x, y = contact.y }
+    else
+      draw_anchor = orbit_anchor(hero, visual)
+    end
     draw_sprite(hero, draw_rotation, scale_x, resolved.frame, position, draw_anchor, resolved.animation_source, resolved.flip_x)
     return
   end

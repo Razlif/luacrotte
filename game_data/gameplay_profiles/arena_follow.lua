@@ -37,7 +37,12 @@ return {
     recovery_duration = 0.25,
     cooldown = 0.8,
     cancels_drift = true,
-    front_wheelie = { angle = math.rad(60) },
+    front_wheelie = {
+      angle = math.rad(60),
+      frame = 3,
+      animation_source = "motorcycle_direction_full",
+      contact_anchor = { x = 48, y = 56 }
+    },
     axial_spin_speed = math.rad(540),
     wheelie_spin = {
       -- The planted front wheel is kept fixed for each yaw direction.
