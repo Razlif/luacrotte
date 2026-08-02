@@ -52,10 +52,6 @@ function Drift.update(motion, intent, definition, dt, position)
   local phase = current.phase
   local steering_heading = desired_heading(intent, motion.heading or 0)
   motion.desired_heading = steering_heading
-  local input_x = intent.horizontal or 0
-  local input_y = intent.vertical or 0
-  local input_length = math.sqrt(input_x * input_x + input_y * input_y)
-
   if requested and phase == "normal" and speed >= minimum_speed then
     current.phase = "entering"
     current.phase_time = 0
@@ -104,11 +100,10 @@ function Drift.update(motion, intent, definition, dt, position)
     grip = grip + ((config.normal_grip or 1) - grip) * exit_progress
   end
 
-  local steering_delta = normalize_angle(steering_heading - (motion.heading or 0))
-  local steering_strength = math.min(1, math.abs(steering_delta) / math.pi)
-  local turn_rate = active and input_length > 0 and (config.drift_turn_rate or config.max_turn_rate or math.rad(180)) * steering_strength or 0
-  if active and math.abs(steering_delta) >= (config.spin_steering_threshold or math.rad(10)) then
-    current.spin_direction = steering_delta >= 0 and 1 or -1
+  local steering_input = intent.steering or 0
+  local turn_rate = active and (config.spin_speed or math.rad(360)) or 0
+  if active and steering_input ~= 0 then
+    current.spin_direction = steering_input > 0 and 1 or -1
   end
   if active then
     local pivot = (config.directional_views or {}).directional_pivot or {}
