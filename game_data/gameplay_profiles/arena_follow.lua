@@ -41,7 +41,11 @@ return {
       angle = math.rad(60),
       frame = 3,
       animation_source = "motorcycle_direction_full",
-      contact_anchor = { x = 48, y = 56 }
+      raised_wheel = "back",
+      pitch_sign = 1,
+      -- Measured from the selected right-facing frame: the front wheel is
+      -- the planted wheel, not the sprite center.
+      contact_anchor = { x = 54, y = 55 }
     },
     axial_spin_speed = math.rad(540),
     wheelie_spin = {

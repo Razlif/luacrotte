@@ -230,6 +230,9 @@ local function draw_gameplay_visual(hero, definition)
       y = PositionManager.get_screen_y(hero.position)
     }
     local draw_rotation = motion.dash_active and (motion.dash_visual_angle or 0) or 0
+    if motion.dash_axial_spin_active then
+      draw_rotation = draw_rotation * (wheelie.pitch_sign or 1)
+    end
     local draw_anchor
     if motion.dash_axial_spin_active then
       local contact = wheelie.contact_anchor or { x = 48, y = 56 }
