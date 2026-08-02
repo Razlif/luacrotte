@@ -65,6 +65,7 @@ function Driver.get_intent(profile)
     drift_radius_increase = drift_radius_increase,
     drift_radius_decrease = drift_radius_decrease,
     jump_pressed = InputManager.consume_pressed("jump"),
+    dash_pressed = InputManager.consume_pressed("dash"),
     drift_active = InputManager.is_down(drift_action) and (not profile or not profile.drift or profile.drift.enabled == true),
     cycle_drift_mode_pressed = InputManager.consume_pressed("cycle_drift_mode"),
     cycle_control_schema_pressed = InputManager.consume_pressed("cycle_control_schema"),

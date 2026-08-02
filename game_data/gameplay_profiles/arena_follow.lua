@@ -27,6 +27,33 @@ return {
     max_turn_rate = math.rad(180),
   },
   braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
+  dash = {
+    enabled = true,
+    action = "dash",
+    minimum_speed = 1,
+    boost_speed = 600,
+    boost_duration = 0.22,
+    stoppie_duration = 1.0,
+    recovery_duration = 0.25,
+    cooldown = 0.8,
+    cancels_drift = true,
+    front_wheelie = { angle = math.rad(60) },
+    axial_spin_speed = math.rad(540),
+    wheelie_spin = {
+      -- The planted front wheel is kept fixed for each yaw direction.
+      -- The opposite wheel is allowed to travel around this contact point.
+      contact_anchor = {
+        right = { x = 48, y = 56 },
+        down_right = { x = 44, y = 56 },
+        down = { x = 32, y = 56 },
+        down_left = { x = 20, y = 56 },
+        left = { x = 16, y = 56 },
+        up_left = { x = 20, y = 56 },
+        up = { x = 32, y = 56 },
+        up_right = { x = 44, y = 56 }
+      }
+    }
+  },
   drift = {
     enabled = true,
     entry_time = 0.08,

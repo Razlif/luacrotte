@@ -56,6 +56,18 @@ local function orbit_anchor(hero, visual)
   }
 end
 
+local function wheelie_anchor(hero, definition, direction)
+  local wheelie = (((definition or {}).dash or {}).wheelie_spin or {}).contact_anchor or {}
+  local direction_anchor = wheelie[direction]
+  if direction_anchor then
+    return { x = direction_anchor.x, y = direction_anchor.y }
+  end
+  return {
+    x = wheelie.x or hero.anchor_x,
+    y = wheelie.y or hero.anchor_y
+  }
+end
+
 local function draw_orbit_guide(hero, visual, yaw, radius_override)
   local pivot = visual.directional_pivot or {}
   local radius = radius_override
@@ -169,13 +181,17 @@ local function draw_gameplay_visual(hero, definition)
   local yaw_axis = visual.yaw_axis or 0
   local braking_visual = definition.braking_visual or {}
   local rotation = braking_visual.enabled ~= false and (motion.braking_tilt_angle or 0) or 0
+  if motion.dash_active then
+    rotation = motion.dash_visual_angle or 0
+  end
   local projected_position, projection_scale = projection_state(hero, definition)
   local scale_x = hero.scale * projection_scale * hero.source_facing
   local count = (drift.directional_views and drift.directional_views.count) or 8
   local slot = directional_slot(yaw, count)
 
   if motion.drift_active and motion.drift_spin_phase then
-    local spin_phase = motion.drift_spin_phase
+    local spin_phase = motion.dash_axial_spin_active and motion.dash_axial_spin_phase
+      or motion.drift_spin_phase
     local pivot = visual.directional_pivot or {}
     local radius = motion.drift_orbit_radius
     if radius == nil then radius = pivot.radius or 0 end
@@ -195,7 +211,8 @@ local function draw_gameplay_visual(hero, definition)
     motion.directional_direction = resolved.direction
     motion.directional_frame = resolved.frame
     if yaw_mode ~= "off" then
-      local yaw_phase = motion.drift_yaw_phase or facing_phase
+      local yaw_phase = motion.dash_axial_spin_active and motion.dash_axial_spin_phase
+        or motion.drift_yaw_phase or facing_phase
       scale_x = scale_x * math.abs(math.cos(yaw_phase - yaw_axis))
       motion.visual_yaw_phase = yaw_phase
     end
@@ -203,7 +220,10 @@ local function draw_gameplay_visual(hero, definition)
       x = hero.position.x,
       y = PositionManager.get_screen_y(hero.position)
     }
-    draw_sprite(hero, 0, scale_x, resolved.frame, position, orbit_anchor(hero, visual), resolved.animation_source, resolved.flip_x)
+    local draw_rotation = motion.dash_active and (motion.dash_visual_angle or 0) or 0
+    local draw_anchor = motion.dash_axial_spin_active and wheelie_anchor(hero, definition, resolved.direction)
+      or orbit_anchor(hero, visual)
+    draw_sprite(hero, draw_rotation, scale_x, resolved.frame, position, draw_anchor, resolved.animation_source, resolved.flip_x)
     return
   end
 

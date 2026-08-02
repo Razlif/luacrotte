@@ -21,6 +21,7 @@ return {
   gas_fd = { f = true },
   brake_fd = { d = true },
   drift_fd = { s = true },
+  dash = { d = true },
   profile_slot_1 = { ["1"] = true },
   profile_slot_2 = { ["2"] = true },
   profile_slot_3 = { ["3"] = true },

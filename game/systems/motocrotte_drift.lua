@@ -167,4 +167,12 @@ function Drift.update(motion, intent, definition, dt, position)
   }
 end
 
+function Drift.reanchor(motion, position)
+  local current = motion.drift_state
+  if not current or not current.orbit_angle or not position then return end
+  local radius = current.orbit_radius or 0
+  current.orbit_center_x = position.x - math.cos(current.orbit_angle) * radius
+  current.orbit_center_y = position.y - math.sin(current.orbit_angle) * radius
+end
+
 return Drift

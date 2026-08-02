@@ -30,6 +30,7 @@ return {
     animation_idle = true
   },
   braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
+  dash = { enabled = false },
   drift = {
     enabled = true,
     entry_time = 0.08,

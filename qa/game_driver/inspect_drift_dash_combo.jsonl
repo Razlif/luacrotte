@@ -1,0 +1,10 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"accelerate","command":"hold","key":"up","duration":0.8}
+{"id":"drift_first","command":"press","key":"lshift"}
+{"id":"dash_during_drift","command":"press","key":"d"}
+{"id":"capture_drift_then_dash","command":"snapshot","name":"drift_then_dash_combo"}
+{"id":"wait_for_spin","command":"wait","seconds":0.25}
+{"id":"capture_drift_then_dash_spin","command":"snapshot","name":"drift_then_dash_spin"}
+{"id":"wait_for_recovery","command":"wait","seconds":1.1}
+{"id":"capture_drift_then_dash_recovery","command":"snapshot","name":"drift_then_dash_recovery"}

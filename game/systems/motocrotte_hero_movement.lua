@@ -1,6 +1,7 @@
 -- Orchestrates profile-driven locomotion and drift without exposing internal modules.
 local Locomotion = require("game.systems.motocrotte_locomotion")
 local Drift = require("game.systems.motocrotte_drift")
+local Dash = require("game.systems.motocrotte_dash")
 local LegacyMovement = require("game.systems.motocrotte_legacy_movement")
 
 local Movement = {}
@@ -68,11 +69,24 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   }
   local motion = hero.motocrotte_motion
   prepare_control_intent(intent, motion, config, definition.controls, dt)
+  local was_wheelie_spin_active = motion.wheelie_spin_active == true
+  local dash_context = Dash.update(motion, intent, definition, dt, {
+    x = hero.position.x,
+    y = hero.position.ground_y
+  })
   local drift_context = Drift.update(motion, intent, definition, dt, {
     x = hero.position.x,
     y = hero.position.ground_y
   })
   local horizontal, vertical, input_length = Locomotion.update(motion, intent, config, drift_context, dt)
+
+  if dash_context.velocity_x and not drift_context.active then
+    motion.vx = dash_context.velocity_x
+    motion.vy = dash_context.velocity_y
+    motion.speed = math.sqrt(motion.vx * motion.vx + motion.vy * motion.vy)
+    motion.heading = dash_context.heading
+    motion.desired_heading = dash_context.heading
+  end
 
   local braking_visual = definition.braking_visual or {}
   local steering_input = intent.steering or 0
@@ -124,7 +138,19 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   end
   hero.animation:update(dt)
   Locomotion.apply_position(hero, motion, bounds, dt)
-  if drift_context.orbit_position then
+  if dash_context.wheelie_spin_active then
+    hero.position.x = dash_context.wheelie_contact_x or hero.position.x
+    hero.position.ground_y = dash_context.wheelie_contact_y or hero.position.ground_y
+    motion.vx = 0
+    motion.vy = 0
+    motion.speed = 0
+    motion.turning_radius = 0
+  elseif was_wheelie_spin_active and not dash_context.wheelie_spin_active then
+    Drift.reanchor(motion, {
+      x = hero.position.x,
+      y = hero.position.ground_y
+    })
+  elseif drift_context.orbit_position then
     hero.position.x = math.max(bounds.left, math.min(bounds.right, drift_context.orbit_position.x))
     hero.position.ground_y = math.max(bounds.top, math.min(bounds.bottom, drift_context.orbit_position.y))
     motion.vx = drift_context.orbit_velocity_x or 0

@@ -463,13 +463,14 @@ function Playground.draw()
           and "Left/Right: steer   T: accelerate   X: brake"
           or "Arrows: move"
     local drift_hint = Playground.experiment.control_schema == "gas_steering_fd" and "S: drift" or "Shift: drift"
-    love.graphics.print(control_hint .. "   " .. drift_hint .. "   Space: jump   V: visual lab", 24, 48)
+    local dash_hint = Playground.profile_id == "arena_follow" and "D: dash" or ""
+    love.graphics.print(control_hint .. "   " .. drift_hint .. "   " .. dash_hint .. "   Space: jump   V: visual lab", 24, 48)
     love.graphics.print("R: sprites   Y: yaw   Tab: controls   M: movement   C: camera   B: background   1-9: slots", 24, 72)
     love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.experiment.control_schema, Playground.experiment.movement_mode, Playground.experiment.camera_mode), 24, 96)
     love.graphics.print(string.format("Sprites: %s   Yaw: %s   Background: %s   Slot: %d", Playground.experiment.sprite_policy, Playground.experiment.yaw_mode, Playground.experiment.background_id, Playground.experiment.profile_slot), 24, 120)
     local radius = motion.turning_radius or math.huge
     local radius_text = radius <= 0 and "∞" or string.format("%.0f", radius)
-    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal"), 24, 144)
+    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s   Dash: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal", motion.dash_phase or "normal"), 24, 144)
     love.graphics.print(string.format("Turn radius: %s   Drift orbit: %.0f   Variant: %s   Braking: %s   Tilt: %.0f°", radius_text, motion.drift_orbit_radius or 0, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no", math.deg(motion.braking_tilt_angle or 0)), 24, 168)
      local position = Playground.hero.position or {}
      local screen_x, screen_y = Playground.camera:world_to_screen(position.x or 0, position.ground_y or 0)
