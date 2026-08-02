@@ -38,7 +38,7 @@ return {
     cooldown = 0.8,
     cancels_drift = true,
     front_wheelie = {
-      angle = math.rad(60),
+      angle = math.rad(90),
       frame = 3,
       animation_source = "motorcycle_direction_full",
       raised_wheel = "back",

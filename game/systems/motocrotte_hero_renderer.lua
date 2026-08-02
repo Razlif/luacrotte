@@ -209,19 +209,25 @@ local function draw_gameplay_visual(hero, definition)
     })
     local wheelie = ((definition.dash or {}).front_wheelie or {})
     if motion.dash_axial_spin_active then
-      -- A combined wheelie spin uses one stable side silhouette. Directional
-      -- frames would redefine the front/rear wheel and allow them to swap.
+      -- A combined wheelie spin is a single sprite yaw test. Do not resolve
+      -- directional frames here: changing frames changes the wheel geometry.
       resolved.frame = wheelie.frame or 3
       resolved.animation_source = wheelie.animation_source or "motorcycle_direction_full"
       resolved.flip_x = wheelie.flip_x == true
       resolved.direction = "front_wheelie"
+      resolved.slot = 1
     end
     motion.directional_index = resolved.slot
     motion.directional_direction = resolved.direction
     motion.directional_frame = resolved.frame
-    if yaw_mode ~= "off" then
-      local yaw_phase = motion.dash_axial_spin_active and motion.dash_axial_spin_phase
-        or motion.drift_yaw_phase or facing_phase
+    if motion.dash_axial_spin_active then
+      -- Yaw is represented only by horizontal squash. The fixed wheelie pose
+      -- itself is never rotated through the ground.
+      local yaw_phase = motion.dash_axial_spin_phase or 0
+      scale_x = scale_x * math.abs(math.cos(yaw_phase - yaw_axis))
+      motion.visual_yaw_phase = yaw_phase
+    elseif yaw_mode ~= "off" then
+      local yaw_phase = motion.drift_yaw_phase or facing_phase
       scale_x = scale_x * math.abs(math.cos(yaw_phase - yaw_axis))
       motion.visual_yaw_phase = yaw_phase
     end
@@ -229,10 +235,9 @@ local function draw_gameplay_visual(hero, definition)
       x = hero.position.x,
       y = PositionManager.get_screen_y(hero.position)
     }
-    local draw_rotation = motion.dash_active and (motion.dash_visual_angle or 0) or 0
-    if motion.dash_axial_spin_active then
-      draw_rotation = draw_rotation * (wheelie.pitch_sign or 1)
-    end
+    local draw_rotation = motion.dash_axial_spin_active
+      and (wheelie.angle or math.rad(90)) * (wheelie.pitch_sign or 1)
+      or (motion.dash_active and (motion.dash_visual_angle or 0) or 0)
     local draw_anchor
     if motion.dash_axial_spin_active then
       local contact = wheelie.contact_anchor or { x = 48, y = 56 }
