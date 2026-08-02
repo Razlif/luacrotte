@@ -222,8 +222,9 @@ local function draw_gameplay_visual(hero, definition)
     motion.directional_frame = resolved.frame
     if motion.dash_axial_spin_active then
       -- Yaw is represented only by horizontal squash. The fixed wheelie pose
-      -- itself is never rotated through the ground.
-      local yaw_phase = motion.dash_axial_spin_phase or 0
+      -- itself is never rotated through the ground. Because the bike is now
+      -- standing on its side, its yaw clock needs the wheelie axis offset.
+      local yaw_phase = (motion.dash_axial_spin_phase or 0) + (wheelie.yaw_phase_offset or 0)
       scale_x = scale_x * math.abs(math.cos(yaw_phase - yaw_axis))
       motion.visual_yaw_phase = yaw_phase
     elseif yaw_mode ~= "off" then

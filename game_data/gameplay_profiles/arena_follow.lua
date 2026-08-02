@@ -43,6 +43,7 @@ return {
       animation_source = "motorcycle_direction_full",
       raised_wheel = "back",
       pitch_sign = 1,
+      yaw_phase_offset = math.pi / 2,
       -- Measured from the selected right-facing frame: the front wheel is
       -- the planted wheel, not the sprite center.
       contact_anchor = { x = 54, y = 55 }
