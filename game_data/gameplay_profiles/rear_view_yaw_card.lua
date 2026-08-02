@@ -1,8 +1,8 @@
 return {
-  id = "rear_view",
+  id = "rear_view_yaw_card",
   version = 1,
   status = "experimental",
-  label = "Rear View",
+  label = "Rear View: Front/Back Yaw Card",
   camera = {
     behavior = "static",
     target = "road",
@@ -23,7 +23,11 @@ return {
     coast_deceleration = 120,
     steering_response = 7,
     steering_rate = math.rad(360),
-    max_turn_rate = math.rad(150)
+    max_turn_rate = math.rad(150),
+    initial_heading = math.pi / 2,
+    animation = "motorcycle_direction_full",
+    animation_loop = true,
+    animation_idle = true
   },
   braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
   drift = {
@@ -44,8 +48,26 @@ return {
     spin_default_direction = 1,
     spin_steering_threshold = math.rad(10)
   },
-  visual = { orientation = "yaw_squash", yaw_enabled = true },
-  directional_animation = { variant_policy = "random_per_spin" },
+  visual = {
+    orientation = "yaw_squash",
+    yaw_enabled = true,
+    yaw_mode = "all_movement",
+    yaw_axis = math.pi / 2
+  },
+  directional_animation = {
+    canonical_source = "motorcycle_direction_full",
+    direction_count = 8,
+    variant_policy = "fixed",
+    yaw_card = {
+      animation_source = "motorcycle_direction_full",
+      front_frame = 1,
+      front_tilt_frame = 9,
+      back_frame = 5,
+      back_tilt_frame = 13,
+      frame_map = { 9, 9, 1, 9, 9, 13, 5, 13 },
+      flip_map = { false, false, false, true, true, false, false, true }
+    }
+  },
   environment = {
     background_id = "rear_sky_horizon",
     projection = "perspective_ground",
@@ -54,5 +76,5 @@ return {
     min_scale = 0.55,
     max_scale = 1.35
   },
-  transitions = { preserve_velocity = false, preserve_yaw = true, clear_drift = true }
+  transitions = { preserve_velocity = false, preserve_yaw = false, clear_drift = true }
 }

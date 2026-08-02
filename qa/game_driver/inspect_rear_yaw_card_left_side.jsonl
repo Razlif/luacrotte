@@ -1,0 +1,6 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"load_profile_four","command":"press","key":"4"}
+{"id":"accelerate_toward_camera","command":"hold","key":"up","duration":0.6}
+{"id":"turn_to_left_side","command":"hold","key":"right","duration":0.6}
+{"id":"capture_left_side_yaw","command":"snapshot","name":"rear_yaw_card_left_side"}

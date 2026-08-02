@@ -1,0 +1,8 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"load_profile_four","command":"press","key":"4"}
+{"id":"capture_profile_four_spawn","command":"snapshot","name":"rear_yaw_card_spawn"}
+{"id":"yaw_all_movement","command":"press","key":"y"}
+{"id":"capture_profile_four_yaw","command":"snapshot","name":"rear_yaw_card_all_movement"}
+{"id":"move_toward_camera","command":"hold","key":"up","duration":1.0}
+{"id":"capture_near_depth","command":"snapshot","name":"rear_yaw_card_near"}

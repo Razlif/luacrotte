@@ -68,8 +68,29 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   }
   local motion = hero.motocrotte_motion
   prepare_control_intent(intent, motion, config, definition.controls, dt)
-  local drift_context = Drift.update(motion, intent, definition, dt)
+  local drift_context = Drift.update(motion, intent, definition, dt, {
+    x = hero.position.x,
+    y = hero.position.ground_y
+  })
   local horizontal, vertical, input_length = Locomotion.update(motion, intent, config, drift_context, dt)
+
+  local braking_visual = definition.braking_visual or {}
+  local steering_input = intent.steering or 0
+  motion.braking = intent.brake == true and motion.speed > (braking_visual.minimum_speed or 5)
+  motion.braking_tilt_direction = motion.braking and (steering_input < 0 and -1 or steering_input > 0 and 1 or 0) or 0
+  motion.braking_tilt_angle = braking_visual.enabled ~= false and motion.braking_tilt_direction ~= 0
+    and motion.braking_tilt_direction * (braking_visual.angle or math.rad(45)) or 0
+
+  if drift_context.release_heading then
+    local released_heading = drift_context.release_heading
+    local released_speed = motion.speed or 0
+    motion.heading = released_heading
+    motion.desired_heading = released_heading
+    motion.steering_heading = released_heading
+    motion.vx = math.cos(released_heading) * released_speed
+    motion.vy = math.sin(released_heading) * released_speed
+    motion.drift_state.release_heading = nil
+  end
 
   local desired_heading = motion.desired_heading or motion.heading or 0
   motion.slip_angle = 0
@@ -103,6 +124,15 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   end
   hero.animation:update(dt)
   Locomotion.apply_position(hero, motion, bounds, dt)
+  if drift_context.orbit_position then
+    hero.position.x = math.max(bounds.left, math.min(bounds.right, drift_context.orbit_position.x))
+    hero.position.ground_y = math.max(bounds.top, math.min(bounds.bottom, drift_context.orbit_position.y))
+    motion.vx = drift_context.orbit_velocity_x or 0
+    motion.vy = drift_context.orbit_velocity_y or 0
+    motion.speed = math.sqrt(motion.vx * motion.vx + motion.vy * motion.vy)
+    motion.heading = math.atan2(motion.vy, motion.vx)
+    motion.turning_radius = motion.drift_orbit_radius or 0
+  end
   motion.grounded = true
   motion.jump_pressed = intent.jump_pressed == true
   motion.speed = math.sqrt(motion.vx * motion.vx + motion.vy * motion.vy)

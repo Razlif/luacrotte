@@ -128,9 +128,10 @@ function Playground.set_profile(index_or_id)
     motion.vx = 0
     motion.vy = 0
     motion.speed = 0
-    motion.heading = 0
-    motion.desired_heading = 0
-    motion.steering_heading = 0
+    local initial_heading = (Playground.profile.movement and Playground.profile.movement.initial_heading) or 0
+    motion.heading = initial_heading
+    motion.desired_heading = initial_heading
+    motion.steering_heading = initial_heading
     motion.drift_active = false
     motion.drift_phase = "normal"
     motion.drift_spin_phase = motion.heading or 0
@@ -141,7 +142,7 @@ function Playground.set_profile(index_or_id)
     motion._legacy_was_drifting = false
   end
   if Playground.hero then
-    Playground.hero.visual_yaw = 0
+    Playground.hero.visual_yaw = (Playground.profile.movement and Playground.profile.movement.initial_heading) or 0
   end
 end
 
@@ -180,7 +181,7 @@ function Playground.reset_experiment()
 end
 
 function Playground.load_slot(slot)
-  local profiles = { [1] = "arena_follow", [2] = "side_view", [3] = "rear_view" }
+  local profiles = { [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card" }
   local profile_id = profiles[slot]
   if profile_id then
     Playground.set_profile(profile_id)
@@ -258,6 +259,11 @@ function Playground.enter(profile_id)
   Playground.visual_lab_active = Playground.hero_definition.visual and Playground.hero_definition.visual.test_enabled == true
   Playground.set_visual_mode(HeroRenderer.mode_index(Playground.hero_definition.visual.test_mode, Playground.hero_definition))
   Playground.reset_visual_lab()
+  local initial_heading = (Playground.profile.movement and Playground.profile.movement.initial_heading) or 0
+  Playground.hero.motocrotte_motion.heading = initial_heading
+  Playground.hero.motocrotte_motion.desired_heading = initial_heading
+  Playground.hero.motocrotte_motion.steering_heading = initial_heading
+  Playground.hero.visual_yaw = initial_heading
   Playground.camera = CameraManager.new({
     width = level_definition.camera.width,
     height = level_definition.camera.height,
@@ -464,7 +470,7 @@ function Playground.draw()
     local radius = motion.turning_radius or math.huge
     local radius_text = radius <= 0 and "∞" or string.format("%.0f", radius)
     love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal"), 24, 144)
-     love.graphics.print(string.format("Turn radius: %s   Variant: %s   Braking: %s", radius_text, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no"), 24, 168)
+    love.graphics.print(string.format("Turn radius: %s   Drift orbit: %.0f   Variant: %s   Braking: %s   Tilt: %.0f°", radius_text, motion.drift_orbit_radius or 0, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no", math.deg(motion.braking_tilt_angle or 0)), 24, 168)
      local position = Playground.hero.position or {}
      local screen_x, screen_y = Playground.camera:world_to_screen(position.x or 0, position.ground_y or 0)
      local bounds = Playground.active_level_definition.hero_bounds or {}

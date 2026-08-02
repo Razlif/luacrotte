@@ -1,0 +1,14 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"accelerate","command":"hold","key":"up","duration":0.8}
+{"id":"start_drift","command":"press","key":"lshift"}
+{"id":"sample_1","command":"wait","seconds":0.08}
+{"id":"snapshot_1","command":"snapshot","name":"drift_render_sequence_1"}
+{"id":"sample_2","command":"wait","seconds":0.08}
+{"id":"snapshot_2","command":"snapshot","name":"drift_render_sequence_2"}
+{"id":"sample_3","command":"wait","seconds":0.08}
+{"id":"snapshot_3","command":"snapshot","name":"drift_render_sequence_3"}
+{"id":"sample_4","command":"wait","seconds":0.08}
+{"id":"snapshot_4","command":"snapshot","name":"drift_render_sequence_4"}
+{"id":"sample_5","command":"wait","seconds":0.08}
+{"id":"snapshot_5","command":"snapshot","name":"drift_render_sequence_5"}

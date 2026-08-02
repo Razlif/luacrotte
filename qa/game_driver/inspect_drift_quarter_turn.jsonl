@@ -1,0 +1,13 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"switch_to_omni","command":"press","key":"tab"}
+{"id":"switch_to_omni_again","command":"press","key":"tab"}
+{"id":"accelerate","command":"hold","key":"right","duration":0.8}
+{"id":"start_short_drift","command":"press","key":"lshift"}
+{"id":"short_drift_hold","command":"hold","key":"lshift","duration":0.05}
+{"id":"release_short_drift","command":"release","key":"lshift"}
+{"id":"wait_for_exit","command":"wait","seconds":0.35}
+{"id":"capture_quarter_turn","command":"snapshot","name":"drift_short_tap_quarter_turn"}
+{"id":"start_long_drift","command":"press","key":"lshift"}
+{"id":"hold_long_drift","command":"hold","key":"lshift","duration":0.8}
+{"id":"capture_long_drift","command":"snapshot","name":"drift_long_hold_continuous"}

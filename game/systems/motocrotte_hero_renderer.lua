@@ -11,11 +11,12 @@ local function mode_index(mode, modes)
   return 1
 end
 
-local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source)
+local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source, flip_x)
   local x = (position and position.x) or hero.position.x
   local y = (position and position.y) or PositionManager.get_screen_y(hero.position)
   local anchor_x = (anchor and anchor.x) or hero.anchor_x
   local anchor_y = (anchor and anchor.y) or hero.anchor_y
+  if flip_x then scale_x = -scale_x end
   if hero.animation:is_playing() then
     if frame then
       hero.animation:draw_frame(frame, x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation, animation_source)
@@ -165,7 +166,9 @@ local function draw_gameplay_visual(hero, definition)
     or motion.heading
   local yaw_mode = visual.yaw_mode or (visual.yaw_enabled == false and "off" or "all_movement")
   local yaw = yaw_mode == "all_movement" and (hero.visual_yaw or steering_heading or 0) or (steering_heading or 0)
-  local rotation = 0
+  local yaw_axis = visual.yaw_axis or 0
+  local braking_visual = definition.braking_visual or {}
+  local rotation = braking_visual.enabled ~= false and (motion.braking_tilt_angle or 0) or 0
   local projected_position, projection_scale = projection_state(hero, definition)
   local scale_x = hero.scale * projection_scale * hero.source_facing
   local count = (drift.directional_views and drift.directional_views.count) or 8
@@ -174,7 +177,8 @@ local function draw_gameplay_visual(hero, definition)
   if motion.drift_active and motion.drift_spin_phase then
     local spin_phase = motion.drift_spin_phase
     local pivot = visual.directional_pivot or {}
-    local radius = pivot.radius or 0
+    local radius = motion.drift_orbit_radius
+    if radius == nil then radius = pivot.radius or 0 end
     -- The spin phase describes the bike's position around the visual orbit.
     -- Directional frame selection has its own facing offset: the promoted
     -- motorcycle sheet's canonical front is opposite the orbit's zero angle.
@@ -192,16 +196,19 @@ local function draw_gameplay_visual(hero, definition)
     motion.directional_frame = resolved.frame
     if yaw_mode ~= "off" then
       local yaw_phase = motion.drift_yaw_phase or facing_phase
-      scale_x = scale_x * math.abs(math.cos(yaw_phase))
+      scale_x = scale_x * math.abs(math.cos(yaw_phase - yaw_axis))
       motion.visual_yaw_phase = yaw_phase
     end
-    local position = projected_position or orbit_position(hero, visual, spin_phase, radius)
-    draw_sprite(hero, 0, scale_x, resolved.frame, position, orbit_anchor(hero, visual), resolved.animation_source)
+    local position = projected_position or {
+      x = hero.position.x,
+      y = PositionManager.get_screen_y(hero.position)
+    }
+    draw_sprite(hero, 0, scale_x, resolved.frame, position, orbit_anchor(hero, visual), resolved.animation_source, resolved.flip_x)
     return
   end
 
   if yaw_mode == "all_movement" then
-    scale_x = scale_x * math.abs(math.cos(yaw))
+    scale_x = scale_x * math.abs(math.cos(yaw - yaw_axis))
   end
 
   if mode == "directional_views" or mode == "hybrid" then
@@ -220,7 +227,7 @@ local function draw_gameplay_visual(hero, definition)
   motion.directional_index = resolved.slot
   motion.directional_direction = resolved.direction
   motion.directional_frame = resolved.frame
-  draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil, resolved.animation_source)
+  draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil, resolved.animation_source, resolved.flip_x)
 end
 
 function Renderer.draw(hero, definition, visual_state)

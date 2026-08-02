@@ -1,0 +1,8 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"switch_to_omni","command":"press","key":"tab"}
+{"id":"switch_to_omni_again","command":"press","key":"tab"}
+{"id":"accelerate","command":"hold","key":"right","duration":0.8}
+{"id":"short_drift_tap","command":"hold","key":"lshift","duration":0.05}
+{"id":"wait_for_exit","command":"wait","seconds":0.3}
+{"id":"capture_quarter_turn","command":"snapshot","name":"drift_short_tap_quarter_turn_clean"}

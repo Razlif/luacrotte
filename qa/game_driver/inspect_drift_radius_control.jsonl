@@ -1,0 +1,9 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"accelerate","command":"hold","key":"up","duration":0.8}
+{"id":"start_drift","command":"press","key":"lshift"}
+{"id":"increase_radius_with_gas","command":"hold","key":"up","duration":0.35}
+{"id":"capture_radius_large","command":"snapshot","name":"drift_radius_increased"}
+{"id":"decrease_radius_with_brake","command":"hold","key":"down","duration":0.3}
+{"id":"capture_radius_small","command":"snapshot","name":"drift_radius_decreased"}
+{"id":"release_drift","command":"release","key":"lshift"}

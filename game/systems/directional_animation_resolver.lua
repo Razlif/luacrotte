@@ -21,12 +21,33 @@ local function frame_from_map(mapping, slot)
   return (mapping and mapping[slot + 1]) or (slot + 1)
 end
 
+local function resolve_yaw_card(animation, angle)
+  local card = animation.yaw_card
+  local step = (math.pi * 2) / 8
+  local slot = math.floor((angle + step * 0.5) / step) % 8
+  local mapping = card.frame_map or { card.front_tilt_frame, card.front_tilt_frame, card.front_frame, card.front_tilt_frame, card.front_tilt_frame, card.back_tilt_frame, card.back_frame, card.back_tilt_frame }
+  local flips = card.flip_map or { false, false, false, true, true, false, false, true }
+  local frame = mapping[slot + 1]
+  return {
+    animation_source = card.animation_source or animation.canonical_source,
+    frame = frame,
+    slot = slot + 1,
+    direction = DIRECTION_NAMES[slot + 1] or ("slot_" .. tostring(slot + 1)),
+    flip_x = flips[slot + 1] == true
+  }
+end
+
 function Resolver.resolve(definition, state)
   local animation = definition.directional_animation or {}
   local count = animation.direction_count or (definition.drift and definition.drift.directional_views and definition.drift.directional_views.count) or 8
   local angle = state.movement_heading or 0
   if state.drift_active then
     angle = state.drift_spin_phase or angle
+  end
+  if animation.yaw_card then
+    local result = resolve_yaw_card(animation, angle)
+    result.variant_index = state.variant_index
+    return result
   end
   local slot = directional_slot(angle, count)
   local variant_index = state.variant_index

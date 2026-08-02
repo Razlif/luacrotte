@@ -1,0 +1,6 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"accelerate","command":"hold","key":"up","duration":0.8}
+{"id":"start_drift","command":"press","key":"lshift"}
+{"id":"hold_drift_with_gas","command":"hold","key":"up","duration":1.4}
+{"id":"capture_drift_continuing","command":"snapshot","name":"drift_continuing_long_hold"}

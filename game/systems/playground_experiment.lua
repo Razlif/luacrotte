@@ -37,7 +37,7 @@ function Experiment.default(profile)
   local environment = profile.environment or {}
   return {
     sprite_policy = "random_per_spin",
-    yaw_mode = "drift_only",
+    yaw_mode = (profile.visual or {}).yaw_mode or "drift_only",
     yaw_enabled = true,
     control_schema = controls.schema or "omnidirectional_arrows",
     movement_mode = movement.constraint or "free",
