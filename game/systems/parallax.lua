@@ -40,7 +40,19 @@ function ParallaxManager:draw()
   for _, layer in ipairs(self.layers) do
     local image = self:load_layer(layer)
     if image then
-      if layer.fit == "cover" then
+      if layer.fit == "track" then
+        -- A track is a sequence of world-space tiles.  It is deliberately
+        -- separate from cover backgrounds: camera motion reveals later tiles
+        -- instead of re-centering one image under every viewport.
+        local track = layer.track or {}
+        local count = track.count or 1
+        local tile_width = track.tile_width or image:getWidth()
+        local origin_x = track.origin_x or 0
+        local origin_y = track.origin_y or 0
+        for index = 0, count - 1 do
+          love.graphics.draw(image, origin_x + index * tile_width, origin_y)
+        end
+      elseif layer.fit == "cover" then
         -- Backgrounds are presentation layers: fit them to the camera viewport
         -- instead of leaving them anchored at world origin, where camera motion
         -- exposes empty space. Cover preserves aspect ratio and center-crops.

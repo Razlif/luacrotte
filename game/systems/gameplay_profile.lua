@@ -87,6 +87,12 @@ end
 function Profile.bounds(level_definition, profile)
   local bounds = copy(level_definition.hero_bounds)
   local movement = profile.movement
+  if movement.bounds then
+    for key, value in pairs(movement.bounds) do bounds[key] = value end
+  end
+  if movement.perspective_cone then
+    bounds.perspective_cone = copy(movement.perspective_cone)
+  end
   if movement.constraint == "horizontal_only" then
     bounds.top = level_definition.hero_position.ground_y
     bounds.bottom = level_definition.hero_position.ground_y
@@ -98,6 +104,18 @@ function Profile.bounds(level_definition, profile)
     bounds.bottom = movement.lane_depth.max
   end
   return bounds
+end
+
+function Profile.world_bounds(level_definition, profile)
+  local bounds = copy(level_definition.world)
+  for key, value in pairs(profile.world or {}) do bounds[key] = value end
+  return bounds
+end
+
+function Profile.spawn(level_definition, profile)
+  local spawn = copy(level_definition.hero_position)
+  for key, value in pairs(profile.spawn or {}) do spawn[key] = value end
+  return spawn
 end
 
 return Profile

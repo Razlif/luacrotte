@@ -26,7 +26,7 @@ return {
     steering_rate = math.rad(360),
     max_turn_rate = math.rad(180),
   },
-  braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
+  braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
   dash = {
     enabled = true,
     action = "dash",
@@ -37,13 +37,14 @@ return {
     recovery_duration = 0.25,
     cooldown = 0.8,
     cancels_drift = true,
+    drift_combo_mode = "minimum_orbit",
+    drift_combo_orbit_radius = 5,
     front_wheelie = {
-      angle = math.rad(90),
+      angle = math.rad(70),
       frame = 3,
       animation_source = "motorcycle_direction_full",
       raised_wheel = "back",
       pitch_sign = 1,
-      yaw_phase_offset = math.pi / 2,
       -- Measured from the selected right-facing frame: the front wheel is
       -- the planted wheel, not the sprite center.
       contact_anchor = { x = 54, y = 55 }

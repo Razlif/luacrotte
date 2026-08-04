@@ -1,0 +1,6 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"load_profile_four","command":"press","key":"4"}
+{"id":"steer_left","command":"press","key":"left"}
+{"id":"drive_away_left","command":"hold","key":"up","duration":2.0}
+{"id":"capture_cone_clamp","command":"snapshot","name":"profile4_cone_clamp"}

@@ -98,6 +98,17 @@ end
 function Locomotion.apply_position(hero, motion, bounds, dt)
   hero.position.x = clamp(hero.position.x + motion.vx * dt, bounds.left, bounds.right)
   hero.position.ground_y = clamp(hero.position.ground_y + motion.vy * dt, bounds.top, bounds.bottom)
+  local cone = bounds.perspective_cone
+  if cone then
+    local far_y = cone.far_y or bounds.top
+    local near_y = cone.near_y or bounds.bottom
+    local range = math.max(1, near_y - far_y)
+    local amount = clamp((hero.position.ground_y - far_y) / range, 0, 1)
+    local half_width = (cone.far_half_width or 0)
+      + amount * ((cone.near_half_width or 0) - (cone.far_half_width or 0))
+    local center_x = cone.center_x or (bounds.left + bounds.right) * 0.5
+    hero.position.x = clamp(hero.position.x, center_x - half_width, center_x + half_width)
+  end
 end
 
 return Locomotion

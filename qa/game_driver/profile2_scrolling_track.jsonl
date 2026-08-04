@@ -1,0 +1,5 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"load_side_view","command":"press","key":"2"}
+{"id":"drive_track","command":"hold","key":"up","duration":4.0}
+{"id":"capture_track_follow","command":"snapshot","name":"profile2_track_follow"}

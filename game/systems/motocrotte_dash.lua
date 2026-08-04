@@ -31,7 +31,11 @@ function Dash.update(motion, intent, definition, dt, position)
   local request = config.enabled == true and intent.dash_pressed == true
 
   if request and phase == "normal" and current.cooldown_time <= 0 and speed >= minimum_speed then
-    current.phase = "boosting"
+    -- A dash begun while drifting is the compact-orbit stunt, not a forward
+    -- boost.  Starting it directly in its planted pose prevents one frame of
+    -- boost travel/tilt before the drift orbit owns the position.
+    local requested_drift_combo = intent.drift_active == true or motion.drift_active == true
+    current.phase = requested_drift_combo and "stoppie" or "boosting"
     current.phase_time = 0
     current.heading = motion.heading or 0
   end

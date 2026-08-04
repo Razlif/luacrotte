@@ -19,6 +19,9 @@ function Orientation.update(hero, definition, dt)
   end
 
   local motion = hero.motocrotte_motion
+  if motion.braking then
+    return
+  end
   local minimum_speed = config.minimum_speed_for_turn or 0
   if (motion.speed or 0) <= minimum_speed then
     return

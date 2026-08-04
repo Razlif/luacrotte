@@ -3,13 +3,11 @@
 {"id":"hold_gas","command":"hold","key":"up","duration":0.8}
 {"id":"press_brake","command":"press","key":"down"}
 {"id":"press_left_steering","command":"press","key":"left"}
-{"id":"capture_left_brake_tilt","command":"wait","seconds":0.15}
 {"id":"snapshot_left_brake_tilt","command":"snapshot","name":"braking_tilt_left"}
 {"id":"release_left","command":"release","key":"left"}
 {"id":"release_brake","command":"release","key":"down"}
 {"id":"press_brake_again","command":"press","key":"down"}
 {"id":"press_right_steering","command":"press","key":"right"}
-{"id":"capture_right_brake_tilt","command":"wait","seconds":0.15}
 {"id":"snapshot_right_brake_tilt","command":"snapshot","name":"braking_tilt_right"}
 {"id":"release_right","command":"release","key":"right"}
 {"id":"release_brake_again","command":"release","key":"down"}

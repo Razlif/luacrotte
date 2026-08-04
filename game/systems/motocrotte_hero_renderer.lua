@@ -11,20 +11,21 @@ local function mode_index(mode, modes)
   return 1
 end
 
-local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source, flip_x)
+local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source, flip_x, scale_y)
   local x = (position and position.x) or hero.position.x
   local y = (position and position.y) or PositionManager.get_screen_y(hero.position)
   local anchor_x = (anchor and anchor.x) or hero.anchor_x
   local anchor_y = (anchor and anchor.y) or hero.anchor_y
+  scale_y = scale_y or hero.scale
   if flip_x then scale_x = -scale_x end
   if hero.animation:is_playing() then
     if frame then
-      hero.animation:draw_frame(frame, x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation, animation_source)
+      hero.animation:draw_frame(frame, x, y, scale_x, scale_y, anchor_x, anchor_y, rotation, animation_source)
     else
-      hero.animation:draw(x, y, scale_x, hero.scale, anchor_x, anchor_y, rotation)
+      hero.animation:draw(x, y, scale_x, scale_y, anchor_x, anchor_y, rotation)
     end
   elseif hero.asset.image then
-    love.graphics.draw(hero.asset.image.texture, x, y, rotation, scale_x, hero.scale, anchor_x, anchor_y)
+    love.graphics.draw(hero.asset.image.texture, x, y, rotation, scale_x, scale_y, anchor_x, anchor_y)
   end
 end
 
@@ -177,10 +178,16 @@ local function draw_gameplay_visual(hero, definition)
     and (motion.steering_heading or motion.heading)
     or motion.heading
   local yaw_mode = visual.yaw_mode or (visual.yaw_enabled == false and "off" or "all_movement")
-  local yaw = yaw_mode == "all_movement" and (hero.visual_yaw or steering_heading or 0) or (steering_heading or 0)
+  local braking_heading = motion.braking and motion.braking_heading or nil
   local yaw_axis = visual.yaw_axis or 0
   local braking_visual = definition.braking_visual or {}
-  local rotation = braking_visual.enabled ~= false and (motion.braking_tilt_angle or 0) or 0
+  -- Braking selects the neighboring directional frame, rather than applying
+  -- a geometric rotation. Left/Right therefore reads as a sprite-wheel skid.
+  local braking_frame_offset = motion.braking and (motion.braking_tilt_direction or 0)
+    * (braking_visual.frame_step or 0) or 0
+  local yaw = braking_heading and (braking_heading + braking_frame_offset)
+    or (yaw_mode == "all_movement" and (hero.visual_yaw or steering_heading or 0) or (steering_heading or 0))
+  local rotation = 0
   if motion.dash_active then
     rotation = motion.dash_visual_angle or 0
   end
@@ -188,9 +195,13 @@ local function draw_gameplay_visual(hero, definition)
   local scale_x = hero.scale * projection_scale * hero.source_facing
   local count = (drift.directional_views and drift.directional_views.count) or 8
   local slot = directional_slot(yaw, count)
+  local dash = definition.dash or {}
+  local regular_orbit_combo = motion.dash_active and motion.drift_active
+    and dash.drift_combo_mode == "minimum_orbit"
+  local use_dreidel_presentation = motion.dash_axial_spin_active and not regular_orbit_combo
 
   if motion.drift_active and motion.drift_spin_phase then
-    local spin_phase = motion.dash_axial_spin_active and motion.dash_axial_spin_phase
+    local spin_phase = use_dreidel_presentation and motion.dash_axial_spin_phase
       or motion.drift_spin_phase
     local pivot = visual.directional_pivot or {}
     local radius = motion.drift_orbit_radius
@@ -207,8 +218,8 @@ local function draw_gameplay_visual(hero, definition)
       drift_spin_phase = facing_phase,
       variant_index = motion.drift_variant_index
     })
-    local wheelie = ((definition.dash or {}).front_wheelie or {})
-    if motion.dash_axial_spin_active then
+    local wheelie = (dash.front_wheelie or {})
+    if use_dreidel_presentation then
       -- A combined wheelie spin is a single sprite yaw test. Do not resolve
       -- directional frames here: changing frames changes the wheel geometry.
       resolved.frame = wheelie.frame or 3
@@ -220,12 +231,13 @@ local function draw_gameplay_visual(hero, definition)
     motion.directional_index = resolved.slot
     motion.directional_direction = resolved.direction
     motion.directional_frame = resolved.frame
-    if motion.dash_axial_spin_active then
-      -- Yaw is represented only by horizontal squash. The fixed wheelie pose
-      -- itself is never rotated through the ground. Because the bike is now
-      -- standing on its side, its yaw clock needs the wheelie axis offset.
-      local yaw_phase = (motion.dash_axial_spin_phase or 0) + (wheelie.yaw_phase_offset or 0)
-      scale_x = scale_x * math.abs(math.cos(yaw_phase - yaw_axis))
+    local draw_scale_y = hero.scale * projection_scale
+    if use_dreidel_presentation then
+      -- The fixed 90-degree pose turns the source X axis into the screen's
+      -- top-wheel-to-bottom-wheel line. Preserve that axis. Yaw therefore
+      -- squashes source Y, which becomes the screen horizontal axis.
+      local yaw_phase = motion.dash_axial_spin_phase or 0
+      draw_scale_y = draw_scale_y * math.abs(math.cos(yaw_phase - yaw_axis))
       motion.visual_yaw_phase = yaw_phase
     elseif yaw_mode ~= "off" then
       local yaw_phase = motion.drift_yaw_phase or facing_phase
@@ -236,17 +248,17 @@ local function draw_gameplay_visual(hero, definition)
       x = hero.position.x,
       y = PositionManager.get_screen_y(hero.position)
     }
-    local draw_rotation = motion.dash_axial_spin_active
+    local draw_rotation = use_dreidel_presentation
       and (wheelie.angle or math.rad(90)) * (wheelie.pitch_sign or 1)
-      or (motion.dash_active and (motion.dash_visual_angle or 0) or 0)
+      or (regular_orbit_combo and 0 or (motion.dash_active and (motion.dash_visual_angle or 0) or 0))
     local draw_anchor
-    if motion.dash_axial_spin_active then
+    if use_dreidel_presentation then
       local contact = wheelie.contact_anchor or { x = 48, y = 56 }
       draw_anchor = { x = contact.x, y = contact.y }
     else
       draw_anchor = orbit_anchor(hero, visual)
     end
-    draw_sprite(hero, draw_rotation, scale_x, resolved.frame, position, draw_anchor, resolved.animation_source, resolved.flip_x)
+    draw_sprite(hero, draw_rotation, scale_x, resolved.frame, position, draw_anchor, resolved.animation_source, resolved.flip_x, draw_scale_y)
     return
   end
 
@@ -270,7 +282,17 @@ local function draw_gameplay_visual(hero, definition)
   motion.directional_index = resolved.slot
   motion.directional_direction = resolved.direction
   motion.directional_frame = resolved.frame
-  draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil, resolved.animation_source, resolved.flip_x)
+  draw_sprite(
+    hero,
+    rotation,
+    scale_x,
+    resolved.frame,
+    projected_position,
+    nil,
+    resolved.animation_source,
+    resolved.flip_x,
+    hero.scale * projection_scale
+  )
 end
 
 function Renderer.draw(hero, definition, visual_state)

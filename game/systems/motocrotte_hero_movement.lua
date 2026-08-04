@@ -74,9 +74,16 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     x = hero.position.x,
     y = hero.position.ground_y
   })
+  local dash_config = definition.dash or {}
+  local minimum_orbit_combo = dash_context.wheelie_spin_active
+    and dash_config.drift_combo_mode == "minimum_orbit"
+  local orbit_radius_override = minimum_orbit_combo
+    and (dash_config.drift_combo_orbit_radius or 5)
+    or nil
   local drift_context = Drift.update(motion, intent, definition, dt, {
     x = hero.position.x,
-    y = hero.position.ground_y
+    y = hero.position.ground_y,
+    orbit_radius_override = orbit_radius_override
   })
   local horizontal, vertical, input_length = Locomotion.update(motion, intent, config, drift_context, dt)
 
@@ -90,7 +97,17 @@ function Movement.update(hero, intent, definition, level_definition, dt)
 
   local braking_visual = definition.braking_visual or {}
   local steering_input = intent.steering or 0
-  motion.braking = intent.brake == true and motion.speed > (braking_visual.minimum_speed or 5)
+  local was_braking = motion.braking == true
+  -- The brake key owns this presentation state for its entire hold, including
+  -- the final stopped frame. This makes a held brake + steer a stable skid.
+  motion.braking = intent.brake == true
+  if motion.braking and not was_braking then
+    -- Braking is a planted skid. Preserve travel-facing; steering chooses
+    -- only the 45-degree lean rather than rotating the bike in place.
+    motion.braking_heading = motion.heading or motion.desired_heading or 0
+  elseif not motion.braking then
+    motion.braking_heading = nil
+  end
   motion.braking_tilt_direction = motion.braking and (steering_input < 0 and -1 or steering_input > 0 and 1 or 0) or 0
   motion.braking_tilt_angle = braking_visual.enabled ~= false and motion.braking_tilt_direction ~= 0
     and motion.braking_tilt_direction * (braking_visual.angle or math.rad(45)) or 0
@@ -138,14 +155,14 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   end
   hero.animation:update(dt)
   Locomotion.apply_position(hero, motion, bounds, dt)
-  if dash_context.wheelie_spin_active then
+  if dash_context.wheelie_spin_active and not minimum_orbit_combo then
     hero.position.x = dash_context.wheelie_contact_x or hero.position.x
     hero.position.ground_y = dash_context.wheelie_contact_y or hero.position.ground_y
     motion.vx = 0
     motion.vy = 0
     motion.speed = 0
     motion.turning_radius = 0
-  elseif was_wheelie_spin_active and not dash_context.wheelie_spin_active then
+  elseif was_wheelie_spin_active and not dash_context.wheelie_spin_active and not minimum_orbit_combo then
     Drift.reanchor(motion, {
       x = hero.position.x,
       y = hero.position.ground_y

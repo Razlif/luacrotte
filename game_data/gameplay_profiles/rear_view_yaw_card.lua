@@ -1,6 +1,6 @@
 return {
   id = "rear_view_yaw_card",
-  version = 1,
+  version = 4,
   status = "experimental",
   label = "Rear View: Front/Back Yaw Card",
   camera = {
@@ -16,20 +16,27 @@ return {
   movement = {
     constraint = "rear_depth",
     allowed_axes = { x = true, y = true },
-    depth_bounds = { min = 698, max = 1147 },
-    acceleration = 1150,
-    max_speed = 340,
-    brake_deceleration = 400,
-    coast_deceleration = 120,
+    depth_bounds = { min = 1000, max = 1147 },
+    acceleration = 600,
+    max_speed = 170,
+    brake_deceleration = 260,
+    coast_deceleration = 75,
     steering_response = 7,
     steering_rate = math.rad(360),
     max_turn_rate = math.rad(150),
-    initial_heading = math.pi / 2,
+    initial_heading = -math.pi / 2,
     animation = "motorcycle_direction_full",
     animation_loop = true,
-    animation_idle = true
+    animation_idle = true,
+    perspective_cone = {
+      center_x = 480,
+      far_y = 1000,
+      near_y = 1147,
+      far_half_width = 48,
+      near_half_width = 360
+    }
   },
-  braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
+  braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
   dash = { enabled = false },
   drift = {
     enabled = true,
@@ -75,8 +82,9 @@ return {
     projection = "perspective_ground",
     horizon_y = 180,
     ground_y = 475,
-    min_scale = 0.55,
-    max_scale = 1.35
+    min_scale = 1.0,
+    max_scale = 3.2
   },
+  spawn = { x = 442, ground_y = 1147, z = 0 },
   transitions = { preserve_velocity = false, preserve_yaw = false, clear_drift = true }
 }

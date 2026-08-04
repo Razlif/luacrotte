@@ -1,21 +1,23 @@
 return {
   id = "side_view",
-  version = 1,
+  version = 4,
   status = "experimental",
   label = "Side View",
   camera = {
-    behavior = "static",
+    behavior = "smooth_follow",
     target = "hero",
     follow_x = true,
     follow_y = false,
     smoothing = 10,
-    zoom = 1,
+    zoom = 1.35,
+    center_y = 960,
     look_ahead_x = 0,
     look_ahead_y = 0
   },
   controls = { schema = "gas_steering", binding_set = "keyboard_arrows" },
   movement = {
     constraint = "side_scroll",
+    bounds = { left = 325, right = 6325, top = 698, bottom = 1147 },
     allowed_axes = { x = true, y = false },
     acceleration = 1150,
     max_speed = 340,
@@ -25,7 +27,7 @@ return {
     steering_rate = math.rad(360),
     max_turn_rate = math.rad(180)
   },
-  braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
+  braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
   dash = { enabled = false },
   drift = {
     enabled = true,
@@ -51,7 +53,16 @@ return {
   environment = {
     background_id = "motocrotte_background_01",
     projection = "flat",
-    hero_scale = 1.15
+    hero_scale = 1.45,
+    background_track = {
+      enabled = true,
+      origin_x = 325,
+      origin_y = 600,
+      tile_width = 1200,
+      count = 5
+    }
   },
+  world = { left = 325, right = 6325, top = 0, bottom = 1283 },
+  spawn = { x = 805, ground_y = 1065, z = 0 },
   transitions = { preserve_velocity = false, preserve_yaw = true, clear_drift = true }
 }

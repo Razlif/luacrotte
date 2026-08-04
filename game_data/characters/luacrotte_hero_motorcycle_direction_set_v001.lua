@@ -47,7 +47,7 @@ return {
     animation_loop = true,
     animation_idle = true
   },
-  braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
+  braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
   drift = {
     enabled = true,
     action = "drift",

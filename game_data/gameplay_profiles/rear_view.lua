@@ -25,7 +25,7 @@ return {
     steering_rate = math.rad(360),
     max_turn_rate = math.rad(150)
   },
-  braking_visual = { enabled = true, angle = math.rad(45), minimum_speed = 5 },
+  braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
   dash = { enabled = false },
   drift = {
     enabled = true,

@@ -52,6 +52,9 @@ end
 local function rebuild_parallax()
   if not Playground.camera then return end
   local selected = background_definition_for(Playground.experiment.background_id)
+  local environment = Playground.profile and Playground.profile.environment or {}
+  local track = environment.background_track
+  local use_track = track and track.enabled == true and selected.id == environment.background_id
   Playground.parallax = ParallaxManager.new({
     {
       id = selected.id,
@@ -60,7 +63,8 @@ local function rebuild_parallax()
       speed_y = 1,
       repeat_x = false,
       repeat_y = false,
-      fit = "cover",
+      fit = use_track and "track" or "cover",
+      track = use_track and track or nil,
       layer = 0
     }
   })
@@ -105,17 +109,20 @@ function Playground.set_profile(index_or_id)
   Playground.active_level_definition = {}
   for key, value in pairs(level_definition) do Playground.active_level_definition[key] = value end
   Playground.active_level_definition.hero_bounds = GameplayProfile.bounds(level_definition, Playground.profile)
+  Playground.active_level_definition.world = GameplayProfile.world_bounds(level_definition, Playground.profile)
   if Playground.hero then
+    local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
     Playground.hero.definition = Playground.hero_definition
-    Playground.hero.position.x = level_definition.hero_position.x
-    Playground.hero.position.ground_y = level_definition.hero_position.ground_y
-    Playground.hero.position.z = level_definition.hero_position.z
+    Playground.hero.position.x = spawn.x
+    Playground.hero.position.ground_y = spawn.ground_y
+    Playground.hero.position.z = spawn.z
     local bounds = Playground.active_level_definition.hero_bounds
     Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
     Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
   end
   Playground.set_visual_mode(HeroRenderer.mode_index(Playground.hero_definition.visual.test_mode, Playground.hero_definition))
   if Playground.camera then
+    Playground.camera:set_bounds(Playground.active_level_definition.world)
     Playground.camera:set_policy(Playground.profile.camera)
     if Playground.profile.camera.behavior == "static" then
       Playground.camera:follow(nil)
@@ -153,6 +160,7 @@ function Playground.apply_experiment(rebuild_background)
   Playground.profile = effective
   Playground.hero_definition = GameplayProfile.resolve_hero_definition(hero_definition, effective)
   Playground.active_level_definition.hero_bounds = GameplayProfile.bounds(level_definition, effective)
+  Playground.active_level_definition.world = GameplayProfile.world_bounds(level_definition, effective)
 
   if Playground.hero then
     Playground.hero.definition = Playground.hero_definition
@@ -161,6 +169,7 @@ function Playground.apply_experiment(rebuild_background)
     Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
   end
   if Playground.camera then
+    Playground.camera:set_bounds(Playground.active_level_definition.world)
     Playground.camera:set_policy(effective.camera)
     if effective.camera.behavior == "static" then
       Playground.camera:follow(nil)
@@ -169,6 +178,10 @@ function Playground.apply_experiment(rebuild_background)
         effective.camera.center_y or Playground.hero.position.ground_y
       )
     else
+      Playground.camera:set_center(
+        Playground.hero.position.x,
+        effective.camera.center_y or Playground.hero.position.ground_y
+      )
       Playground.camera:follow(Playground.hero.position)
     end
   end
@@ -253,9 +266,10 @@ function Playground.enter(profile_id)
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.hero = Character.new(Playground.hero_definition, AssetLoader.get_character(hero_definition.asset_id))
-  Playground.hero.position.x = level_definition.hero_position.x
-  Playground.hero.position.ground_y = level_definition.hero_position.ground_y
-  Playground.hero.position.z = level_definition.hero_position.z
+  local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
+  Playground.hero.position.x = spawn.x
+  Playground.hero.position.ground_y = spawn.ground_y
+  Playground.hero.position.z = spawn.z
   Playground.visual_lab_active = Playground.hero_definition.visual and Playground.hero_definition.visual.test_enabled == true
   Playground.set_visual_mode(HeroRenderer.mode_index(Playground.hero_definition.visual.test_mode, Playground.hero_definition))
   Playground.reset_visual_lab()
@@ -294,20 +308,7 @@ function Playground.enter(profile_id)
   local selected_background = background_definition_for(
     Playground.profile.environment.background_id or Playground.experiment.background_id
   )
-  Playground.parallax = ParallaxManager.new({
-    {
-      id = selected_background.id,
-      image_path = selected_background.image.path,
-      speed_x = 1,
-      speed_y = 1,
-      repeat_x = false,
-      repeat_y = false,
-      fit = "cover",
-      layer = 0
-    }
-  })
-  Playground.parallax:set_camera(Playground.camera)
-  Playground.apply_experiment()
+  Playground.apply_experiment(true)
 end
 
 function Playground.update(dt)
@@ -471,7 +472,7 @@ function Playground.draw()
     local radius = motion.turning_radius or math.huge
     local radius_text = radius <= 0 and "∞" or string.format("%.0f", radius)
     love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s   Dash: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal", motion.dash_phase or "normal"), 24, 144)
-    love.graphics.print(string.format("Turn radius: %s   Drift orbit: %.0f   Variant: %s   Braking: %s   Tilt: %.0f°", radius_text, motion.drift_orbit_radius or 0, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no", math.deg(motion.braking_tilt_angle or 0)), 24, 168)
+    love.graphics.print(string.format("Turn radius: %s   Drift orbit: %.0f   Variant: %s   Braking: %s   Brake frame: %s", radius_text, motion.drift_orbit_radius or 0, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no", tostring(motion.directional_direction or "canonical")), 24, 168)
      local position = Playground.hero.position or {}
      local screen_x, screen_y = Playground.camera:world_to_screen(position.x or 0, position.ground_y or 0)
      local bounds = Playground.active_level_definition.hero_bounds or {}
