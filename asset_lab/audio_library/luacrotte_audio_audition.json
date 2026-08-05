@@ -1,0 +1,80 @@
+[
+  {
+    "candidate_id": "luacrotte_music_angry_bullfrogs_motorbikes",
+    "kind": "music",
+    "source": "opengameart",
+    "source_id": "fakebit-chiptune-pack-03",
+    "title": "Angry Bullfrogs Riding Motorbikes",
+    "author": "Ragnar Random",
+    "license": "CC0",
+    "duration": 0,
+    "tags": ["chiptune", "8-bit", "rock", "motorbike", "driving", "audition"],
+    "source_url": "https://opengameart.org/content/fakebit-chiptune-music-pack",
+    "preview_url": "https://opengameart.org/sites/default/files/03_-_angry_bullfrogs_riding_motorbikes_better_bass_0.ogg"
+  },
+  {
+    "candidate_id": "luacrotte_music_street_punks",
+    "kind": "music",
+    "source": "opengameart",
+    "source_id": "fakebit-chiptune-pack-09",
+    "title": "Street Punks Fighting to Save the Princess",
+    "author": "Ragnar Random",
+    "license": "CC0",
+    "duration": 0,
+    "tags": ["chiptune", "8-bit", "punk", "rock", "city", "audition"],
+    "source_url": "https://opengameart.org/content/fakebit-chiptune-music-pack",
+    "preview_url": "https://opengameart.org/sites/default/files/09_-_street_punks_fighting_to_save_the_princess_2.ogg"
+  },
+  {
+    "candidate_id": "luacrotte_sfx_motorcycle_mouth_loop",
+    "kind": "sound",
+    "source": "opengameart",
+    "source_id": "motor-sound-effect",
+    "title": "Motorcycle Motor Loop",
+    "author": "EZduzziteh",
+    "license": "CC0",
+    "duration": 0,
+    "tags": ["motorcycle", "engine", "idle", "accelerate", "loop", "audition"],
+    "source_url": "https://opengameart.org/content/motor-sound-effect",
+    "preview_url": "https://opengameart.org/sites/default/files/motor_looping_0.mp3"
+  },
+  {
+    "candidate_id": "luacrotte_sfx_engine_loop_low",
+    "kind": "sound",
+    "source": "opengameart",
+    "source_id": "racing-car-engine-loops-0",
+    "title": "Racing Engine Loop — Low",
+    "author": "domasx2",
+    "license": "CC0",
+    "duration": 0,
+    "tags": ["engine", "idle", "low-rev", "loop", "vehicle", "audition"],
+    "source_url": "https://opengameart.org/content/racing-car-engine-sound-loops",
+    "preview_url": "https://opengameart.org/sites/default/files/loop_0.wav"
+  },
+  {
+    "candidate_id": "luacrotte_sfx_engine_loop_high",
+    "kind": "sound",
+    "source": "opengameart",
+    "source_id": "racing-car-engine-loops-3",
+    "title": "Racing Engine Loop — High",
+    "author": "domasx2",
+    "license": "CC0",
+    "duration": 0,
+    "tags": ["engine", "accelerate", "high-rev", "loop", "vehicle", "audition"],
+    "source_url": "https://opengameart.org/content/racing-car-engine-sound-loops",
+    "preview_url": "https://opengameart.org/sites/default/files/loop_3_0.wav"
+  },
+  {
+    "candidate_id": "luacrotte_sfx_tire_squeal_skid",
+    "kind": "sound",
+    "source": "opengameart",
+    "source_id": "car-tire-squeal-skid-loop",
+    "title": "Tire Squeal / Skid Loop",
+    "author": "audible-edge (Tom Haigh)",
+    "license": "CC-BY",
+    "duration": 3,
+    "tags": ["drift", "skid", "brake", "squeal", "loop", "audition"],
+    "source_url": "https://opengameart.org/content/car-tire-squeal-skid-loop",
+    "preview_url": "https://opengameart.org/sites/default/files/tires_squal_loop.wav"
+  }
+]

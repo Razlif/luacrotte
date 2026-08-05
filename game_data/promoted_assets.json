@@ -229,7 +229,7 @@
       "updated_at": "2026-08-01T12:43:46"
     }
   },
-  "updated_at": "2026-08-01T12:43:46",
+  "updated_at": "2026-08-05T23:54:30",
   "audio": {
     "sounds": {
       "magic_bomb_spell": {
@@ -246,6 +246,54 @@
         "loop": false,
         "sha256": "9fac648a1de869cf9ca2f4b3f1cd47f1766a3ee9d2fdec45831234401d7b2392",
         "updated_at": "2026-07-26T00:14:49"
+      },
+      "motocrotte_idle": {
+        "id": "motocrotte_idle",
+        "path": "media_assets/audio/sounds/motocrotte_idle.mp3",
+        "source": "legacy_motocrotte",
+        "source_id": null,
+        "title": null,
+        "author": null,
+        "license": "unknown",
+        "source_url": null,
+        "preview_url": null,
+        "volume": 0.35,
+        "loop": true,
+        "sha256": "3604f845a233c1eb7e689548d5feb232e77810b9f51546c4ef88cdf05920f678",
+        "updated_at": "2026-08-05T23:39:54",
+        "authorization": "User confirmed free use; original third-party provenance remains unknown."
+      },
+      "motocrotte_running": {
+        "id": "motocrotte_running",
+        "path": "media_assets/audio/sounds/motocrotte_running.mp3",
+        "source": "legacy_motocrotte",
+        "source_id": null,
+        "title": null,
+        "author": null,
+        "license": "unknown",
+        "source_url": null,
+        "preview_url": null,
+        "volume": 0.5,
+        "loop": true,
+        "sha256": "84b9a081e55375d7a38907d5a09793822320ef3103fc424e31c4b2276b55e8f8",
+        "updated_at": "2026-08-05T23:39:54",
+        "authorization": "User confirmed free use; original third-party provenance remains unknown."
+      },
+      "motocrotte_break": {
+        "id": "motocrotte_break",
+        "path": "media_assets/audio/sounds/motocrotte_break.mp3",
+        "source": "legacy_motocrotte",
+        "source_id": null,
+        "title": null,
+        "author": null,
+        "license": "unknown",
+        "source_url": null,
+        "preview_url": null,
+        "volume": 0.35,
+        "loop": false,
+        "sha256": "41d61599d0f965077eb7007b5b66a3277017f2c44412100a2f39e95e661a0702",
+        "updated_at": "2026-08-05T23:39:55",
+        "authorization": "User confirmed free use; original third-party provenance remains unknown."
       }
     },
     "music": {
@@ -278,6 +326,24 @@
         "loop": true,
         "sha256": "3c328794b77d3f3742a5a8fa36606c3b780d15b0b8f6148b29a78ec6caffcd9e",
         "updated_at": "2026-07-26T00:14:49"
+      },
+      "luacrotte_main_music": {
+        "id": "luacrotte_main_music",
+        "path": "media_assets/audio/music/luacrotte_main_music.mp3",
+        "source": "fesliyan_studios",
+        "source_id": "883",
+        "title": "8 Bit Retro Funk",
+        "author": "David Renda",
+        "license": "Fesliyan Studios non-commercial free use; commercial license required",
+        "source_url": "https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-retro-funk/883",
+        "preview_url": null,
+        "volume": 0.45,
+        "loop": true,
+        "sha256": "7d110a365973c5b3920ddec9d61c0336a2683a3ffaadae6a43096a208bf5a2f7",
+        "updated_at": "2026-08-05T23:54:30",
+        "usage_notes": "Free for non-commercial use. Commercial use requires a Fesliyan Studios commercial-use license/donation.",
+        "attribution_text": "Credit: https://www.FesliyanStudios.com Background Music",
+        "license_policy_url": "https://www.fesliyanstudios.com/policy"
       }
     }
   }

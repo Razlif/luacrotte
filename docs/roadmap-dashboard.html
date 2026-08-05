@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Luacrotte Roadmap</title>
+  <style>
+    :root { color-scheme: dark; --bg:#11151a; --surface:#1a2027; --surface-2:#222a33; --text:#f1ede3; --muted:#aeb8c5; --line:#35404c; --accent:#70d7c2; --accent-2:#f2b35e; --done:#8bcf7e; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-width:320px; background:radial-gradient(circle at top right,#243640,var(--bg) 42%); color:var(--text); font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif; }
+    main { max-width:1440px; margin:auto; padding:28px; }
+    header { display:flex; gap:20px; justify-content:space-between; align-items:end; margin-bottom:28px; }
+    h1,h2,h3,p { margin-top:0; } h1 { margin-bottom:2px; letter-spacing:.02em; } h2 { font-size:1.08rem; margin-bottom:14px; } h3 { font-size:1rem; }
+    .subtitle,.meta,.count,.label { color:var(--muted); } .meta { font-size:.9rem; text-align:right; }
+    .stats { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:22px; } .stat { background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:7px 12px; } .stat strong { color:var(--accent); }
+    .layout { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(340px,.85fr); gap:24px; } .board,.roadmap { min-width:0; } .bucket { margin-bottom:18px; }
+    .bucket-title { display:flex; align-items:center; justify-content:space-between; gap:12px; color:var(--accent); } .tasks { display:grid; gap:9px; }
+    .task,.roadmap-section { background:linear-gradient(145deg,var(--surface),var(--surface-2)); border:1px solid var(--line); border-radius:11px; padding:12px 14px; }
+    .task { display:flex; gap:10px; align-items:flex-start; } .task.done { opacity:.66; } .check { color:var(--accent-2); font-weight:700; width:20px; flex:none; } .task.done .check { color:var(--done); }
+    .task p,.roadmap-section p { margin:0; } .roadmap-section { margin-bottom:12px; } .roadmap-section h3 { color:var(--accent-2); margin-bottom:7px; } .roadmap-section p + p { margin-top:9px; }
+    .error { color:#ffb4ab; background:#3a2021; border:1px solid #78383b; padding:12px 14px; border-radius:11px; } a { color:var(--accent); }
+    @media (max-width:860px) { main { padding:20px; } header { display:block; } .meta { text-align:left; margin-top:14px; } .layout { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header><div><h1>Luacrotte</h1><p class="subtitle">Live project backlog and roadmap</p></div><p class="meta" id="status">Loading source files…</p></header>
+    <section class="stats" id="stats" aria-label="Backlog summary"></section>
+    <section class="layout">
+      <section class="board" aria-labelledby="todo-heading"><h2 id="todo-heading">To-do board</h2><div id="todo"></div></section>
+      <section class="roadmap" aria-labelledby="roadmap-heading"><h2 id="roadmap-heading">Roadmap</h2><div id="roadmap"></div></section>
+    </section>
+  </main>
+  <script>
+    const escapeHtml = (value) => value.replace(/[&<>"']/g, (char) => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" })[char]);
+    const inline = (value) => escapeHtml(value).replace(/`([^`]+)`/g,"<code>$1</code>").replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2">$1</a>');
+    function parseTodo(markdown) { const buckets=[]; let bucket=null; markdown.split(/\r?\n/).forEach((line)=>{ const heading=line.match(/^##\s+(.+)/); const task=line.match(/^- \[([ xX])\]\s+(.+)/); if(heading){ bucket={title:heading[1],tasks:[]}; buckets.push(bucket); } else if(task&&bucket){ bucket.tasks.push({done:task[1].toLowerCase()==="x",text:task[2]}); }}); return buckets; }
+    function parseRoadmap(markdown) { const sections=[]; let section=null; markdown.split(/\r?\n/).forEach((line)=>{ const heading=line.match(/^##\s+(.+)/); if(heading){ section={title:heading[1],paragraphs:[]}; sections.push(section); } else if(section&&line.trim()&&!line.startsWith("#")){ section.paragraphs.push(line.trim()); }}); return sections; }
+    function renderTodo(buckets) { document.getElementById("todo").innerHTML=buckets.map((bucket)=>{ const done=bucket.tasks.filter((task)=>task.done).length; const tasks=bucket.tasks.map((task)=>`<article class="task${task.done?" done":""}"><span class="check" aria-label="${task.done?"Done":"Open"}">${task.done?"✓":"○"}</span><p>${inline(task.text)}</p></article>`).join(""); return `<section class="bucket"><div class="bucket-title"><h2>${inline(bucket.title)}</h2><span class="count">${done}/${bucket.tasks.length} done</span></div><div class="tasks">${tasks}</div></section>`; }).join(""); }
+    function renderRoadmap(sections) { document.getElementById("roadmap").innerHTML=sections.map((section)=>`<article class="roadmap-section"><h3>${inline(section.title)}</h3>${section.paragraphs.map((paragraph)=>`<p>${inline(paragraph).replace(/\*\*([^*]+)\*\*/g,'<span class="label">$1</span>')}</p>`).join("")}</article>`).join(""); }
+    function renderStats(buckets) { const tasks=buckets.flatMap((bucket)=>bucket.tasks); const open=tasks.filter((task)=>!task.done).length; const done=tasks.length-open; document.getElementById("stats").innerHTML=`<div class="stat"><strong>${open}</strong> open items</div><div class="stat"><strong>${done}</strong> done items</div><div class="stat"><strong>${buckets.length}</strong> buckets</div>`; }
+    async function loadDashboard() { try { const [todoResponse,roadmapResponse]=await Promise.all([fetch("TODO.md",{cache:"no-store"}),fetch("ROADMAP.md",{cache:"no-store"})]); if(!todoResponse.ok||!roadmapResponse.ok) throw new Error("Source files could not be loaded."); const [todoMarkdown,roadmapMarkdown]=await Promise.all([todoResponse.text(),roadmapResponse.text()]); const buckets=parseTodo(todoMarkdown); renderTodo(buckets); renderRoadmap(parseRoadmap(roadmapMarkdown)); renderStats(buckets); document.getElementById("status").textContent=`Loaded live source files · ${new Date().toLocaleString()}`; } catch(error) { document.getElementById("status").textContent="Could not load the source files"; document.getElementById("todo").innerHTML='<p class="error">Open this page through the local server, rather than as a file. See DASHBOARD.md.</p>'; } }
+    loadDashboard();
+  </script>
+</body>
+</html>

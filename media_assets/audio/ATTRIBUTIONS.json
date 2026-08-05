@@ -24,6 +24,41 @@
       "source": "opengameart",
       "source_id": "magic-spell-sfx",
       "source_url": "https://opengameart.org/content/magic-spell-sfx"
+    },
+    "motocrotte_idle": {
+      "title": null,
+      "author": null,
+      "license": "unknown",
+      "source": "legacy_motocrotte",
+      "source_id": null,
+      "source_url": null
+    },
+    "motocrotte_running": {
+      "title": null,
+      "author": null,
+      "license": "unknown",
+      "source": "legacy_motocrotte",
+      "source_id": null,
+      "source_url": null
+    },
+    "motocrotte_break": {
+      "title": null,
+      "author": null,
+      "license": "unknown",
+      "source": "legacy_motocrotte",
+      "source_id": null,
+      "source_url": null
+    },
+    "luacrotte_main_music": {
+      "title": "8 Bit Retro Funk",
+      "author": "David Renda",
+      "license": "Fesliyan Studios non-commercial free use; commercial license required",
+      "source": "fesliyan_studios",
+      "source_id": "883",
+      "source_url": "https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-retro-funk/883",
+      "usage_notes": "Free for non-commercial use. Commercial use requires a Fesliyan Studios commercial-use license/donation.",
+      "attribution_text": "Credit: https://www.FesliyanStudios.com Background Music",
+      "license_policy_url": "https://www.fesliyanstudios.com/policy"
     }
   }
 }

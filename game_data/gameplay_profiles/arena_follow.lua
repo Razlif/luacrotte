@@ -1,15 +1,16 @@
 return {
   id = "arena_follow",
-  version = 2,
+  version = 3,
   status = "production",
   label = "Arena: Smooth Follow",
   camera = {
-    behavior = "static",
+    behavior = "smooth_follow",
     target = "hero",
     follow_x = true,
-    follow_y = true,
-    smoothing = 8,
+    follow_y = false,
+    smoothing = 10,
     zoom = 1,
+    center_y = 960,
     look_ahead_x = 0,
     look_ahead_y = 0
   },
@@ -25,6 +26,7 @@ return {
     steering_response = 8,
     steering_rate = math.rad(360),
     max_turn_rate = math.rad(180),
+    bounds = { left = 325, right = 6325, top = 698, bottom = 1147 },
   },
   braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
   dash = {
@@ -86,6 +88,17 @@ return {
   },
   visual = { orientation = "yaw_squash", yaw_enabled = true },
   directional_animation = { variant_policy = "random_per_spin" },
-  environment = { background_id = "motocrotte_background_01" },
+  environment = {
+    background_id = "motocrotte_background_01",
+    projection = "flat",
+    background_track = {
+      enabled = true,
+      origin_x = 325,
+      origin_y = 600,
+      tile_width = 1200,
+      count = 5
+    }
+  },
+  world = { left = 325, right = 6325, top = 0, bottom = 1283 },
   transitions = { preserve_velocity = true, preserve_yaw = true, clear_drift = true }
 }

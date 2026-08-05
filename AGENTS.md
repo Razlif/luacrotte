@@ -55,7 +55,9 @@ Use these existing systems before adding a new one:
 - `camera_manager` and `parallax`: camera following, bounds, shake, and layered backgrounds.
 - `timer_manager`: deterministic delays, repeats, and cooldowns.
 - `mask_creation` and `collision_detection`: cached mask/sensor overlap reports only.
-- `audio_manager`: named music and sound playback from the generated manifest.
+- `audio_manager`: named music, one-shot sound, and named looping sound playback
+  from the generated manifest. Use `motocrotte_audio` for driving-state audio;
+  do not put audio transitions in the movement solver.
 - `ui/`: theme, text, buttons, menus, dialogue cards, and pause UI.
 - `save_manager`: versioned local JSON saves, not yet connected to a save menu.
 - `qa_telemetry` and `qa_bridge`: event logs, snapshots, screenshots, and validated QA commands.
@@ -207,6 +209,15 @@ with `import_legacy_font.py` under `asset_lab/font_library/`. Love2D supports
 OTF and TTF through `love.graphics.newFont`, but agents must verify the actual
 filename before using it. The MotoCrotte source requests `Ghoust_Solid.otf`,
 while the available file is `Ghoust_Outline.otf`.
+
+The MotoCrotte idle, running, and brake clips are a user-authorized runtime
+test set. Their manifest and attribution records must retain `license: unknown`
+and their original MotoCrotte source paths; do not relabel them as CC0 or CC-BY.
+
+`8 Bit Retro Funk` by David Renda is the current non-commercial Playground
+music under Fesliyan Studios' policy. Retain its source URL, policy URL, and
+credit text. It is not CC0/CC-BY: a commercial release requires a Fesliyan
+commercial-use license.
 
 ## Cutscene Rules
 

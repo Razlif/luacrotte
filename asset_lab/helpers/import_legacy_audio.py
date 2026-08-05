@@ -49,7 +49,10 @@ def main(argv: list[str] | None = None) -> int:
         "candidate_id": f"legacy_{asset['asset_id']}", "asset_id": asset["asset_id"], "kind": kind,
         "source": "legacy_motocrotte", "source_project": "motorcrotte", "source_path": source_relative,
         "groups": asset.get("groups", []), "license": "unknown", "status": "imported",
-        "imported_path": destination.relative_to(root).as_posix(), "sha256": digest
+        "imported_path": destination.relative_to(root).as_posix(),
+        # Imported legacy files are safe to audition in Asset Lab, even though
+        # their provenance is explicitly unknown and therefore blocks promotion.
+        "local_preview": destination.relative_to(root).as_posix(), "sha256": digest
     })
     catalog["version"] = 1
     catalog["candidates"] = sorted(candidates, key=lambda item: item["candidate_id"])

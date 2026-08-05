@@ -7995,8 +7995,65 @@ window.ASSET_LAB_MANIFEST = {
       "animations": [],
       "created_at": "2026-08-01T12:36:33",
       "updated_at": "2026-08-01T12:36:33"
+    },
+    {
+      "id": "mud_hose_blobs",
+      "type": "effect",
+      "folder": "lab_assets/effects/mud_hose_blobs",
+      "groups": [
+        "effects/mud_hose"
+      ],
+      "images": [
+        {
+          "id": "mud_hose_blobs__self__image__v001",
+          "provider": "self",
+          "version": 1,
+          "mode": "brand_new",
+          "path": "lab_assets/effects/mud_hose_blobs/original_images/mud_hose_blobs__self__image__v001.png",
+          "prompt": "Pixel-art sprite sheet for a pressurized mud hose, six equal 48 by 48 pixel cells in one horizontal row, a single mud blob centered in each cell. The six blobs are distinct close variants: compact round blob, heavy oval blob, forward-stretched blob, sideways-stretched blob, small droplet cluster, irregular heavy lumpy blob. Rich brown mud with small warm highlights, crisp readable retro-game pixels, clean one-pixel spacing between cells. Perfectly flat solid #00ff00 chroma-key background across the entire sheet.",
+          "variation_group_id": "mud_hose_blobs_self_create_new_20260806_001214_618513",
+          "prompt_metadata": {
+            "prompt": "Pixel-art sprite sheet for a pressurized mud hose, six equal 48 by 48 pixel cells in one horizontal row, a single mud blob centered in each cell. The six blobs are distinct close variants: compact round blob, heavy oval blob, forward-stretched blob, sideways-stretched blob, small droplet cluster, irregular heavy lumpy blob. Rich brown mud with small warm highlights, crisp readable retro-game pixels, clean one-pixel spacing between cells. Perfectly flat solid #00ff00 chroma-key background across the entire sheet.",
+            "asset_id": "mud_hose_blobs",
+            "asset_type": "effect",
+            "provider": "self",
+            "action": "create-new",
+            "variation_group_id": "mud_hose_blobs_self_create_new_20260806_001214_618513"
+          },
+          "status": "pending_self_creation"
+        }
+      ],
+      "animations": [
+        {
+          "id": "mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__v001",
+          "provider": "asset_lab_split",
+          "name": "blob_variants",
+          "version": 1,
+          "source_image_version": 1,
+          "source_image_path": "lab_assets/effects/mud_hose_blobs/original_images/mud_hose_blobs__self__image__v001.png",
+          "sheet_path": "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__v001.png",
+          "gif_path": "lab_assets/effects/mud_hose_blobs/animation_gifs/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__v001.gif",
+          "frame_files": [
+            "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__frame_001.png",
+            "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__frame_002.png",
+            "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__frame_003.png",
+            "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__frame_004.png",
+            "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__frame_005.png",
+            "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__frame_006.png"
+          ],
+          "frame_count": 6,
+          "frame_width": 128,
+          "frame_height": 128,
+          "sheet_width": 768,
+          "sheet_height": 128,
+          "fps": 8,
+          "status": "created_on_disk"
+        }
+      ],
+      "created_at": "2026-08-06T00:12:14",
+      "updated_at": "2026-08-06T00:19:59"
     }
   ],
-  "updated_at": "2026-08-01T12:36:33",
+  "updated_at": "2026-08-06T00:19:59",
   "orphans": []
 };

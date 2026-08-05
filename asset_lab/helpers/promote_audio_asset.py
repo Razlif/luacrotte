@@ -30,13 +30,25 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--candidate-id", required=True)
     parser.add_argument("--volume", type=float, default=1)
     parser.add_argument("--loop", action="store_true")
+    parser.add_argument("--allow-unknown-legacy", action="store_true", help="Allow a user-authorized legacy asset to be promoted while retaining license: unknown.")
+    parser.add_argument("--allow-fesliyan-noncommercial", action="store_true", help="Allow a Fesliyan Studios track for the current non-commercial project while retaining its policy terms.")
     parser.add_argument("--execute", action="store_true")
     args = parser.parse_args(argv)
     asset_id = stable_id(args.asset_id)
     candidate = candidate_by_id(load_catalog(), args.candidate_id)
     if candidate.get("kind") != args.kind:
         raise SystemExit(f"Candidate kind is {candidate.get('kind')}, not {args.kind}.")
-    if not license_allowed(candidate.get("license")):
+    user_authorized_legacy = (
+        args.allow_unknown_legacy
+        and candidate.get("source") == "legacy_motocrotte"
+        and candidate.get("license") == "unknown"
+    )
+    fesliyan_noncommercial = (
+        args.allow_fesliyan_noncommercial
+        and candidate.get("source") == "fesliyan_studios"
+        and candidate.get("license") == "Fesliyan Studios non-commercial free use; commercial license required"
+    )
+    if not license_allowed(candidate.get("license")) and not user_authorized_legacy and not fesliyan_noncommercial:
         raise SystemExit(f"Candidate license is not allowed: {candidate.get('license')}")
     source = local_path(candidate, "imported_path")
     if not source.is_file():
@@ -59,6 +71,12 @@ def main(argv: list[str] | None = None) -> int:
         "volume": max(0, min(1, args.volume)), "loop": bool(args.loop), "sha256": sha256(source),
         "updated_at": stamp(),
     }
+    if user_authorized_legacy:
+        record["authorization"] = "User confirmed free use; original third-party provenance remains unknown."
+    if fesliyan_noncommercial:
+        record["usage_notes"] = candidate.get("usage_notes")
+        record["attribution_text"] = candidate.get("attribution_text")
+        record["license_policy_url"] = candidate.get("license_policy_url")
     print(f"Promote: {source} -> {destination}")
     if not args.execute:
         print("Dry run only. No runtime files or manifests changed.")
@@ -76,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
     write_json(state_path, state)
     write_runtime_manifest(PROJECT_ROOT / "game_data" / "asset_manifest.lua", state)
     credits = read_json(ATTRIBUTIONS_PATH, {"version": 1, "audio": {}})
-    credits.setdefault("audio", {})[asset_id] = {key: record.get(key) for key in ("title", "author", "license", "source", "source_id", "source_url")}
+    credits.setdefault("audio", {})[asset_id] = {key: record.get(key) for key in ("title", "author", "license", "source", "source_id", "source_url", "usage_notes", "attribution_text", "license_policy_url")}
     write_json(ATTRIBUTIONS_PATH, credits)
     print("Audio promotion complete.")
     return 0

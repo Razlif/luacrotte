@@ -32,7 +32,7 @@ end
 function Start.enter()
   AssetLoader.load_manifest(asset_manifest)
   AudioManager.load_manifest(asset_manifest)
-  AudioManager.play_music("game_ambient", { loop = true, volume = 0.65 })
+  AudioManager.play_music("luacrotte_main_music", { loop = true })
   Start.camera = CameraManager.new({
     width = 960,
     height = 540,

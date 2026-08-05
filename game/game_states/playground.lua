@@ -13,6 +13,8 @@ local GameplayProfile = require("game.systems.gameplay_profile")
 local PlaygroundExperiment = require("game.systems.playground_experiment")
 local CameraManager = require("game.systems.camera_manager")
 local ParallaxManager = require("game.systems.parallax")
+local MotocrotteAudio = require("game.systems.motocrotte_audio")
+local AudioManager = require("game.systems.audio_manager")
 
 local function states_manager()
   return require("game.states_manager")
@@ -263,6 +265,7 @@ end
 
 function Playground.enter(profile_id)
   AssetLoader.load_manifest(asset_manifest)
+  AudioManager.load_manifest(asset_manifest)
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.hero = Character.new(Playground.hero_definition, AssetLoader.get_character(hero_definition.asset_id))
@@ -309,6 +312,11 @@ function Playground.enter(profile_id)
     Playground.profile.environment.background_id or Playground.experiment.background_id
   )
   Playground.apply_experiment(true)
+  AudioManager.play_music(level_definition.music_id, { loop = true })
+end
+
+function Playground.exit()
+  MotocrotteAudio.reset()
 end
 
 function Playground.update(dt)
@@ -320,6 +328,7 @@ function Playground.update(dt)
     else
       Playground.hero.animation:stop()
     end
+    MotocrotteAudio.reset()
   end
   if Playground.visual_lab_active then
     if intent.cycle_drift_mode_pressed then
@@ -379,6 +388,7 @@ function Playground.update(dt)
     intent = GameplayProfile.prepare_intent(intent, Playground.profile)
     HeroMovement.update(Playground.hero, intent, Playground.hero_definition, Playground.active_level_definition, dt)
     HeroOrientation.update(Playground.hero, Playground.hero_definition, dt)
+    MotocrotteAudio.update(intent, Playground.hero.motocrotte_motion)
   end
   if Playground.profile.camera.behavior == "static" then
     Playground.camera:follow(nil)

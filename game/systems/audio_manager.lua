@@ -3,6 +3,7 @@ local AudioManager = {
   manifest = { music = {}, sounds = {} },
   music_sources = {},
   sound_sources = {},
+  looping_sfx_sources = {},
   current_music = nil,
   current_music_id = nil,
   current_music_base_volume = 1,
@@ -22,6 +23,7 @@ function AudioManager.load_manifest(manifest)
   AudioManager.manifest = manifest and manifest.audio or { music = {}, sounds = {} }
   AudioManager.music_sources = {}
   AudioManager.sound_sources = {}
+  AudioManager.looping_sfx_sources = {}
 end
 
 function AudioManager.play_music(id, options)
@@ -72,6 +74,28 @@ function AudioManager.play_sfx(id, options)
   return instance
 end
 
+function AudioManager.play_looping_sfx(id, options)
+  options = options or {}
+  local item = definition("sounds", id)
+  local source = AudioManager.looping_sfx_sources[id]
+  if not source then
+    source = love.audio.newSource(item.path, "static")
+    AudioManager.looping_sfx_sources[id] = source
+  end
+  source:setLooping(options.loop ~= false)
+  source:setVolume((options.volume or item.volume or 1) * AudioManager.sfx_volume)
+  source:setPitch(options.pitch or 1)
+  if not source:isPlaying() then
+    source:play()
+  end
+  return source
+end
+
+function AudioManager.stop_looping_sfx(id)
+  local source = AudioManager.looping_sfx_sources[id]
+  if source then source:stop() end
+end
+
 function AudioManager.set_music_volume(value)
   AudioManager.music_volume = math.max(0, math.min(1, value))
   if AudioManager.current_music then
@@ -109,12 +133,20 @@ function AudioManager.stop_all()
   AudioManager.current_music_id = nil
   AudioManager.current_music_base_volume = 1
   AudioManager.fading_music = nil
+  for _, source in pairs(AudioManager.looping_sfx_sources) do source:stop() end
 end
 
 function AudioManager.debug_snapshot()
   return {
     music = AudioManager.current_music_id,
-    music_playing = AudioManager.current_music and AudioManager.current_music:isPlaying() or false
+    music_playing = AudioManager.current_music and AudioManager.current_music:isPlaying() or false,
+    looping_sfx = (function()
+      local result = {}
+      for id, source in pairs(AudioManager.looping_sfx_sources) do
+        if source:isPlaying() then table.insert(result, id) end
+      end
+      return result
+    end)()
   }
 end
 

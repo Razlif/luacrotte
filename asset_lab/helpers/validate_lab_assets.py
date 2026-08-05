@@ -39,6 +39,8 @@ def collect_manifest_paths(data: dict[str, Any]) -> set[str]:
                 paths.add(animation["sheet_path"])
             if animation.get("gif_path"):
                 paths.add(animation["gif_path"])
+            for frame_path in animation.get("frame_files", []):
+                paths.add(frame_path)
     for orphan in data.get("orphans", []):
         if orphan.get("path"):
             paths.add(orphan["path"])
@@ -118,6 +120,9 @@ def validate_manifest(data: dict[str, Any]) -> list[str]:
                     issues.append(f"{asset_id}: animation '{name}' missing {key}.")
                 elif not lab_path(path).exists():
                     issues.append(missing_path_issue(asset_id, f"animation '{name}' {key}", path, animation.get("status")))
+            for frame_path in animation.get("frame_files", []):
+                if not lab_path(frame_path).exists():
+                    issues.append(missing_path_issue(asset_id, f"animation '{name}' frame file", frame_path, animation.get("status")))
 
         provider_state = asset.get("provider_state", {})
         autosprite_state = provider_state.get("autosprite")

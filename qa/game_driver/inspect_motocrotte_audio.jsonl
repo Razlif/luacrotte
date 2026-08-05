@@ -1,0 +1,16 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_idle","command":"snapshot","name":"audio_idle"}
+{"id":"press_gas","command":"press","key":"up"}
+{"id":"wait_for_running_loop","command":"wait","seconds":0.2}
+{"id":"snapshot_running","command":"snapshot","name":"audio_running"}
+{"id":"press_brake","command":"press","key":"down"}
+{"id":"snapshot_brake","command":"snapshot","name":"audio_brake"}
+{"id":"release_gas","command":"release","key":"up"}
+{"id":"release_brake","command":"release","key":"down"}
+{"id":"press_gas_for_drift","command":"press","key":"up"}
+{"id":"wait_for_drift_speed","command":"wait","seconds":0.2}
+{"id":"press_drift","command":"press","key":"lshift"}
+{"id":"snapshot_drift","command":"snapshot","name":"audio_drift"}
+{"id":"release_drift","command":"release","key":"lshift"}
+{"id":"release_gas_after_drift","command":"release","key":"up"}
