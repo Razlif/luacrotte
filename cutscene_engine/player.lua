@@ -40,12 +40,17 @@ function Player.new(scene, options)
 
   for id, data in pairs(scene.actors or {}) do
     data.id = id
-    local gameplay_definition = require("game_data.characters." .. data.asset_id)
-    data.movement = data.movement or gameplay_definition.movement
-    data.hop_animation = data.hop_animation or gameplay_definition.hop_animation
-    data.default_animation = data.default_animation or gameplay_definition.default_animation
-    data.default_animation_loop = data.default_animation_loop or gameplay_definition.default_animation_loop
-    local asset = AssetLoader.get_character(data.asset_id)
+    local asset_type = data.asset_type or "character"
+    if asset_type == "character" then
+      local gameplay_definition = require("game_data.characters." .. data.asset_id)
+      data.movement = data.movement or gameplay_definition.movement
+      data.hop_animation = data.hop_animation or gameplay_definition.hop_animation
+      data.default_animation = data.default_animation or gameplay_definition.default_animation
+      data.default_animation_loop = data.default_animation_loop or gameplay_definition.default_animation_loop
+    else
+      assert(asset_type == "prop", "Unsupported cutscene actor asset type: " .. tostring(asset_type))
+    end
+    local asset = asset_type == "prop" and AssetLoader.get_prop(data.asset_id) or AssetLoader.get_character(data.asset_id)
     player.actors[id] = AssetActor.new(data, asset)
   end
   player.actor_order = sorted_keys(player.actors)
@@ -131,7 +136,10 @@ function Player:update(dt)
     local command = self.scene.timeline[self.timeline_index - 1]
     if Commands.update(self, command, self.active_command, dt) then
       if command.command == "say" then self.dialogue = nil end
-      if command.command == "move" then self.actors[command.actor]:idle() end
+      if command.command == "move" or command.command == "ride_trick" then
+        self.actors[command.actor]:clear_presentation()
+        self.actors[command.actor]:idle()
+      end
       Telemetry.emit("command_completed", { scene = self.scene.id, index = self.timeline_index - 1, command = command.command })
       self.active_command = nil
     end

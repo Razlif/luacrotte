@@ -5,7 +5,8 @@ local CutsceneEngine = { active = nil }
 
 local scenes = {
   duck_slime_intro = require("cutscene_engine.scenes.duck_slime_intro"),
-  duck_slime_date = require("cutscene_engine.scenes.duck_slime_date")
+  duck_slime_date = require("cutscene_engine.scenes.duck_slime_date"),
+  luacrotte_yasuke_intro_draft = require("cutscene_engine.scenes.luacrotte_yasuke_intro_draft")
 }
 
 function CutsceneEngine.start(scene_id, options)

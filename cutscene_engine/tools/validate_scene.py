@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SCENES = ROOT / "cutscene_engine" / "scenes"
 MANIFEST = ROOT / "game_data" / "asset_manifest.lua"
 COMMANDS = {
-    "wait", "move", "face", "play_animation", "say", "camera_move",
+    "wait", "move", "ride_trick", "face", "play_animation", "say", "camera_move",
     "camera_follow", "camera_shake", "camera_zoom", "play_effect", "play_sound",
     "play_music", "stop_music", "fade",
 }

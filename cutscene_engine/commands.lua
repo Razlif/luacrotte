@@ -7,6 +7,7 @@ local Commands = {}
 Commands.names = {
   wait = true,
   move = true,
+  ride_trick = true,
   face = true,
   play_animation = true,
   say = true,
@@ -37,6 +38,10 @@ function Commands.validate(command, index)
   elseif name == "move" then
     assert(command.actor, "move requires actor at index " .. tostring(index))
     assert(command.x ~= nil or command.ground_y ~= nil, "move requires x or ground_y at index " .. tostring(index))
+  elseif name == "ride_trick" then
+    assert(command.actor, "ride_trick requires actor at index " .. tostring(index))
+    assert(command.duration and command.duration > 0, "ride_trick requires positive duration at index " .. tostring(index))
+    assert(command.center_x ~= nil and command.center_ground_y ~= nil, "ride_trick requires center_x and center_ground_y at index " .. tostring(index))
   elseif name == "camera_move" then
     assert(command.x ~= nil and (command.ground_y ~= nil or command.y ~= nil), "camera_move requires center x and ground_y at index " .. tostring(index))
   elseif name == "camera_zoom" then
@@ -126,6 +131,23 @@ function Commands.begin(player, command)
       elapsed = 0,
       speed_x = command.speed or command.speed_x or movement_speed(actor, "x"),
       speed_y = command.speed or command.speed_y or movement_speed(actor, "y")
+    }
+  elseif name == "ride_trick" then
+    local actor = actor_for(player, command)
+    if command.animation then actor:play(command.animation, command.loop ~= false) end
+    return {
+      actor = actor,
+      center_x = command.center_x,
+      center_y = command.center_ground_y,
+      radius_x = command.radius_x or 0,
+      radius_y = command.radius_y or 0,
+      turns = command.turns or 1,
+      direction = command.direction == "counterclockwise" and -1 or 1,
+      start_angle = command.start_angle or 0,
+      hop_height = command.hop_height or 0,
+      lean = math.rad(command.lean_degrees or 0),
+      duration = command.duration,
+      elapsed = 0
     }
   elseif name == "face" then
     actor_for(player, command):face(command.direction)
@@ -225,6 +247,14 @@ function Commands.update(player, command, active, dt)
     end
     active.actor.position.x = active.start_x + (active.target_x - active.start_x) * eased
     active.actor.position.ground_y = active.start_y + (active.target_y - active.start_y) * eased
+  elseif command.command == "ride_trick" then
+    -- Presentation-only choreography: it is deterministic and does not invoke
+    -- gameplay movement, physics, AI, or collision systems.
+    local angle = active.start_angle + active.direction * progress * active.turns * math.pi * 2
+    active.actor.position.x = active.center_x + math.cos(angle) * active.radius_x
+    active.actor.position.ground_y = active.center_y + math.sin(angle) * active.radius_y
+    active.actor.position.z = math.abs(math.sin(angle * 2)) * active.hop_height
+    active.actor:set_presentation({ rotation = math.sin(angle * 2) * active.lean })
   elseif command.command == "camera_move" then
     player.camera:set_center(
       active.start_x + (active.target_x - active.start_x) * eased,

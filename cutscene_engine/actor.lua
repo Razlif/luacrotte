@@ -24,8 +24,24 @@ function Actor.new(data, loaded_asset)
     default_animation_loop = data.default_animation_loop == true,
     draw_layer = data.draw_layer or 20,
     draw_order_id = data.id,
+    presentation = {
+      rotation = 0,
+      scale_x = 1,
+      scale_y = 1
+    },
     animation = AnimationManager.new(loaded_asset.animations)
   }, Actor)
+end
+
+function Actor:set_presentation(values)
+  values = values or {}
+  self.presentation.rotation = values.rotation or 0
+  self.presentation.scale_x = values.scale_x or 1
+  self.presentation.scale_y = values.scale_y or 1
+end
+
+function Actor:clear_presentation()
+  self:set_presentation()
 end
 
 function Actor:face(direction)
@@ -81,11 +97,12 @@ function Actor:draw()
   love.graphics.setColor(1, 1, 1, 1)
   local x = self.position.x
   local y = PositionManager.get_screen_y(self.position)
-  local scale_x = self.scale * self.facing * self.source_facing
+  local scale_x = self.scale * self.facing * self.source_facing * self.presentation.scale_x
+  local scale_y = self.scale * self.presentation.scale_y
   if self.animation:is_playing() then
-    self.animation:draw(x, y, scale_x, self.scale, self.anchor_x, self.anchor_y)
+    self.animation:draw(x, y, scale_x, scale_y, self.anchor_x, self.anchor_y, self.presentation.rotation)
   else
-    love.graphics.draw(self.asset.image.texture, x, y, 0, scale_x, self.scale, self.anchor_x, self.anchor_y)
+    love.graphics.draw(self.asset.image.texture, x, y, self.presentation.rotation, scale_x, scale_y, self.anchor_x, self.anchor_y)
   end
 end
 

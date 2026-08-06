@@ -227,9 +227,77 @@
       },
       "created_at": "2026-08-01T12:41:44",
       "updated_at": "2026-08-01T12:43:46"
+    },
+    "mud_hose_blobs": {
+      "id": "mud_hose_blobs",
+      "type": "effect",
+      "groups": [
+        "effects/mud_hose"
+      ],
+      "animations": {
+        "blob_variants": {
+          "name": "blob_variants",
+          "sheet_path": "media_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__v001.png",
+          "source_sheet_path": "lab_assets/effects/mud_hose_blobs/sprite_sheets/mud_hose_blobs__asset_lab_split__blob_variants_from_image_v001__v001.png",
+          "version": 1,
+          "frame_width": 128,
+          "frame_height": 128,
+          "frame_count": 6,
+          "fps": 8,
+          "loop": false,
+          "provider": "asset_lab_split",
+          "prompt": null,
+          "source_image_version": 1
+        }
+      },
+      "image": {
+        "path": "media_assets/effects/mud_hose_blobs/original_images/mud_hose_blobs__self__image__v001.png",
+        "source_path": "lab_assets/effects/mud_hose_blobs/original_images/mud_hose_blobs__self__image__v001.png",
+        "version": 1,
+        "width": 2172,
+        "height": 724,
+        "provider": "self",
+        "prompt": "Pixel-art sprite sheet for a pressurized mud hose, six equal 48 by 48 pixel cells in one horizontal row, a single mud blob centered in each cell. The six blobs are distinct close variants: compact round blob, heavy oval blob, forward-stretched blob, sideways-stretched blob, small droplet cluster, irregular heavy lumpy blob. Rich brown mud with small warm highlights, crisp readable retro-game pixels, clean one-pixel spacing between cells. Perfectly flat solid #00ff00 chroma-key background across the entire sheet."
+      },
+      "created_at": "2026-08-06T00:29:59",
+      "updated_at": "2026-08-06T00:29:59"
+    },
+    "motocrotte_bike_variant_01": {
+      "id": "motocrotte_bike_variant_01",
+      "type": "prop",
+      "groups": [
+        "vehicles/bikes"
+      ],
+      "animations": {
+        "traffic_cycle": {
+          "name": "traffic_cycle",
+          "sheet_path": "media_assets/props/motocrotte_bike_variant_01/sprite_sheets/motocrotte_bike_variant_01__legacy_motocrotte__traffic_cycle__v001.png",
+          "source_sheet_path": "lab_assets/props/motocrotte_bike_variant_01/sprite_sheets/motocrotte_bike_variant_01__legacy_motocrotte__traffic_cycle__v001.png",
+          "version": 1,
+          "frame_width": 60,
+          "frame_height": 60,
+          "frame_count": 4,
+          "fps": 12.5,
+          "loop": false,
+          "provider": "legacy_motocrotte",
+          "prompt": null,
+          "source_image_version": 1
+        }
+      },
+      "image": {
+        "path": "media_assets/props/motocrotte_bike_variant_01/original_images/motocrotte_bike_variant_01__legacy_motocrotte__frame_001__1_1.png",
+        "source_path": "lab_assets/props/motocrotte_bike_variant_01/original_images/motocrotte_bike_variant_01__legacy_motocrotte__frame_001__1_1.png",
+        "version": 1,
+        "width": 60,
+        "height": 60,
+        "provider": "legacy_motocrotte",
+        "prompt": null
+      },
+      "created_at": "2026-08-06T12:23:23",
+      "updated_at": "2026-08-06T12:23:23"
     }
   },
-  "updated_at": "2026-08-05T23:54:30",
+  "updated_at": "2026-08-06T12:23:23",
   "audio": {
     "sounds": {
       "magic_bomb_spell": {
