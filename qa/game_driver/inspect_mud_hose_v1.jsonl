@@ -1,0 +1,8 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"fire_mud_hose","command":"hold","key":"a","duration":0.6}
+{"id":"snapshot_flight","command":"snapshot","name":"mud_hose_flight"}
+{"id":"wait_for_impacts","command":"wait","seconds":1.0}
+{"id":"snapshot_residue","command":"snapshot","name":"mud_hose_residue"}
+{"id":"wait_for_fade","command":"wait","seconds":2.2}
+{"id":"snapshot_expired","command":"snapshot","name":"mud_hose_expired"}

@@ -3,6 +3,7 @@ local MaskCreation = require("game.systems.mask_creation")
 local AssetLoader = {
   characters = {},
   effects = {},
+  props = {},
   loaded = false
 }
 
@@ -28,6 +29,7 @@ function AssetLoader.load_manifest(manifest)
   assert(manifest, "Asset manifest is required")
   AssetLoader.characters = {}
   AssetLoader.effects = {}
+  AssetLoader.props = {}
 
   local function load_group(definitions, destination)
     for asset_id, definition in pairs(definitions or {}) do
@@ -54,6 +56,7 @@ function AssetLoader.load_manifest(manifest)
 
   load_group(manifest.characters, AssetLoader.characters)
   load_group(manifest.effects, AssetLoader.effects)
+  load_group(manifest.props, AssetLoader.props)
 
   AssetLoader.loaded = true
 end
@@ -69,6 +72,13 @@ function AssetLoader.get_effect(asset_id)
   assert(AssetLoader.loaded, "AssetLoader.load_manifest must run first")
   local asset = AssetLoader.effects[asset_id]
   assert(asset, "Unknown effect asset: " .. tostring(asset_id))
+  return asset
+end
+
+function AssetLoader.get_prop(asset_id)
+  assert(AssetLoader.loaded, "AssetLoader.load_manifest must run first")
+  local asset = AssetLoader.props[asset_id]
+  assert(asset, "Unknown prop asset: " .. tostring(asset_id))
   return asset
 end
 

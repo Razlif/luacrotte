@@ -231,6 +231,12 @@ love . --cutscene duck_slime_date
 Keep dialogue, movement, camera, effects, music, and sound cues in the scene
 timeline. Use literal command names and valid asset IDs.
 
+`ride_trick` is the reusable vehicle-choreography command: it moves one
+cutscene actor through a timed presentation-only orbit with an optional hop,
+lean, and animation. It must not call a gameplay controller. Cutscene actors
+may use `asset_type = "prop"` for promoted prop art such as scripted vehicles;
+use that instead of creating a fake gameplay character definition.
+
 ## Debugging
 
 Useful launch flags are `--debug`, `--debug-masks`, `--debug-sensors`,

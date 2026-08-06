@@ -15,6 +15,8 @@ local CameraManager = require("game.systems.camera_manager")
 local ParallaxManager = require("game.systems.parallax")
 local MotocrotteAudio = require("game.systems.motocrotte_audio")
 local AudioManager = require("game.systems.audio_manager")
+local MudHose = require("game.systems.mud_hose")
+local mud_hose_definition = require("game_data.effects.mud_hose")
 
 local function states_manager()
   return require("game.states_manager")
@@ -269,6 +271,7 @@ function Playground.enter(profile_id)
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.hero = Character.new(Playground.hero_definition, AssetLoader.get_character(hero_definition.asset_id))
+  Playground.mud_hose = MudHose.new(mud_hose_definition, AssetLoader.get_effect(mud_hose_definition.asset_id))
   local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
   Playground.hero.position.x = spawn.x
   Playground.hero.position.ground_y = spawn.ground_y
@@ -317,6 +320,7 @@ end
 
 function Playground.exit()
   MotocrotteAudio.reset()
+  if Playground.mud_hose then Playground.mud_hose:reset() end
 end
 
 function Playground.update(dt)
@@ -389,6 +393,7 @@ function Playground.update(dt)
     HeroMovement.update(Playground.hero, intent, Playground.hero_definition, Playground.active_level_definition, dt)
     HeroOrientation.update(Playground.hero, Playground.hero_definition, dt)
     MotocrotteAudio.update(intent, Playground.hero.motocrotte_motion)
+    Playground.mud_hose:update(Playground.hero, intent.fire_mud_hose, dt)
   end
   if Playground.profile.camera.behavior == "static" then
     Playground.camera:follow(nil)
@@ -442,7 +447,8 @@ function Playground.get_debug_context()
       mode_index = Playground.drift_mode_index,
       modes = hero_definition.drift and hero_definition.drift.modes or {},
       motion = Playground.hero and Playground.hero.motocrotte_motion or nil
-    }
+    },
+    mud_hose = Playground.mud_hose and Playground.mud_hose:debug_snapshot() or nil
   }
 end
 
@@ -450,12 +456,14 @@ function Playground.draw()
   love.graphics.clear(0.08, 0.1, 0.14, 1)
   Playground.camera:attach()
   Playground.parallax:draw()
+  Playground.mud_hose:draw_residues()
   HeroRenderer.draw(Playground.hero, Playground.hero_definition, {
     active = Playground.visual_lab_active,
     mode = Playground.hero.motocrotte_visual_mode,
     yaw = Playground.visual_yaw,
     orbit_radius = Playground.visual_orbit_radius
   })
+  Playground.mud_hose:draw_projectiles()
   Playground.camera:detach()
   love.graphics.setColor(1, 1, 1, 1)
   local mode = Playground.hero.motocrotte_visual_mode or "unknown"
@@ -475,7 +483,7 @@ function Playground.draw()
           or "Arrows: move"
     local drift_hint = Playground.experiment.control_schema == "gas_steering_fd" and "S: drift" or "Shift: drift"
     local dash_hint = Playground.profile_id == "arena_follow" and "D: dash" or ""
-    love.graphics.print(control_hint .. "   " .. drift_hint .. "   " .. dash_hint .. "   Space: jump   V: visual lab", 24, 48)
+    love.graphics.print(control_hint .. "   " .. drift_hint .. "   " .. dash_hint .. "   A: mud hose   Space: jump   V: visual lab", 24, 48)
     love.graphics.print("R: sprites   Y: yaw   Tab: controls   M: movement   C: camera   B: background   1-9: slots", 24, 72)
     love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.experiment.control_schema, Playground.experiment.movement_mode, Playground.experiment.camera_mode), 24, 96)
     love.graphics.print(string.format("Sprites: %s   Yaw: %s   Background: %s   Slot: %d", Playground.experiment.sprite_policy, Playground.experiment.yaw_mode, Playground.experiment.background_id, Playground.experiment.profile_slot), 24, 120)

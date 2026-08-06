@@ -1,0 +1,6 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"record_start","command":"record_start","name":"mud_hose_v1","fps":10}
+{"id":"fire_stream","command":"hold","key":"a","duration":1.0}
+{"id":"show_trace_fade","command":"wait","seconds":2.2}
+{"id":"record_stop","command":"record_stop"}

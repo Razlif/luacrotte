@@ -1,0 +1,3 @@
+{"id":"record_start","command":"record_start","name":"luacrotte_yasuke_intro_draft","fps":8}
+{"id":"run_cutscene","command":"run_cutscene","scene":"luacrotte_yasuke_intro_draft"}
+{"id":"record_stop","command":"record_stop"}
