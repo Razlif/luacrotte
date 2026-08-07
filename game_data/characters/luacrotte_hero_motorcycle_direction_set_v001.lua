@@ -26,7 +26,7 @@ end
 return {
   asset_id = "luacrotte_hero_motorcycle_direction_set_v001",
   position = { x = 0, ground_y = 0, z = 0 },
-  scale = 1,
+  scale = 1.15,
   anchor = { x = 32, y = 56 },
   facing = {
     enabled = false,
@@ -120,5 +120,5 @@ return {
     variant_policy = "random_per_drift",
     variant_sets = diagonal_variants
   },
-  collision = { enabled = false, auto_sensor = true, sensors = {} }
+  collision = { enabled = true, auto_sensor = true, sensors = {} }
 }

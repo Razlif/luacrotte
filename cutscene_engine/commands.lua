@@ -254,7 +254,18 @@ function Commands.update(player, command, active, dt)
     active.actor.position.x = active.center_x + math.cos(angle) * active.radius_x
     active.actor.position.ground_y = active.center_y + math.sin(angle) * active.radius_y
     active.actor.position.z = math.abs(math.sin(angle * 2)) * active.hop_height
-    active.actor:set_presentation({ rotation = math.sin(angle * 2) * active.lean })
+    local yaw_enabled = active.actor.trick_presentation.yaw_enabled == true
+    if yaw_enabled then
+      -- Side-view prop bikes have only right-facing art. A full turn is shown
+      -- as a faux vertical-axis yaw: side-on at 0/180°, edge-on at 90/270°.
+      -- Flip only after passing edge-on; never pretend the asset has a front
+      -- or rear directional frame.
+      local yaw_scale = math.abs(math.cos(angle))
+      active.actor:face(math.cos(angle) >= 0 and "right" or "left")
+      active.actor:set_presentation({ scale_x = yaw_scale, rotation = 0 })
+    else
+      active.actor:set_presentation({ rotation = math.sin(angle * 2) * active.lean })
+    end
   elseif command.command == "camera_move" then
     player.camera:set_center(
       active.start_x + (active.target_x - active.start_x) * eased,

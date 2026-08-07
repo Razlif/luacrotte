@@ -1,5 +1,6 @@
 -- Loads, validates, resolves, and applies gameplay profile data.
 local registry = require("game_data.gameplay_profiles.index")
+local background_registry = require("game_data.backgrounds")
 
 local Profile = {}
 
@@ -102,6 +103,11 @@ function Profile.bounds(level_definition, profile)
   elseif movement.constraint == "lane" and movement.lane_depth then
     bounds.top = movement.lane_depth.min
     bounds.bottom = movement.lane_depth.max
+  end
+  local background_id = profile.environment and profile.environment.background_id
+  local background = background_id and background_registry[background_id]
+  for key, value in pairs(background and background.hero_bounds or {}) do
+    bounds[key] = value
   end
   return bounds
 end

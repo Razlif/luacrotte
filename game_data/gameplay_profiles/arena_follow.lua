@@ -26,7 +26,7 @@ return {
     steering_response = 8,
     steering_rate = math.rad(360),
     max_turn_rate = math.rad(180),
-    bounds = { left = 325, right = 6325, top = 698, bottom = 1147 },
+    bounds = { left = 0, right = 6325, top = 284, bottom = 1147 },
   },
   braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
   dash = {
@@ -99,6 +99,6 @@ return {
       count = 5
     }
   },
-  world = { left = 325, right = 6325, top = 0, bottom = 1283 },
+  world = { left = 0, right = 6325, top = 0, bottom = 1283 },
   transitions = { preserve_velocity = true, preserve_yaw = true, clear_drift = true }
 }

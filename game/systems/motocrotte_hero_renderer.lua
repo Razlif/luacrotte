@@ -12,6 +12,11 @@ local function mode_index(mode, modes)
 end
 
 local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source, flip_x, scale_y)
+  if hero.collision_active then
+    love.graphics.setColor(1, 0.2, 0.2, 1)
+  else
+    love.graphics.setColor(1, 1, 1, 1)
+  end
   local x = (position and position.x) or hero.position.x
   local y = (position and position.y) or PositionManager.get_screen_y(hero.position)
   local anchor_x = (anchor and anchor.x) or hero.anchor_x
@@ -27,6 +32,7 @@ local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, ani
   elseif hero.asset.image then
     love.graphics.draw(hero.asset.image.texture, x, y, rotation, scale_x, scale_y, anchor_x, anchor_y)
   end
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 local function orbit_angles(visual, yaw)

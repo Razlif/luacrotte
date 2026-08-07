@@ -1,0 +1,7 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"build_forward_velocity","command":"hold","key":"up","duration":0.8}
+{"id":"fire_while_moving","command":"hold","key":"a","duration":0.6}
+{"id":"snapshot_forward_inheritance","command":"snapshot","name":"mud_hose_forward_inheritance"}
+{"id":"wait_for_impacts","command":"wait","seconds":1.0}
+{"id":"snapshot_forward_residue","command":"snapshot","name":"mud_hose_forward_residue"}

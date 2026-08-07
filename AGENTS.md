@@ -65,6 +65,12 @@ Use these existing systems before adding a new one:
 The current duck, slime, bomb, background, and cutscene are integration
 examples. They are disposable demo content, not required game content.
 
+The Playground includes one patrol-only bike enemy using the promoted
+`motocrotte_bike_variant_01` prop. It uses the `patrol` controller and the
+shared mask/sensor collision reporter. Collision reporting is telemetry only
+at this stage; do not add damage, pushback, chase, or defeat behavior until
+patrol and overlap QA are accepted.
+
 ## MotoCrotte Drift Lab
 
 The Playground includes a data-driven visual experiment for the MotoCrotte
@@ -236,6 +242,9 @@ cutscene actor through a timed presentation-only orbit with an optional hop,
 lean, and animation. It must not call a gameplay controller. Cutscene actors
 may use `asset_type = "prop"` for promoted prop art such as scripted vehicles;
 use that instead of creating a fake gameplay character definition.
+For a side-view-only prop bike, set `trick_presentation = { yaw_enabled = true
+}` on that actor. This renders its turns with horizontal yaw squash and a
+right/left flip; do not cycle fake front/back frames.
 
 ## Debugging
 

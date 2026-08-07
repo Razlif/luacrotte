@@ -23,6 +23,7 @@ return {
     yasuke = {
       asset_id = "motocrotte_bike_variant_01",
       asset_type = "prop",
+      trick_presentation = { yaw_enabled = true },
       position = { x = 650, ground_y = 435, z = 0 },
       scale = 1.65,
       default_animation = "traffic_cycle",

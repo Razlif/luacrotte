@@ -1,10 +1,13 @@
 -- Static MotoCrotte checkpoint: promoted background plus hero image.
 local asset_manifest = require("game_data.asset_manifest")
 local hero_definition = require("game_data.characters.luacrotte_hero_motorcycle_direction_set_v001")
+local enemy_definition = require("game_data.characters.motocrotte_bike_enemy")
 local background_definition = asset_manifest.backgrounds.motocrotte_background_01
 local level_definition = require("game_data.levels.playground")
 local AssetLoader = require("game.systems.asset_loader")
 local Character = require("game.entities.characters.character")
+local CollisionDetection = require("game.systems.collision_detection")
+local DrawOrder = require("game.systems.draw_order")
 local MotocrotteDriver = require("game.controllers.motocrotte_driver")
 local HeroMovement = require("game.systems.motocrotte_hero_movement")
 local HeroOrientation = require("game.systems.motocrotte_hero_orientation")
@@ -24,6 +27,7 @@ end
 
 local Playground = {
   hero = nil,
+  enemies = {},
   camera = nil,
   parallax = nil,
   last_collision_events = {},
@@ -271,6 +275,9 @@ function Playground.enter(profile_id)
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.hero = Character.new(Playground.hero_definition, AssetLoader.get_character(hero_definition.asset_id))
+  Playground.enemies = {
+    Character.new(enemy_definition, AssetLoader.get_prop(enemy_definition.asset_id))
+  }
   Playground.mud_hose = MudHose.new(mud_hose_definition, AssetLoader.get_effect(mud_hose_definition.asset_id))
   local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
   Playground.hero.position.x = spawn.x
@@ -321,6 +328,7 @@ end
 function Playground.exit()
   MotocrotteAudio.reset()
   if Playground.mud_hose then Playground.mud_hose:reset() end
+  Playground.enemies = {}
 end
 
 function Playground.update(dt)
@@ -395,6 +403,23 @@ function Playground.update(dt)
     MotocrotteAudio.update(intent, Playground.hero.motocrotte_motion)
     Playground.mud_hose:update(Playground.hero, intent.fire_mud_hose, dt)
   end
+  local world = { player = Playground.hero }
+  for _, enemy in ipairs(Playground.enemies) do
+    enemy:update(dt, world)
+  end
+  local collision_entities = { Playground.hero }
+  for _, enemy in ipairs(Playground.enemies) do
+    collision_entities[#collision_entities + 1] = enemy
+  end
+  Playground.last_collision_events = CollisionDetection.check(collision_entities)
+  Playground.hero.collision_active = false
+  for _, enemy in ipairs(Playground.enemies) do enemy.collision_active = false end
+  local collision_entities_by_id = { [Playground.hero.id] = Playground.hero }
+  for _, enemy in ipairs(Playground.enemies) do collision_entities_by_id[enemy.id] = enemy end
+  for _, event in ipairs(Playground.last_collision_events) do
+    if collision_entities_by_id[event.source_id] then collision_entities_by_id[event.source_id].collision_active = true end
+    if collision_entities_by_id[event.target_id] then collision_entities_by_id[event.target_id].collision_active = true end
+  end
   if Playground.profile.camera.behavior == "static" then
     Playground.camera:follow(nil)
   else
@@ -406,7 +431,11 @@ end
 
 function Playground.get_debug_context()
   return {
-    entities = { Playground.hero },
+    entities = (function()
+      local entities = { Playground.hero }
+      for _, enemy in ipairs(Playground.enemies) do entities[#entities + 1] = enemy end
+      return entities
+    end)(),
     hero_motion = Playground.hero and Playground.hero.motocrotte_motion or nil,
     camera = Playground.camera,
     collision_events = Playground.last_collision_events,
@@ -457,12 +486,20 @@ function Playground.draw()
   Playground.camera:attach()
   Playground.parallax:draw()
   Playground.mud_hose:draw_residues()
-  HeroRenderer.draw(Playground.hero, Playground.hero_definition, {
-    active = Playground.visual_lab_active,
-    mode = Playground.hero.motocrotte_visual_mode,
-    yaw = Playground.visual_yaw,
-    orbit_radius = Playground.visual_orbit_radius
-  })
+  local drawables = { Playground.hero }
+  for _, enemy in ipairs(Playground.enemies) do drawables[#drawables + 1] = enemy end
+  for _, drawable in ipairs(DrawOrder.sort(drawables)) do
+    if drawable == Playground.hero then
+      HeroRenderer.draw(Playground.hero, Playground.hero_definition, {
+        active = Playground.visual_lab_active,
+        mode = Playground.hero.motocrotte_visual_mode,
+        yaw = Playground.visual_yaw,
+        orbit_radius = Playground.visual_orbit_radius
+      })
+    else
+      drawable:draw()
+    end
+  end
   Playground.mud_hose:draw_projectiles()
   Playground.camera:detach()
   love.graphics.setColor(1, 1, 1, 1)
@@ -494,8 +531,9 @@ function Playground.draw()
      local position = Playground.hero.position or {}
      local screen_x, screen_y = Playground.camera:world_to_screen(position.x or 0, position.ground_y or 0)
      local bounds = Playground.active_level_definition.hero_bounds or {}
-     love.graphics.print(string.format("Hero world: X %.0f   Y %.0f   Screen: X %.0f   Y %.0f", position.x or 0, position.ground_y or 0, screen_x, screen_y), 24, 192)
-     love.graphics.print(string.format("Bounds world: X %.0f-%.0f   Y %.0f-%.0f", bounds.left or 0, bounds.right or 0, bounds.top or 0, bounds.bottom or 0), 24, 216)
+    love.graphics.print(string.format("Hero world: X %.0f   Y %.0f   Screen: X %.0f   Y %.0f", position.x or 0, position.ground_y or 0, screen_x, screen_y), 24, 192)
+    love.graphics.print(string.format("Bounds world: X %.0f-%.0f   Y %.0f-%.0f", bounds.left or 0, bounds.right or 0, bounds.top or 0, bounds.bottom or 0), 24, 216)
+    love.graphics.print("Collision: " .. ((#Playground.last_collision_events > 0) and "CONTACT" or "clear"), 24, 240)
   end
 end
 

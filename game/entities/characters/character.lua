@@ -10,7 +10,7 @@ Character.__index = Character
 
 function Character.new(definition, loaded_asset)
   local character = setmetatable({
-    id = definition.asset_id,
+    id = definition.runtime_id or definition.asset_id,
     definition = definition,
     asset = loaded_asset,
     controller = ControllerFactory.create(definition.controller),
@@ -153,16 +153,20 @@ end
 
 function Character:draw()
   local flashing = self.flash_remaining > 0 and math.floor(self.flash_elapsed * 24) % 2 == 0
-  if flashing then
+  if self.collision_active then
+    love.graphics.setColor(1, 0.2, 0.2, 1)
+  elseif flashing then
     love.graphics.setColor(1, 0.35, 0.35, 1)
   else
     love.graphics.setColor(1, 1, 1, 1)
   end
   if self.animation:is_playing() then
     self.animation:draw(self.position.x, PositionManager.get_screen_y(self.position), self.scale * self:get_render_facing(), self.scale, self.anchor_x, self.anchor_y)
+    love.graphics.setColor(1, 1, 1, 1)
     return
   end
   love.graphics.draw(self.asset.image.texture, self.position.x, PositionManager.get_screen_y(self.position), 0, self.scale * self:get_render_facing(), self.scale, self.anchor_x, self.anchor_y)
+  love.graphics.setColor(1, 1, 1, 1)
 end
 
 return Character

@@ -8,6 +8,17 @@ local function clamp(value, minimum, maximum)
   return math.max(minimum, math.min(maximum, value))
 end
 
+local FACING_ANGLES = {
+  right = 0,
+  down_right = math.pi / 4,
+  down = math.pi / 2,
+  down_left = math.pi * 3 / 4,
+  left = math.pi,
+  up_left = -math.pi * 3 / 4,
+  up = -math.pi / 2,
+  up_right = -math.pi / 4
+}
+
 function MudHose.new(definition, asset)
   local animation = assert(asset.animations[definition.animation], "Mud hose animation is missing")
   local self = setmetatable({
@@ -19,6 +30,7 @@ function MudHose.new(definition, asset)
     emission_distance = definition.emission_spacing,
     next_frame = 1,
     was_firing = false,
+    last_launch = nil,
     quads = {}
   }, MudHose)
   for frame = 1, animation.frame_count do
@@ -42,20 +54,35 @@ end
 function MudHose:spawn(hero)
   if #self.projectiles >= self.definition.max_projectiles then return end
   local motion = hero.motocrotte_motion or {}
-  local heading = motion.heading or hero.visual_yaw or 0
+  -- Follow the rendered eight-direction animation, not travel velocity. This
+  -- remains correct while braking, drifting, or spinning in place.
+  local facing_name = motion.directional_direction
+  local heading = FACING_ANGLES[facing_name] or hero.visual_yaw or motion.heading or 0
   local speed = self.definition.launch_speed
   local planar_speed = speed * math.cos(self.definition.elevation)
+  local inheritance = self.definition.inherit_velocity_factor or 0
+  local inherited_vx = (motion.vx or 0) * inheritance
+  local inherited_vy = (motion.vy or 0) * inheritance
   local frame = self.next_frame
   self.next_frame = self.next_frame % self.animation.frame_count + 1
   self.projectiles[#self.projectiles + 1] = {
     x = hero.position.x,
     ground_y = hero.position.ground_y,
     z = self.definition.muzzle_height,
-    vx = math.cos(heading) * planar_speed,
-    vy = math.sin(heading) * planar_speed,
+    vx = inherited_vx + math.cos(heading) * planar_speed,
+    vy = inherited_vy + math.sin(heading) * planar_speed,
     vz = speed * math.sin(self.definition.elevation),
     frame = frame,
-    age = 0
+    age = 0,
+    facing = facing_name or "unknown"
+  }
+  self.last_launch = {
+    facing = facing_name or "unknown",
+    heading = heading,
+    inherited_vx = inherited_vx,
+    inherited_vy = inherited_vy,
+    vx = inherited_vx + math.cos(heading) * planar_speed,
+    vy = inherited_vy + math.sin(heading) * planar_speed
   }
 end
 
@@ -129,7 +156,8 @@ function MudHose:debug_snapshot()
     projectiles = #self.projectiles,
     residues = #self.residues,
     next_frame = self.next_frame,
-    firing = self.was_firing
+    firing = self.was_firing,
+    last_launch = self.last_launch
   }
 end
 

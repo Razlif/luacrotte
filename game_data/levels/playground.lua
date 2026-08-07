@@ -11,11 +11,11 @@ return {
     bottom = 1200
   },
   ground_y = 700,
-  hero_position = { x = 805, ground_y = 877, z = 0 },
+  hero_position = { x = 203, ground_y = 974, z = 0 },
   hero_bounds = {
-    left = 325,
+    left = 0,
     right = 1285,
-    top = 698,
+    top = 284,
     bottom = 1147
   },
   camera = {

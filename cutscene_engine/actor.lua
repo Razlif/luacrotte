@@ -19,6 +19,7 @@ function Actor.new(data, loaded_asset)
     facing = data.facing == "left" and -1 or 1,
     source_facing = data.source_facing or 1,
     movement = data.movement or {},
+    trick_presentation = data.trick_presentation or {},
     hop_animation = data.hop_animation,
     default_animation = data.default_animation,
     default_animation_loop = data.default_animation_loop == true,

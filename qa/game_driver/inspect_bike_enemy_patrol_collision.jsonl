@@ -1,0 +1,9 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_patrol_start","command":"snapshot","name":"bike_enemy_patrol_start"}
+{"id":"wait_for_crossing","command":"wait","seconds":0.7}
+{"id":"snapshot_crossing_collision","command":"snapshot","name":"bike_enemy_crossing_collision"}
+{"id":"wait_for_patrol","command":"wait","seconds":3.0}
+{"id":"snapshot_patrol_mid","command":"snapshot","name":"bike_enemy_patrol_mid"}
+{"id":"move_hero_toward_enemy","command":"hold","key":"right","duration":2.0}
+{"id":"snapshot_collision_check","command":"snapshot","name":"bike_enemy_collision_check"}
