@@ -132,6 +132,20 @@ return {
         width = 1672,
       },
     },
+    fenced_concrete_park_base_v001 = {
+      animations = {},
+      groups = {"backgrounds/parks"},
+      id = "fenced_concrete_park_base_v001",
+      image = {
+        height = 1254,
+        path = "media_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__self__image__v002.png",
+        prompt = "Create a large pixel-art fenced concrete square park arena for a 2D top-down 2.5D driving game. Show a broad open concrete surface with subtle slab seams and restrained texture variation. Surround the entire square with a clearly visible perimeter fence, regular fence posts, an entrance gate centered on the front side, and a small amount of surrounding ground beyond the fence. Use an elevated camera angle around 45 degrees so the full square arena and its entrance are readable. Keep the interior spacious and visually open for separately placed trees, benches, lamps, cars, and other props. Use crisp pixel-art edges, a coherent retro color palette, and a transparent background outside the complete fenced arena. Output one large square transparent PNG suitable as a composited game background base.",
+        provider = "self",
+        source_path = "lab_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__self__image__v002.png",
+        version = 2,
+        width = 1254,
+      },
+    },
     motocrotte_background_01 = {
       animations = {},
       groups = {},

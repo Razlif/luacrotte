@@ -14,5 +14,9 @@ return {
   residue_hold_time = 1.2,
   residue_fade_time = 0.8,
   max_projectiles = 48,
-  max_residues = 80
+  max_residues = 80,
+  enemy_hit_radius = 52,
+  enemy_hit_height = 110,
+  enemy_hit_delay = 0.25,
+  enemy_fade_time = 0.8
 }

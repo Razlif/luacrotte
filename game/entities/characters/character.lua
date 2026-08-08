@@ -35,8 +35,14 @@ function Character.new(definition, loaded_asset)
     animation = AnimationManager.new(loaded_asset.animations),
     timer = TimerManager.new(),
     flash_remaining = 0,
-    flash_elapsed = 0
+    flash_elapsed = 0,
+    defeat_elapsed = nil,
+    defeat_delay = 0,
+    defeat_fade_time = 0
   }, Character)
+
+  character.behavior_state = character.controller and character.controller.get_state
+    and character.controller:get_state() or nil
 
   if character.default_animation then
     local default_animation = character.animation.animations[character.default_animation]
@@ -116,9 +122,20 @@ function Character:update_hop(dt)
 end
 
 function Character:update(dt, world)
+  if self.defeat_elapsed then
+    self.defeat_elapsed = self.defeat_elapsed + dt
+    if self.defeat_elapsed >= self.defeat_delay and self.behavior_state ~= "defeated" then
+      self:mark_defeated()
+    end
+    self.animation:update(dt)
+    return
+  end
   local intent = { horizontal = 0, vertical = 0, jump = false }
   if self.controller then
     intent = self.controller:get_intent(self, world, dt)
+    if self.controller.get_state then
+      self.behavior_state = self.controller:get_state()
+    end
   end
 
   self.timer:update(dt)
@@ -152,13 +169,24 @@ function Character:get_collision_mask()
 end
 
 function Character:draw()
+  if self:is_defeat_complete() then
+    return
+  end
+  local defeat_alpha = 1
+  local defeat_flicker = false
+  if self.defeat_elapsed then
+    defeat_flicker = math.floor(self.defeat_elapsed * 28) % 2 == 0
+    if self.defeat_elapsed > self.defeat_delay then
+      defeat_alpha = 1 - (self.defeat_elapsed - self.defeat_delay) / math.max(0.001, self.defeat_fade_time)
+    end
+  end
   local flashing = self.flash_remaining > 0 and math.floor(self.flash_elapsed * 24) % 2 == 0
   if self.collision_active then
     love.graphics.setColor(1, 0.2, 0.2, 1)
-  elseif flashing then
+  elseif flashing or defeat_flicker then
     love.graphics.setColor(1, 0.35, 0.35, 1)
   else
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, defeat_alpha)
   end
   if self.animation:is_playing() then
     self.animation:draw(self.position.x, PositionManager.get_screen_y(self.position), self.scale * self:get_render_facing(), self.scale, self.anchor_x, self.anchor_y)
@@ -167,6 +195,38 @@ function Character:draw()
   end
   love.graphics.draw(self.asset.image.texture, self.position.x, PositionManager.get_screen_y(self.position), 0, self.scale * self:get_render_facing(), self.scale, self.anchor_x, self.anchor_y)
   love.graphics.setColor(1, 1, 1, 1)
+end
+
+function Character:mark_hit(duration)
+  if self.controller and self.controller.mark_hit then
+    self.controller:mark_hit(duration)
+  end
+  self:hit_flash(duration)
+  self.behavior_state = self.controller and self.controller.get_state
+    and self.controller:get_state() or "hit"
+end
+
+function Character:mark_defeated()
+  if self.controller and self.controller.mark_defeated then
+    self.controller:mark_defeated()
+  end
+  self.behavior_state = "defeated"
+end
+
+function Character:begin_defeat(delay, fade_time)
+  if self.defeat_elapsed then return end
+  self.defeat_elapsed = 0
+  self.defeat_delay = delay or 0.25
+  self.defeat_fade_time = fade_time or 0.8
+  if self.controller and self.controller.mark_hit then
+    self.controller:mark_hit(self.defeat_delay)
+  end
+  self.behavior_state = "hit"
+end
+
+function Character:is_defeat_complete()
+  return self.defeat_elapsed ~= nil
+    and self.defeat_elapsed >= self.defeat_delay + self.defeat_fade_time
 end
 
 return Character

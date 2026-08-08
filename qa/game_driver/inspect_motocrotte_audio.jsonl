@@ -1,3 +1,4 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":8}
 {"id":"enter_playground","command":"press","key":"return"}
 {"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
 {"id":"snapshot_idle","command":"snapshot","name":"audio_idle"}

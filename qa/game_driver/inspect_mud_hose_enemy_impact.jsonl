@@ -1,0 +1,8 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_enemy_before_mud","command":"snapshot","name":"mud_enemy_before_impact"}
+{"id":"wait_for_enemy_range","command":"wait","seconds":6.0}
+{"id":"fire_mud_barrage","command":"hold","key":"a","duration":0.5}
+{"id":"snapshot_enemy_hit","command":"snapshot","name":"mud_enemy_hit"}
+{"id":"wait_for_enemy_fade","command":"wait","seconds":1.2}
+{"id":"snapshot_enemy_defeated","command":"snapshot","name":"mud_enemy_defeated"}

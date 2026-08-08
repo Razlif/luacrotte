@@ -49,7 +49,7 @@ end
 function Movement.update(hero, intent, definition, level_definition, dt)
   assert(hero and hero.position, "MotoCrotte hero position is required")
   assert(definition and definition.movement, "MotoCrotte hero movement data is required")
-  assert(level_definition and level_definition.hero_bounds, "MotoCrotte hero bounds are required")
+  assert(level_definition, "MotoCrotte level definition is required")
   assert(type(dt) == "number" and dt >= 0, "Delta time must be non-negative")
 
   if definition.movement.solver == "legacy_direct_drift" then
@@ -60,7 +60,13 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   required_number(config, "acceleration", "hero movement")
   required_number(config, "max_speed", "hero movement")
   assert(config.coast_deceleration or config.deceleration, "hero movement.coast_deceleration is required")
-  local bounds = level_definition.hero_bounds
+  -- Temporary unbounded playground profiles intentionally omit hero_bounds.
+  -- Keep finite fallbacks for drift/orbit math while leaving normal movement
+  -- unclamped.
+  local bounds = level_definition.hero_bounds or {
+    left = -1000000000, right = 1000000000,
+    top = -1000000000, bottom = 1000000000
+  }
 
   hero.motocrotte_motion = hero.motocrotte_motion or {
     vx = 0, vy = 0, speed = 0, heading = 0, desired_heading = 0,

@@ -96,6 +96,11 @@ function Locomotion.update(motion, intent, config, drift_context, dt)
 end
 
 function Locomotion.apply_position(hero, motion, bounds, dt)
+  if not bounds then
+    hero.position.x = hero.position.x + motion.vx * dt
+    hero.position.ground_y = hero.position.ground_y + motion.vy * dt
+    return
+  end
   hero.position.x = clamp(hero.position.x + motion.vx * dt, bounds.left, bounds.right)
   hero.position.ground_y = clamp(hero.position.ground_y + motion.vy * dt, bounds.top, bounds.bottom)
   local cone = bounds.perspective_cone

@@ -8,8 +8,12 @@ local function states_manager()
   return require("game.states_manager")
 end
 
-function CutsceneState.enter(scene_id)
-  CutsceneEngine.start(scene_id, { return_state = "playground" })
+function CutsceneState.enter(_context, scene_id)
+  CutsceneEngine.start(scene_id, { return_state = "playground", preloaded = true })
+end
+
+function CutsceneState.get_load_requests(_context, scene_id)
+  return CutsceneEngine.get_load_requests(scene_id)
 end
 
 function CutsceneState.update(dt)

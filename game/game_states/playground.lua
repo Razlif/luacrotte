@@ -4,7 +4,8 @@ local hero_definition = require("game_data.characters.luacrotte_hero_motorcycle_
 local enemy_definition = require("game_data.characters.motocrotte_bike_enemy")
 local background_definition = asset_manifest.backgrounds.motocrotte_background_01
 local level_definition = require("game_data.levels.playground")
-local AssetLoader = require("game.systems.asset_loader")
+local ContentManager = require("game.systems.content_manager")
+local LevelManager = require("game.systems.level_manager")
 local Character = require("game.entities.characters.character")
 local CollisionDetection = require("game.systems.collision_detection")
 local DrawOrder = require("game.systems.draw_order")
@@ -42,14 +43,16 @@ local Playground = {
   experiment = PlaygroundExperiment.default(),
   profile_index = 1,
   hero_definition = hero_definition,
-  active_level_definition = level_definition
+  active_level_definition = level_definition,
+  loaded_content = {}
 }
 
 local function background_registry()
   return {
     motocrotte_background_01 = asset_manifest.backgrounds.motocrotte_background_01,
     enchanted_wizard_training_meadow = asset_manifest.backgrounds.enchanted_wizard_training_meadow,
-    rear_sky_horizon = asset_manifest.backgrounds.rear_sky_horizon
+    rear_sky_horizon = asset_manifest.backgrounds.rear_sky_horizon,
+    fenced_concrete_park_base_v001 = asset_manifest.backgrounds.fenced_concrete_park_base_v001
   }
 end
 
@@ -67,11 +70,16 @@ local function rebuild_parallax()
     {
       id = selected.id,
       image_path = selected.image.path,
+      image = Playground.loaded_content.background and Playground.loaded_content.background.image.texture,
       speed_x = 1,
       speed_y = 1,
       repeat_x = false,
       repeat_y = false,
       fit = use_track and "track" or "cover",
+      scale = environment.background_scale or 1,
+      world_space = environment.background_world_space == true,
+      world_x = environment.background_world_x or 0,
+      world_y = environment.background_world_y or 0,
       track = use_track and track or nil,
       layer = 0
     }
@@ -125,8 +133,10 @@ function Playground.set_profile(index_or_id)
     Playground.hero.position.ground_y = spawn.ground_y
     Playground.hero.position.z = spawn.z
     local bounds = Playground.active_level_definition.hero_bounds
-    Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
-    Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
+    if bounds then
+      Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
+      Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
+    end
   end
   Playground.set_visual_mode(HeroRenderer.mode_index(Playground.hero_definition.visual.test_mode, Playground.hero_definition))
   if Playground.camera then
@@ -173,8 +183,10 @@ function Playground.apply_experiment(rebuild_background)
   if Playground.hero then
     Playground.hero.definition = Playground.hero_definition
     local bounds = Playground.active_level_definition.hero_bounds
-    Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
-    Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
+    if bounds then
+      Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
+      Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
+    end
   end
   if Playground.camera then
     Playground.camera:set_bounds(Playground.active_level_definition.world)
@@ -202,10 +214,38 @@ function Playground.reset_experiment()
 end
 
 function Playground.load_slot(slot)
-  local profiles = { [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card" }
+  local profiles = { [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card", [5] = "park_arena_follow" }
   local profile_id = profiles[slot]
   if profile_id then
+    local requested_profile = GameplayProfile.load(profile_id)
+    -- A profile change is a scene replacement, not an additional request into
+    -- the existing Playground scope. Release the old ownership first so its
+    -- background and profile-specific resources can be collected, while any
+    -- resources still owned by another scope remain cached.
+    ContentManager.end_scope("playground")
+    ContentManager.load_scope("playground", {
+      { kind = "character", asset_id = hero_definition.asset_id, options = { include_image = false, animations = { "motorcycle_direction_set", "motorcycle_direction_full" } } },
+      { kind = "prop", asset_id = enemy_definition.asset_id, options = { include_image = false, animations = { "traffic_cycle" } } },
+      { kind = "effect", asset_id = mud_hose_definition.asset_id, options = { include_image = false, animations = { "blob_variants" } } },
+      { kind = "background", asset_id = requested_profile.environment.background_id }
+    })
+    -- Rebind entities to the replacement scope. The previous scope's
+    -- textures may have been released, so retaining old Character/Effect
+    -- instances would leave them pointing at invalid GPU resources.
+    Playground.loaded_content = {
+      character = ContentManager.get("character", hero_definition.asset_id),
+      prop = ContentManager.get("prop", enemy_definition.asset_id),
+      effect = ContentManager.get("effect", mud_hose_definition.asset_id),
+      background = ContentManager.get("background", requested_profile.environment.background_id)
+    }
+    Playground.hero = Character.new(hero_definition, Playground.loaded_content.character)
+    Playground.enemies = { Character.new(enemy_definition, Playground.loaded_content.prop) }
+    Playground.mud_hose = MudHose.new(mud_hose_definition, Playground.loaded_content.effect)
     Playground.set_profile(profile_id)
+    local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
+    Playground.hero.position.x = spawn.x
+    Playground.hero.position.ground_y = spawn.ground_y
+    Playground.hero.position.z = spawn.z
     Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
     Playground.experiment.profile_slot = slot
     Playground.apply_experiment(true)
@@ -246,8 +286,6 @@ function Playground.reset_visual_lab()
   Playground.visual_yaw = 0
   local pivot = (Playground.hero_definition.visual or {}).directional_pivot or {}
   Playground.visual_orbit_radius = pivot.radius or 0
-  Playground.hero.position.x = level_definition.hero_position.x
-  Playground.hero.position.ground_y = level_definition.hero_position.ground_y
   Playground.hero.motocrotte_motion = {
     vx = 0, vy = 0, speed = 0, heading = 0, desired_heading = 0,
     slip_angle = 0, drift_amount = 0, visual_rotation = 0,
@@ -269,16 +307,39 @@ function Playground.reset_visual_lab()
   end
 end
 
-function Playground.enter(profile_id)
-  AssetLoader.load_manifest(asset_manifest)
+function Playground.profile_id_for_slot(slot)
+  return ({ [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card", [5] = "park_arena_follow" })[slot]
+end
+
+function Playground.get_load_requests(_context, profile_id)
+  local requested_profile = GameplayProfile.load(profile_id or level_definition.gameplay_profile_id or "arena_follow")
+  return {
+    { kind = "character", asset_id = hero_definition.asset_id, options = { include_image = false, animations = { "motorcycle_direction_set", "motorcycle_direction_full" } } },
+    { kind = "prop", asset_id = enemy_definition.asset_id, options = { include_image = false, animations = { "traffic_cycle" } } },
+    { kind = "effect", asset_id = mud_hose_definition.asset_id, options = { include_image = false, animations = { "blob_variants" } } },
+    { kind = "background", asset_id = requested_profile.environment.background_id }
+  }, "playground"
+end
+
+function Playground.enter(context, profile_id)
+  context = context or require("game.runtime_context")
+  AudioManager.begin_scope("playground")
+  LevelManager.load("playground", profile_id or level_definition.gameplay_profile_id or "arena_follow")
   AudioManager.load_manifest(asset_manifest)
+  local requested_profile = GameplayProfile.load(profile_id or level_definition.gameplay_profile_id or "arena_follow")
+  Playground.loaded_content = {
+    character = context.content.get("character", hero_definition.asset_id),
+    prop = context.content.get("prop", enemy_definition.asset_id),
+    effect = context.content.get("effect", mud_hose_definition.asset_id),
+    background = context.content.get("background", requested_profile.environment.background_id)
+  }
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
-  Playground.hero = Character.new(Playground.hero_definition, AssetLoader.get_character(hero_definition.asset_id))
+  Playground.hero = Character.new(Playground.hero_definition, Playground.loaded_content.character)
   Playground.enemies = {
-    Character.new(enemy_definition, AssetLoader.get_prop(enemy_definition.asset_id))
+    Character.new(enemy_definition, Playground.loaded_content.prop)
   }
-  Playground.mud_hose = MudHose.new(mud_hose_definition, AssetLoader.get_effect(mud_hose_definition.asset_id))
+  Playground.mud_hose = MudHose.new(mud_hose_definition, Playground.loaded_content.effect)
   local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
   Playground.hero.position.x = spawn.x
   Playground.hero.position.ground_y = spawn.ground_y
@@ -329,6 +390,10 @@ function Playground.exit()
   MotocrotteAudio.reset()
   if Playground.mud_hose then Playground.mud_hose:reset() end
   Playground.enemies = {}
+  ContentManager.end_scope("playground")
+  AudioManager.end_scope("playground")
+  LevelManager.unload()
+  Playground.loaded_content = {}
 end
 
 function Playground.update(dt)
@@ -392,7 +457,11 @@ function Playground.update(dt)
       changed = true
     end
     if intent.profile_slot_pressed then
-      changed = Playground.load_slot(intent.profile_slot_pressed) or changed
+      local profile_id = Playground.profile_id_for_slot(intent.profile_slot_pressed)
+      if profile_id then
+        states_manager().change("playground", profile_id)
+        changed = true
+      end
     end
     if changed then
       Playground.apply_experiment(intent.cycle_background_pressed == true)
@@ -401,11 +470,16 @@ function Playground.update(dt)
     HeroMovement.update(Playground.hero, intent, Playground.hero_definition, Playground.active_level_definition, dt)
     HeroOrientation.update(Playground.hero, Playground.hero_definition, dt)
     MotocrotteAudio.update(intent, Playground.hero.motocrotte_motion)
-    Playground.mud_hose:update(Playground.hero, intent.fire_mud_hose, dt)
+    Playground.mud_hose:update(Playground.hero, intent.fire_mud_hose, dt, Playground.enemies)
   end
   local world = { player = Playground.hero }
   for _, enemy in ipairs(Playground.enemies) do
     enemy:update(dt, world)
+  end
+  for index = #Playground.enemies, 1, -1 do
+    if Playground.enemies[index]:is_defeat_complete() then
+      table.remove(Playground.enemies, index)
+    end
   end
   local collision_entities = { Playground.hero }
   for _, enemy in ipairs(Playground.enemies) do
@@ -419,6 +493,14 @@ function Playground.update(dt)
   for _, event in ipairs(Playground.last_collision_events) do
     if collision_entities_by_id[event.source_id] then collision_entities_by_id[event.source_id].collision_active = true end
     if collision_entities_by_id[event.target_id] then collision_entities_by_id[event.target_id].collision_active = true end
+    local source = collision_entities_by_id[event.source_id]
+    local target = collision_entities_by_id[event.target_id]
+    if source and source ~= Playground.hero and source.mark_hit then
+      source:mark_hit((source.definition.follow or {}).hit_pause or 0.35)
+    end
+    if target and target ~= Playground.hero and target.mark_hit then
+      target:mark_hit((target.definition.follow or {}).hit_pause or 0.35)
+    end
   end
   if Playground.profile.camera.behavior == "static" then
     Playground.camera:follow(nil)
@@ -442,6 +524,7 @@ function Playground.get_debug_context()
     background_id = Playground.experiment.background_id,
     background_path = Playground.parallax and Playground.parallax.layers[1] and Playground.parallax.layers[1].image_path or nil,
     movement_bounds = Playground.active_level_definition and Playground.active_level_definition.hero_bounds or nil,
+    content = ContentManager.debug_snapshot(),
     experiment = {
       sprite_policy = Playground.experiment.sprite_policy,
       yaw_mode = Playground.experiment.yaw_mode,
@@ -471,6 +554,18 @@ function Playground.get_debug_context()
       camera = Playground.profile and Playground.profile.camera.behavior or nil,
       drift_enabled = Playground.profile and Playground.profile.drift.enabled or false
     },
+    enemies = (function()
+      local result = {}
+      for _, enemy in ipairs(Playground.enemies) do
+        result[#result + 1] = {
+          id = enemy.id,
+          state = enemy.behavior_state,
+          position = { x = enemy.position.x, ground_y = enemy.position.ground_y },
+          collision_active = enemy.collision_active == true
+        }
+      end
+      return result
+    end)(),
     drift_lab = {
       mode = Playground.hero and Playground.hero.motocrotte_visual_mode or nil,
       mode_index = Playground.drift_mode_index,
@@ -534,6 +629,11 @@ function Playground.draw()
     love.graphics.print(string.format("Hero world: X %.0f   Y %.0f   Screen: X %.0f   Y %.0f", position.x or 0, position.ground_y or 0, screen_x, screen_y), 24, 192)
     love.graphics.print(string.format("Bounds world: X %.0f-%.0f   Y %.0f-%.0f", bounds.left or 0, bounds.right or 0, bounds.top or 0, bounds.bottom or 0), 24, 216)
     love.graphics.print("Collision: " .. ((#Playground.last_collision_events > 0) and "CONTACT" or "clear"), 24, 240)
+    local enemy_states = {}
+    for _, enemy in ipairs(Playground.enemies) do
+      enemy_states[#enemy_states + 1] = string.format("%s: %s", enemy.id, enemy.behavior_state or "unknown")
+    end
+    love.graphics.print("Enemies: " .. (#enemy_states > 0 and table.concat(enemy_states, "   ") or "none"), 24, 264)
   end
 end
 

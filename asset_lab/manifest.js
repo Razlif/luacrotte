@@ -8052,8 +8052,142 @@ window.ASSET_LAB_MANIFEST = {
       ],
       "created_at": "2026-08-06T00:12:14",
       "updated_at": "2026-08-06T00:19:59"
+    },
+    {
+      "id": "six_lane_highway_background_v001",
+      "type": "background",
+      "folder": "lab_assets/backgrounds/six_lane_highway_background_v001",
+      "groups": [
+        "backgrounds/highway"
+      ],
+      "images": [
+        {
+          "id": "six_lane_highway_background_v001__pixellab__image__v001",
+          "provider": "pixellab",
+          "version": 1,
+          "mode": "brand_new",
+          "path": "lab_assets/backgrounds/six_lane_highway_background_v001/original_images/six_lane_highway_background_v001__pixellab__image__v001.png",
+          "prompt": "Create a pixel-art six-lane highway road tile for a 2D top-down 2.5D driving game. Show six clearly separated lanes with strong lane markings, broad asphalt surface, subtle road texture, concrete road edges, painted shoulders, and a clean arcade-game composition. Use a slightly elevated camera angle around 45 degrees so the road extends clearly into the distance. Create a seamless repeatable road tile with consistent geometry at every edge. Use a transparent background outside the complete road tile. Preserve crisp pixel-art edges, readable lane markings, controlled perspective, and a rich retro color palette. Output one transparent PNG suitable for repeating across a large game world.",
+          "variation_group_id": "six_lane_highway_background_v001_pixellab_create_new_20260807_205132_909738",
+          "prompt_metadata": {
+            "prompt": "Create a pixel-art six-lane highway road tile for a 2D top-down 2.5D driving game. Show six clearly separated lanes with strong lane markings, broad asphalt surface, subtle road texture, concrete road edges, painted shoulders, and a clean arcade-game composition. Use a slightly elevated camera angle around 45 degrees so the road extends clearly into the distance. Create a seamless repeatable road tile with consistent geometry at every edge. Use a transparent background outside the complete road tile. Preserve crisp pixel-art edges, readable lane markings, controlled perspective, and a rich retro color palette. Output one transparent PNG suitable for repeating across a large game world.",
+            "asset_id": "six_lane_highway_background_v001",
+            "asset_type": "background",
+            "provider": "pixellab",
+            "action": "create-new",
+            "variation_group_id": "six_lane_highway_background_v001_pixellab_create_new_20260807_205132_909738"
+          },
+          "width": 400,
+          "height": 400
+        }
+      ],
+      "animations": [],
+      "created_at": "2026-08-07T20:51:32",
+      "updated_at": "2026-08-07T20:51:32"
+    },
+    {
+      "id": "fenced_concrete_park_base_v001",
+      "type": "background",
+      "folder": "lab_assets/backgrounds/fenced_concrete_park_base_v001",
+      "groups": [
+        "backgrounds/parks"
+      ],
+      "images": [
+        {
+          "id": "fenced_concrete_park_base_v001__pixellab__image__v001",
+          "provider": "pixellab",
+          "version": 1,
+          "mode": "brand_new",
+          "path": "lab_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__pixellab__image__v001.png",
+          "prompt": "Create a pixel-art fenced concrete square park arena for a 2D top-down 2.5D driving game. Show a broad open concrete surface with subtle slab seams and restrained texture variation. Surround the entire square with a clearly visible perimeter fence, regular fence posts, an entrance gate centered on the front side, and a small amount of surrounding ground beyond the fence. Use an elevated camera angle around 45 degrees so the full square arena and its entrance are readable. Keep the interior spacious and visually open for separately placed trees, benches, lamps, cars, and other props. Use crisp pixel-art edges, a coherent retro color palette, and a transparent background outside the complete fenced arena. Output one square transparent PNG suitable as a composited game background base.",
+          "variation_group_id": "fenced_concrete_park_base_v001_pixellab_create_new_20260807_205650_060383",
+          "prompt_metadata": {
+            "prompt": "Create a pixel-art fenced concrete square park arena for a 2D top-down 2.5D driving game. Show a broad open concrete surface with subtle slab seams and restrained texture variation. Surround the entire square with a clearly visible perimeter fence, regular fence posts, an entrance gate centered on the front side, and a small amount of surrounding ground beyond the fence. Use an elevated camera angle around 45 degrees so the full square arena and its entrance are readable. Keep the interior spacious and visually open for separately placed trees, benches, lamps, cars, and other props. Use crisp pixel-art edges, a coherent retro color palette, and a transparent background outside the complete fenced arena. Output one square transparent PNG suitable as a composited game background base.",
+            "asset_id": "fenced_concrete_park_base_v001",
+            "asset_type": "background",
+            "provider": "pixellab",
+            "action": "create-new",
+            "variation_group_id": "fenced_concrete_park_base_v001_pixellab_create_new_20260807_205650_060383"
+          },
+          "width": 400,
+          "height": 400
+        },
+        {
+          "id": "fenced_concrete_park_base_v001__self__image__v002",
+          "provider": "self",
+          "version": 2,
+          "mode": "brand_new",
+          "path": "lab_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__self__image__v002.png",
+          "prompt": "Create a large pixel-art fenced concrete square park arena for a 2D top-down 2.5D driving game. Show a broad open concrete surface with subtle slab seams and restrained texture variation. Surround the entire square with a clearly visible perimeter fence, regular fence posts, an entrance gate centered on the front side, and a small amount of surrounding ground beyond the fence. Use an elevated camera angle around 45 degrees so the full square arena and its entrance are readable. Keep the interior spacious and visually open for separately placed trees, benches, lamps, cars, and other props. Use crisp pixel-art edges, a coherent retro color palette, and a transparent background outside the complete fenced arena. Output one large square transparent PNG suitable as a composited game background base.",
+          "variation_group_id": "fenced_concrete_park_base_v001_self_add_image_version_brand_new_20260807_205858_394325",
+          "prompt_metadata": {
+            "prompt": "Create a large pixel-art fenced concrete square park arena for a 2D top-down 2.5D driving game. Show a broad open concrete surface with subtle slab seams and restrained texture variation. Surround the entire square with a clearly visible perimeter fence, regular fence posts, an entrance gate centered on the front side, and a small amount of surrounding ground beyond the fence. Use an elevated camera angle around 45 degrees so the full square arena and its entrance are readable. Keep the interior spacious and visually open for separately placed trees, benches, lamps, cars, and other props. Use crisp pixel-art edges, a coherent retro color palette, and a transparent background outside the complete fenced arena. Output one large square transparent PNG suitable as a composited game background base.",
+            "asset_id": "fenced_concrete_park_base_v001",
+            "asset_type": "background",
+            "provider": "self",
+            "action": "add-image-version",
+            "variation_group_id": "fenced_concrete_park_base_v001_self_add_image_version_brand_new_20260807_205858_394325",
+            "mode": "brand_new"
+          },
+          "status": "pending_self_creation"
+        },
+        {
+          "id": "fenced_concrete_park_base_v001__mock__image__v003",
+          "provider": "mock",
+          "version": 3,
+          "mode": "brand_new",
+          "path": "lab_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__mock__image__v003.png",
+          "prompt": "Derived deterministic 2x2 stitched park background from fenced_concrete_park_base_v001 self image v002.",
+          "variation_group_id": "fenced_concrete_park_base_v001_mock_add_image_version_brand_new_20260808_102519_096975",
+          "prompt_metadata": {
+            "prompt": "Derived deterministic 2x2 stitched park background from fenced_concrete_park_base_v001 self image v002.",
+            "asset_id": "fenced_concrete_park_base_v001",
+            "asset_type": "background",
+            "provider": "mock",
+            "action": "add-image-version",
+            "variation_group_id": "fenced_concrete_park_base_v001_mock_add_image_version_brand_new_20260808_102519_096975",
+            "mode": "brand_new"
+          },
+          "width": 2418,
+          "height": 1616
+        }
+      ],
+      "animations": [],
+      "created_at": "2026-08-07T20:56:50",
+      "updated_at": "2026-08-08T10:25:19"
+    },
+    {
+      "id": "park_props_grid_64",
+      "type": "prop",
+      "folder": "lab_assets/props/park_props_grid_64",
+      "groups": [
+        "park"
+      ],
+      "images": [
+        {
+          "id": "park_props_grid_64__self__image__v001",
+          "provider": "self",
+          "version": 1,
+          "mode": "brand_new",
+          "path": "lab_assets/props/park_props_grid_64/original_images/park_props_grid_64__self__image__v001.png",
+          "prompt": "64-cell 8 by 8 transparent-background pixel-art prop atlas for a fenced concrete urban park. Use an exact equal 8 by 8 grid with 64 identical square cells, one centered isolated prop per cell, generous transparent padding, consistent orthographic three-quarter game-art view, consistent scale and lighting, crisp readable silhouettes. Include varied benches, picnic tables, lamp posts, trash cans, trees, bushes, planters, grass patches, small grass hills, concrete barriers, painted road markings, drinking fountains, chain-link gates, turnstiles, umbrellas, folding chairs, skate ramps, skate rails, basketball hoops, park signs, warning signs, fire hydrants, utility boxes, cones, temporary fencing, puddles, cracks, weeds, graffiti decals, dumpsters, recycling bins, maintenance carts, bicycles, scooters, kiosks, and other distinct park fixtures. Transparent RGBA background.",
+          "variation_group_id": "park_props_grid_64_self_create_new_20260808_223935_086334",
+          "prompt_metadata": {
+            "prompt": "64-cell 8 by 8 transparent-background pixel-art prop atlas for a fenced concrete urban park. Use an exact equal 8 by 8 grid with 64 identical square cells, one centered isolated prop per cell, generous transparent padding, consistent orthographic three-quarter game-art view, consistent scale and lighting, crisp readable silhouettes. Include varied benches, picnic tables, lamp posts, trash cans, trees, bushes, planters, grass patches, small grass hills, concrete barriers, painted road markings, drinking fountains, chain-link gates, turnstiles, umbrellas, folding chairs, skate ramps, skate rails, basketball hoops, park signs, warning signs, fire hydrants, utility boxes, cones, temporary fencing, puddles, cracks, weeds, graffiti decals, dumpsters, recycling bins, maintenance carts, bicycles, scooters, kiosks, and other distinct park fixtures. Transparent RGBA background.",
+            "asset_id": "park_props_grid_64",
+            "asset_type": "prop",
+            "provider": "self",
+            "action": "create-new",
+            "variation_group_id": "park_props_grid_64_self_create_new_20260808_223935_086334"
+          },
+          "status": "pending_self_creation"
+        }
+      ],
+      "animations": [],
+      "created_at": "2026-08-08T22:39:35",
+      "updated_at": "2026-08-08T22:39:35"
     }
   ],
-  "updated_at": "2026-08-06T00:19:59",
+  "updated_at": "2026-08-08T22:39:35",
   "orphans": []
 };

@@ -20,8 +20,8 @@ end
 
 function MovementManager.update(entity, intent, settings, dt)
   local movement = settings or {}
-  local horizontal_speed = movement.horizontal_speed or movement.speed or 0
-  local vertical_speed = movement.vertical_speed or movement.speed or 0
+  local horizontal_speed = intent.horizontal_speed or movement.horizontal_speed or movement.speed or 0
+  local vertical_speed = intent.vertical_speed or movement.vertical_speed or movement.speed or 0
   MovementManager.move_by(
     entity,
     (intent.horizontal or 0) * horizontal_speed * dt,

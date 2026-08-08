@@ -1,6 +1,5 @@
 -- Start screen for the template's disposable example game.
 local asset_manifest = require("game_data.asset_manifest")
-local AssetLoader = require("game.systems.asset_loader")
 local AudioManager = require("game.systems.audio_manager")
 local CameraManager = require("game.systems.camera_manager")
 local InputManager = require("game.systems.input_manager")
@@ -14,6 +13,11 @@ local Start = {
   parallax = nil,
   menu = nil
 }
+
+function Start.exit()
+  require("game.systems.content_manager").end_scope("menu")
+  AudioManager.end_scope("menu")
+end
 
 local function states_manager()
   return require("game.states_manager")
@@ -29,8 +33,10 @@ local function menu_layout()
   }
 end
 
-function Start.enter()
-  AssetLoader.load_manifest(asset_manifest)
+function Start.enter(context)
+  context = context or require("game.runtime_context")
+  AudioManager.begin_scope("menu")
+  local menu_background = context.content.get("background", "enchanted_wizard_training_meadow")
   AudioManager.load_manifest(asset_manifest)
   AudioManager.play_music("luacrotte_main_music", { loop = true })
   Start.camera = CameraManager.new({
@@ -44,6 +50,7 @@ function Start.enter()
     {
       id = "start_background",
       image_path = asset_manifest.backgrounds.enchanted_wizard_training_meadow.image.path,
+      image = menu_background.image.texture,
       speed_x = 1,
       speed_y = 1,
       repeat_x = false,
@@ -69,6 +76,12 @@ function Start.enter()
     }
   end
   Start.menu = Menu.new(menu_items, layout)
+end
+
+function Start.get_load_requests()
+  return {
+    { kind = "background", asset_id = "enchanted_wizard_training_meadow" }
+  }, "menu"
 end
 
 function Start.update(dt)

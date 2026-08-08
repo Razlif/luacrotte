@@ -1,6 +1,6 @@
 -- Deterministic timeline player for declarative cutscene scenes.
 local asset_manifest = require("game_data.asset_manifest")
-local AssetLoader = require("game.systems.asset_loader")
+local ContentManager = require("game.systems.content_manager")
 local AssetActor = require("cutscene_engine.actor")
 local Commands = require("cutscene_engine.commands")
 local CameraManager = require("game.systems.camera_manager")
@@ -13,6 +13,46 @@ local Telemetry = require("game.systems.qa_telemetry")
 local Player = {}
 Player.__index = Player
 
+function Player.requests_for_scene(scene)
+  local requests, seen = {}, {}
+  local actor_animations = {}
+  for id, data in pairs(scene.actors or {}) do
+    actor_animations[id] = {}
+    if data.default_animation then actor_animations[id][data.default_animation] = true end
+  end
+  for _, command in ipairs(scene.timeline or {}) do
+    if command.actor and actor_animations[command.actor] then
+      if command.animation then actor_animations[command.actor][command.animation] = true end
+      if command.command == "play_animation" and command.name then
+        actor_animations[command.actor][command.name] = true
+      end
+    end
+  end
+  local function request(kind, asset_id, options)
+    local id = kind .. ":" .. asset_id
+    if not seen[id] then
+      seen[id] = true
+      requests[#requests + 1] = { kind = kind, asset_id = asset_id, options = options }
+    end
+  end
+  for id, data in pairs(scene.actors or {}) do
+    local animations = actor_animations[id]
+    request(data.asset_type or "character", data.asset_id, {
+      include_image = data.default_animation == nil,
+      animations = animations
+    })
+  end
+  if scene.background and scene.background.asset_id then
+    request("background", scene.background.asset_id, { include_image = true, animations = {} })
+  end
+  for _, command in ipairs(scene.timeline or {}) do
+    if command.command == "play_effect" and command.asset_id then
+      request("effect", command.asset_id, { include_image = false, animations = command.animation })
+    end
+  end
+  return requests
+end
+
 local function sorted_keys(table_value)
   local keys = {}
   for key in pairs(table_value or {}) do keys[#keys + 1] = key end
@@ -22,8 +62,11 @@ end
 
 function Player.new(scene, options)
   options = options or {}
-  AssetLoader.load_manifest(asset_manifest)
+  AudioManager.begin_scope("cutscene")
   AudioManager.load_manifest(asset_manifest)
+  if not options.preloaded then
+    ContentManager.load_scope("cutscene", Player.requests_for_scene(scene))
+  end
   local player = setmetatable({
     scene = scene,
     actors = {},
@@ -50,7 +93,7 @@ function Player.new(scene, options)
     else
       assert(asset_type == "prop", "Unsupported cutscene actor asset type: " .. tostring(asset_type))
     end
-    local asset = asset_type == "prop" and AssetLoader.get_prop(data.asset_id) or AssetLoader.get_character(data.asset_id)
+    local asset = ContentManager.get(asset_type, data.asset_id)
     player.actors[id] = AssetActor.new(data, asset)
   end
   player.actor_order = sorted_keys(player.actors)
@@ -69,10 +112,12 @@ function Player.new(scene, options)
   end
 
   local background = scene.background and asset_manifest.backgrounds[scene.background.asset_id]
+  local background_asset = scene.background and ContentManager.get("background", scene.background.asset_id)
   player.parallax = ParallaxManager.new(background and {
     {
       id = background.id,
       image_path = background.image.path,
+      image = background_asset and background_asset.image.texture,
       speed_x = 1,
       speed_y = 1,
       repeat_x = false,
@@ -99,7 +144,7 @@ function Player:spawn_effect(command)
     draw_layer = command.draw_layer or 30,
     flicker = command.flicker
   }
-  local effect = Effect.new(definition, AssetLoader.get_effect(command.asset_id))
+    local effect = Effect.new(definition, ContentManager.get("effect", command.asset_id))
   effect:trigger()
   self.effects[#self.effects + 1] = effect
 end

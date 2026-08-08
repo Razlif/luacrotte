@@ -5,8 +5,8 @@ function Config.configure(t)
   t.identity = "love2d_toolkit"
   t.version = "11.5"
   t.window.title = "Love2D Toolkit Playground"
-  t.window.width = 960
-  t.window.height = 540
+  t.window.width = 1280
+  t.window.height = 720
   t.window.resizable = true
   t.window.vsync = 1
 end

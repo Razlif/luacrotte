@@ -10,7 +10,7 @@ return {
     follow_y = false,
     smoothing = 8,
     zoom = 1,
-    center_y = 270
+    center_y = 360
   },
   controls = { schema = "gas_steering", binding_set = "keyboard_arrows" },
   movement = {
@@ -19,6 +19,7 @@ return {
     depth_bounds = { min = 698, max = 1147 },
     acceleration = 1150,
     max_speed = 340,
+    vertical_speed = 340,
     brake_deceleration = 400,
     coast_deceleration = 120,
     steering_response = 7,

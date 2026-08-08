@@ -10,7 +10,7 @@ return {
     follow_y = false,
     smoothing = 10,
     zoom = 1.35,
-    center_y = 960,
+    center_y = 1050,
     look_ahead_x = 0,
     look_ahead_y = 0
   },
@@ -21,6 +21,7 @@ return {
     allowed_axes = { x = true, y = false },
     acceleration = 1150,
     max_speed = 340,
+    vertical_speed = 340,
     brake_deceleration = 400,
     coast_deceleration = 120,
     steering_response = 8,

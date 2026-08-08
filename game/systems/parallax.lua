@@ -18,6 +18,10 @@ function ParallaxManager:load_layer(layer)
   if self.loaded[layer.id] then
     return self.loaded[layer.id]
   end
+  if layer.image then
+    self.loaded[layer.id] = layer.image
+    return layer.image
+  end
   if not love.filesystem.getInfo(layer.image_path) then
     print("Parallax layer missing, skipped: " .. tostring(layer.image_path))
     self.loaded[layer.id] = false
@@ -58,11 +62,20 @@ function ParallaxManager:draw()
         -- exposes empty space. Cover preserves aspect ratio and center-crops.
         local viewport_width = self.camera.width / self.camera.zoom
         local viewport_height = self.camera.height / self.camera.zoom
-        local scale = math.max(viewport_width / image:getWidth(), viewport_height / image:getHeight())
+        local scale = math.max(viewport_width / image:getWidth(), viewport_height / image:getHeight()) * (layer.scale or 1)
         local draw_width = image:getWidth() * scale
         local draw_height = image:getHeight() * scale
-        local draw_x = self.camera.x + (viewport_width - draw_width) / 2
-        local draw_y = self.camera.y + (viewport_height - draw_height) / 2
+        local draw_x
+        local draw_y
+        if layer.world_space then
+          -- World-space backgrounds scroll under the camera.  Camera-relative
+          -- placement would pin the image to the screen and hide movement.
+          draw_x = layer.world_x or 0
+          draw_y = layer.world_y or 0
+        else
+          draw_x = self.camera.x + (viewport_width - draw_width) / 2
+          draw_y = self.camera.y + (viewport_height - draw_height) / 2
+        end
         love.graphics.draw(image, draw_x, draw_y, 0, scale, scale)
       else
       local speed_x = layer.speed_x or 1

@@ -31,6 +31,8 @@ function MudHose.new(definition, asset)
     next_frame = 1,
     was_firing = false,
     last_launch = nil,
+    last_impact = nil,
+    last_enemy_impact = false,
     quads = {}
   }, MudHose)
   for frame = 1, animation.frame_count do
@@ -49,6 +51,8 @@ function MudHose:reset()
   self.emission_distance = self.definition.emission_spacing
   self.next_frame = 1
   self.was_firing = false
+  self.last_impact = nil
+  self.last_enemy_impact = false
 end
 
 function MudHose:spawn(hero)
@@ -86,17 +90,32 @@ function MudHose:spawn(hero)
   }
 end
 
-function MudHose:impact(projectile)
+function MudHose:impact(projectile, target)
+  self.last_impact = target and "enemy" or "ground"
+  if target then self.last_enemy_impact = true end
   if #self.residues >= self.definition.max_residues then table.remove(self.residues, 1) end
   self.residues[#self.residues + 1] = {
     x = projectile.x,
     ground_y = projectile.ground_y,
     frame = projectile.frame,
-    age = 0
+    age = 0,
+    impact_kind = target and "enemy" or "ground"
   }
+  if target and target.begin_defeat then
+    target:begin_defeat(self.definition.enemy_hit_delay, self.definition.enemy_fade_time)
+  end
 end
 
-function MudHose:update(hero, firing, dt)
+function MudHose:projectile_hits_target(projectile, target)
+  if target.defeat_elapsed or target.behavior_state == "defeated" then return false end
+  local dx = projectile.x - target.position.x
+  local dy = projectile.ground_y - target.position.ground_y
+  local radius = self.definition.enemy_hit_radius * (target.scale or 1)
+  return dx * dx + dy * dy <= radius * radius
+    and projectile.z <= self.definition.enemy_hit_height * (target.scale or 1)
+end
+
+function MudHose:update(hero, firing, dt, targets)
   if not self.definition.enabled then return end
   if firing and not self.was_firing then self.emission_distance = self.definition.emission_spacing end
   if firing then
@@ -115,9 +134,16 @@ function MudHose:update(hero, firing, dt)
     projectile.ground_y = projectile.ground_y + projectile.vy * dt
     projectile.z = projectile.z + projectile.vz * dt
     projectile.vz = projectile.vz - self.definition.gravity * dt
-    if projectile.z <= 0 or projectile.age >= self.definition.projectile_lifetime then
+    local target = nil
+    for _, candidate in ipairs(targets or {}) do
+      if self:projectile_hits_target(projectile, candidate) then
+        target = candidate
+        break
+      end
+    end
+    if target or projectile.z <= 0 or projectile.age >= self.definition.projectile_lifetime then
       projectile.z = 0
-      self:impact(projectile)
+      self:impact(projectile, target)
       table.remove(self.projectiles, index)
     end
   end
@@ -157,7 +183,9 @@ function MudHose:debug_snapshot()
     residues = #self.residues,
     next_frame = self.next_frame,
     firing = self.was_firing,
-    last_launch = self.last_launch
+    last_launch = self.last_launch,
+    last_impact = self.last_impact,
+    enemy_hit = self.last_enemy_impact
   }
 end
 

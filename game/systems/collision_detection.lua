@@ -104,6 +104,25 @@ end
 function CollisionDetection.sensor_overlaps(sensor, entity)
   local mask = active_mask(entity)
   if not mask then
+    for _, other_sensor in ipairs(CollisionDetection.get_sensors(entity)) do
+      if sensor.shape == "circle" and other_sensor.shape == "circle" then
+        local dx, dy = sensor.x - other_sensor.x, sensor.y - other_sensor.y
+        local radius = (sensor.radius or 0) + (other_sensor.radius or 0)
+        if dx * dx + dy * dy <= radius * radius then return true end
+      else
+        local a = sensor.shape == "circle" and sensor or other_sensor
+        local b = a == sensor and other_sensor or sensor
+        if a.shape == "circle" then
+          local nx = math.max(b.x, math.min(a.x, b.x + b.width))
+          local ny = math.max(b.y, math.min(a.y, b.y + b.height))
+          local dx, dy = a.x - nx, a.y - ny
+          if dx * dx + dy * dy <= (a.radius or 0) ^ 2 then return true end
+        elseif bounds_overlap(a.x, a.y, a.x + a.width, a.y + a.height,
+          b.x, b.y, b.x + b.width, b.y + b.height) then
+          return true
+        end
+      end
+    end
     return false
   end
   local overlaps = false
@@ -139,7 +158,10 @@ local function world_sensor(entity, definition)
 end
 
 local function sensors_for(entity)
-  local collision = entity.definition and entity.definition.collision or {}
+  local collision = (entity.definition and entity.definition.collision) or {}
+  if (not collision.sensors or #collision.sensors == 0) and entity.asset and entity.asset.collision then
+    collision = entity.asset.collision
+  end
   if collision.sensors and #collision.sensors > 0 then
     return collision.sensors
   end

@@ -1,5 +1,7 @@
 -- Public facade and scene registry for the self-contained cutscene engine.
 local Player = require("cutscene_engine.player")
+local ContentManager = require("game.systems.content_manager")
+local AudioManager = require("game.systems.audio_manager")
 
 local CutsceneEngine = { active = nil }
 
@@ -10,10 +12,17 @@ local scenes = {
 }
 
 function CutsceneEngine.start(scene_id, options)
+  if CutsceneEngine.active then CutsceneEngine.stop() end
   local scene = scenes[scene_id]
   assert(scene, "Unknown cutscene scene: " .. tostring(scene_id))
   CutsceneEngine.active = Player.new(scene, options)
   return CutsceneEngine.active
+end
+
+function CutsceneEngine.get_load_requests(scene_id)
+  local scene = scenes[scene_id]
+  assert(scene, "Unknown cutscene scene: " .. tostring(scene_id))
+  return Player.requests_for_scene(scene), "cutscene"
 end
 
 function CutsceneEngine.update(dt)
@@ -34,6 +43,8 @@ end
 
 function CutsceneEngine.stop()
   CutsceneEngine.active = nil
+  ContentManager.end_scope("cutscene")
+  AudioManager.end_scope("cutscene")
 end
 
 function CutsceneEngine.get_debug_context()

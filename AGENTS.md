@@ -47,6 +47,23 @@ manager.
 Use these existing systems before adding a new one:
 
 - `states_manager`: title, playground, pause overlay, and cutscene transitions.
+
+## Runtime infrastructure
+
+Runtime assets are loaded through `game.systems.content_manager`, not by
+loading the entire manifest in a state. A state should open an explicit content
+scope, request only its dependencies, and close the scope in `exit`. The
+ContentManager cache is shared across states and reports progress/errors for
+QA. Collision data defaults to configured shapes; request a pixel mask only
+for assets whose manifest collision policy explicitly sets `mode = "pixel_mask"`.
+See `docs/RUNTIME_INFRASTRUCTURE.md` for the reusable state, scope, level, and
+collision-loading contract.
+
+Levels declare composition in their `content` table. Gameplay profiles own
+behavior and tuning; `game.systems.level_manager` resolves the active level,
+profile, spawn, bounds, camera, and dependencies. World-space backgrounds must
+be rendered through the camera-independent Parallax layer so they scroll with
+the world rather than being pinned to the viewport.
 - `asset_loader`: loads promoted files through `game_data/asset_manifest.lua`.
 - `animation_manager`: sprite-sheet playback driven by `dt`.
 - `input_manager`: named held and one-shot actions for gameplay and UI.

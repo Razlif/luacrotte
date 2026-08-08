@@ -1,0 +1,2 @@
+{"id":"wait_for_load","command":"wait","seconds":1}
+{"id":"snapshot_cutscene_loaded","command":"snapshot","name":"selective_cutscene_loaded"}

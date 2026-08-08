@@ -1,0 +1,3 @@
+{"id":"wait_for_cutscene","command":"wait_until","condition":{"state_is":"cutscene"},"timeout":8}
+{"id":"snapshot_cutscene_loaded","command":"snapshot","name":"cutscene_loaded_scope"}
+{"id":"skip_cutscene","command":"press","key":"escape"}

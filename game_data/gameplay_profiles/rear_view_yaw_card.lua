@@ -10,7 +10,7 @@ return {
     follow_y = false,
     smoothing = 8,
     zoom = 1,
-    center_y = 270
+    center_y = 360
   },
   controls = { schema = "gas_steering", binding_set = "keyboard_arrows" },
   movement = {

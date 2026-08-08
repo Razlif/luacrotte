@@ -295,9 +295,28 @@
       },
       "created_at": "2026-08-06T12:23:23",
       "updated_at": "2026-08-06T12:23:23"
+    },
+    "fenced_concrete_park_base_v001": {
+      "id": "fenced_concrete_park_base_v001",
+      "type": "background",
+      "groups": [
+        "backgrounds/parks"
+      ],
+      "animations": {},
+      "image": {
+        "path": "media_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__self__image__v002.png",
+        "source_path": "lab_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__self__image__v002.png",
+        "version": 2,
+        "width": 1254,
+        "height": 1254,
+        "provider": "self",
+        "prompt": "Create a large pixel-art fenced concrete square park arena for a 2D top-down 2.5D driving game. Show a broad open concrete surface with subtle slab seams and restrained texture variation. Surround the entire square with a clearly visible perimeter fence, regular fence posts, an entrance gate centered on the front side, and a small amount of surrounding ground beyond the fence. Use an elevated camera angle around 45 degrees so the full square arena and its entrance are readable. Keep the interior spacious and visually open for separately placed trees, benches, lamps, cars, and other props. Use crisp pixel-art edges, a coherent retro color palette, and a transparent background outside the complete fenced arena. Output one large square transparent PNG suitable as a composited game background base."
+      },
+      "created_at": "2026-08-08T10:17:27",
+      "updated_at": "2026-08-08T10:28:17"
     }
   },
-  "updated_at": "2026-08-06T12:23:23",
+  "updated_at": "2026-08-08T10:28:17",
   "audio": {
     "sounds": {
       "magic_bomb_spell": {

@@ -5,6 +5,11 @@ local AudioManager = require("game.systems.audio_manager")
 local DebugOverlay = require("game.systems.debug_overlay")
 local QABridge = require("game.systems.qa_bridge")
 local QATelemetry = require("game.systems.qa_telemetry")
+local RuntimeContext = require("game.runtime_context")
+local ContentManager = RuntimeContext.content
+local LevelManager = RuntimeContext.levels
+local asset_manifest = require("game_data.asset_manifest")
+local playground_level = require("game_data.levels.playground")
 
 local GameLoop = {}
 
@@ -18,7 +23,10 @@ function GameLoop.load(debug_config, ...)
   end
   QATelemetry.configure({ enabled = debug_config and debug_config.qa, run_dir = qa_run_dir })
   QABridge.configure({ enabled = debug_config and debug_config.qa, run_dir = qa_run_dir })
-  states_manager.load({ cutscene_id = debug_config and debug_config.cutscene_id }, ...)
+  ContentManager.configure(asset_manifest)
+  LevelManager.configure({ playground = playground_level })
+  RuntimeContext.states = states_manager
+  states_manager.load({ cutscene_id = debug_config and debug_config.cutscene_id }, RuntimeContext, ...)
 end
 
 function GameLoop.update(dt)

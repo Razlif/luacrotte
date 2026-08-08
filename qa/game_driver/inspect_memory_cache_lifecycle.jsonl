@@ -1,0 +1,13 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":8}
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":8}
+{"id":"snapshot_initial_scope","command":"snapshot","name":"cache_initial_playground_scope"}
+{"id":"switch_profile_two","command":"press","key":"2"}
+{"id":"wait_for_profile_two","command":"wait_until","condition":{"state_is":"playground"},"timeout":8}
+{"id":"snapshot_profile_two","command":"snapshot","name":"cache_after_profile_two"}
+{"id":"switch_profile_five","command":"press","key":"5"}
+{"id":"wait_for_profile_five","command":"wait_until","condition":{"state_is":"playground"},"timeout":8}
+{"id":"snapshot_profile_five","command":"snapshot","name":"cache_after_profile_five"}
+{"id":"switch_profile_one","command":"press","key":"1"}
+{"id":"wait_for_profile_one_again","command":"wait_until","condition":{"state_is":"playground"},"timeout":8}
+{"id":"snapshot_profile_one_again","command":"snapshot","name":"cache_after_profile_one_again"}

@@ -86,6 +86,9 @@ function Profile.prepare_intent(intent, profile)
 end
 
 function Profile.bounds(level_definition, profile)
+  if profile.movement and profile.movement.unbounded then
+    return nil
+  end
   local bounds = copy(level_definition.hero_bounds)
   local movement = profile.movement
   if movement.bounds then
@@ -113,6 +116,9 @@ function Profile.bounds(level_definition, profile)
 end
 
 function Profile.world_bounds(level_definition, profile)
+  if profile.world_unbounded then
+    return nil
+  end
   local bounds = copy(level_definition.world)
   for key, value in pairs(profile.world or {}) do bounds[key] = value end
   return bounds

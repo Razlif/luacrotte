@@ -1,0 +1,6 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"load_park_profile","command":"press","key":"5"}
+{"id":"snapshot_park_profile","command":"snapshot","name":"profile_5_park_arena"}
+{"id":"wait_for_park_background","command":"wait","seconds":0.5}
+{"id":"snapshot_park_background","command":"snapshot","name":"profile_5_park_background"}

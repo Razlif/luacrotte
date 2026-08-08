@@ -19,9 +19,15 @@ return {
     bottom = 1147
   },
   camera = {
-    width = 960,
-    height = 540,
+    width = 1280,
+    height = 720,
     smoothing = 8,
     zoom = 1
+  },
+  content = {
+    characters = { "luacrotte_hero_motorcycle_direction_set_v001" },
+    props = { "motocrotte_bike_variant_01" },
+    effects = { "mud_hose_blobs" },
+    audio = { "luacrotte_main_music", "motocrotte_idle", "motocrotte_running" }
   }
 }
