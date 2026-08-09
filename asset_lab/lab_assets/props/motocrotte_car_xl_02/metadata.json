@@ -1,0 +1,20 @@
+{
+  "asset_id": "motocrotte_car_xl_02",
+  "type": "prop",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": "vehicles",
+  "subcategory": "cars",
+  "size_class": "XL",
+  "groups": [
+    "vehicles/cars/xl"
+  ],
+  "source_paths": [
+    "media/images/cars/XL/car_2.png"
+  ],
+  "status": "active",
+  "source_role": "traffic_vehicle_animation",
+  "source_references": [
+    "traffic.py:143"
+  ]
+}

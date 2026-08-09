@@ -1,0 +1,14 @@
+{
+  "asset_id": "motocrotte_gameplay_background_05",
+  "type": "background",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "source_paths": [
+    "media/images/new_background5.png"
+  ],
+  "status": "active",
+  "source_role": "gameplay_background",
+  "source_references": [
+    "motorcrottee.py:96"
+  ]
+}

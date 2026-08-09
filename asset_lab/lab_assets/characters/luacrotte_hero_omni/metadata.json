@@ -1,0 +1,26 @@
+{
+  "last_result": {
+    "id": "luacrotte_hero_omni__self__image__v003",
+    "provider": "self",
+    "version": 3,
+    "mode": "with_reference",
+    "path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v003.png",
+    "prompt": "Using the supplied standing character reference as the exact identity reference, create the same rugged young adult man seated naturally on a motorcycle. Preserve his long messy black hair, mildly scruffy face, strong eyebrows, tired determined expression, plain black short-sleeved shirt, faded blue jeans, worn brown leather belt, dark work boots, body proportions, colors, and detailed pixel-art style. Show the complete motorcycle and the complete rider in a clear three-quarter side view, with both hands on the handlebars, feet positioned naturally, and the character seated convincingly on the motorcycle. Use a clean transparent background with a crisp readable silhouette, consistent pixel clusters, restrained retro game palette, and generous canvas padding. The final character and motorcycle are centered and ready for sprite-sheet production.",
+    "variation_group_id": "luacrotte_hero_omni_self_add_image_version_with_reference_20260730_220043_760958",
+    "prompt_metadata": {
+      "prompt": "Using the supplied standing character reference as the exact identity reference, create the same rugged young adult man seated naturally on a motorcycle. Preserve his long messy black hair, mildly scruffy face, strong eyebrows, tired determined expression, plain black short-sleeved shirt, faded blue jeans, worn brown leather belt, dark work boots, body proportions, colors, and detailed pixel-art style. Show the complete motorcycle and the complete rider in a clear three-quarter side view, with both hands on the handlebars, feet positioned naturally, and the character seated convincingly on the motorcycle. Use a clean transparent background with a crisp readable silhouette, consistent pixel clusters, restrained retro game palette, and generous canvas padding. The final character and motorcycle are centered and ready for sprite-sheet production.",
+      "asset_id": "luacrotte_hero_omni",
+      "asset_type": "character",
+      "provider": "self",
+      "action": "add-image-version",
+      "variation_group_id": "luacrotte_hero_omni_self_add_image_version_with_reference_20260730_220043_760958",
+      "mode": "with_reference",
+      "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+      "source_prompt_snapshot": "Create a highly consistent pixel-art character reference for a game sprite project. Subject: a rugged young adult man with long black hair, slightly messy and falling around his shoulders, a mildly scruffy face, strong eyebrows, and a tired but determined expression. He wears a plain black short-sleeved shirt, faded blue jeans, a worn brown leather belt, and dark work boots. His build is lean and athletic, with natural proportions. Show him standing in a neutral relaxed pose, fully visible from head to boots, centered on the canvas. Use detailed hand-crafted pixel art with clean readable silhouettes, deliberate pixel clusters, subtle shading, and a restrained retro game palette. Keep the character's face, hairstyle, clothing, colors, body proportions, and accessories extremely clear for future directional sprite generation. The final character must have a transparent background. Generate it first on a perfectly flat solid #00ff00 chroma-key background for clean alpha extraction; no shadows, gradients, floor, reflections, text, logos, watermark, extra objects, or additional characters."
+    },
+    "status": "pending_self_creation",
+    "source_image_version": 1,
+    "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+    "init_image_strength": 800
+  }
+}

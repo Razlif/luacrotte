@@ -1,0 +1,20 @@
+{
+  "asset_id": "motocrotte_poop_55",
+  "type": "effect",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "gameplay/effects/poop"
+  ],
+  "source_paths": [
+    "media/images/poop55.png"
+  ],
+  "status": "active",
+  "source_role": "collectible_animation",
+  "source_references": [
+    "collectibles.py:33"
+  ]
+}

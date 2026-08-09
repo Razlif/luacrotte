@@ -1,0 +1,20 @@
+{
+  "asset_id": "motocrotte_car_regular_02",
+  "type": "prop",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": "vehicles",
+  "subcategory": "cars",
+  "size_class": "regular",
+  "groups": [
+    "vehicles/cars/regular"
+  ],
+  "source_paths": [
+    "media/images/cars/regular/car_2.png"
+  ],
+  "status": "active",
+  "source_role": "traffic_vehicle_animation",
+  "source_references": [
+    "traffic.py:143"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "last_result": {
+    "id": "fenced_concrete_park_base_v001__mock__image__v003",
+    "provider": "mock",
+    "version": 3,
+    "mode": "brand_new",
+    "path": "lab_assets/backgrounds/fenced_concrete_park_base_v001/original_images/fenced_concrete_park_base_v001__mock__image__v003.png",
+    "prompt": "Derived deterministic 2x2 stitched park background from fenced_concrete_park_base_v001 self image v002.",
+    "variation_group_id": "fenced_concrete_park_base_v001_mock_add_image_version_brand_new_20260808_102519_096975",
+    "prompt_metadata": {
+      "prompt": "Derived deterministic 2x2 stitched park background from fenced_concrete_park_base_v001 self image v002.",
+      "asset_id": "fenced_concrete_park_base_v001",
+      "asset_type": "background",
+      "provider": "mock",
+      "action": "add-image-version",
+      "variation_group_id": "fenced_concrete_park_base_v001_mock_add_image_version_brand_new_20260808_102519_096975",
+      "mode": "brand_new"
+    },
+    "width": 2418,
+    "height": 1616
+  }
+}

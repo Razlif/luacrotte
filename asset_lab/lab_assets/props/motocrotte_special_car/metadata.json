@@ -1,0 +1,18 @@
+{
+  "asset_id": "motocrotte_special_car",
+  "type": "prop",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "vehicles/cars/special"
+  ],
+  "source_paths": [
+    "media/images/cars/special/car_1.png"
+  ],
+  "status": "unclassified",
+  "source_role": "special_car_sprite_sheet",
+  "source_references": []
+}

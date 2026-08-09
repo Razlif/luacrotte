@@ -1,0 +1,23 @@
+{
+  "asset_id": "motocrotte_special_vehicle_dust",
+  "type": "effect",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": "vehicles",
+  "subcategory": "vehicle_effects",
+  "size_class": null,
+  "groups": [
+    "vehicles/effects/dust"
+  ],
+  "source_paths": [
+    "media/images/cars/special/Asset_Dust_1.png",
+    "media/images/cars/special/Asset_Dust_2.png",
+    "media/images/cars/special/Asset_Dust_3.png",
+    "media/images/cars/special/Asset_Dust_4.png",
+    "media/images/cars/special/Asset_Dust_5.png",
+    "media/images/cars/special/Asset_Dust_6.png"
+  ],
+  "status": "unclassified",
+  "source_role": "special_vehicle_dust_animation",
+  "source_references": []
+}

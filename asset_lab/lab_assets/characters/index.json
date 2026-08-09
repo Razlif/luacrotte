@@ -1,0 +1,786 @@
+{
+  "source_sheet": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.png",
+  "source_review": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__frame_direction_review__v001.json",
+  "group": "characters/hero/motorcycle_direction_sets",
+  "directions": [
+    "front",
+    "down_right",
+    "right",
+    "up_right",
+    "back",
+    "up_left",
+    "left",
+    "down_left"
+  ],
+  "variation_count": 32,
+  "variations": [
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v001",
+      "variation": 1,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v002",
+      "variation": 2,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v003",
+      "variation": 3,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v004",
+      "variation": 4,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v005",
+      "variation": 5,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v006",
+      "variation": 6,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v007",
+      "variation": 7,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v008",
+      "variation": 8,
+      "frame_order": [
+        "r1c1",
+        "r1c2",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r1c2",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v009",
+      "variation": 9,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v010",
+      "variation": 10,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v011",
+      "variation": 11,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v012",
+      "variation": 12,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v013",
+      "variation": 13,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v014",
+      "variation": 14,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v015",
+      "variation": 15,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v016",
+      "variation": 16,
+      "frame_order": [
+        "r1c1",
+        "r2c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r2c4",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v017",
+      "variation": 17,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v018",
+      "variation": 18,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v019",
+      "variation": 19,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v020",
+      "variation": 20,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v021",
+      "variation": 21,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v022",
+      "variation": 22,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v023",
+      "variation": 23,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v024",
+      "variation": 24,
+      "frame_order": [
+        "r1c1",
+        "r4c3",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c3",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v025",
+      "variation": 25,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v026",
+      "variation": 26,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r2c2",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v027",
+      "variation": 27,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v028",
+      "variation": 28,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r2c2",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r2c2",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v029",
+      "variation": 29,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v030",
+      "variation": 30,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r1c4",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r3c4",
+        "up_left": "r1c4",
+        "down_left": "r3c3"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v031",
+      "variation": 31,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c2"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c2"
+      }
+    },
+    {
+      "asset_id": "luacrotte_hero_motorcycle_direction_set_v032",
+      "variation": 32,
+      "frame_order": [
+        "r1c1",
+        "r4c4",
+        "r1c3",
+        "r3c4",
+        "r2c1",
+        "r4c2",
+        "r2c3",
+        "r3c3"
+      ],
+      "selected_by_direction": {
+        "front": "r1c1",
+        "right": "r1c3",
+        "back": "r2c1",
+        "left": "r2c3",
+        "down_right": "r4c4",
+        "up_right": "r3c4",
+        "up_left": "r4c2",
+        "down_left": "r3c3"
+      }
+    }
+  ]
+}

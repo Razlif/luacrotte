@@ -1,0 +1,20 @@
+{
+  "last_result": {
+    "id": "mud_hose_blobs__self__image__v001",
+    "provider": "self",
+    "version": 1,
+    "mode": "brand_new",
+    "path": "lab_assets/effects/mud_hose_blobs/original_images/mud_hose_blobs__self__image__v001.png",
+    "prompt": "Pixel-art sprite sheet for a pressurized mud hose, six equal 48 by 48 pixel cells in one horizontal row, a single mud blob centered in each cell. The six blobs are distinct close variants: compact round blob, heavy oval blob, forward-stretched blob, sideways-stretched blob, small droplet cluster, irregular heavy lumpy blob. Rich brown mud with small warm highlights, crisp readable retro-game pixels, clean one-pixel spacing between cells. Perfectly flat solid #00ff00 chroma-key background across the entire sheet.",
+    "variation_group_id": "mud_hose_blobs_self_create_new_20260806_001214_618513",
+    "prompt_metadata": {
+      "prompt": "Pixel-art sprite sheet for a pressurized mud hose, six equal 48 by 48 pixel cells in one horizontal row, a single mud blob centered in each cell. The six blobs are distinct close variants: compact round blob, heavy oval blob, forward-stretched blob, sideways-stretched blob, small droplet cluster, irregular heavy lumpy blob. Rich brown mud with small warm highlights, crisp readable retro-game pixels, clean one-pixel spacing between cells. Perfectly flat solid #00ff00 chroma-key background across the entire sheet.",
+      "asset_id": "mud_hose_blobs",
+      "asset_type": "effect",
+      "provider": "self",
+      "action": "create-new",
+      "variation_group_id": "mud_hose_blobs_self_create_new_20260806_001214_618513"
+    },
+    "status": "pending_self_creation"
+  }
+}

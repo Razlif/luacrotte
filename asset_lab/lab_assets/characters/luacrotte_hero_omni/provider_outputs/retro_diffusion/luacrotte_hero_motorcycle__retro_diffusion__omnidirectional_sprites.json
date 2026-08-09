@@ -1,0 +1,13 @@
+{
+  "created_at": 1785440168,
+  "balance_cost": 0.25,
+  "credit_cost": 10,
+  "model": "rd_plus",
+  "remaining_balance": 0.25,
+  "remaining_credits": 0,
+  "source_image_version": 3,
+  "prompt_style": "rd_animation__any_animation",
+  "frames_duration": 4,
+  "return_spritesheet": true,
+  "output_path": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.png"
+}

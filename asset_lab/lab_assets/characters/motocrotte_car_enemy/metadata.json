@@ -1,0 +1,18 @@
+{
+  "asset_id": "motocrotte_car_enemy",
+  "type": "character",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "enemies/cars"
+  ],
+  "source_paths": [
+    "media/images/enemies/carEnemy.png"
+  ],
+  "status": "unclassified",
+  "source_role": "car_enemy_sprite_sheet",
+  "source_references": []
+}

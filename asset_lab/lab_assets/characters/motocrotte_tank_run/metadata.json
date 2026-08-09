@@ -1,0 +1,18 @@
+{
+  "asset_id": "motocrotte_tank_run",
+  "type": "character",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "enemies/boss/tank"
+  ],
+  "source_paths": [
+    "media/images/cars/special/Asset_Tank_Run.png"
+  ],
+  "status": "unclassified",
+  "source_role": "tank_run_sprite_sheet",
+  "source_references": []
+}

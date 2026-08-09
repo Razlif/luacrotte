@@ -1,0 +1,19 @@
+{
+  "asset_id": "motocrotte_main_screen",
+  "type": "background",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [],
+  "source_paths": [
+    "media/images/main1.png"
+  ],
+  "status": "active",
+  "source_role": "title_and_end_screen",
+  "source_references": [
+    "motorcrottee.py:60",
+    "motorcrottee.py:133"
+  ]
+}

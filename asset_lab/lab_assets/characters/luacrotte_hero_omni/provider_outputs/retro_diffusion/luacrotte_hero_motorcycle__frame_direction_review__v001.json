@@ -1,0 +1,50 @@
+{
+  "asset_id": "luacrotte_hero_omni",
+  "source_sheet": "luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.png",
+  "grid": {
+    "rows": 4,
+    "columns": 4,
+    "frame_width": 64,
+    "frame_height": 64
+  },
+  "review_status": "user_reviewed_pending_animation_selection",
+  "frames": {
+    "r1c1": { "direction": "front", "status": "cardinal" },
+    "r1c2": { "direction": "down_right", "status": "diagonal" },
+    "r1c3": { "direction": "right", "status": "cardinal" },
+    "r1c4": { "direction": "up_left", "status": "diagonal" },
+    "r2c1": { "direction": "back", "status": "cardinal" },
+    "r2c2": { "direction": "up_right", "status": "diagonal" },
+    "r2c3": { "direction": "left", "status": "cardinal" },
+    "r2c4": { "direction": "down_right", "status": "diagonal" },
+    "r3c1": { "direction": "front_tilted", "status": "excluded_for_now" },
+    "r3c2": { "direction": "down_left", "status": "diagonal" },
+    "r3c3": { "direction": "down_left", "status": "diagonal" },
+    "r3c4": { "direction": "up_right", "status": "diagonal" },
+    "r4c1": { "direction": "up_left", "status": "diagonal" },
+    "r4c2": { "direction": "up_left", "status": "diagonal" },
+    "r4c3": { "direction": "down_right", "status": "diagonal" },
+    "r4c4": { "direction": "down_right", "status": "diagonal" }
+  },
+  "summary": {
+    "cardinal": {
+      "front": ["r1c1"],
+      "right": ["r1c3"],
+      "back": ["r2c1"],
+      "left": ["r2c3"]
+    },
+    "diagonal": {
+      "down_right": ["r1c2", "r2c4", "r4c3", "r4c4"],
+      "up_left": ["r1c4", "r4c1", "r4c2"],
+      "up_right": ["r2c2", "r3c4"],
+      "down_left": ["r3c2", "r3c3"]
+    },
+    "excluded": ["r3c1"]
+  },
+  "notes": [
+    "The four cardinal sprites are fixed for the current experiment.",
+    "Diagonal groups have uneven counts and will be balanced later by choosing variants.",
+    "The remaining tilted/excluded frame is r3c1.",
+    "Latest user review: canonical front r1c1, back r2c1, right r1c3, left r2c3; up_left r1c4, r4c1, r4c2; up_right r2c2, r3c4; down_right r1c2, r2c4, r4c3, r4c4; down_left r3c2, r3c3."
+  ]
+}

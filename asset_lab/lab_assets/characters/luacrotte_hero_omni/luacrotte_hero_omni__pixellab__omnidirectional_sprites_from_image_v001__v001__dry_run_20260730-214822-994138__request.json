@@ -1,0 +1,26 @@
+{
+  "dry_run": true,
+  "action": "create-rotations",
+  "provider": "pixellab",
+  "type": "character",
+  "name": "luacrotte_hero_omni",
+  "prompt": "PixelLab eight-direction rotation generation",
+  "width": 256,
+  "height": 256,
+  "with_background": false,
+  "mock_image": null,
+  "mock_frames_dir": null,
+  "groups": [
+    "characters/hero/omnidirectional"
+  ],
+  "animation": "omnidirectional_sprites",
+  "source_image_version": 1,
+  "source_image_path": "lab_assets/characters/luacrotte_hero_omni/original_images/luacrotte_hero_omni__self__image__v001.png",
+  "planned_outputs": {
+    "trace_path": "lab_assets/characters/luacrotte_hero_omni/trace.jsonl",
+    "request_path": "lab_assets/characters/luacrotte_hero_omni/luacrotte_hero_omni__pixellab__omnidirectional_sprites_from_image_v001__v001__dry_run_20260730-214822-994138__request.json",
+    "metadata_path": "lab_assets/characters/luacrotte_hero_omni/metadata.json",
+    "sheet_path": "lab_assets/characters/luacrotte_hero_omni/sprite_sheets/luacrotte_hero_omni__pixellab__omnidirectional_sprites_from_image_v001__v001.png",
+    "gif_path": "lab_assets/characters/luacrotte_hero_omni/animation_gifs/luacrotte_hero_omni__pixellab__omnidirectional_sprites_from_image_v001__v001.gif"
+  }
+}

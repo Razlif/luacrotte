@@ -1,0 +1,21 @@
+{
+  "asset_id": "motocrotte_poop_impact",
+  "type": "effect",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "gameplay/effects/poop"
+  ],
+  "source_paths": [
+    "media/images/poopimpact.png"
+  ],
+  "status": "active",
+  "source_role": "projectile_impact_sprite",
+  "source_references": [
+    "player.py:328",
+    "game_configuration.py:16"
+  ]
+}

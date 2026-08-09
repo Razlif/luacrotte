@@ -1,0 +1,40 @@
+{
+  "asset_id": "luacrotte_hero_motorcycle_direction_set_v018",
+  "source_sheet": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.png",
+  "source_review": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__frame_direction_review__v001.json",
+  "group": "characters/hero/motorcycle_direction_sets",
+  "directions": [
+    "front",
+    "down_right",
+    "right",
+    "up_right",
+    "back",
+    "up_left",
+    "left",
+    "down_left"
+  ],
+  "frame_order": [
+    "r1c1",
+    "r4c3",
+    "r1c3",
+    "r2c2",
+    "r2c1",
+    "r1c4",
+    "r2c3",
+    "r3c3"
+  ],
+  "selected_by_direction": {
+    "front": "r1c1",
+    "right": "r1c3",
+    "back": "r2c1",
+    "left": "r2c3",
+    "down_right": "r4c3",
+    "up_right": "r2c2",
+    "up_left": "r1c4",
+    "down_left": "r3c3"
+  },
+  "frame_count": 8,
+  "frame_width": 64,
+  "frame_height": 64,
+  "fps": 8
+}

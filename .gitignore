@@ -8,28 +8,6 @@ qa/reports/*
 qa/runtime_logs/*
 !qa/runtime_logs/.gitkeep
 
-asset_lab/lab_assets/*
-!asset_lab/lab_assets/.gitkeep
-!asset_lab/lab_assets/*/
-asset_lab/lab_assets/*/*
-!asset_lab/lab_assets/*/.gitkeep
-
-# Keep the manifest-backed example assets available to fresh clones.
-!asset_lab/lab_assets/characters/barbarian_duck_wizard/
-!asset_lab/lab_assets/characters/barbarian_duck_wizard/**
-!asset_lab/lab_assets/characters/funky_blue_slime/
-!asset_lab/lab_assets/characters/funky_blue_slime/**
-!asset_lab/lab_assets/effects/magic_explosion/
-!asset_lab/lab_assets/effects/magic_explosion/**
-
-# Downloaded audio previews and staging files are local; promoted audio lives in media_assets.
-asset_lab/audio_library/previews/*
-!asset_lab/audio_library/previews/.gitkeep
-asset_lab/audio_library/imported/*
-!asset_lab/audio_library/imported/.gitkeep
-asset_lab/audio_library/catalog.json
-asset_lab/audio_catalog.js
-
 # Local analysis artifacts.
 graphify-out/
 .graphify*

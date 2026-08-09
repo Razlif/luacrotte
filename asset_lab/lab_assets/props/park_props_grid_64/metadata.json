@@ -1,0 +1,20 @@
+{
+  "last_result": {
+    "id": "park_props_grid_64__self__image__v001",
+    "provider": "self",
+    "version": 1,
+    "mode": "brand_new",
+    "path": "lab_assets/props/park_props_grid_64/original_images/park_props_grid_64__self__image__v001.png",
+    "prompt": "64-cell 8 by 8 transparent-background pixel-art prop atlas for a fenced concrete urban park. Use an exact equal 8 by 8 grid with 64 identical square cells, one centered isolated prop per cell, generous transparent padding, consistent orthographic three-quarter game-art view, consistent scale and lighting, crisp readable silhouettes. Include varied benches, picnic tables, lamp posts, trash cans, trees, bushes, planters, grass patches, small grass hills, concrete barriers, painted road markings, drinking fountains, chain-link gates, turnstiles, umbrellas, folding chairs, skate ramps, skate rails, basketball hoops, park signs, warning signs, fire hydrants, utility boxes, cones, temporary fencing, puddles, cracks, weeds, graffiti decals, dumpsters, recycling bins, maintenance carts, bicycles, scooters, kiosks, and other distinct park fixtures. Transparent RGBA background.",
+    "variation_group_id": "park_props_grid_64_self_create_new_20260808_223935_086334",
+    "prompt_metadata": {
+      "prompt": "64-cell 8 by 8 transparent-background pixel-art prop atlas for a fenced concrete urban park. Use an exact equal 8 by 8 grid with 64 identical square cells, one centered isolated prop per cell, generous transparent padding, consistent orthographic three-quarter game-art view, consistent scale and lighting, crisp readable silhouettes. Include varied benches, picnic tables, lamp posts, trash cans, trees, bushes, planters, grass patches, small grass hills, concrete barriers, painted road markings, drinking fountains, chain-link gates, turnstiles, umbrellas, folding chairs, skate ramps, skate rails, basketball hoops, park signs, warning signs, fire hydrants, utility boxes, cones, temporary fencing, puddles, cracks, weeds, graffiti decals, dumpsters, recycling bins, maintenance carts, bicycles, scooters, kiosks, and other distinct park fixtures. Transparent RGBA background.",
+      "asset_id": "park_props_grid_64",
+      "asset_type": "prop",
+      "provider": "self",
+      "action": "create-new",
+      "variation_group_id": "park_props_grid_64_self_create_new_20260808_223935_086334"
+    },
+    "status": "pending_self_creation"
+  }
+}

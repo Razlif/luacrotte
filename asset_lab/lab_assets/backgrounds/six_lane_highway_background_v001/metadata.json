@@ -1,0 +1,21 @@
+{
+  "last_result": {
+    "id": "six_lane_highway_background_v001__pixellab__image__v001",
+    "provider": "pixellab",
+    "version": 1,
+    "mode": "brand_new",
+    "path": "lab_assets/backgrounds/six_lane_highway_background_v001/original_images/six_lane_highway_background_v001__pixellab__image__v001.png",
+    "prompt": "Create a pixel-art six-lane highway road tile for a 2D top-down 2.5D driving game. Show six clearly separated lanes with strong lane markings, broad asphalt surface, subtle road texture, concrete road edges, painted shoulders, and a clean arcade-game composition. Use a slightly elevated camera angle around 45 degrees so the road extends clearly into the distance. Create a seamless repeatable road tile with consistent geometry at every edge. Use a transparent background outside the complete road tile. Preserve crisp pixel-art edges, readable lane markings, controlled perspective, and a rich retro color palette. Output one transparent PNG suitable for repeating across a large game world.",
+    "variation_group_id": "six_lane_highway_background_v001_pixellab_create_new_20260807_205132_909738",
+    "prompt_metadata": {
+      "prompt": "Create a pixel-art six-lane highway road tile for a 2D top-down 2.5D driving game. Show six clearly separated lanes with strong lane markings, broad asphalt surface, subtle road texture, concrete road edges, painted shoulders, and a clean arcade-game composition. Use a slightly elevated camera angle around 45 degrees so the road extends clearly into the distance. Create a seamless repeatable road tile with consistent geometry at every edge. Use a transparent background outside the complete road tile. Preserve crisp pixel-art edges, readable lane markings, controlled perspective, and a rich retro color palette. Output one transparent PNG suitable for repeating across a large game world.",
+      "asset_id": "six_lane_highway_background_v001",
+      "asset_type": "background",
+      "provider": "pixellab",
+      "action": "create-new",
+      "variation_group_id": "six_lane_highway_background_v001_pixellab_create_new_20260807_205132_909738"
+    },
+    "width": 400,
+    "height": 400
+  }
+}

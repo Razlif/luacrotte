@@ -1,0 +1,25 @@
+{
+  "asset_id": "motocrotte_hero_main",
+  "type": "character",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "characters/hero"
+  ],
+  "source_paths": [
+    "media/images/hero/hero_1.png",
+    "media/images/hero/hero_2.png",
+    "media/images/hero/hero_3.png",
+    "media/images/hero/hero_4.png",
+    "media/images/hero/hero_5.png"
+  ],
+  "status": "active",
+  "source_role": "hero_animation_frames",
+  "source_references": [
+    "player.py:54",
+    "controls.py:42"
+  ]
+}

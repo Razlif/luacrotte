@@ -1,0 +1,19 @@
+{
+  "source_sheet": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__retro_diffusion__omnidirectional_sprites.png",
+  "source_grid": {
+    "rows": 4,
+    "columns": 4,
+    "frame_width": 64,
+    "frame_height": 64
+  },
+  "frame_order": [
+    "r1c1",
+    "r1c3",
+    "r2c1",
+    "r2c3"
+  ],
+  "frame_count": 4,
+  "fps": 4,
+  "output_sheet": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__cardinal_directions__v001.png",
+  "output_gif": "asset_lab\\lab_assets\\characters\\luacrotte_hero_omni\\provider_outputs\\retro_diffusion\\luacrotte_hero_motorcycle__cardinal_directions__v001.gif"
+}

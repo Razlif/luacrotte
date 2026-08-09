@@ -1,0 +1,20 @@
+{
+  "asset_id": "motocrotte_hero_special_05",
+  "type": "character",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "characters/hero/special"
+  ],
+  "source_paths": [
+    "media/images/hero/special/special_5.png"
+  ],
+  "status": "unclassified",
+  "source_role": "hero_special_sprite_sheet",
+  "source_references": [
+    "controls.py:172"
+  ]
+}

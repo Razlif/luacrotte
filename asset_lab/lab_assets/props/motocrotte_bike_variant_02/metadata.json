@@ -1,0 +1,24 @@
+{
+  "asset_id": "motocrotte_bike_variant_02",
+  "type": "prop",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": "vehicles",
+  "subcategory": "bikes",
+  "size_class": null,
+  "groups": [
+    "vehicles/bikes"
+  ],
+  "source_paths": [
+    "media/images/cars/bikes/2_1.png",
+    "media/images/cars/bikes/2_2.png",
+    "media/images/cars/bikes/2_3.png",
+    "media/images/cars/bikes/2_4.png"
+  ],
+  "status": "active",
+  "source_role": "traffic_vehicle_animation",
+  "source_references": [
+    "traffic.py:176",
+    "enemies.py:78"
+  ]
+}

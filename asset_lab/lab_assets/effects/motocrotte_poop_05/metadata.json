@@ -1,0 +1,18 @@
+{
+  "asset_id": "motocrotte_poop_05",
+  "type": "effect",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "gameplay/effects/poop"
+  ],
+  "source_paths": [
+    "media/images/poop5.png"
+  ],
+  "status": "unclassified",
+  "source_role": "standalone_poop_image",
+  "source_references": []
+}

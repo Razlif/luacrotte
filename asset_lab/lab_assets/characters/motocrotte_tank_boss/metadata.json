@@ -1,0 +1,20 @@
+{
+  "asset_id": "motocrotte_tank_boss",
+  "type": "character",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "enemies/boss/tank"
+  ],
+  "source_paths": [
+    "media/images/cars/special/Tank.png"
+  ],
+  "status": "active",
+  "source_role": "boss_enemy_animation",
+  "source_references": [
+    "enemies.py:304"
+  ]
+}

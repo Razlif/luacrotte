@@ -1,0 +1,18 @@
+{
+  "asset_id": "motocrotte_poop_gun",
+  "type": "effect",
+  "provider": "legacy_motocrotte",
+  "source_project": "motorcrotte",
+  "domain": null,
+  "subcategory": null,
+  "size_class": null,
+  "groups": [
+    "gameplay/effects/poop"
+  ],
+  "source_paths": [
+    "media/images/poopgun.png"
+  ],
+  "status": "unclassified",
+  "source_role": "standalone_poop_image",
+  "source_references": []
+}

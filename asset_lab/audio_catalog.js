@@ -1,0 +1,300 @@
+// Generated from audio_library/catalog.json. Do not edit by hand.
+window.ASSET_LAB_AUDIO_CATALOG = {
+  "version": 1,
+  "candidates": [
+    {
+      "candidate_id": "legacy_motocrotte_break",
+      "asset_id": "motocrotte_break",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/break.mp3",
+      "groups": [
+        "sounds/motocrotte/vehicles"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_break.mp3",
+      "local_preview": "audio_library/imported/sound/motocrotte_break.mp3",
+      "sha256": "41d61599d0f965077eb7007b5b66a3277017f2c44412100a2f39e95e661a0702"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_collect",
+      "asset_id": "motocrotte_collect",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/collect.mp3",
+      "groups": [
+        "sounds/motocrotte/gameplay"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_collect.mp3",
+      "sha256": "a91ce94925bd0a38ca501067beea2dbabc07841ecaf56bf3273535b349c1793c"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_horn",
+      "asset_id": "motocrotte_horn",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/horn_sound.mp3",
+      "groups": [
+        "sounds/motocrotte/vehicles"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_horn.mp3",
+      "sha256": "f93fce0005b051505bb2561881a998e0f74c4a60c2b2798d4083326804d59691"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_idle",
+      "asset_id": "motocrotte_idle",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/idle.mp3",
+      "groups": [
+        "sounds/motocrotte/player"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_idle.mp3",
+      "local_preview": "audio_library/imported/sound/motocrotte_idle.mp3",
+      "sha256": "3604f845a233c1eb7e689548d5feb232e77810b9f51546c4ef88cdf05920f678"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_main_riff",
+      "asset_id": "motocrotte_main_riff",
+      "kind": "music",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/mainRiff.wav",
+      "groups": [
+        "music/motocrotte"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/music/motocrotte_main_riff.wav",
+      "sha256": "f6d320fbcae81147df20b2e6bd3138f58ae80fc8ffd27b5f5b0540480c7572c5"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_oh_no",
+      "asset_id": "motocrotte_oh_no",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/oh_no.mp3",
+      "groups": [
+        "sounds/motocrotte/gameplay"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_oh_no.mp3",
+      "sha256": "3288c5f9cab48e917bfa7731c012fb1a6679130bbc45f56735bc4d2909c4605d"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_pew",
+      "asset_id": "motocrotte_pew",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/pew.wav",
+      "groups": [
+        "sounds/motocrotte/gameplay"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_pew.wav",
+      "sha256": "05c67009fa31e0de10961dd8797683ca83e88c112b19fa527ffc5fe0e0107cc5"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_poop_sound",
+      "asset_id": "motocrotte_poop_sound",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/poop.mp3",
+      "groups": [
+        "sounds/motocrotte/player"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_poop_sound.mp3",
+      "sha256": "0b16070b8ab3a05a1c33341b5bdc07c40e6902945ffa9f1989dcc685f0a29e19"
+    },
+    {
+      "candidate_id": "legacy_motocrotte_running",
+      "asset_id": "motocrotte_running",
+      "kind": "sound",
+      "source": "legacy_motocrotte",
+      "source_project": "motorcrotte",
+      "source_path": "media/sounds/running.mp3",
+      "groups": [
+        "sounds/motocrotte/player"
+      ],
+      "license": "unknown",
+      "status": "imported",
+      "imported_path": "audio_library/imported/sound/motocrotte_running.mp3",
+      "local_preview": "audio_library/imported/sound/motocrotte_running.mp3",
+      "sha256": "84b9a081e55375d7a38907d5a09793822320ef3103fc424e31c4b2276b55e8f8"
+    },
+    {
+      "candidate_id": "luacrotte_music_angry_bullfrogs_motorbikes",
+      "kind": "music",
+      "source": "opengameart",
+      "source_id": "fakebit-chiptune-pack-03",
+      "title": "Angry Bullfrogs Riding Motorbikes",
+      "author": "Ragnar Random",
+      "license": "CC0",
+      "duration": 0,
+      "tags": [
+        "chiptune",
+        "8-bit",
+        "rock",
+        "motorbike",
+        "driving",
+        "audition"
+      ],
+      "source_url": "https://opengameart.org/content/fakebit-chiptune-music-pack",
+      "preview_url": "https://opengameart.org/sites/default/files/03_-_angry_bullfrogs_riding_motorbikes_better_bass_0.ogg",
+      "local_preview": "audio_library/previews/luacrotte_music_angry_bullfrogs_motorbikes.ogg",
+      "status": "candidate"
+    },
+    {
+      "candidate_id": "luacrotte_music_street_punks",
+      "kind": "music",
+      "source": "opengameart",
+      "source_id": "fakebit-chiptune-pack-09",
+      "title": "Street Punks Fighting to Save the Princess",
+      "author": "Ragnar Random",
+      "license": "CC0",
+      "duration": 0,
+      "tags": [
+        "chiptune",
+        "8-bit",
+        "punk",
+        "rock",
+        "city",
+        "audition"
+      ],
+      "source_url": "https://opengameart.org/content/fakebit-chiptune-music-pack",
+      "preview_url": "https://opengameart.org/sites/default/files/09_-_street_punks_fighting_to_save_the_princess_2.ogg",
+      "local_preview": "audio_library/previews/luacrotte_music_street_punks.ogg",
+      "status": "candidate"
+    },
+    {
+      "candidate_id": "luacrotte_sfx_engine_loop_high",
+      "kind": "sound",
+      "source": "opengameart",
+      "source_id": "racing-car-engine-loops-3",
+      "title": "Racing Engine Loop — High",
+      "author": "domasx2",
+      "license": "CC0",
+      "duration": 0,
+      "tags": [
+        "engine",
+        "accelerate",
+        "high-rev",
+        "loop",
+        "vehicle",
+        "audition"
+      ],
+      "source_url": "https://opengameart.org/content/racing-car-engine-sound-loops",
+      "preview_url": "https://opengameart.org/sites/default/files/loop_3_0.wav",
+      "local_preview": "audio_library/previews/luacrotte_sfx_engine_loop_high.wav",
+      "status": "candidate"
+    },
+    {
+      "candidate_id": "luacrotte_sfx_engine_loop_low",
+      "kind": "sound",
+      "source": "opengameart",
+      "source_id": "racing-car-engine-loops-0",
+      "title": "Racing Engine Loop — Low",
+      "author": "domasx2",
+      "license": "CC0",
+      "duration": 0,
+      "tags": [
+        "engine",
+        "idle",
+        "low-rev",
+        "loop",
+        "vehicle",
+        "audition"
+      ],
+      "source_url": "https://opengameart.org/content/racing-car-engine-sound-loops",
+      "preview_url": "https://opengameart.org/sites/default/files/loop_0.wav",
+      "local_preview": "audio_library/previews/luacrotte_sfx_engine_loop_low.wav",
+      "status": "candidate"
+    },
+    {
+      "candidate_id": "luacrotte_sfx_motorcycle_mouth_loop",
+      "kind": "sound",
+      "source": "opengameart",
+      "source_id": "motor-sound-effect",
+      "title": "Motorcycle Motor Loop",
+      "author": "EZduzziteh",
+      "license": "CC0",
+      "duration": 0,
+      "tags": [
+        "motorcycle",
+        "engine",
+        "idle",
+        "accelerate",
+        "loop",
+        "audition"
+      ],
+      "source_url": "https://opengameart.org/content/motor-sound-effect",
+      "preview_url": "https://opengameart.org/sites/default/files/motor_looping_0.mp3",
+      "local_preview": "audio_library/previews/luacrotte_sfx_motorcycle_mouth_loop.mp3",
+      "status": "candidate"
+    },
+    {
+      "candidate_id": "luacrotte_sfx_tire_squeal_skid",
+      "kind": "sound",
+      "source": "opengameart",
+      "source_id": "car-tire-squeal-skid-loop",
+      "title": "Tire Squeal / Skid Loop",
+      "author": "audible-edge (Tom Haigh)",
+      "license": "CC-BY",
+      "duration": 3,
+      "tags": [
+        "drift",
+        "skid",
+        "brake",
+        "squeal",
+        "loop",
+        "audition"
+      ],
+      "source_url": "https://opengameart.org/content/car-tire-squeal-skid-loop",
+      "preview_url": "https://opengameart.org/sites/default/files/tires_squal_loop.wav",
+      "local_preview": "audio_library/previews/luacrotte_sfx_tire_squeal_skid.wav",
+      "status": "candidate"
+    },
+    {
+      "candidate_id": "luacrotte_music_8_bit_retro_funk",
+      "asset_id": "luacrotte_main_music",
+      "kind": "music",
+      "source": "fesliyan_studios",
+      "source_id": "883",
+      "title": "8 Bit Retro Funk",
+      "author": "David Renda",
+      "license": "Fesliyan Studios non-commercial free use; commercial license required",
+      "usage_notes": "Free for non-commercial use. Commercial use requires a Fesliyan Studios commercial-use license/donation.",
+      "attribution_text": "Credit: https://www.FesliyanStudios.com Background Music",
+      "license_policy_url": "https://www.fesliyanstudios.com/policy",
+      "source_url": "https://www.fesliyanstudios.com/royalty-free-music/download/8-bit-retro-funk/883",
+      "local_preview": "audio_library/imported/music/2020-06-18_-_8_Bit_Retro_Funk_-_www.FesliyanStudios.com_David_Renda.mp3",
+      "imported_path": "audio_library/imported/music/2020-06-18_-_8_Bit_Retro_Funk_-_www.FesliyanStudios.com_David_Renda.mp3",
+      "status": "imported",
+      "tags": [
+        "8-bit",
+        "retro",
+        "funk",
+        "main-music"
+      ]
+    }
+  ],
+  "updated_at": "2026-08-05T00:42:34"
+};
