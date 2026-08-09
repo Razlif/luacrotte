@@ -3,6 +3,7 @@ local bindings = require("game_data.input_bindings")
 local InputManager = {
   bindings = bindings,
   keys_down = {},
+  scancodes_down = {},
   pressed = {},
   mouse_buttons_down = {},
   mouse_pressed = {}
@@ -18,15 +19,25 @@ local function actions_for_key(key)
   return actions
 end
 
-function InputManager.keypressed(key)
+function InputManager.keypressed(key, scancode)
   InputManager.keys_down[key] = true
+  if scancode then InputManager.scancodes_down[scancode] = true end
   for _, action in ipairs(actions_for_key(key)) do
     InputManager.pressed[action] = true
   end
+  -- Match the physical key as well as the layout-translated key. This keeps
+  -- controls such as the mud hose's A binding consistent on Linux layouts
+  -- where the same physical key may report a different logical key.
+  for action, keys in pairs(InputManager.bindings) do
+    if scancode and keys[scancode] then
+      InputManager.pressed[action] = true
+    end
+  end
 end
 
-function InputManager.keyreleased(key)
+function InputManager.keyreleased(key, scancode)
   InputManager.keys_down[key] = nil
+  if scancode then InputManager.scancodes_down[scancode] = nil end
 end
 
 function InputManager.mousepressed(x, y, button)
@@ -40,7 +51,7 @@ end
 
 function InputManager.is_down(action)
   for key in pairs(InputManager.bindings[action] or {}) do
-    if InputManager.keys_down[key] then
+    if InputManager.keys_down[key] or InputManager.scancodes_down[key] then
       return true
     end
   end
