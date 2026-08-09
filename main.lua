@@ -30,3 +30,8 @@ end
 function love.mousereleased(x, y, button)
   game.mousereleased(x, y, button)
 end
+
+function love.quit()
+  game.quit()
+  return true
+end

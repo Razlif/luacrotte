@@ -204,6 +204,12 @@ function AudioManager.stop_all()
   AudioManager.current_music_base_volume = 1
   AudioManager.fading_music = nil
   for _, source in pairs(AudioManager.looping_sfx_sources) do source:stop() end
+  for index = #AudioManager.active_instances, 1, -1 do
+    local instance = AudioManager.active_instances[index]
+    instance.source:stop()
+    if instance.source.release then instance.source:release() end
+    table.remove(AudioManager.active_instances, index)
+  end
 end
 
 function AudioManager.debug_snapshot()

@@ -31,4 +31,8 @@ function Main.mousereleased(x, y, button)
   game_loop.mousereleased(x, y, button)
 end
 
+function Main.quit()
+  game_loop.quit()
+end
+
 return Main

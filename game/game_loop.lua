@@ -65,4 +65,11 @@ function GameLoop.mousereleased(x, y, button)
   InputManager.mousereleased(x, y, button)
 end
 
+function GameLoop.quit()
+  require("game.systems.motocrotte_audio").reset()
+  AudioManager.stop_all()
+  ContentManager.end_scope("menu")
+  ContentManager.end_scope("playground")
+end
+
 return GameLoop
