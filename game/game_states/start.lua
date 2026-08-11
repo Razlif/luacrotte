@@ -15,6 +15,12 @@ local Start = {
 }
 
 function Start.exit()
+  if Start.parallax then
+    Start.parallax:clear()
+    Start.parallax = nil
+  end
+  Start.camera = nil
+  Start.menu = nil
   require("game.systems.content_manager").end_scope("menu")
   AudioManager.end_scope("menu")
 end

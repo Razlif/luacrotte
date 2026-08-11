@@ -195,7 +195,8 @@ function AudioManager.update(dt)
   end
 end
 
-function AudioManager.stop_all()
+function AudioManager.stop_all(release_sources)
+  release_sources = release_sources ~= false
   if AudioManager.current_music then
     AudioManager.current_music:stop()
   end
@@ -207,7 +208,7 @@ function AudioManager.stop_all()
   for index = #AudioManager.active_instances, 1, -1 do
     local instance = AudioManager.active_instances[index]
     instance.source:stop()
-    if instance.source.release then instance.source:release() end
+    if release_sources and instance.source.release then instance.source:release() end
     table.remove(AudioManager.active_instances, index)
   end
 end

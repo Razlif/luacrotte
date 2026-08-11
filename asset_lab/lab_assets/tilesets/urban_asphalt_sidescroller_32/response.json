@@ -1,0 +1,1167 @@
+{
+  "usage": null,
+  "tileset": {
+    "total_tiles": 16,
+    "tile_size": {
+      "width": 32,
+      "height": 32
+    },
+    "terrain_types": [
+      "central",
+      "background"
+    ],
+    "tiles": [
+      {
+        "id": "f329e259-f767-41dc-969b-7e8c2477bb05",
+        "name": "wang_13",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABKklEQVR4nGNgGAWjYBSMglEwCkbBSAeM5w8v/k+KBkPbWEZqOoBl/e4LJGk4f3jxf2o6golUDU/ffWdoPnWHpFCj2AFmxuoM+w5eZWBgYGA4dfYmg+HzfQxSgkpUcQRRDjh19iaDk702itjfnz+pYT8DCymKzYzV4Q6iFmDZd/AqQ0VRENEaOvrWUc1yBgZoCFDbUFIAybmAZg549/rVwDng1YunDEKiYjgV3bt0C4V/+/RlqjmAUZxLGp6fmZlYGf7++41VITM7OwPD738MDKxMDH9//mR4+e0pVUpDJpjFDAwMOC1nYIDke5g8tSxnYGBgYFE11cWIfxZWZoY/v/9isD88ekcte+GA6dOHtxiCMAvR2bQALC9vP0OJAhgbxmdggEYRK21yLAA8EmjQXLPKLwAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "upper",
+          "SW": "lower",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 4,
+          "col": 2
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_13",
+        "connections": {
+          "north": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99"
+          ],
+          "south": [
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "east": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "a1f00399-a6ca-40be-9322-174990670a6e"
+          ],
+          "west": [
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ]
+        }
+      },
+      {
+        "id": "87281003-7c93-4b6f-98c8-44ed1fd26783",
+        "name": "wang_10",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABpElEQVR4nOVXz0/CMBh9a9e0MWimgERICJH4//8lXrwSCfGwZFFAbyxdNw/Q2ZUZdviKJL5Tv/5IX/u9tq8RCDHuzSoA6E2uoZQ62T9bpIgpCVjEXKDQBgBQGA2lVCMGAKUUuJR0BMa3j9UpMm2IyAj0ZlUyvcN6lYEzAQgG6HLfKBhMnoNLWfc3eb4nSEXAxWA+7NSPVgOC1UV/y2PBG3VWF1xKMJwBZ9HA6GpSAdjn/wBT6jr2yxZkKeBSInlIsF5l6M9GiAU/OSbYPQA0t93VgH8PBNOAncgn44NcAwCO7wE0NWBjIJAGut4DH6/vtCm4G97Xqyy0QaENdrvdUWzrIBjdDqTbZYTnsjKlbgrw8BYURiPm4mhckFPw+bZpb3B08VVuwhDgTFy2H3DrwvgB5+i1kfFB6gcG8yGyRdrqB3zQ+wHB6pX+jR9wcNF+wNdBkLfA4jdv4Mb/zw8AF+AJ3TchqAYAtPpAzkQYPzCY9pEtUoyexp3GZIuUNgU3Sb/+/XTxA6RvQbpdRnhBZSez8P+Gvicg0wDQ/jcAfvLf5gm/ATKwED4RdV7FAAAAAElFTkSuQmCC",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "lower",
+          "SW": "upper",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 2,
+          "col": 6
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_10",
+        "connections": {
+          "north": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99"
+          ],
+          "south": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac"
+          ],
+          "east": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "west": [
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ]
+        }
+      },
+      {
+        "id": "267908a8-cf45-486d-8619-1dc4ec8cf1b1",
+        "name": "wang_4",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACs0lEQVR4nLVXz2sTQRT+sjND1h5KbKzB5lKU4CkgSHoSPAle9X/w6sFT8ODBg/QgvejF6qHePDV/QKHQa0ogtPSQBkMoNDGJG5dc3GV2Nh7qbPZ3N83mgzDMy3zz3sx+M+9N5snT59PxaAgAoIwgDr9/jgCmoPenk4kdOAcoAFiCe42MwOIiYANT0vLrQJnoGihhoIQ5Rr9zS3CPbeP2/WlaAdBBu+d0iDILQtgcJJudjeQ2wBTk7uWg9/W0/IOWKmVMdA0WF9dqwB1sagEAsy2XrVsDUh+UsNkOcTu1AJSJrgWMfg3IoJaBTGGlOCUKg7B54E+isJny/69aaiOto0hLlTKS3AMWF9C6A+Q3C+mKELj6zpQwGIZxdSRDNKCq6vI0IO8A2bo1EGZLE5nCSjFwqUhNOG02uzwNFEobnuMXBYsL6BdjlCpldE7O0/ANAFBWc3mPExmMYRie37IQeQ+4c4MDpqBzcp5uNpTXqz8PAPDmgiUhNBdYXEDv69jdq6K4diuMNwWA2kETL549urHz2kEzmAsoI6CMYHevinqjFTvBt0+1GzuX/FANfHj/6lrnACBMc6EAhGlCGbR70LoDaN0B9L6O759fo95o4fDozBm49fjhQo7i+IFcUDtoBghJdiMOcXxPkWdxgS8ffwBItuo0TgkN08D2zj4AoPrmZSRxe2cfwjRxeHQWO06i3mg5J+Zy/Bdv330F4KoHJITNUaqUE0XfPj5NPDaKH9DAMuq+OAQ0kAQyGbl3Ti5iHj4QkQvax6exE/jP/3g0xNr63cQBSD5RWHg9kBRRteQ8/NB6IKkOFnEu+XQ1l8fw1yUoYU4g+c2Cpy4MeysCgH4xxp0H66FPOVVVY/lS8J6a0DPJAjWgezFRc1lchGvA/V2ddwG3vTYg0PfD/Xn8WnH3/wFQ65Pf5UpeSgAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "upper",
+          "SW": "lower",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 4,
+          "col": 1
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_4",
+        "connections": {
+          "north": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b"
+          ],
+          "south": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ],
+          "east": [
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "west": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ]
+        }
+      },
+      {
+        "id": "e4a9dd31-d363-48e3-b7ef-be48f55fb1f8",
+        "name": "wang_12",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABVElEQVR4nO2TMUvDQBTH/7nL0dixoAEzB6eCIHUSnARX/R4uTg5+C1c3cc4HCAjiZhGDxUEDDoKiFYprSK51qJcmTRsud4OD958ed+/3v3f33gFGRkZGRkZG/13W/c3FRBUOwggHe5vKhwdhBDsII2WD87NAmRU80THgSaJVAE8SuQK2tza0DqrjpQq4vXvSKqCO12qBrihhsK+uH3FyfCgFeJ2VPD46vQQA6PB8nMLa2d1X/oZxfwC/11XFEfcHf9sCoDADo6+hNPTy8FxZU+WJgDura9IG4v/TVgsAMPx4U+MJg+W2vXwGKGHg41TaqGn+PEMJm74AJWxaWUOzolFTRsS23+tW+pfxFI7jIEs5AMBmNI+FbEbxGb/D9dcrezI8AHy/jmZDmPFZZTZlJSBLeWlfrC27+SJ+mSy37U0WGdU+LyOlQRL587nFtZLfL08Jww96DaIdp9QJ7AAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "upper",
+          "SW": "lower",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 3,
+          "col": 5
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_12",
+        "connections": {
+          "north": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "south": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ],
+          "east": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "a1f00399-a6ca-40be-9322-174990670a6e"
+          ],
+          "west": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ]
+        }
+      },
+      {
+        "id": "a0c0b96f-7e20-49a6-acf9-33c68907b14a",
+        "name": "wang_6",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACFElEQVR4nO2Xz2vUQBTHv5kfLC5S0u0hNAuLFBZPBUHqSfAkePXcv8H/wKP/QW/irXheBG899maRFnvShbIsuLKtiaEIZplM4mGdcTebiVn6evMDgZl5E953Zt68vHiPnzwr4qtLAICQHC4ypZGMY0AyTH5ceM6JayIAINMKgktkSlshpm0n1oi7Cew6iSC4XBosO7dIBgAIN3cKKgFiOpxUGjiTc4cqt46hcvi9DpJvCZV/iKAfLm19HS6xN4Ft+FvItJo/SlsxaZoiUxppmtr2bcDiq0sILpfiIFPa9svxQY2IRlOnkTO50qc8fwAQ/b1dmDxgrqOLaDRF0AvxfRyRCfCCdtdeKbNinSssjpl+0J87J01EvNWCv+2vGMzR+L0Ola9KvKDdLcpnDfzdBZsP/kC5egAQZourAs6ickx+jkgdGzygOrVSr/Q/Lsi3+fT4sPGXcnB0Rivg9PiwGBydNZ7/5mAA9u9pzfka/1prvp7NaASEmzvF+3eviw8fP1faHz2873yXRICezWrtLmFkAoyT508f1K62DG+1aIIwaHeL/t4uAODg1b4zFrqdO7b94uVbDE/O6QU05TqJMB1OaG/BOmz4WwAIY2AdLj59sW0yAcOT89p+FZxJuky4WFnVOQSWaw3SVBzevVcslnNNEJQCIBm4kitlXNW/JgAk45g4CFVeOVz3U3NrR+CqM8tx8BsJit0cyIz6JgAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "upper",
+          "SW": "upper",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 5,
+          "col": 2
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_6",
+        "connections": {
+          "north": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "south": [
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "east": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "a1f00399-a6ca-40be-9322-174990670a6e"
+          ],
+          "west": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f"
+          ]
+        }
+      },
+      {
+        "id": "1d0011ce-2243-4ace-a79b-76b511d98816",
+        "name": "wang_8",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACu0lEQVR4nL1XTWgTQRT+dmeHWUvAmCaGJijBEHoShNKeBE+CIAh68+zFixcPUkGQnhQPXryIeBCKVwOCp0JBvFWKRfFQQ4pUEs1PY0TBXTab9ZDMZjLZJNN26nfanXlv3tt933xvxoBGZGK5wO96OH4qAdu2p9rXSlVYOhMANUE8CotQdDwfANDxPdi2DcdxeuO+BwCwbRuEMZi6YmdOnAl4EiLkZGQY2hKI5YJkPoVaqQoAICYdmve7veCEsd6764KYVGMJqBl+abqQUXJplhuaOdAHT4TDoiSSA6CmPg5MS8gidGQM0MiB9Ew2ULXl/PC7nr4SEMYQn4tj72sNs7k0LEqm+ujXAQy+TuTBOA5o1QEOvt1ERHGA40g4IGqAnJBYf606IHIgmU8p+WjnACeerAMyeH8gjOlLoPpzx4DXVdqKIh+0cQAY8ICYdKj2XP8BAF53aM748G5VWUBkFNe2cPXiual2l6/cR3wuHr7zUjXLDVjFta2DxsfzJ0Ulu2cvlnHn7lMAvfpzDhy6F/iuq2S3sbmNRw9uov29PTKnlMDSwvy+EhuXxJvXK/j1rYU/ld+olarwXVdtF2xsbh86gaWFeVRaf0EYQ/L0LACgubt3NOeBqOAAcOP6CoC+NPeJaK2//Yzl29eUFsomjoXPt+69BACo+D98/GrsnHH+wqUDb8PS+08oLJ7dlz0H7wn/pQQixPNis9wY7IJWo668yM7HLyNjqv6O4wx6BdeBVqOOROqkcgIcXGLrPypT/fnvl88FRnomG0zq31EBuZ6Lmi/2+RE/qTeICDkwKXBo079MyD48gHwZke3k+0KtVIWVLmTQ8Xx0fC/8PVyrea0sSiJ7fHu3hWQ+NTIn+4fj0n1x7JlQvM+JjpMg3vtk/6j1OYxMLBeAmmFjiaolYWx4vm8v/3qZFyr4B4z/SPuZLC1bAAAAAElFTkSuQmCC",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "lower",
+          "SW": "lower",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 3,
+          "col": 6
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_8",
+        "connections": {
+          "north": [
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "south": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "east": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62"
+          ],
+          "west": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ]
+        }
+      },
+      {
+        "id": "06fd26f4-0e00-4f69-836c-1212ab0f8ec3",
+        "name": "wang_0",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACcUlEQVR4nMVXTU/cMBB9xIlicahQ97BqK1VcOFJO/P8fUiFVSFSwHwhxSuR44bAe78zEdsJC6TsltseZ+D2/sU9+XV2/DM4DAOrGYC4G5/F0+4izn19j21viAeDh91/UX84WWN3foTYNKJHBO1hrwROjZ4GmiuNFcon4ruvEGGstTNuifn7aojaN6OTJ0N8m4XZx/Jx4GscTPlme/ngBAFPJSYpoKvi+FzF+54pz+N3ho6Zt4ft+n9Ty4juO0QCw53BxvozvR2vgcb0CAHRdt1++wCHxxvnkMG0LQC4pPVN8bZppDcQ/CBwRh5Ezzqd3Sc71s45P8Q8wDQAociremQaonTimVQEAuJ3o1/MBQH1xfRkp+C8aAA7LwpdHc5iiYY4G9DOfP+sDwJhDjk/RAJpqbzTB7Xzfj/gdIYwVCOO4D4jkSz4wOF/kdUoDc+JHPhAn48t3hAYonnsLB2mg0j4QvYBlPjgvhJrSAPcQHs/bU1rLa4CD9n1CA9ofqC/6QugraoD+8q37eHO7xeLbB9aC1HlA13bq58uZOw/oWqJ9ZlQL4p+wek7P9NGpWsBjuJB1koR5GiDwfc41EOp7Lr6kh6PPA4Pz2P55eFct2NyspzVAE+fOA7rWl2oB9wNrLdBU0xrgiaXAuaZY3Z4bA8zUgOCQ7fWIUDdy50KtAd72Lg3QvYAo+hAN5DhM+kBYDV3rUz4wWwM5DlNjSu+leA6hAQ7TtsLTY3vQQe5eQL4AQOjkn5wHNjfr4t1w9nlgdX93CFL1nCbhHMYlL9wNS/FA4UyYOjzofaxR6qP4HEYa0PtY3Okm7n7CJ6g93AFzeAXSK1/BOhXtHQAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "lower",
+          "SW": "lower",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 6,
+          "col": 3
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_0",
+        "connections": {
+          "north": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b"
+          ],
+          "south": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac"
+          ],
+          "east": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62"
+          ],
+          "west": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f"
+          ]
+        }
+      },
+      {
+        "id": "76237e3a-dfb3-4c9e-a7f2-c4735d2f5ec0",
+        "name": "wang_1",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACm0lEQVR4nMVWwY6bMBB9YFtGPURpaYWaSqtoq/S221P+/wN63GOUCmW1tNmElEY5EAHZHmCIbQwNWao+CWEzHnuYeX62c/91/pJnBQCAC4Y+WC8i+NOgt5/qz0djH7vNMwCAAsmLDJ7nIU1TAIDneZoNADgTYFKCC1bbCKo/Z8I6BgCYlHD3SdwwcCaQZ0XpXLXNxevFLBOr/uYYmoPgBG8+vTQic4X+QbhAdirfFYrjURtXnM4TN/wru+07n83vsE/iMuIetcyzAslqh/HNu/NkPf3jcA1OHXpTikwOUD01VBlR02r6EwdU/7zIzhwyOaDWzdbWkJ00n0v91baVAwTmimZtiQfEiexUj7HVmGBygPp8Nr+rt2Hf/bxdxXj/+YN9JwhW2m/8hp3W2a7ikgME4oBaf7Nu9eTLDYBSTChT9IdqRshuZoPsVg7Yaq7214sITEoUxyOC2aRBUCLi78cd/GnQ+AHV3s0BKc+dinAQLm7vv2Dx7cHOEcCaDdWuwqGzgFLfBtq3/jRAstppNhvBzIDMAMjHHY19AGWK0zSta59nRf3QNwCIw3WdiegQOtEhdJiUmkoyV2iLaX3hAsIFkxLRIXQ0DnRpNzGXJop+fXdojNrui04O1H9QEY7ar1nQxMU6QBwYGg0doECs2t2hdNfCeh/QdNw4vwFg8vb2r2W7FHy9iFqNGnNRbh3/Y4DkRzLU+v3Ogq5grw5A7agcsN4BKSOkigOglQNWKGIzFFrvhJq80p0QlYQOqAW9dcCfDkxCcxEKxJTj/8YBmw6oR+xr0essqLkxJAeC2URLfRe2yw2C2QTbVTNrVwcwGvt4/vkEQL/TW7fiP9iGfJ/EjfufjYAAgOyE7XKD6BAOdxx3ngUtd8Ih8QcTX+TUI9HiQQAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "lower",
+          "SW": "lower",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 1,
+          "col": 1
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_1",
+        "connections": {
+          "north": [
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99"
+          ],
+          "south": [
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ],
+          "east": [
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "a1f00399-a6ca-40be-9322-174990670a6e"
+          ],
+          "west": [
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ]
+        }
+      },
+      {
+        "id": "42061696-b9e4-48e3-9d6f-ac203a76261b",
+        "name": "wang_11",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABN0lEQVR4nO2VPU/DMBCGn+Z8ogND2g4RGaqqUhn5//+BkbESqpCoFCAwwNDKccrQOklTvgaDGPwssc+W7s19eUBA8vPZDiCdjjEq394vlmtMSAFoArYGoLKuMRsVNpsNRpTKWQCGwyFydhZOQD6a7z47q6zDiO7FHL4A2DpsBOZXlyyvbyhXBQCStM5cbZu1JIqrLZJoWAHPjw8AZIv8R/eD14BRQRI9yr+392vAiCKJkoQUUFl3FOqu/Sj3HQahnOej+c53gBfxUQ10bUDYFKTTMeWqIFvkJ2noY1R4uivDRQD2UUgvUspV8eXfd/dhB9GBySyjchYj2rTkZJY1574Q3+5fw0YA2oHktlug7Xm/7hNcQCPk8C54/ODp739NwIkg3yXadv765fbP/EcikUgkEon8X94B1ct2V5vERIcAAAAASUVORK5CYII=",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "lower",
+          "SW": "upper",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 2,
+          "col": 3
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_11",
+        "connections": {
+          "north": [
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "south": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ],
+          "east": [
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "west": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ]
+        }
+      },
+      {
+        "id": "7e24770e-fbc5-4e3a-8de2-bbdc8494ca8e",
+        "name": "wang_3",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABbElEQVR4nO2UUUvDMBSFT5uEFvFh2kmxQin6tkf//z8RZShOiqtO9GGQZvNhS3ubpGs3H833srBzz+U2OUkwm91vsYcLhmMoHxZIihRcMNRSneTn2gwAtVSolQQAxHGM9XoNzgRoDQDUSoIzARZFja/zq2Tjp70ocRyDRRE4bQwAnImmGV27avrgTFj+Zr0fXhOkZzdbamZht7naSFsTISA3zjrTT3Wq6XqeFGk7+ZFnuHx8xyS/PMlfS4VqXu4yoM/alQG6trZehLtmqt2lIT/VmwzQxn0ZOHTup/h1roLsvNiOOb8+3ZkRh0ZhoWgzML27slKuWb2tMM2TzsSmnubZQf/kemL9r7OyfK66t2DsF9Id+avOkyJtgmHe1WpeQt8Sen91/dfLB/r8VDfR+s/r9y4DVsXADoypN7+2zx8ONdSmYwJGa4eGDgAgu7i1d0G/dOarJ9qZF59PXb/xOjpx+D0ej8fj8Xj+N7+na/rdVhsGigAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "lower",
+          "SW": "upper",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 1,
+          "col": 2
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_3",
+        "connections": {
+          "north": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b"
+          ],
+          "south": [
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "east": [
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "west": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f"
+          ]
+        }
+      },
+      {
+        "id": "55aaf307-1871-43be-905d-92ebb43497e5",
+        "name": "wang_2",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACjklEQVR4nMVX227bMAw9lizIKIbOSwoYdbEgGJDHbU/9/w/YJxgtggx151zcdMuDA9fJHhzJMn1Jk6nrebJEkyapI5J2vn2/3b/kBQDAFRyvxUteYD1L4Y8Geu8UfQBY3i3gXvpDpIs5ACDLMi30PE+vPc+DcrIGwUpnirzuXJH36is5BIP7e72qIuCiFqFaU2XzPaqn1lRf6VFnneDiZk8D46wyWOzy2lpFXmy34FIC+Q7FLu/UN+2YMrV2g0mIczmwmiYYjgO4gpcRn8iBJIpLDsx/PZRGjfTQM8yyrErpIZ1cSgB17igbpo4reO0dJedSwk0X88YZqgjNMzTf6eNAm07t+RgHOBONMzVlnTjcCOQ7AOi0YX6DMwF3cvtVX0OK9eMa/rWvz9iEKziSKEYwCcvIzuDR8m5RzwBlKM0GlZsIJmFnHWm7fp7nYTlblbfAfBGozmnz8AcfPw+0ASp//pmCSwn/2kcSxRiOAy0zSduHszNAZcEkRBLFtX1aT+geADjhh3GjEHUVjTaDFJwJ+KPBq7iQRDHceDN1wk9fSicODKZe1tYHtnNIxE/3DgC0BWGStrcOANCGzkW8mbZmss0Zin/6MEVbTVGoHeOhlwAoM2Abqj8cQxLFdh1Q3RGo0k5nAwXFAWbr45rIBOZs0FYXrGbgajREEsVYz9KGrNjlVYYEw/M2LXuBTQdU2k+qAzYdaHMGqOqA2ROsc6DhgNF86DxhwlodCC5u9l29A2jOlnomtOWA6oqraaJnhGN4Mw60/QP09oK3hKoD6pnCKgfMNe2oug6ote1ewKXUhejdOHDpD7FkCwDd/5nmnlUOxE/3TvFju+dMNO79f5sH+oYSANW/A0oOcCbwF4/BmmAZjNrqAAAAAElFTkSuQmCC",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "lower",
+          "SW": "upper",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 1,
+          "col": 3
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_2",
+        "connections": {
+          "north": [
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "south": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac"
+          ],
+          "east": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62"
+          ],
+          "west": [
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ]
+        }
+      },
+      {
+        "id": "f164645a-2f84-4f08-9fd4-4835784fc79c",
+        "name": "wang_5",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB7klEQVR4nOVXTWvCQBQc9wOlB7H1IFgopZCj7Sn//z/02IKIByVqbPC0stnYQ7JrdhO1NRt76ANxd1nyJr5588bO61t4SKUCADBOcSpSqZDMtwAnWHxNOycv/jJIfzC0kmgweq0/58A1ArBL4jyhkhYQN1KpAE4AAOP7l4MvACz6XJy9QAk3iSEzDJ4ekCwTX/nBgnCC7XqVby78zJfAXgWgvCmTUQgBRnl+rqRZAwBk5g2A4YALxEpYBCXVs6bRGd09WoSyknCSv63+BqAyCdrtemtFw4FUSfR6vZMXU6kQzyIMn0d+SQgcWzCVygARQtgXW+IA265X1sMZ5UcylkgItMMBFs+isxeMDhRvHc8i0G7XH4Cf6oCeBaNgjM282jlXAyhvdN3LHHDbsU6mGwEo64CpeUkHdP31PlkmXqfh2VlgSKdnQQvBgnCCXRJfHLnGD/gGAKDa85wefYFTAt9BdkkMRrmVQAtSJW7hByjhUJkjPEVitd/7l+JRMMZPPCHQjh8g/cHQngUFGCEEUqkghDBrE779QJ3Y/JkfqE14Cz8AXJ4FrfsBc3hDT8hOccCsS+D+NweAXAeCcILp+4eP3HlOoJ4DWo51eRinoISjzsY3AuB6QgCWJ3TBbeaxXz/gekJdd5XJyv/CNuIboBFWU2/j6JoAAAAASUVORK5CYII=",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "upper",
+          "SW": "lower",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 2,
+          "col": 1
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_5",
+        "connections": {
+          "north": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b"
+          ],
+          "south": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "east": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62"
+          ],
+          "west": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ]
+        }
+      },
+      {
+        "id": "967a66de-c948-4911-ab80-19642e329623",
+        "name": "wang_15",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAGklEQVR4nO3BAQEAAACCIP+vbkhAAQAAAO8GECAAARlDNO4AAAAASUVORK5CYII=",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "upper",
+          "SW": "upper",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 2,
+          "col": 2
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_15",
+        "connections": {
+          "north": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "south": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "east": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "west": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ]
+        }
+      },
+      {
+        "id": "1c44db6e-df66-43e9-a655-f1131a237809",
+        "name": "wang_14",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABIUlEQVR4nGNgGAWjYBSMglEwCkbBSAeM1Dbw/OHF/4lVu373Beo64Pzhxf/X775AtPo5k9czMFHL8uZTd/4/ffedJD1/f/6kjgOkBJX+Gz7fx3Dq7E2s8mbG6jj1UsUBf3/+xCuPy2FUcwDMEjNjdby+xQaokgjFuaT/q5rqMjAwMDBMbolmwJUWpIU44ezcmqUMt09fpr4DiAWfPrxleHn7GfWigFTAJyDMwMBAxTRACrh36RacTTUH3D59GS8fG2BmYqVeSSjOJY1RBDMzsTL8/fcbpxhVHcDAwMAgxaPwH91CQoCFmg5gYID4SkBOCNUSVmaGP7//Yoi9efSWPokQ3XI4+P2PylEgqPQfViwzM7HiVsjKxMDw+x8DAwMDAwDKdlq4GOqcJQAAAABJRU5ErkJggg==",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "upper",
+          "SW": "upper",
+          "SE": "lower"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            1,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 3,
+          "col": 4
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_14",
+        "connections": {
+          "north": [
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "south": [
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "east": [
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ],
+          "west": [
+            "fcafc5d5-fb31-4034-9e82-d50d95cdef62",
+            "e47ce76a-6d14-4bcf-8766-22aba8cbc511",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "97c7f15e-5e32-4a34-82e4-d2c31e39d4de"
+          ]
+        }
+      },
+      {
+        "id": "76526a6d-339c-4871-bd80-f0cef13b00e9",
+        "name": "wang_9",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB/klEQVR4nM1WPUsDQRB9udvjDrGIn8EIIYhiIRYiBqwEwR+gP8XKxsrGyj9hr42dEBC7iCiKhUZCUBI9JfGj0AvrXSySjXveBnNkTn3NcrN7N+/ezM5MDIRI9qbrABBP9YMZ+o/n7XwZjJKAjA/uNlaXw7IsOI7j27csC7pp0hFI9o3VVXamG/jgbmN1eWA/RklgMDUAO18GAOia4dt3PQ5dMwIraQiE7ImJZEfnyXNAJJ4gItsdx/GFQeSARkngu2PZznRDuUeaA+AegEa8VVDlBe01NDS4tRoG0omOjleKNp0CQEOF+EgclaL99bdNUgCgmybAPZ9CkRQiWYFK0Q7YRCK+3FZpFQD8Bcmt1Vp3HvjKAVkBcgItIs2+IDuUk1AUosgIBAgpSnX5qfBr/v8vYieH28ou1g575jzWM+Nk0rHd/dNQLywvAetU3oHwvaBUfcdG7jqUal0TyMxOIntwAQDIHV9i5i7bdgCJhEDu+BKLC1M+myiv3SJUKc7MTrYIUYFlDy6wtrrS8QubWztkzoGmAtQfDQPSiagrAtXHh78j8HBfQv/QcNtDhbMr33P+6JyMQCzRM1oH1L1a2H3ttDnh2G8lknKsyc5VkAm5Hge4R+YcANjE3HQg/szQlSP2800VMGjzVnt9rgSM7eb7KMDsfPnHEIhpNgp8Ahcg0Ohb/CyCAAAAAElFTkSuQmCC",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "upper",
+          "NE": "lower",
+          "SW": "lower",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            1,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 4,
+          "col": 4
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_9",
+        "connections": {
+          "north": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99"
+          ],
+          "south": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f",
+            "a1f00399-a6ca-40be-9322-174990670a6e",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "east": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "west": [
+            "f6ca8f70-3ef9-4f96-9c71-7fc7285f063c",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "5ef66d9a-0156-4462-8b83-a179c993ae99",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4"
+          ]
+        }
+      },
+      {
+        "id": "bdb61945-4ab7-4075-a7c1-83ab64583d90",
+        "name": "wang_7",
+        "image": {
+          "type": "base64",
+          "base64": "iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAABJUlEQVR4nO2UPUvEQBRFT+aDgFhELMLGZhG2tLQTbP3/rSBhi0hWswaxCEwmaxGTTUwiKrPdnOoxM+G+d+dmgrv7h8P+ZQeA0pIlamMpt3vQguztKVg8+EcUQG3NeFFLqqpqa6ldac0i3ssCJfVIqDb2WFszaTC5uD64akDlj9niphSD6bUAIFpFlM+lK33U5vaG32QA4Kdm/90AtDYrqXvrlZZ93dmvpEaGYfuVaZw10GdgyDADpw5hEJ9dLQZKCo1tzDELXzkAnP2KowwM7Z6jSHPiTcLrtnChDXxzoJvUNmb2cCfu9CGSYUi0iiYbRZoDcLmO+7VhNlwRJOfrSQaGDkihT3L3HWpucRI+05B9pE6FOwKYf1pdT+rxeDwej8fjWeITSDt1yn8bZloAAAAASUVORK5CYII=",
+          "format": "png"
+        },
+        "corners": {
+          "NW": "lower",
+          "NE": "upper",
+          "SW": "upper",
+          "SE": "upper"
+        },
+        "pattern_4x4": {
+          "row_0": [
+            255,
+            255,
+            255,
+            255
+          ],
+          "row_1": [
+            255,
+            0,
+            0,
+            255
+          ],
+          "row_2": [
+            255,
+            0,
+            1,
+            255
+          ],
+          "row_3": [
+            255,
+            255,
+            255,
+            255
+          ]
+        },
+        "original_position": {
+          "row": 2,
+          "col": 4
+        },
+        "description": "transparent background and worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic - wang_7",
+        "connections": {
+          "north": [
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "444471f6-9805-4774-be0c-6a8a06c02af1",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "south": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "24b09fd2-ac73-421c-b82c-15c6f9207435",
+            "d890bc46-6611-49ff-9b89-c03eb3f9b3a3",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac"
+          ],
+          "east": [
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "1399c4f2-7d98-4314-838c-e34d78812c9b",
+            "ae5d4b32-be59-463d-94e6-345c9f1ab6b4",
+            "fa73ce07-a860-460d-ac34-ca36f355bec2"
+          ],
+          "west": [
+            "113f9ccc-eb04-4981-a313-f2849903ade0",
+            "99430a79-ec18-4c7a-826b-e3a2a06f731b",
+            "afcc71b2-9ff0-42b0-9eff-c717b3a19fac",
+            "c6f205ae-ba56-4b64-95ce-19d4254bb76f"
+          ]
+        }
+      }
+    ]
+  },
+  "metadata": {
+    "edge_types": [
+      "lower",
+      "upper"
+    ],
+    "terrain_prompts": {
+      "lower": "worn charcoal asphalt road surface with subtle patched pavement, fine cracks, faded lane markings and small gravel texture, gritty late-1980s arcade beat-em-up street aesthetic",
+      "upper": "transparent background"
+    },
+    "terrain_ids": null,
+    "transition_size": 0.0,
+    "view": "side",
+    "generation_parameters": {},
+    "created_at": "2026-08-10T17:50:49.089955+00:00"
+  }
+}

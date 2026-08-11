@@ -66,10 +66,12 @@ function GameLoop.mousereleased(x, y, button)
 end
 
 function GameLoop.quit()
-  require("game.systems.motocrotte_audio").reset()
-  AudioManager.stop_all()
-  ContentManager.end_scope("menu")
-  ContentManager.end_scope("playground")
+  -- Keep the quit callback strictly non-blocking.  Releasing large textures,
+  -- stopping cloned sources, or walking scene scopes here can leave LÖVE's
+  -- window black while the driver is still tearing resources down.  Normal
+  -- scene transitions perform explicit cleanup; process shutdown delegates
+  -- reclamation to LÖVE/the operating system.
+  return true
 end
 
 return GameLoop

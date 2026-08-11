@@ -314,9 +314,44 @@
       },
       "created_at": "2026-08-08T10:17:27",
       "updated_at": "2026-08-08T10:28:17"
+    },
+    "luacrote_hero_headband_scooter": {
+      "id": "luacrote_hero_headband_scooter",
+      "type": "character",
+      "groups": [
+        "characters",
+        "characters/hero"
+      ],
+      "animations": {
+        "omnidirectional_sprites": {
+          "name": "omnidirectional_sprites",
+          "sheet_path": "media_assets/characters/luacrote_hero_headband_scooter/sprite_sheets/luacrote_hero_headband_scooter__pixellab__omnidirectional_sprites_from_image_v001__v001.png",
+          "source_sheet_path": "asset_lab/lab_assets/characters/luacrote_hero_headband_scooter/sprite_sheets/luacrote_hero_headband_scooter__pixellab__omnidirectional_sprites_from_image_v001__v001.png",
+          "version": 1,
+          "frame_width": 256,
+          "frame_height": 256,
+          "frame_count": 8,
+          "fps": 8,
+          "loop": true,
+          "provider": "pixellab",
+          "prompt": "PixelLab eight-direction rotation generation",
+          "source_image_version": 1
+        }
+      },
+      "image": {
+        "path": "media_assets/characters/luacrote_hero_headband_scooter/original_images/luacrotte_hero_headband_scooter__imported__image__v001.png",
+        "source_path": "lab_assets/characters/luacrote_hero_headband_scooter/original_images/luacrotte_hero_headband_scooter__imported__image__v001.png",
+        "version": 1,
+        "width": 1254,
+        "height": 1254,
+        "provider": "imported",
+        "prompt": "Imported Asset Lab scooter hero reference"
+      },
+      "created_at": "2026-08-10T23:17:15",
+      "updated_at": "2026-08-10T23:17:15"
     }
   },
-  "updated_at": "2026-08-08T10:28:17",
+  "updated_at": "2026-08-10T23:17:15",
   "audio": {
     "sounds": {
       "magic_bomb_spell": {

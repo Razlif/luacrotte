@@ -90,6 +90,19 @@ function StatesManager.draw()
   end
 end
 
+function StatesManager.shutdown()
+  if StatesManager.overlay and StatesManager.overlay.exit then
+    StatesManager.overlay.exit()
+  end
+  StatesManager.overlay = nil
+  StatesManager.overlay_name = nil
+  if StatesManager.current and StatesManager.current.exit then
+    StatesManager.current.exit()
+  end
+  StatesManager.current = nil
+  StatesManager.current_name = nil
+end
+
 function StatesManager.push_overlay(name, ...)
   assert(not StatesManager.overlay, "An overlay is already active")
   local overlay = overlays[name]

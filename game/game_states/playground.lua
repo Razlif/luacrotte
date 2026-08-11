@@ -1,6 +1,7 @@
 -- Static MotoCrotte checkpoint: promoted background plus hero image.
 local asset_manifest = require("game_data.asset_manifest")
 local hero_definition = require("game_data.characters.luacrotte_hero_motorcycle_direction_set_v001")
+local scooter_hero_definition = require("game_data.characters.luacrote_hero_headband_scooter")
 local enemy_definition = require("game_data.characters.motocrotte_bike_enemy")
 local background_definition = asset_manifest.backgrounds.motocrotte_background_01
 local level_definition = require("game_data.levels.playground")
@@ -43,9 +44,45 @@ local Playground = {
   experiment = PlaygroundExperiment.default(),
   profile_index = 1,
   hero_definition = hero_definition,
+  -- Start with the newer scooter hero; H still toggles between variants.
+  hero_variant_index = 2,
   active_level_definition = level_definition,
   loaded_content = {}
 }
+
+local hero_definitions = { hero_definition, scooter_hero_definition }
+
+local function selected_hero_definition()
+  return hero_definitions[Playground.hero_variant_index] or hero_definition
+end
+
+local function selected_hero_content(content)
+  if Playground.hero_variant_index == 2 then
+    return content.scooter_character
+  end
+  return content.character
+end
+
+local function switch_hero()
+  Playground.hero_variant_index = (Playground.hero_variant_index % #hero_definitions) + 1
+  local definition = selected_hero_definition()
+  local content = Playground.hero_variant_index == 2 and Playground.loaded_content.scooter_character or Playground.loaded_content.character
+  local position = Playground.hero and Playground.hero.position or { x = 0, ground_y = 0, z = 0 }
+  Playground.hero_definition = GameplayProfile.resolve_hero_definition(definition, Playground.profile)
+  local replacement = Character.new(Playground.hero_definition, content)
+  -- Character construction owns its initial position, but switching variants
+  -- must explicitly carry over the live world position.  Do this as a fresh
+  -- table assignment so no movement frame can observe a partially replaced
+  -- character or a missing position object.
+  replacement.position = {
+    x = position.x or 0,
+    ground_y = position.ground_y or position.y or 0,
+    z = position.z or 0
+  }
+  Playground.hero = replacement
+  Playground.set_visual_mode(HeroRenderer.mode_index(Playground.hero_definition.visual.test_mode, Playground.hero_definition))
+  Playground.reset_visual_lab()
+end
 
 local function background_registry()
   return {
@@ -121,7 +158,7 @@ function Playground.set_profile(index_or_id)
   Playground.profile = Playground.base_profile
   Playground.profile_id = Playground.profile.id
   Playground.profile_index = selected_index
-  Playground.hero_definition = GameplayProfile.resolve_hero_definition(hero_definition, Playground.profile)
+  Playground.hero_definition = GameplayProfile.resolve_hero_definition(selected_hero_definition(), Playground.profile)
   Playground.active_level_definition = {}
   for key, value in pairs(level_definition) do Playground.active_level_definition[key] = value end
   Playground.active_level_definition.hero_bounds = GameplayProfile.bounds(level_definition, Playground.profile)
@@ -176,7 +213,7 @@ function Playground.apply_experiment(rebuild_background)
   local effective = PlaygroundExperiment.resolve(base, Playground.experiment)
   GameplayProfile.validate(effective)
   Playground.profile = effective
-  Playground.hero_definition = GameplayProfile.resolve_hero_definition(hero_definition, effective)
+  Playground.hero_definition = GameplayProfile.resolve_hero_definition(selected_hero_definition(), effective)
   Playground.active_level_definition.hero_bounds = GameplayProfile.bounds(level_definition, effective)
   Playground.active_level_definition.world = GameplayProfile.world_bounds(level_definition, effective)
 
@@ -225,6 +262,7 @@ function Playground.load_slot(slot)
     ContentManager.end_scope("playground")
     ContentManager.load_scope("playground", {
       { kind = "character", asset_id = hero_definition.asset_id, options = { include_image = false, animations = { "motorcycle_direction_set", "motorcycle_direction_full" } } },
+      { kind = "character", asset_id = scooter_hero_definition.asset_id, options = { include_image = false, animations = { "omnidirectional_sprites" } } },
       { kind = "prop", asset_id = enemy_definition.asset_id, options = { include_image = false, animations = { "traffic_cycle" } } },
       { kind = "effect", asset_id = mud_hose_definition.asset_id, options = { include_image = false, animations = { "blob_variants" } } },
       { kind = "background", asset_id = requested_profile.environment.background_id }
@@ -234,11 +272,12 @@ function Playground.load_slot(slot)
     -- instances would leave them pointing at invalid GPU resources.
     Playground.loaded_content = {
       character = ContentManager.get("character", hero_definition.asset_id),
+      scooter_character = ContentManager.get("character", scooter_hero_definition.asset_id),
       prop = ContentManager.get("prop", enemy_definition.asset_id),
       effect = ContentManager.get("effect", mud_hose_definition.asset_id),
       background = ContentManager.get("background", requested_profile.environment.background_id)
     }
-    Playground.hero = Character.new(hero_definition, Playground.loaded_content.character)
+    Playground.hero = Character.new(Playground.hero_definition, selected_hero_content(Playground.loaded_content))
     Playground.enemies = { Character.new(enemy_definition, Playground.loaded_content.prop) }
     Playground.mud_hose = MudHose.new(mud_hose_definition, Playground.loaded_content.effect)
     Playground.set_profile(profile_id)
@@ -315,6 +354,7 @@ function Playground.get_load_requests(_context, profile_id)
   local requested_profile = GameplayProfile.load(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   return {
     { kind = "character", asset_id = hero_definition.asset_id, options = { include_image = false, animations = { "motorcycle_direction_set", "motorcycle_direction_full" } } },
+    { kind = "character", asset_id = scooter_hero_definition.asset_id, options = { include_image = false, animations = { "omnidirectional_sprites" } } },
     { kind = "prop", asset_id = enemy_definition.asset_id, options = { include_image = false, animations = { "traffic_cycle" } } },
     { kind = "effect", asset_id = mud_hose_definition.asset_id, options = { include_image = false, animations = { "blob_variants" } } },
     { kind = "background", asset_id = requested_profile.environment.background_id }
@@ -329,13 +369,14 @@ function Playground.enter(context, profile_id)
   local requested_profile = GameplayProfile.load(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.loaded_content = {
     character = context.content.get("character", hero_definition.asset_id),
+    scooter_character = context.content.get("character", scooter_hero_definition.asset_id),
     prop = context.content.get("prop", enemy_definition.asset_id),
     effect = context.content.get("effect", mud_hose_definition.asset_id),
     background = context.content.get("background", requested_profile.environment.background_id)
   }
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
-  Playground.hero = Character.new(Playground.hero_definition, Playground.loaded_content.character)
+  Playground.hero = Character.new(Playground.hero_definition, selected_hero_content(Playground.loaded_content))
   Playground.enemies = {
     Character.new(enemy_definition, Playground.loaded_content.prop)
   }
@@ -390,6 +431,12 @@ function Playground.exit()
   MotocrotteAudio.reset()
   if Playground.mud_hose then Playground.mud_hose:reset() end
   Playground.enemies = {}
+  if Playground.parallax then
+    Playground.parallax:clear()
+    Playground.parallax = nil
+  end
+  Playground.camera = nil
+  Playground.hero = nil
   ContentManager.end_scope("playground")
   AudioManager.end_scope("playground")
   LevelManager.unload()
@@ -398,6 +445,9 @@ end
 
 function Playground.update(dt)
   local intent = MotocrotteDriver.get_intent(Playground.profile)
+  if intent.cycle_hero_pressed then
+    switch_hero()
+  end
   if intent.toggle_visual_lab_pressed then
     Playground.visual_lab_active = not Playground.visual_lab_active
     if Playground.visual_lab_active then
@@ -578,6 +628,9 @@ end
 
 function Playground.draw()
   love.graphics.clear(0.08, 0.1, 0.14, 1)
+  if not Playground.camera or not Playground.parallax or not Playground.hero then
+    return
+  end
   Playground.camera:attach()
   Playground.parallax:draw()
   Playground.mud_hose:draw_residues()

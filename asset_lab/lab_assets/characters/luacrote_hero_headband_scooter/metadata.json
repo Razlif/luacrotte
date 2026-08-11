@@ -1,0 +1,31 @@
+{
+  "last_result": {
+    "id": "luacrote_hero_headband_scooter__pixellab__omnidirectional_sprites_from_image_v001__v001",
+    "provider": "pixellab",
+    "name": "omnidirectional_sprites",
+    "version": 1,
+    "source_image_version": 1,
+    "sheet_path": "lab_assets/characters/luacrote_hero_headband_scooter/sprite_sheets/luacrote_hero_headband_scooter__pixellab__omnidirectional_sprites_from_image_v001__v001.png",
+    "gif_path": "lab_assets/characters/luacrote_hero_headband_scooter/animation_gifs/luacrote_hero_headband_scooter__pixellab__omnidirectional_sprites_from_image_v001__v001.gif",
+    "prompt": "PixelLab eight-direction rotation generation",
+    "variation_group_id": "luacrote_hero_headband_scooter_pixellab_create_rotations_omnidirectional_sprites_from_v001_20260810_230506_049867",
+    "prompt_metadata": {
+      "prompt": "PixelLab eight-direction rotation generation",
+      "asset_id": "luacrote_hero_headband_scooter",
+      "asset_type": "character",
+      "provider": "pixellab",
+      "action": "create-rotations",
+      "variation_group_id": "luacrote_hero_headband_scooter_pixellab_create_rotations_omnidirectional_sprites_from_v001_20260810_230506_049867",
+      "animation": "omnidirectional_sprites",
+      "source_image_version": 1,
+      "source_image_path": "lab_assets/characters/luacrote_hero_headband_scooter/luacrotte_hero_headband_scooter.png",
+      "source_prompt_snapshot": "Imported Asset Lab scooter hero reference"
+    },
+    "frame_count": 8,
+    "frame_width": 256,
+    "frame_height": 256,
+    "sheet_width": 2048,
+    "sheet_height": 256,
+    "fps": 8
+  }
+}

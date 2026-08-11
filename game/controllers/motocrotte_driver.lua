@@ -71,6 +71,7 @@ function Driver.get_intent(profile)
     cycle_drift_mode_pressed = InputManager.consume_pressed("cycle_drift_mode"),
     cycle_control_schema_pressed = InputManager.consume_pressed("cycle_control_schema"),
     toggle_sprite_policy_pressed = InputManager.consume_pressed("toggle_sprite_policy"),
+    cycle_hero_pressed = InputManager.consume_pressed("cycle_hero"),
     toggle_yaw_pressed = InputManager.consume_pressed("toggle_yaw"),
     cycle_movement_mode_pressed = InputManager.consume_pressed("cycle_movement_mode"),
     cycle_camera_mode_pressed = InputManager.consume_pressed("cycle_camera_mode"),

@@ -11,11 +11,12 @@ local function mode_index(mode, modes)
   return 1
 end
 
-local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source, flip_x, scale_y)
+local function draw_sprite(hero, rotation, scale_x, frame, position, anchor, animation_source, flip_x, scale_y, alpha)
+  alpha = alpha or 1
   if hero.collision_active then
-    love.graphics.setColor(1, 0.2, 0.2, 1)
+    love.graphics.setColor(1, 0.2, 0.2, alpha)
   else
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(1, 1, 1, alpha)
   end
   local x = (position and position.x) or hero.position.x
   local y = (position and position.y) or PositionManager.get_screen_y(hero.position)
@@ -283,22 +284,23 @@ local function draw_gameplay_visual(hero, definition)
   local resolved = AnimationResolver.resolve(definition, {
     movement_heading = yaw,
     drift_active = false,
-    variant_index = nil
+    variant_index = nil,
+    visual_state = hero.directional_visual_state
   })
   motion.directional_index = resolved.slot
   motion.directional_direction = resolved.direction
   motion.directional_frame = resolved.frame
-  draw_sprite(
-    hero,
-    rotation,
-    scale_x,
-    resolved.frame,
-    projected_position,
-    nil,
-    resolved.animation_source,
-    resolved.flip_x,
-    hero.scale * projection_scale
-  )
+  local draw_scale_y = hero.scale * projection_scale
+  if resolved.previous then
+    local alpha = resolved.transition_alpha or 1
+    draw_sprite(hero, rotation, scale_x, resolved.previous.frame, projected_position, nil,
+      resolved.previous.animation_source, resolved.previous.flip_x, draw_scale_y, 1 - alpha)
+    draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil,
+      resolved.animation_source, resolved.flip_x, draw_scale_y, alpha)
+  else
+    draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil,
+      resolved.animation_source, resolved.flip_x, draw_scale_y)
+  end
 end
 
 function Renderer.draw(hero, definition, visual_state)

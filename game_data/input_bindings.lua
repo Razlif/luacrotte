@@ -9,6 +9,7 @@ return {
   cycle_drift_mode = { tab = true },
   cycle_control_schema = { tab = true },
   toggle_sprite_policy = { r = true },
+  cycle_hero = { h = true },
   toggle_yaw = { y = true },
   cycle_movement_mode = { m = true },
   cycle_camera_mode = { c = true },

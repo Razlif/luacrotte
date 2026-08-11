@@ -234,6 +234,35 @@ return {
         width = 64,
       },
     },
+    luacrote_hero_headband_scooter = {
+      animations = {
+        omnidirectional_sprites = {
+          fps = 8,
+          frame_count = 8,
+          frame_height = 256,
+          frame_width = 256,
+          loop = true,
+          name = "omnidirectional_sprites",
+          prompt = "PixelLab eight-direction rotation generation",
+          provider = "pixellab",
+          sheet_path = "media_assets/characters/luacrote_hero_headband_scooter/sprite_sheets/luacrote_hero_headband_scooter__pixellab__omnidirectional_sprites_from_image_v001__v001.png",
+          source_image_version = 1,
+          source_sheet_path = "asset_lab/lab_assets/characters/luacrote_hero_headband_scooter/sprite_sheets/luacrote_hero_headband_scooter__pixellab__omnidirectional_sprites_from_image_v001__v001.png",
+          version = 1,
+        },
+      },
+      groups = {"characters", "characters/hero"},
+      id = "luacrote_hero_headband_scooter",
+      image = {
+        height = 1254,
+        path = "media_assets/characters/luacrote_hero_headband_scooter/original_images/luacrotte_hero_headband_scooter__imported__image__v001.png",
+        prompt = "Imported Asset Lab scooter hero reference",
+        provider = "imported",
+        source_path = "lab_assets/characters/luacrote_hero_headband_scooter/original_images/luacrotte_hero_headband_scooter__imported__image__v001.png",
+        version = 1,
+        width = 1254,
+      },
+    },
     luacrotte_hero_motorcycle_direction_set_v001 = {
       animations = {
         motorcycle_direction_full = {

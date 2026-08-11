@@ -115,6 +115,11 @@ return {
   directional_animation = {
     canonical_source = "motorcycle_direction_full",
     direction_count = 8,
+    visual_smoothing = {
+      enabled = true,
+      boundary_margin = math.rad(8),
+      transition_time = 0.08
+    },
     cardinal_frames = { [1] = 3, [3] = 1, [5] = 7, [7] = 5 },
     frame_map = { 3, 2, 1, 10, 7, 4, 5, 6 },
     variant_policy = "random_per_drift",

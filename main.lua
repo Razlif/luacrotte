@@ -33,5 +33,7 @@ end
 
 function love.quit()
   game.quit()
-  return true
+  -- In LÖVE, returning true aborts the quit event.  Return false so the
+  -- window close request is allowed to terminate the process.
+  return false
 end

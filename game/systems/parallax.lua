@@ -43,7 +43,10 @@ function ParallaxManager:draw()
   end
   for _, layer in ipairs(self.layers) do
     local image = self:load_layer(layer)
-    if image then
+    -- ContentManager may release a scope-owned texture during a state
+    -- transition.  A stale ParallaxManager can survive until the next draw
+    -- callback, so never hand a released GPU object to love.graphics.
+    if image and (not image.isReleased or not image:isReleased()) then
       if layer.fit == "track" then
         -- A track is a sequence of world-space tiles.  It is deliberately
         -- separate from cover backgrounds: camera motion reveals later tiles
@@ -100,6 +103,12 @@ function ParallaxManager:draw()
       end
     end
   end
+end
+
+function ParallaxManager:clear()
+  self.camera = nil
+  self.layers = {}
+  self.loaded = {}
 end
 
 return ParallaxManager
