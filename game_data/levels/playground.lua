@@ -24,6 +24,16 @@ return {
     smoothing = 8,
     zoom = 1
   },
+  max_enemies = 1,
+  enemies = {
+    {
+      id = "yasuke_bike_enemy_01",
+      definition = "motocrotte_bike_enemy",
+      spawn = { x = 1100, ground_y = 1057 },
+      respawn = true,
+      respawn_delay = 3.5
+    }
+  },
   content = {
     characters = { "luacrotte_hero_motorcycle_direction_set_v001" },
     props = { "motocrotte_bike_variant_01" },

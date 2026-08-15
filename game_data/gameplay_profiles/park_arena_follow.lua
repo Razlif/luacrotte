@@ -44,7 +44,48 @@ profile.drift.spin_momentum_cap = 360
 profile.drift.slingshot_impulse = 450
 profile.drift.slingshot_decay = 700
 profile.drift.slingshot_min_speed = 4
+profile.combat = {
+  separation_distance = 2,
+  maximum_knockback = 1200,
+  impact_cooldown = 0.35,
+  spinning_drift_multiplier = 1.0,
+  straight_drift_multiplier = 1.0,
+  recovery_duration = 3.5,
+  responses = {
+    drift_orbit = {
+      knockback = 900,
+      impact_velocity_scale = 0.35,
+      yaw_speed = math.rad(720),
+      duration = 3.5,
+      hit_pause = 3.5
+    },
+    straight_drift = {
+      knockback = 420,
+      impact_velocity_scale = 0.2,
+      yaw_speed = math.rad(45),
+      duration = 0.6,
+      hit_pause = 0.6
+    },
+    regular_drive = { knockback_scale = 1.0, duration = 0.35, hit_pause = 0.35 },
+    glide = { knockback_scale = 0.35, duration = 0.2, hit_pause = 0.2 },
+    stationary = { knockback_scale = 0.15, duration = 0.15, hit_pause = 0.15 }
+  }
+}
 profile.world_unbounded = nil
+-- Profile 5 starts as an empty combat sandbox. G adds instances from this
+-- template at runtime; the level's default enemy remains available to the
+-- other profiles.
+profile.enemies = {}
+profile.enemy_spawning = {
+  enabled = true,
+  max_count = 32,
+  template = {
+    id = "yasuke_bike_enemy",
+    definition = "motocrotte_bike_enemy",
+    respawn = true,
+    respawn_delay = 3.5
+  }
+}
 -- Camera-only padding keeps the hero and the angled park corners inside the
 -- viewport while the gameplay bounds remain the exact fence coordinates.
 profile.world = { left = 313, right = 2291, top = 466, bottom = 1891 }

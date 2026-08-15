@@ -26,6 +26,7 @@ return {
   drift_fd = { s = true },
   dash = { d = true },
   fire_mud_hose = { a = true },
+  spawn_enemy = { g = true },
   profile_slot_1 = { ["1"] = true },
   profile_slot_2 = { ["2"] = true },
   profile_slot_3 = { ["3"] = true },

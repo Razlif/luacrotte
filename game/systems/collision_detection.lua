@@ -54,6 +54,119 @@ local function bounds_overlap(a_left, a_top, a_right, a_bottom, b_left, b_top, b
   return a_left < b_right and a_right > b_left and a_top < b_bottom and a_bottom > b_top
 end
 
+local function velocity_of(entity)
+  local motion = entity.motocrotte_motion
+  if motion then
+    return motion.vx or 0, motion.vy or 0
+  end
+  if entity.velocity then
+    return entity.velocity.x or 0, entity.velocity.y or 0
+  end
+  return entity.velocity_x or 0, entity.velocity_y or 0
+end
+
+local function geometry_from_sensor(sensor)
+  if sensor.shape == "circle" then
+    local radius = sensor.radius or 0
+    return {
+      left = sensor.x - radius,
+      top = sensor.y - radius,
+      right = sensor.x + radius,
+      bottom = sensor.y + radius,
+      center_x = sensor.x,
+      center_y = sensor.y
+    }
+  end
+  local width = sensor.width or 0
+  local height = sensor.height or 0
+  return {
+    left = sensor.x,
+    top = sensor.y,
+    right = sensor.x + width,
+    bottom = sensor.y + height,
+    center_x = sensor.x + width * 0.5,
+    center_y = sensor.y + height * 0.5
+  }
+end
+
+local function geometry_for(entity, preferred_sensor)
+  if preferred_sensor then
+    return geometry_from_sensor(preferred_sensor)
+  end
+  local mask = active_mask(entity)
+  if mask then
+    local left, top, right, bottom = mask_bounds(entity, mask)
+    if left then
+      return {
+        left = left,
+        top = top,
+        right = right,
+        bottom = bottom,
+        center_x = (left + right) * 0.5,
+        center_y = (top + bottom) * 0.5
+      }
+    end
+  end
+  local sensors = CollisionDetection.get_sensors(entity)
+  if sensors[1] then
+    return geometry_from_sensor(sensors[1])
+  end
+  local x, y = screen_position(entity)
+  return { left = x, top = y, right = x, bottom = y, center_x = x, center_y = y }
+end
+
+local function collision_mode(entity)
+  local definition_collision = entity.definition and entity.definition.collision
+  if definition_collision and definition_collision.mode then
+    return definition_collision.mode
+  end
+  local asset_collision = entity.asset and entity.asset.collision
+  return asset_collision and asset_collision.mode or nil
+end
+
+local function contact_normal(first_geometry, second_geometry, overlap_x, overlap_y)
+  local dx = second_geometry.center_x - first_geometry.center_x
+  local dy = second_geometry.center_y - first_geometry.center_y
+  if math.abs(dx) < 0.0001 and math.abs(dy) < 0.0001 then
+    local relative_x, relative_y = 0, 0
+    if overlap_x <= overlap_y then
+      relative_x = 1
+    else
+      relative_y = 1
+    end
+    return relative_x, relative_y
+  end
+  if overlap_x <= overlap_y then
+    return dx < 0 and -1 or 1, 0
+  end
+  return 0, dy < 0 and -1 or 1
+end
+
+-- Returns contact information without moving either entity or applying a
+-- gameplay response. The normal points from `first` toward `second`.
+function CollisionDetection.contact_details(first, second, collision_type, first_sensor)
+  local first_geometry = geometry_for(first, first_sensor)
+  local second_geometry = geometry_for(second)
+  local overlap_x = math.min(first_geometry.right, second_geometry.right)
+    - math.max(first_geometry.left, second_geometry.left)
+  local overlap_y = math.min(first_geometry.bottom, second_geometry.bottom)
+    - math.max(first_geometry.top, second_geometry.top)
+  local normal_x, normal_y = contact_normal(first_geometry, second_geometry, overlap_x, overlap_y)
+  local first_velocity_x, first_velocity_y = velocity_of(first)
+  local second_velocity_x, second_velocity_y = velocity_of(second)
+  return {
+    collision_type = collision_type or "shape",
+    normal = { x = normal_x, y = normal_y },
+    penetration = math.max(0, math.min(overlap_x, overlap_y)),
+    relative_velocity = {
+      x = first_velocity_x - second_velocity_x,
+      y = first_velocity_y - second_velocity_y
+    },
+    first_center = { x = first_geometry.center_x, y = first_geometry.center_y },
+    second_center = { x = second_geometry.center_x, y = second_geometry.center_y }
+  }
+end
+
 function CollisionDetection.mask_overlaps(first, second)
   local first_mask = active_mask(first)
   local second_mask = active_mask(second)
@@ -192,23 +305,30 @@ function CollisionDetection.check(entities, options)
         local second = entities[second_index]
         local second_collision = second.definition and second.definition.collision
         if second_collision and (second_collision.enabled or options and options.debug) and CollisionDetection.mask_overlaps(first, second) then
+          local contact = CollisionDetection.contact_details(first, second, "mask")
           events[#events + 1] = {
             kind = "mask_overlap",
             source_id = entity_id(first),
             target_id = entity_id(second),
-            frame = first.animation and first.animation.current_frame or 1
+            frame = first.animation and first.animation.current_frame or 1,
+            collision_type = contact.collision_type,
+            contact = contact
           }
         end
         if second_collision and (second_collision.enabled or options and options.debug) then
           for _, sensor_definition in ipairs(sensors_for(first)) do
             local sensor = world_sensor(first, sensor_definition)
             if CollisionDetection.sensor_overlaps(sensor, second) then
+              local collision_type = collision_mode(first) == "shape" and "shape" or "sensor"
+              local contact = CollisionDetection.contact_details(first, second, collision_type, sensor)
               events[#events + 1] = {
                 kind = "sensor_overlap",
                 source_id = entity_id(first),
                 target_id = entity_id(second),
                 sensor_id = sensor_definition.id,
-                frame = second.animation and second.animation.current_frame or 1
+                frame = second.animation and second.animation.current_frame or 1,
+                collision_type = contact.collision_type,
+                contact = contact
               }
             end
           end

@@ -1,0 +1,11 @@
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":8}
+{"id":"switch_to_profile5","command":"press","key":"5"}
+{"id":"wait_for_profile5","command":"wait","seconds":2}
+{"id":"snapshot_empty_enemy_roster","command":"snapshot","name":"profile5_no_enemies"}
+{"id":"spawn_enemy_01","command":"press","key":"g"}
+{"id":"wait_for_spawn_01","command":"wait","seconds":0.25}
+{"id":"snapshot_first_enemy","command":"snapshot","name":"profile5_one_enemy"}
+{"id":"spawn_enemy_02","command":"press","key":"g"}
+{"id":"wait_for_spawn_02","command":"wait","seconds":0.25}
+{"id":"snapshot_second_enemy","command":"snapshot","name":"profile5_two_enemies"}

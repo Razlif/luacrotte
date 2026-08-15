@@ -9,6 +9,8 @@ local ContentManager = require("game.systems.content_manager")
 local LevelManager = require("game.systems.level_manager")
 local Character = require("game.entities.characters.character")
 local CollisionDetection = require("game.systems.collision_detection")
+local CombatSystem = require("game.systems.combat_system")
+local EnemyManager = require("game.systems.enemy_manager")
 local DrawOrder = require("game.systems.draw_order")
 local MotocrotteDriver = require("game.controllers.motocrotte_driver")
 local HeroMovement = require("game.systems.motocrotte_hero_movement")
@@ -33,6 +35,7 @@ local Playground = {
   camera = nil,
   parallax = nil,
   last_collision_events = {},
+  combat_events = {},
   drift_mode_index = 1,
   visual_mode_index = 1,
   visual_lab_active = false,
@@ -47,7 +50,9 @@ local Playground = {
   -- Start with the canonical motorcycle hero; H still toggles between variants.
   hero_variant_index = 1,
   active_level_definition = level_definition,
-  loaded_content = {}
+  loaded_content = {},
+  enemy_manager = nil,
+  respawn_events = {}
 }
 
 local hero_definitions = { hero_definition, scooter_hero_definition }
@@ -61,6 +66,47 @@ local function selected_hero_content(content)
     return content.scooter_character
   end
   return content.character
+end
+
+local function create_enemy_manager()
+  local spawning = Playground.profile and Playground.profile.enemy_spawning or {}
+  local manager = EnemyManager.new({
+    entries = (Playground.profile and Playground.profile.enemies)
+      or Playground.active_level_definition.enemies or {},
+    max_count = spawning.max_count or (Playground.profile and Playground.profile.max_enemies)
+      or Playground.active_level_definition.max_enemies,
+    definitions = { motocrotte_bike_enemy = enemy_definition },
+    content = Playground.loaded_content,
+    content_by_definition = { motocrotte_bike_enemy = "prop" },
+    spawn_template = spawning.enabled and spawning.template or nil
+  })
+  manager:spawn_all()
+  return manager
+end
+
+local function spawn_enemy_near_hero()
+  if not Playground.enemy_manager or not Playground.hero or not Playground.hero.position then
+    return nil
+  end
+  local position = Playground.hero.position
+  local index = #Playground.enemies + 1
+  local angle = ((index - 1) % 8) * (math.pi / 4)
+  local distance = 220 + math.floor((index - 1) / 8) * 48
+  local bounds = Playground.active_level_definition.hero_bounds or {}
+  local x = position.x + math.cos(angle) * distance
+  local ground_y = position.ground_y + math.sin(angle) * distance
+  if bounds.left then x = math.max(bounds.left, math.min(bounds.right, x)) end
+  if bounds.top then ground_y = math.max(bounds.top, math.min(bounds.bottom, ground_y)) end
+  local enemy = Playground.enemy_manager:spawn_next({
+    x = x,
+    ground_y = ground_y,
+    z = position.z or 0
+  })
+  if enemy then
+    Playground.enemies = Playground.enemy_manager:get_active()
+    Playground.respawn_events = Playground.enemy_manager:get_events()
+  end
+  return enemy
 end
 
 local function switch_hero()
@@ -261,6 +307,9 @@ function Playground.load_slot(slot)
     -- the existing Playground scope. Release the old ownership first so its
     -- background and profile-specific resources can be collected, while any
     -- resources still owned by another scope remain cached.
+    if Playground.enemy_manager then Playground.enemy_manager:clear() end
+    Playground.enemy_manager = nil
+    Playground.enemies = {}
     ContentManager.end_scope("playground")
     ContentManager.load_scope("playground", {
       { kind = "character", asset_id = hero_definition.asset_id, options = { include_image = false, animations = { "motorcycle_direction_set", "motorcycle_direction_full" } } },
@@ -280,9 +329,11 @@ function Playground.load_slot(slot)
       background = ContentManager.get("background", requested_profile.environment.background_id)
     }
     Playground.hero = Character.new(Playground.hero_definition, selected_hero_content(Playground.loaded_content))
-    Playground.enemies = { Character.new(enemy_definition, Playground.loaded_content.prop) }
     Playground.mud_hose = MudHose.new(mud_hose_definition, Playground.loaded_content.effect)
     Playground.set_profile(profile_id)
+    Playground.enemy_manager = create_enemy_manager()
+    Playground.enemies = Playground.enemy_manager:get_active()
+    Playground.respawn_events = Playground.enemy_manager:get_events()
     local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
     Playground.hero.position.x = spawn.x
     Playground.hero.position.ground_y = spawn.ground_y
@@ -366,6 +417,9 @@ end
 
 function Playground.enter(context, profile_id)
   context = context or require("game.runtime_context")
+  Playground.last_collision_events = {}
+  Playground.combat_events = {}
+  Playground.respawn_events = {}
   AudioManager.begin_scope("playground")
   LevelManager.load("playground", profile_id or level_definition.gameplay_profile_id or "arena_follow")
   AudioManager.load_manifest(asset_manifest)
@@ -380,10 +434,10 @@ function Playground.enter(context, profile_id)
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.hero = Character.new(Playground.hero_definition, selected_hero_content(Playground.loaded_content))
-  Playground.enemies = {
-    Character.new(enemy_definition, Playground.loaded_content.prop)
-  }
   Playground.mud_hose = MudHose.new(mud_hose_definition, Playground.loaded_content.effect)
+  Playground.enemy_manager = create_enemy_manager()
+  Playground.enemies = Playground.enemy_manager:get_active()
+  Playground.respawn_events = Playground.enemy_manager:get_events()
   local spawn = GameplayProfile.spawn(level_definition, Playground.profile)
   Playground.hero.position.x = spawn.x
   Playground.hero.position.ground_y = spawn.ground_y
@@ -440,6 +494,9 @@ function Playground.exit()
   end
   Playground.camera = nil
   Playground.hero = nil
+  if Playground.enemy_manager then Playground.enemy_manager:clear() end
+  Playground.enemy_manager = nil
+  Playground.respawn_events = {}
   ContentManager.end_scope("playground")
   AudioManager.end_scope("playground")
   LevelManager.unload()
@@ -485,6 +542,9 @@ function Playground.update(dt)
     Playground.hero.animation:update(dt)
   else
     local changed = false
+    if Playground.profile_id == "park_arena_follow" and intent.spawn_enemy_pressed then
+      spawn_enemy_near_hero()
+    end
     if intent.toggle_sprite_policy_pressed then
       PlaygroundExperiment.cycle(Playground.experiment, "sprite_policy")
       changed = true
@@ -532,35 +592,31 @@ function Playground.update(dt)
     Playground.mud_hose:update(Playground.hero, intent.fire_mud_hose, dt, Playground.enemies)
   end
   local world = { player = Playground.hero }
-  for _, enemy in ipairs(Playground.enemies) do
-    enemy:update(dt, world)
-  end
-  for index = #Playground.enemies, 1, -1 do
-    if Playground.enemies[index]:is_defeat_complete() then
-      table.remove(Playground.enemies, index)
-    end
-  end
+  -- Character:update resolves controller intent and normal movement first,
+  -- then applies any controller-owned impact movement and decay.
+  Playground.enemy_manager:update(dt, world)
+  Playground.enemies = Playground.enemy_manager:get_active()
+  Playground.respawn_events = Playground.enemy_manager:get_events()
   local collision_entities = { Playground.hero }
   for _, enemy in ipairs(Playground.enemies) do
     collision_entities[#collision_entities + 1] = enemy
   end
-  Playground.last_collision_events = CollisionDetection.check(collision_entities)
+  local collision_events = CollisionDetection.check(collision_entities)
+  Playground.last_collision_events = collision_events
   Playground.hero.collision_active = false
   for _, enemy in ipairs(Playground.enemies) do enemy.collision_active = false end
   local collision_entities_by_id = { [Playground.hero.id] = Playground.hero }
   for _, enemy in ipairs(Playground.enemies) do collision_entities_by_id[enemy.id] = enemy end
-  for _, event in ipairs(Playground.last_collision_events) do
+  for _, event in ipairs(collision_events) do
     if collision_entities_by_id[event.source_id] then collision_entities_by_id[event.source_id].collision_active = true end
     if collision_entities_by_id[event.target_id] then collision_entities_by_id[event.target_id].collision_active = true end
-    local source = collision_entities_by_id[event.source_id]
-    local target = collision_entities_by_id[event.target_id]
-    if source and source ~= Playground.hero and source.mark_hit then
-      source:mark_hit((source.definition.follow or {}).hit_pause or 0.35)
-    end
-    if target and target ~= Playground.hero and target.mark_hit then
-      target:mark_hit((target.definition.follow or {}).hit_pause or 0.35)
-    end
   end
+  Playground.combat_events = CombatSystem.resolve(collision_events, {
+    hero = Playground.hero,
+    enemies = Playground.enemies,
+    profile = Playground.profile,
+    dt = dt
+  })
   if Playground.profile.camera.behavior == "static" then
     Playground.camera:follow(nil)
   else
@@ -580,6 +636,12 @@ function Playground.get_debug_context()
     hero_motion = Playground.hero and Playground.hero.motocrotte_motion or nil,
     camera = Playground.camera,
     collision_events = Playground.last_collision_events,
+    combat_events = Playground.combat_events,
+    combat_cooldowns = Playground.hero and Playground.hero.combat_cooldowns or {},
+    respawn = {
+      manager = Playground.enemy_manager and Playground.enemy_manager:get_respawn_snapshot() or nil,
+      events = Playground.respawn_events
+    },
     background_id = Playground.experiment.background_id,
     background_path = Playground.parallax and Playground.parallax.layers[1] and Playground.parallax.layers[1].image_path or nil,
     movement_bounds = Playground.active_level_definition and Playground.active_level_definition.hero_bounds or nil,
@@ -615,12 +677,43 @@ function Playground.get_debug_context()
     },
     enemies = (function()
       local result = {}
+      local respawn_snapshot = Playground.enemy_manager
+        and Playground.enemy_manager:get_respawn_snapshot() or { timers = {} }
       for _, enemy in ipairs(Playground.enemies) do
+        local controller = enemy.controller
+        enemy.respawn_timer = respawn_snapshot.timers[enemy.spawn_point_id]
         result[#result + 1] = {
           id = enemy.id,
           state = enemy.behavior_state,
           position = { x = enemy.position.x, ground_y = enemy.position.ground_y },
-          collision_active = enemy.collision_active == true
+          collision_active = enemy.collision_active == true,
+          combat_state = enemy.combat_state,
+          last_impact_source = enemy.last_impact_source,
+          last_impact_target = enemy.last_impact_target,
+          last_impact_state = enemy.last_impact_state,
+          impact_direction = {
+            x = enemy.impact_direction_x or enemy.last_impact_direction_x,
+            y = enemy.impact_direction_y or enemy.last_impact_direction_y
+          },
+          impact_speed = enemy.impact_speed or 0,
+          knockback_speed = enemy.knockback_speed or 0,
+          impact_yaw_speed = enemy.impact_yaw_speed ~= 0
+            and enemy.impact_yaw_speed or (enemy.last_impact_yaw_speed or 0),
+          impact_remaining = enemy.impact_remaining or 0,
+          separation_distance = enemy.separation_distance or 0,
+          respawn_timer = enemy.respawn_timer,
+          impact_mode = enemy.impact_mode,
+          impact_yaw = enemy.impact_yaw or 0,
+          impact_velocity = {
+            x = enemy.impact_velocity_x or 0,
+            y = enemy.impact_velocity_y or 0
+          },
+          impact_locked = controller and controller.is_impact_locked
+            and controller:is_impact_locked() or false,
+          impact_spin_phase = controller and controller.get_spin_phase
+            and controller:get_spin_phase() or 0,
+          controller_impact_velocity = controller and controller.get_impact_velocity
+            and controller:get_impact_velocity() or { x = 0, y = 0 }
         }
       end
       return result
@@ -677,7 +770,8 @@ function Playground.draw()
           or "Arrows: move"
     local drift_hint = Playground.experiment.control_schema == "gas_steering_fd" and "S: drift" or "Shift: drift"
     local dash_hint = Playground.profile_id == "arena_follow" and "D: dash" or ""
-    love.graphics.print(control_hint .. "   " .. drift_hint .. "   " .. dash_hint .. "   A: mud hose   Space: jump   V: visual lab", 24, 48)
+    local spawn_hint = Playground.profile_id == "park_arena_follow" and "G: spawn enemy" or ""
+    love.graphics.print(control_hint .. "   " .. drift_hint .. "   " .. dash_hint .. "   A: mud hose   Space: jump   " .. spawn_hint .. "   V: visual lab", 24, 48)
     love.graphics.print("R: sprites   Y: yaw   Tab: controls   M: movement   C: camera   B: background   5: straight-orbit drift profile", 24, 72)
     love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.experiment.control_schema, Playground.experiment.movement_mode, Playground.experiment.camera_mode), 24, 96)
     love.graphics.print(string.format("Sprites: %s   Yaw: %s   Background: %s   Slot: %d", Playground.experiment.sprite_policy, Playground.experiment.yaw_mode, Playground.experiment.background_id, Playground.experiment.profile_slot), 24, 120)
@@ -696,7 +790,38 @@ function Playground.draw()
     for _, enemy in ipairs(Playground.enemies) do
       enemy_states[#enemy_states + 1] = string.format("%s: %s", enemy.id, enemy.behavior_state or "unknown")
     end
-    love.graphics.print("Enemies: " .. (#enemy_states > 0 and table.concat(enemy_states, "   ") or "none"), 24, 288)
+    local enemy_count = #Playground.enemies
+    local enemy_limit = Playground.enemy_manager and Playground.enemy_manager:get_respawn_snapshot().max_count or 0
+    love.graphics.print(string.format("Enemies: %d/%d %s", enemy_count, enemy_limit, #enemy_states > 0 and table.concat(enemy_states, "   ") or "none"), 24, 288)
+    local enemy = Playground.enemies[1]
+    if enemy then
+      local impact_state = enemy.combat_state or enemy.last_impact_state
+      local impact_label = impact_state == "drift_orbit" and "hero_spinning_drift"
+        or impact_state == "straight_drift" and "hero_straight_drift"
+        or impact_state or "none"
+      local yaw_speed = math.deg(enemy.impact_yaw_speed ~= 0
+        and enemy.impact_yaw_speed or (enemy.last_impact_yaw_speed or 0))
+      local respawn_snapshot = Playground.enemy_manager
+        and Playground.enemy_manager:get_respawn_snapshot() or { timers = {} }
+      local respawn_timer = respawn_snapshot.timers[enemy.spawn_point_id]
+      love.graphics.print(string.format(
+        "Enemy: %s   Impact: %s   Knockback: %.0f   Yaw: %.0f°/s   Recover: %.1fs",
+        enemy.behavior_state or "unknown",
+        impact_label,
+        enemy.knockback_speed or 0,
+        yaw_speed,
+        enemy.impact_remaining or 0
+      ), 24, 312)
+      love.graphics.print(string.format(
+        "Impact: %s → %s   Direction: %.2f, %.2f   Separation: %.1f   Respawn: %s",
+        tostring(enemy.last_impact_source or "none"),
+        tostring(enemy.last_impact_target or "none"),
+        enemy.impact_direction_x or enemy.last_impact_direction_x or 0,
+        enemy.impact_direction_y or enemy.last_impact_direction_y or 0,
+        enemy.separation_distance or 0,
+        respawn_timer and string.format("%.1fs", respawn_timer) or "ready"
+      ), 24, 336)
+    end
   end
 end
 

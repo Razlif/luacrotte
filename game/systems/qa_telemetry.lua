@@ -80,7 +80,29 @@ local function entity_snapshot(entity, camera)
     frame = animation and animation.current_frame or 1,
     facing = entity.facing,
     visual_yaw = entity.visual_yaw,
-    draw_layer = entity.draw_layer or 0
+    draw_layer = entity.draw_layer or 0,
+    combat_state = entity.combat_state,
+    combat_source = entity.combat_source,
+    impact_remaining = entity.impact_remaining or 0,
+    impact_mode = entity.impact_mode,
+    impact_direction = {
+      x = entity.impact_direction_x or entity.last_impact_direction_x,
+      y = entity.impact_direction_y or entity.last_impact_direction_y
+    },
+    last_impact_source = entity.last_impact_source,
+    last_impact_target = entity.last_impact_target,
+    last_impact_state = entity.last_impact_state,
+    impact_speed = entity.impact_speed or 0,
+    knockback_speed = entity.knockback_speed or 0,
+    impact_yaw_speed = entity.impact_yaw_speed ~= 0
+      and entity.impact_yaw_speed or (entity.last_impact_yaw_speed or 0),
+    separation_distance = entity.separation_distance or 0,
+    respawn_timer = entity.respawn_timer,
+    impact_yaw = entity.impact_yaw or 0,
+    impact_velocity = {
+      x = entity.impact_velocity_x or 0,
+      y = entity.impact_velocity_y or 0
+    }
   }
   if entity.motocrotte_motion then
     snapshot.motion = {
@@ -167,6 +189,9 @@ function Telemetry.snapshot(state_name, context, extra)
         snapshot[key] = value
       end
     end
+    snapshot.respawn_timer = context.respawn
+      and context.respawn.manager
+      and context.respawn.manager.respawn_timer or nil
   end
   for key, value in pairs(extra or {}) do snapshot[key] = value end
   return snapshot

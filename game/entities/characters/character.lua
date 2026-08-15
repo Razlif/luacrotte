@@ -4,6 +4,8 @@ local ControllerFactory = require("game.controllers.controller_factory")
 local MovementManager = require("game.systems.movement_manager")
 local PositionManager = require("game.systems.position_manager")
 local TimerManager = require("game.systems.timer_manager")
+local ImpactResponse = require("game.systems.impact_response")
+local ImpactRenderer = require("game.systems.impact_renderer")
 
 local Character = {}
 Character.__index = Character
@@ -38,7 +40,27 @@ function Character.new(definition, loaded_asset)
     flash_elapsed = 0,
     defeat_elapsed = nil,
     defeat_delay = 0,
-    defeat_fade_time = 0
+    defeat_fade_time = 0,
+    impact_velocity_x = 0,
+    impact_velocity_y = 0,
+    impact_yaw = 0,
+    impact_yaw_speed = 0,
+    impact_remaining = 0,
+    impact_duration = 0,
+    impact_mode = nil,
+    impact_direction_x = nil,
+    impact_direction_y = nil,
+    last_impact_source = nil,
+    last_impact_target = nil,
+    last_impact_state = nil,
+    last_impact_direction_x = nil,
+    last_impact_direction_y = nil,
+    last_impact_yaw_speed = 0,
+    impact_speed = 0,
+    knockback_speed = 0,
+    separation_distance = 0,
+    combat_state = nil,
+    combat_source = nil
   }, Character)
 
   character.behavior_state = character.controller and character.controller.get_state
@@ -130,6 +152,13 @@ function Character:update(dt, world)
     self.animation:update(dt)
     return
   end
+
+  self.timer:update(dt)
+  if self.flash_remaining > 0 then
+    self.flash_remaining = math.max(0, self.flash_remaining - dt)
+    self.flash_elapsed = self.flash_elapsed + dt
+  end
+
   local intent = { horizontal = 0, vertical = 0, jump = false }
   if self.controller then
     intent = self.controller:get_intent(self, world, dt)
@@ -138,11 +167,6 @@ function Character:update(dt, world)
     end
   end
 
-  self.timer:update(dt)
-  if self.flash_remaining > 0 then
-    self.flash_remaining = math.max(0, self.flash_remaining - dt)
-    self.flash_elapsed = self.flash_elapsed + dt
-  end
   if self.facing_enabled and intent.horizontal ~= 0 then
     self.facing = intent.horizontal > 0 and 1 or -1
   end
@@ -157,6 +181,18 @@ function Character:update(dt, world)
   else
     MovementManager.update(self, intent, self.definition.movement, dt)
   end
+
+  -- Generic impact is deliberately applied after normal movement. Enemy
+  -- controllers return zero intent while locked, while future hero impacts
+  -- can reuse this same pipeline without replacing the controller contract.
+  if self.controller and self.controller.is_impact_locked and self.controller:is_impact_locked() then
+    self.controller:update_impact(dt)
+    self.behavior_state = self.controller.get_state and self.controller:get_state() or "hit_light"
+  elseif ImpactResponse.is_active(self) then
+    ImpactResponse.update(self, dt)
+    self.behavior_state = "hit_light"
+  end
+
   self.animation:update(dt)
   self.movement_was_active = movement_active
 end
@@ -188,13 +224,25 @@ function Character:draw()
   else
     love.graphics.setColor(1, 1, 1, defeat_alpha)
   end
+  local transform = ImpactRenderer.get_transform(self)
   if self.animation:is_playing() then
-    self.animation:draw(self.position.x, PositionManager.get_screen_y(self.position), self.scale * self:get_render_facing(), self.scale, self.anchor_x, self.anchor_y)
+    self.animation:draw(self.position.x, PositionManager.get_screen_y(self.position), transform.scale_x, transform.scale_y, self.anchor_x, self.anchor_y)
     love.graphics.setColor(1, 1, 1, 1)
     return
   end
-  love.graphics.draw(self.asset.image.texture, self.position.x, PositionManager.get_screen_y(self.position), 0, self.scale * self:get_render_facing(), self.scale, self.anchor_x, self.anchor_y)
+  love.graphics.draw(self.asset.image.texture, self.position.x, PositionManager.get_screen_y(self.position), 0, transform.scale_x, transform.scale_y, self.anchor_x, self.anchor_y)
   love.graphics.setColor(1, 1, 1, 1)
+end
+
+function Character:apply_combat_impact(response)
+  local controller_started = false
+  if self.controller and self.controller.begin_impact then
+    controller_started = self.controller:begin_impact(response, self)
+  else
+    ImpactResponse.apply(self, response)
+  end
+  self:hit_flash(response.hit_pause or response.duration or 0.25)
+  self.behavior_state = controller_started and self.controller:get_state() or "hit_light"
 end
 
 function Character:mark_hit(duration)
