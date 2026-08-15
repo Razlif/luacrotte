@@ -185,15 +185,10 @@ local function draw_gameplay_visual(hero, definition)
     and (motion.steering_heading or motion.heading)
     or motion.heading
   local yaw_mode = visual.yaw_mode or (visual.yaw_enabled == false and "off" or "all_movement")
-  local braking_heading = motion.braking and motion.braking_heading or nil
   local yaw_axis = visual.yaw_axis or 0
-  local braking_visual = definition.braking_visual or {}
-  -- Braking selects the neighboring directional frame, rather than applying
-  -- a geometric rotation. Left/Right therefore reads as a sprite-wheel skid.
-  local braking_frame_offset = motion.braking and (motion.braking_tilt_direction or 0)
-    * (braking_visual.frame_step or 0) or 0
-  local yaw = braking_heading and (braking_heading + braking_frame_offset)
-    or (yaw_mode == "all_movement" and (hero.visual_yaw or steering_heading or 0) or (steering_heading or 0))
+  local yaw = yaw_mode == "all_movement"
+    and (hero.visual_yaw or steering_heading or 0)
+    or (steering_heading or 0)
   local rotation = 0
   if motion.dash_active then
     rotation = motion.dash_visual_angle or 0
@@ -207,7 +202,7 @@ local function draw_gameplay_visual(hero, definition)
     and dash.drift_combo_mode == "minimum_orbit"
   local use_dreidel_presentation = motion.dash_axial_spin_active and not regular_orbit_combo
 
-  if motion.drift_active and motion.drift_spin_phase then
+  if motion.drift_active and motion.drift_spin_phase and motion.drift_mode ~= "straight" then
     local spin_phase = use_dreidel_presentation and motion.dash_axial_spin_phase
       or motion.drift_spin_phase
     local pivot = visual.directional_pivot or {}
@@ -273,6 +268,54 @@ local function draw_gameplay_visual(hero, definition)
     scale_x = scale_x * math.abs(math.cos(yaw - yaw_axis))
   end
 
+  local jump = definition.jump or {}
+  local jump_rotation = motion.jump_visual_rotation or 0
+  local jump_scale_x = motion.jump_scale_x or 1
+  local jump_scale_y = motion.jump_scale_y or 1
+  scale_x = scale_x * jump_scale_x
+  local draw_scale_y = hero.scale * projection_scale * jump_scale_y
+  local jump_anchor = nil
+  if motion.jump_state == "airborne" and motion.jump_mode == "wheelie" then
+    jump_anchor = (jump.wheelie or {}).contact_anchor
+  end
+  if motion.jump_state == "airborne" and (motion.jump_mode == "wheelie" or motion.jump_mode == "wave") then
+    -- Jump pitch is relative to the hero's facing direction: mirroring from
+    -- right-facing to left-facing reverses the screen rotation sign.
+    if math.cos(yaw) < 0 then
+      jump_rotation = -jump_rotation
+    end
+  end
+
+  -- Straight drift owns the same directional clock as orbiting drift. The
+  -- straight tilt is an explicit phase offset, applied only while entering
+  -- straight drift; steering entry commits that offset into spin_phase so the
+  -- first orbit frame is exactly the frame already being displayed.
+  if motion.drift_active and motion.drift_mode == "straight" then
+    local pivot = visual.directional_pivot or {}
+    local tilt_step = (math.pi * 2) / count
+    local facing_phase = (motion.drift_spin_phase or yaw)
+      + (pivot.angle_offset or 0)
+      + (pivot.facing_offset or math.pi)
+      + (motion.drift_straight_tilt_direction or 0) * tilt_step
+    local resolved = AnimationResolver.resolve(definition, {
+      movement_heading = yaw,
+      drift_active = true,
+      drift_spin_phase = facing_phase,
+      variant_index = motion.drift_variant_index
+    })
+    motion.directional_index = resolved.slot
+    motion.directional_direction = resolved.direction
+    motion.directional_frame = resolved.frame
+    if yaw_mode ~= "off" then
+      local yaw_phase = motion.drift_yaw_phase or facing_phase
+      scale_x = scale_x * math.abs(math.cos(yaw_phase - yaw_axis))
+      motion.visual_yaw_phase = yaw_phase
+    end
+    draw_sprite(hero, rotation + jump_rotation, scale_x, resolved.frame, projected_position, jump_anchor,
+      resolved.animation_source, resolved.flip_x, draw_scale_y)
+    return
+  end
+
   if mode == "directional_views" or mode == "hybrid" then
     local directional = drift.directional_views or {}
     count = directional.count or 8
@@ -281,24 +324,29 @@ local function draw_gameplay_visual(hero, definition)
     visual = directional
   end
 
+  local frame_slot_offset = 0
+  if motion.drift_active and motion.drift_mode == "straight" then
+    frame_slot_offset = motion.drift_straight_tilt_direction or 1
+  end
   local resolved = AnimationResolver.resolve(definition, {
     movement_heading = yaw,
     drift_active = false,
     variant_index = nil,
-    visual_state = hero.directional_visual_state
+    visual_state = hero.directional_visual_state,
+    frame_slot_offset = frame_slot_offset
   })
   motion.directional_index = resolved.slot
   motion.directional_direction = resolved.direction
   motion.directional_frame = resolved.frame
-  local draw_scale_y = hero.scale * projection_scale
+  local draw_rotation = rotation + jump_rotation
   if resolved.previous then
     local alpha = resolved.transition_alpha or 1
-    draw_sprite(hero, rotation, scale_x, resolved.previous.frame, projected_position, nil,
+    draw_sprite(hero, draw_rotation, scale_x, resolved.previous.frame, projected_position, jump_anchor,
       resolved.previous.animation_source, resolved.previous.flip_x, draw_scale_y, 1 - alpha)
-    draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil,
+    draw_sprite(hero, draw_rotation, scale_x, resolved.frame, projected_position, jump_anchor,
       resolved.animation_source, resolved.flip_x, draw_scale_y, alpha)
   else
-    draw_sprite(hero, rotation, scale_x, resolved.frame, projected_position, nil,
+    draw_sprite(hero, draw_rotation, scale_x, resolved.frame, projected_position, jump_anchor,
       resolved.animation_source, resolved.flip_x, draw_scale_y)
   end
 end

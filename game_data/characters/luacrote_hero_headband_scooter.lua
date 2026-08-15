@@ -12,6 +12,24 @@ definition.movement = {}
 for key, value in pairs(base.movement or {}) do definition.movement[key] = value end
 definition.movement.animation = "omnidirectional_sprites"
 definition.movement.animation_loop = true
+definition.jump = {
+  enabled = true,
+  duration = 0.68,
+  height = 72,
+  wheelie = {
+    height = 144,
+    angle = math.rad(-45),
+    contact_anchor = { x = 128, y = 224 }
+  },
+  wave = {
+    pitch = -math.rad(12),
+    cycles = 1.15,
+    phase_offset = 0,
+    landing_duration = 0.42,
+    aftershock_count = 3,
+    aftershock_angle = math.rad(7)
+  }
+}
 definition.drift = {}
 for key, value in pairs(base.drift or {}) do definition.drift[key] = value end
 definition.drift.directional_views = {}

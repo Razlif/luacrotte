@@ -6,6 +6,89 @@ local LegacyMovement = require("game.systems.motocrotte_legacy_movement")
 
 local Movement = {}
 
+local function update_jump(hero, intent, definition, dt)
+  local config = definition.jump or {}
+  if config.enabled ~= true then return end
+  local motion = hero.motocrotte_motion
+  motion.jump_state = motion.jump_state or "grounded"
+  motion.jump_elapsed = motion.jump_elapsed or 0
+  motion.jump_landing_elapsed = motion.jump_landing_elapsed or 0
+  motion.jump_visual_rotation = 0
+  motion.jump_scale_x = 1
+  motion.jump_scale_y = 1
+
+  if motion.jump_state == "grounded" then
+    local requested_mode = intent.jump_wheelie_pressed and "wheelie"
+      or intent.jump_wave_pressed and "wave"
+      or intent.jump_pressed and "wave"
+    if requested_mode then
+      motion.jump_state = "airborne"
+      motion.jump_mode = requested_mode
+      motion.jump_elapsed = 0
+      motion.jump_landing_elapsed = 0
+      motion.jump_start_z = hero.position.z or 0
+    end
+  end
+
+  if motion.jump_state == "airborne" then
+    local duration = config.duration or 0.68
+    local previous = motion.jump_elapsed / duration
+    motion.jump_elapsed = math.min(duration, motion.jump_elapsed + dt)
+    local progress = motion.jump_elapsed / duration
+    local previous_arc = math.sin(math.max(0, math.min(1, previous)) * math.pi)
+    local arc = math.sin(progress * math.pi)
+    local jump_height = config.height or 72
+    if motion.jump_mode == "wheelie" then
+      jump_height = (config.wheelie or {}).height or jump_height
+    else
+      jump_height = (config.wave or {}).height or jump_height
+    end
+    hero.position.z = (motion.jump_start_z or 0) + jump_height * arc
+
+    if motion.jump_mode == "wheelie" then
+      local wheelie = config.wheelie or {}
+      local ramp = math.min(1, progress * 5)
+      local settle = progress > 0.72 and math.max(0, 1 - (progress - 0.72) / 0.28) or 1
+      motion.jump_visual_rotation = (wheelie.angle or -math.rad(45)) * ramp * settle
+    else
+      local wave = config.wave or {}
+      motion.jump_visual_rotation = (wave.pitch or math.rad(12))
+        * math.sin(progress * math.pi * 2 * (wave.cycles or 1.15) + (wave.phase_offset or 0))
+      -- The wave is intentionally a rotation-only test.  Squash/stretch is
+      -- reserved for a later effect pass after the jump shapes are tuned.
+      motion.jump_scale_x = 1
+      motion.jump_scale_y = 1
+    end
+
+    if progress >= 1 then
+      hero.position.z = motion.jump_start_z or 0
+      motion.jump_state = "landing"
+      motion.jump_elapsed = 0
+      motion.jump_landing_elapsed = 0
+      motion.jump_visual_rotation = 0
+      motion.jump_scale_x = 1.12
+      motion.jump_scale_y = 0.82
+    end
+  elseif motion.jump_state == "landing" then
+    local wave = config.wave or {}
+    local landing_duration = wave.landing_duration or 0.42
+    motion.jump_landing_elapsed = math.min(landing_duration, motion.jump_landing_elapsed + dt)
+    local progress = motion.jump_landing_elapsed / landing_duration
+    local shock_count = wave.aftershock_count or 3
+    local shock = math.sin(progress * math.pi * 2 * shock_count) * math.max(0, 1 - progress)
+    motion.jump_visual_rotation = (wave.aftershock_angle or math.rad(7)) * shock
+    motion.jump_scale_x = 1 + 0.12 * math.max(0, 1 - progress)
+    motion.jump_scale_y = 1 - 0.18 * math.max(0, 1 - progress)
+    if progress >= 1 then
+      motion.jump_state = "grounded"
+      motion.jump_mode = nil
+      motion.jump_visual_rotation = 0
+      motion.jump_scale_x = 1
+      motion.jump_scale_y = 1
+    end
+  end
+end
+
 local function normalize_angle(angle)
   while angle > math.pi do angle = angle - math.pi * 2 end
   while angle < -math.pi do angle = angle + math.pi * 2 end
@@ -71,7 +154,12 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   hero.motocrotte_motion = hero.motocrotte_motion or {
     vx = 0, vy = 0, speed = 0, heading = 0, desired_heading = 0,
     slip_angle = 0, drift_amount = 0, visual_rotation = 0,
-    drift_spin_phase = 0, drift_spin_direction = 1, drift_phase = "normal"
+    drift_spin_phase = 0, drift_spin_direction = 1, drift_phase = "normal",
+    drift_mode = "straight", drift_straight_tilt_direction = 0,
+    drift_orbit_radius_base = 0, drift_orbit_radius_scale = 1,
+    drift_spin_rounds = 0, drift_spin_momentum = 0,
+    drift_gas_brake_disabled = false, drift_control_active = false,
+    drift_slingshot_active = false, drift_slingshot_speed = 0
   }
   local motion = hero.motocrotte_motion
   prepare_control_intent(intent, motion, config, definition.controls, dt)
@@ -92,6 +180,14 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     orbit_radius_override = orbit_radius_override
   })
   local horizontal, vertical, input_length = Locomotion.update(motion, intent, config, drift_context, dt)
+  update_jump(hero, intent, definition, dt)
+
+  -- Once Shift is released, normal movement owns the next frame immediately.
+  -- The drift release velocity is only a fallback for an uncommanded glide;
+  -- it must never overwrite fresh gas, brake, or steering input.
+  local player_has_control = input_length > 0
+    or (intent.steering ~= nil and intent.steering ~= 0)
+    or intent.brake == true
 
   if dash_context.velocity_x and not drift_context.active then
     motion.vx = dash_context.velocity_x
@@ -101,7 +197,6 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     motion.desired_heading = dash_context.heading
   end
 
-  local braking_visual = definition.braking_visual or {}
   local steering_input = intent.steering or 0
   local was_braking = motion.braking == true
   -- The brake key owns this presentation state for its entire hold, including
@@ -114,11 +209,50 @@ function Movement.update(hero, intent, definition, level_definition, dt)
   elseif not motion.braking then
     motion.braking_heading = nil
   end
-  motion.braking_tilt_direction = motion.braking and (steering_input < 0 and -1 or steering_input > 0 and 1 or 0) or 0
-  motion.braking_tilt_angle = braking_visual.enabled ~= false and motion.braking_tilt_direction ~= 0
-    and motion.braking_tilt_direction * (braking_visual.angle or math.rad(45)) or 0
+  -- The neighboring directional frame belongs to drift now. Braking only
+  -- affects velocity and keeps the current facing/animation presentation.
+  motion.braking_tilt_direction = 0
+  motion.braking_tilt_angle = 0
 
-  if drift_context.release_heading then
+  local slingshot_can_hold_course = drift_context.slingshot_active
+    and not player_has_control
+  if drift_context.slingshot_active
+      and (drift_context.control_active or slingshot_can_hold_course) then
+    motion.vx = drift_context.slingshot_velocity_x or motion.vx
+    motion.vy = drift_context.slingshot_velocity_y or motion.vy
+    motion.speed = math.sqrt(motion.vx * motion.vx + motion.vy * motion.vy)
+    motion.heading = math.atan2(motion.vy, motion.vx)
+    motion.desired_heading = motion.heading
+    motion.steering_heading = motion.heading
+  elseif drift_context.slingshot then
+    local slingshot = drift_context.slingshot
+    motion.vx = slingshot.velocity_x or motion.vx
+    motion.vy = slingshot.velocity_y or motion.vy
+    motion.speed = math.sqrt(motion.vx * motion.vx + motion.vy * motion.vy)
+    motion.heading = slingshot.heading or math.atan2(motion.vy, motion.vx)
+    motion.desired_heading = motion.heading
+    motion.steering_heading = motion.heading
+  elseif drift_context.release_velocity_x ~= nil and not player_has_control then
+    motion.vx = drift_context.release_velocity_x
+    motion.vy = drift_context.release_velocity_y or 0
+    motion.speed = math.sqrt(motion.vx * motion.vx + motion.vy * motion.vy)
+    motion.heading = drift_context.release_heading or math.atan2(motion.vy, motion.vx)
+    motion.desired_heading = motion.heading
+    motion.steering_heading = motion.heading
+    motion.drift_state.release_velocity_x = nil
+    motion.drift_state.release_velocity_y = nil
+    motion.drift_state.release_speed = nil
+    motion.drift_state.release_reason = nil
+    motion.drift_state.release_heading = nil
+  elseif drift_context.release_velocity_x ~= nil and player_has_control then
+    -- Consume the one-shot release handoff without applying it. Locomotion
+    -- already resolved the user's current gas/brake/steering input above.
+    motion.drift_state.release_velocity_x = nil
+    motion.drift_state.release_velocity_y = nil
+    motion.drift_state.release_speed = nil
+    motion.drift_state.release_reason = nil
+    motion.drift_state.release_heading = nil
+  elseif drift_context.release_heading and not player_has_control then
     local released_heading = drift_context.release_heading
     local released_speed = motion.speed or 0
     motion.heading = released_heading
@@ -126,6 +260,8 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     motion.steering_heading = released_heading
     motion.vx = math.cos(released_heading) * released_speed
     motion.vy = math.sin(released_heading) * released_speed
+    motion.drift_state.release_heading = nil
+  elseif drift_context.release_heading and player_has_control then
     motion.drift_state.release_heading = nil
   end
 

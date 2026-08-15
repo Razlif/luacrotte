@@ -48,6 +48,24 @@ return {
     animation_idle = true
   },
   braking_visual = { enabled = true, frame_step = math.rad(45), minimum_speed = 5 },
+  jump = {
+    enabled = true,
+    duration = 0.68,
+    height = 72,
+    wheelie = {
+      height = 144,
+      angle = math.rad(-45),
+      contact_anchor = { x = 32, y = 56 }
+    },
+    wave = {
+      pitch = -math.rad(12),
+      cycles = 1.15,
+      phase_offset = 0,
+      landing_duration = 0.42,
+      aftershock_count = 3,
+      aftershock_angle = math.rad(7)
+    }
+  },
   drift = {
     enabled = true,
     action = "drift",

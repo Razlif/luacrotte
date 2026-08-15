@@ -17,3 +17,6 @@ dev_tools/love_docs/*.tmp
 
 # Local Codex skills/config.
 .codex/
+
+# Local reference pack; keep the downloaded source files out of GitHub.
+asset_lab/lab_assets/backgrounds/craftpix-net-889507-free-vampires-locations-battle-background-pack/

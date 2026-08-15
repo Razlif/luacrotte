@@ -44,8 +44,8 @@ local Playground = {
   experiment = PlaygroundExperiment.default(),
   profile_index = 1,
   hero_definition = hero_definition,
-  -- Start with the newer scooter hero; H still toggles between variants.
-  hero_variant_index = 2,
+  -- Start with the canonical motorcycle hero; H still toggles between variants.
+  hero_variant_index = 1,
   active_level_definition = level_definition,
   loaded_content = {}
 }
@@ -200,7 +200,9 @@ function Playground.set_profile(index_or_id)
     motion.steering_heading = motion.heading or 0
     motion.drift_spin_direction = 1
     motion.drift_variant_index = nil
-    motion.drift_state = { phase = "normal", phase_time = 0, spin_phase = motion.drift_spin_phase, spin_direction = 1, slip_angle = 0 }
+    motion.drift_mode = "straight"
+    motion.drift_straight_tilt_direction = 0
+    motion.drift_state = { phase = "normal", phase_time = 0, spin_phase = motion.drift_spin_phase, spin_direction = 1, mode = "straight", straight_tilt_direction = 1, slip_angle = 0 }
     motion._legacy_was_drifting = false
   end
   if Playground.hero then
@@ -330,7 +332,8 @@ function Playground.reset_visual_lab()
     slip_angle = 0, drift_amount = 0, visual_rotation = 0,
     drift_spin_phase = 0, drift_spin_direction = 1,
     drift_phase = "normal", drift_variant_index = nil,
-    drift_state = { phase = "normal", phase_time = 0, spin_phase = 0, spin_direction = 1, slip_angle = 0 },
+    drift_mode = "straight", drift_straight_tilt_direction = 0,
+    drift_state = { phase = "normal", phase_time = 0, spin_phase = 0, spin_direction = 1, mode = "straight", straight_tilt_direction = 1, slip_angle = 0 },
     grounded = true, jump_pressed = false
   }
   Playground.hero.visual_yaw = 0
@@ -510,11 +513,17 @@ function Playground.update(dt)
       local profile_id = Playground.profile_id_for_slot(intent.profile_slot_pressed)
       if profile_id then
         states_manager().change("playground", profile_id)
-        changed = true
+        -- The transition exits this Playground immediately and starts the
+        -- loading state. Do not continue this update using the old state's
+        -- cleared hero reference.
+        return
       end
     end
     if changed then
       Playground.apply_experiment(intent.cycle_background_pressed == true)
+    end
+    if not Playground.hero or not Playground.hero.position then
+      return
     end
     intent = GameplayProfile.prepare_intent(intent, Playground.profile)
     HeroMovement.update(Playground.hero, intent, Playground.hero_definition, Playground.active_level_definition, dt)
@@ -669,24 +678,25 @@ function Playground.draw()
     local drift_hint = Playground.experiment.control_schema == "gas_steering_fd" and "S: drift" or "Shift: drift"
     local dash_hint = Playground.profile_id == "arena_follow" and "D: dash" or ""
     love.graphics.print(control_hint .. "   " .. drift_hint .. "   " .. dash_hint .. "   A: mud hose   Space: jump   V: visual lab", 24, 48)
-    love.graphics.print("R: sprites   Y: yaw   Tab: controls   M: movement   C: camera   B: background   1-9: slots", 24, 72)
+    love.graphics.print("R: sprites   Y: yaw   Tab: controls   M: movement   C: camera   B: background   5: straight-orbit drift profile", 24, 72)
     love.graphics.print(string.format("Profile: %s   Controls: %s   Movement: %s   Camera: %s", Playground.profile.label, Playground.experiment.control_schema, Playground.experiment.movement_mode, Playground.experiment.camera_mode), 24, 96)
     love.graphics.print(string.format("Sprites: %s   Yaw: %s   Background: %s   Slot: %d", Playground.experiment.sprite_policy, Playground.experiment.yaw_mode, Playground.experiment.background_id, Playground.experiment.profile_slot), 24, 120)
     local radius = motion.turning_radius or math.huge
     local radius_text = radius <= 0 and "∞" or string.format("%.0f", radius)
-    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   Drift: %s   Phase: %s   Dash: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_phase or "normal", motion.dash_phase or "normal"), 24, 144)
-    love.graphics.print(string.format("Turn radius: %s   Drift orbit: %.0f   Variant: %s   Braking: %s   Brake frame: %s", radius_text, motion.drift_orbit_radius or 0, tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no", tostring(motion.directional_direction or "canonical")), 24, 168)
+    love.graphics.print(string.format("Speed: %.0f   Heading: %.0f°   Yaw: %.0f°   Slip: %.0f°   State: %s   Drift: %s   Mode: %s   Phase: %s   Dash: %s", motion.speed or 0, math.deg(motion.heading or 0), math.deg(Playground.hero.visual_yaw or 0), math.deg(motion.slip_angle or 0), motion.locomotion_state or "unknown", motion.drift_active and (motion.drift_spin_direction == 1 and "CW" or "CCW") or "off", motion.drift_mode or "normal", motion.drift_phase or "normal", motion.dash_phase or "normal"), 24, 144)
+    love.graphics.print(string.format("Turn radius: %s   Drift orbit: %.0f (base %.0f x%.2f)   Spins: %d/3   Boost: %.0f   Gas/brake: %s", radius_text, motion.drift_orbit_radius or 0, motion.drift_orbit_radius_base or 0, motion.drift_orbit_radius_scale or 1, motion.drift_spin_rounds or 0, motion.drift_spin_momentum or 0, motion.drift_gas_brake_disabled and "off" or "on"), 24, 168)
+    love.graphics.print(string.format("Variant: %s   Braking: %s   Brake frame: %s", tostring(motion.drift_variant_index or "canonical"), motion.braking and "yes" or "no", tostring(motion.directional_direction or "canonical")), 24, 192)
      local position = Playground.hero.position or {}
      local screen_x, screen_y = Playground.camera:world_to_screen(position.x or 0, position.ground_y or 0)
      local bounds = Playground.active_level_definition.hero_bounds or {}
-    love.graphics.print(string.format("Hero world: X %.0f   Y %.0f   Screen: X %.0f   Y %.0f", position.x or 0, position.ground_y or 0, screen_x, screen_y), 24, 192)
-    love.graphics.print(string.format("Bounds world: X %.0f-%.0f   Y %.0f-%.0f", bounds.left or 0, bounds.right or 0, bounds.top or 0, bounds.bottom or 0), 24, 216)
-    love.graphics.print("Collision: " .. ((#Playground.last_collision_events > 0) and "CONTACT" or "clear"), 24, 240)
+    love.graphics.print(string.format("Hero world: X %.0f   Y %.0f   Screen: X %.0f   Y %.0f", position.x or 0, position.ground_y or 0, screen_x, screen_y), 24, 216)
+    love.graphics.print(string.format("Bounds world: X %.0f-%.0f   Y %.0f-%.0f", bounds.left or 0, bounds.right or 0, bounds.top or 0, bounds.bottom or 0), 24, 240)
+    love.graphics.print("Collision: " .. ((#Playground.last_collision_events > 0) and "CONTACT" or "clear"), 24, 264)
     local enemy_states = {}
     for _, enemy in ipairs(Playground.enemies) do
       enemy_states[#enemy_states + 1] = string.format("%s: %s", enemy.id, enemy.behavior_state or "unknown")
     end
-    love.graphics.print("Enemies: " .. (#enemy_states > 0 and table.concat(enemy_states, "   ") or "none"), 24, 264)
+    love.graphics.print("Enemies: " .. (#enemy_states > 0 and table.concat(enemy_states, "   ") or "none"), 24, 288)
   end
 end
 

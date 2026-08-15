@@ -1,0 +1,14 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":10}
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":10}
+{"id":"switch_to_profile5","command":"press","key":"5"}
+{"id":"wait_for_profile5_load","command":"wait","seconds":2}
+{"id":"accelerate","command":"hold","key":"up","duration":0.8}
+{"id":"start_straight_drift","command":"press","key":"lshift"}
+{"id":"hold_straight_drift","command":"wait","seconds":0.4}
+{"id":"snapshot_straight_clock","command":"snapshot","name":"profile5_clock_straight_before_steering"}
+{"id":"start_steering","command":"press","key":"right"}
+{"id":"snapshot_orbit_clock_entry","command":"snapshot","name":"profile5_clock_orbit_entry"}
+{"id":"release_steering","command":"release","key":"right"}
+{"id":"snapshot_straight_clock_exit","command":"snapshot","name":"profile5_clock_straight_after_steering"}
+{"id":"release_drift","command":"release","key":"lshift"}

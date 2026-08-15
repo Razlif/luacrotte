@@ -164,6 +164,7 @@ local function condition_matches(condition, states_manager)
     local motion = context.hero_motion
     if condition.drift_active ~= nil and motion.drift_active ~= condition.drift_active then return false end
     if condition.drift_phase and motion.drift_phase ~= condition.drift_phase then return false end
+    if condition.locomotion_state and motion.locomotion_state ~= condition.locomotion_state then return false end
     if condition.drift_spin_direction and motion.drift_spin_direction ~= condition.drift_spin_direction then return false end
     if condition.min_speed and (motion.speed or 0) < condition.min_speed then return false end
     if condition.max_speed and (motion.speed or 0) > condition.max_speed then return false end
@@ -181,6 +182,7 @@ local function condition_matches(condition, states_manager)
       local motion = entity.motocrotte_motion or {}
       if condition.drift_active ~= nil and motion.drift_active ~= condition.drift_active then return false end
       if condition.drift_phase and motion.drift_phase ~= condition.drift_phase then return false end
+      if condition.locomotion_state and motion.locomotion_state ~= condition.locomotion_state then return false end
       if condition.drift_spin_direction and motion.drift_spin_direction ~= condition.drift_spin_direction then return false end
       if condition.min_speed and (motion.speed or 0) < condition.min_speed then return false end
       if condition.max_speed and (motion.speed or 0) > condition.max_speed then return false end

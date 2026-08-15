@@ -5,6 +5,8 @@ return {
   move_up = { up = true },
   move_down = { down = true },
   jump = { space = true },
+  jump_wheelie = { j = true },
+  jump_wave = { n = true },
   drift = { lshift = true },
   cycle_drift_mode = { tab = true },
   cycle_control_schema = { tab = true },

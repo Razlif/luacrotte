@@ -105,11 +105,14 @@ function Resolver.resolve(definition, state)
   end
   local visual_state = state.visual_state
   local slot = visual_state and visual_state.slot or directional_slot(angle, count)
+  local frame_slot = (slot + (state.frame_slot_offset or 0)) % count
   local variant_index = state.variant_index
-  local result = resolve_slot(definition, slot, variant_index)
+  local result = resolve_slot(definition, frame_slot, variant_index)
+  result.base_slot = slot + 1
   local duration = visual_state and visual_state.transition_duration or 0
   local elapsed = visual_state and visual_state.transition_elapsed or duration
-  if visual_state and visual_state.previous_slot ~= slot and duration > 0 and elapsed < duration then
+  if (state.frame_slot_offset or 0) == 0
+    and visual_state and visual_state.previous_slot ~= slot and duration > 0 and elapsed < duration then
     result.previous = resolve_slot(definition, visual_state.previous_slot, variant_index)
     result.transition_alpha = elapsed / duration
   end

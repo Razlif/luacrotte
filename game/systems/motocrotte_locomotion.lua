@@ -36,8 +36,21 @@ end
 
 function Locomotion.update(motion, intent, config, drift_context, dt)
   local horizontal, vertical, input_length = Locomotion.input_vector(intent)
+  local drift_control_active = drift_context
+    and drift_context.control_active ~= false
+    and drift_context.active
+  local drift_input_suppressed = drift_context
+    and drift_control_active
+    and drift_context.disable_gas_brake == true
+  if drift_input_suppressed then
+    horizontal = 0
+    vertical = 0
+    input_length = 0
+  end
   local acceleration = config.acceleration
-  local coast_deceleration = intent.brake and (config.brake_deceleration or config.deceleration) or (config.coast_deceleration or config.deceleration)
+  local coast_deceleration = (not drift_input_suppressed and intent.brake)
+    and (config.brake_deceleration or config.deceleration)
+    or (config.coast_deceleration or config.deceleration)
   local max_speed = config.max_speed
   local vertical_speed = config.vertical_speed or max_speed
   local acceleration_step = acceleration * dt
@@ -58,9 +71,13 @@ function Locomotion.update(motion, intent, config, drift_context, dt)
     current_heading = math.atan2(motion.vy, motion.vx)
   end
 
-  if drift_context and drift_context.active then
-    local target_speed = input_length > 0 and max_speed or speed
-    speed = approach(speed, target_speed, step)
+  if drift_context and drift_control_active then
+    if drift_input_suppressed then
+      speed = approach(speed, 0, drift_coast_step)
+    else
+      local target_speed = input_length > 0 and max_speed or speed
+      speed = approach(speed, target_speed, step)
+    end
     if input_length > 0 and speed > 0.001 then
       local turn_rate = drift_context.turn_rate or config.max_turn_rate or math.rad(180)
       current_heading = approach_angle(current_heading, desired_heading, turn_rate * dt)
@@ -75,6 +92,22 @@ function Locomotion.update(motion, intent, config, drift_context, dt)
     if speed > 0.001 then
       current_heading = math.atan2(motion.vy, motion.vx)
     end
+    local steering_only = input_length == 0
+      and intent.steering ~= nil
+      and intent.steering ~= 0
+      and (intent.control_schema == "gas_steering"
+        or intent.control_schema == "gas_steering_fd"
+        or intent.control_schema == "throttle_steering")
+    if steering_only and speed > 0.001 then
+      local steering_heading = motion.steering_heading or current_heading
+      current_heading = approach_angle(
+        current_heading,
+        steering_heading,
+        (config.steering_rate or config.max_turn_rate or math.rad(180)) * dt
+      )
+      motion.vx = math.cos(current_heading) * speed
+      motion.vy = math.sin(current_heading) * speed
+    end
   end
 
   motion.heading = current_heading
@@ -85,11 +118,20 @@ function Locomotion.update(motion, intent, config, drift_context, dt)
     (motion.vy ~= 0 and target_vy ~= 0 and motion.vy * target_vy < 0)
   ) or false
   motion.input_length = input_length
-  motion.turn_rate = drift_context and drift_context.active and (drift_context.turn_rate or 0) or 0
+  motion.turn_rate = drift_context and drift_control_active and (drift_context.turn_rate or 0) or 0
   if motion.turn_rate > 0.001 then
     motion.turning_radius = motion.speed / motion.turn_rate
   else
     motion.turning_radius = 0
+  end
+  if drift_control_active then
+    motion.locomotion_state = "drift"
+  elseif input_length > 0 then
+    motion.locomotion_state = "regular_drive"
+  elseif intent.brake then
+    motion.locomotion_state = "braking"
+  else
+    motion.locomotion_state = "glide"
   end
 
   return horizontal, vertical, input_length

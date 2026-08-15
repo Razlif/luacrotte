@@ -2,7 +2,7 @@ local root = love.filesystem.getSource() .. "/../.."
 package.path = root .. "/?.lua;" .. root .. "/?/init.lua;" .. package.path
 
 local InputManager, TimerManager, PositionManager, DrawOrder, MaskCreation
-local CollisionDetection, CameraManager, ParallaxManager, AudioManager
+local CollisionDetection, CameraManager, ParallaxManager, AudioManager, Drift, Locomotion
 local Json, Menu
 local DebugConfig
 
@@ -20,6 +20,8 @@ local function run()
   CameraManager = require("game.systems.camera_manager")
   ParallaxManager = require("game.systems.parallax")
   AudioManager = require("game.systems.audio_manager")
+  Drift = require("game.systems.motocrotte_drift")
+  Locomotion = require("game.systems.motocrotte_locomotion")
   Json = require("game.systems.json")
   Menu = require("game.ui.ui_elements.default_menu")
   DebugConfig = require("game.debug_config")
@@ -92,6 +94,106 @@ local function run()
   first.definition.collision.sensors = {}
   local auto_events = CollisionDetection.check({ first, second })
   assert_equal(auto_events[2].sensor_id, "auto_body", "automatic sensor")
+
+  local drift_definition = {
+    drift = {
+      enabled = true,
+      behavior = "straight_orbit",
+      entry_time = 0,
+      exit_time = 0.01,
+      minimum_speed = 1,
+      straight_tilt_direction = 1,
+      radius_control = "fixed",
+      orbit_radius_default = 30,
+      orbit_radius_scale = 2.64,
+      orbit_radius_min = 0,
+      orbit_radius_max = 120,
+      orbit_radius_growth = 60,
+      orbit_radius_shrink_rate = 60,
+      spin_speed = math.rad(360),
+      disable_gas_brake = true,
+      max_spin_rounds = 3,
+      spin_momentum_per_round = 120,
+      spin_momentum_cap = 360,
+      slingshot_impulse = 650,
+      slingshot_decay = 700,
+      slingshot_min_speed = 4
+    },
+    directional_animation = { variant_policy = "fixed" }
+  }
+  local drift_motion = { vx = 100, vy = 0, speed = 100, heading = 0, desired_heading = 0 }
+  local straight = Drift.update(drift_motion, {
+    drift_active = true, steering = 0, horizontal = 0, vertical = 0,
+    gas_pressed = true, drift_radius_increase = true
+  }, drift_definition, 0.016, { x = 100, y = 100 })
+  assert_equal(straight.mode, "straight", "drift without steering stays straight")
+  assert_equal(straight.orbit_position, nil, "straight drift has no orbit")
+  assert_equal(straight.straight_tilt_direction, 1, "straight drift applies tilt")
+
+  local orbit = Drift.update(drift_motion, {
+    drift_active = true, steering = 1, horizontal = 1, vertical = 0,
+    gas_pressed = true, drift_radius_increase = true
+  }, drift_definition, 0.016, { x = 100, y = 100 })
+  assert_equal(orbit.mode, "orbit", "steering enters orbit drift")
+  assert(orbit.orbit_position ~= nil, "orbit drift produces an orbit position")
+  assert_equal(orbit.orbit_radius_base, 30, "hybrid drift keeps canonical base radius")
+  assert(math.abs(orbit.orbit_radius_effective - 79.2) < 0.001, "hybrid drift scales radius for hero presentation")
+  local grown_radius = orbit.orbit_radius
+  local fixed_radius = Drift.update(drift_motion, {
+    drift_active = true, steering = 1, horizontal = 1, vertical = 0,
+    gas_pressed = true, drift_radius_increase = true
+  }, drift_definition, 1, { x = 100, y = 100 })
+  assert_equal(fixed_radius.orbit_radius, grown_radius, "fixed hybrid drift ignores gas radius growth")
+  local shrunk = Drift.update(drift_motion, {
+    drift_active = true, steering = 1, horizontal = 1, vertical = 0,
+    gas_pressed = false, drift_radius_increase = false
+  }, drift_definition, 0.016, { x = 100, y = 100 })
+  assert_equal(shrunk.orbit_radius, grown_radius, "fixed hybrid drift keeps its orbit radius")
+
+  local straight_again = Drift.update(drift_motion, {
+    drift_active = true, steering = 0, horizontal = 0, vertical = 0,
+    gas_pressed = false, drift_radius_increase = false
+  }, drift_definition, 0.016, { x = 100, y = 100 })
+  assert_equal(straight_again.mode, "straight", "releasing steering returns to straight drift")
+  assert_equal(straight_again.orbit_position, nil, "straight drift stops orbit movement")
+  assert(straight_again.slingshot ~= nil, "releasing steering creates a slingshot")
+  assert(straight_again.slingshot.speed > grown_radius * drift_definition.drift.spin_speed, "slingshot includes spin momentum")
+  local slingshot_speed = straight_again.slingshot_speed
+  local decaying_slingshot = Drift.update(drift_motion, {
+    drift_active = true, steering = 0, horizontal = 0, vertical = 0
+  }, drift_definition, 0.5, { x = 100, y = 100 })
+  assert(decaying_slingshot.slingshot_active, "slingshot remains active during its short kick")
+  assert(decaying_slingshot.slingshot_speed < slingshot_speed, "slingshot decays quickly")
+
+  local spin_motion = { vx = 100, vy = 0, speed = 100, heading = 0, desired_heading = 0 }
+  local spin_intent = {
+    drift_active = true, steering = 1, horizontal = 1, vertical = 0,
+    gas_pressed = true, brake = true, drift_radius_increase = true
+  }
+  Drift.update(spin_motion, spin_intent, drift_definition, 0.016, { x = 100, y = 100 })
+  local capped_rounds
+  for _ = 1, 3 do
+    capped_rounds = Drift.update(spin_motion, spin_intent, drift_definition, 1, { x = 100, y = 100 })
+  end
+  assert_equal(capped_rounds.spin_rounds, 3, "spin momentum caps at three rounds")
+  assert_equal(capped_rounds.spin_momentum, 360, "three rounds add configured momentum")
+  local still_capped = Drift.update(spin_motion, spin_intent, drift_definition, 1, { x = 100, y = 100 })
+  assert_equal(still_capped.spin_rounds, 3, "additional rounds do not increase spin count")
+  assert_equal(still_capped.spin_momentum, 360, "additional rounds do not increase momentum")
+
+  local coast_motion = { vx = 100, vy = 0, speed = 100, heading = 0, desired_heading = 0 }
+  local _, _, coast_input = Locomotion.update(coast_motion, {
+    horizontal = 1, vertical = 0, brake = true
+  }, { acceleration = 100, max_speed = 400, coast_deceleration = 20, brake_deceleration = 200 }, {
+    active = true, disable_gas_brake = true, deceleration = 20, turn_rate = 0
+  }, 0.1)
+  assert_equal(coast_input, 0, "drift suppresses gas and brake input")
+  assert(coast_motion.speed < 100, "straight drift naturally coasts down")
+
+  local released = Drift.update(drift_motion, {
+    drift_active = false, steering = 0, horizontal = 0, vertical = 0
+  }, drift_definition, 0.02, { x = 100, y = 100 })
+  assert_equal(released.phase, "normal", "drift exits without a minimum spin")
 
   local camera = CameraManager.new({ width = 100, height = 50, responsive = false, bounds = { left = 0, top = 0, right = 500, bottom = 300 }, smoothing = 20 })
   local target = { x = 250, ground_y = 150 }
