@@ -3,6 +3,22 @@ return {
   version = 4,
   status = "experimental",
   label = "Rear View: Front/Back Yaw Card",
+  physics = {
+    enabled = true,
+    gravity_x = 0,
+    gravity_y = 0,
+    fixed_timestep = 1 / 60,
+    bounds = {
+      left = 0, right = 1285, top = 1000, bottom = 1147,
+      perspective_cone = {
+        center_x = 480,
+        far_y = 1000,
+        near_y = 1147,
+        far_half_width = 48,
+        near_half_width = 360
+      }
+    }
+  },
   camera = {
     behavior = "static",
     target = "road",

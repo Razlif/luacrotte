@@ -136,10 +136,12 @@ function Character:update_hop(dt)
     self,
     self.hop_dx * (eased_progress - eased_previous),
     self.hop_dground_y * (eased_progress - eased_previous),
-    movement
+    movement,
+    dt
   )
   if progress >= 1 then
     self.hopping = false
+    MovementManager.set_velocity(self, 0, 0)
   end
 end
 
@@ -154,6 +156,7 @@ function Character:update(dt, world)
   end
 
   self.timer:update(dt)
+  self.physics_intent_velocity = nil
   if self.flash_remaining > 0 then
     self.flash_remaining = math.max(0, self.flash_remaining - dt)
     self.flash_elapsed = self.flash_elapsed + dt
@@ -226,11 +229,11 @@ function Character:draw()
   end
   local transform = ImpactRenderer.get_transform(self)
   if self.animation:is_playing() then
-    self.animation:draw(self.position.x, PositionManager.get_screen_y(self.position), transform.scale_x, transform.scale_y, self.anchor_x, self.anchor_y)
+    self.animation:draw(self.position.x, PositionManager.get_screen_y(self.position), transform.scale_x, transform.scale_y, self.anchor_x, self.anchor_y, transform.yaw)
     love.graphics.setColor(1, 1, 1, 1)
     return
   end
-  love.graphics.draw(self.asset.image.texture, self.position.x, PositionManager.get_screen_y(self.position), 0, transform.scale_x, transform.scale_y, self.anchor_x, self.anchor_y)
+  love.graphics.draw(self.asset.image.texture, self.position.x, PositionManager.get_screen_y(self.position), transform.yaw, transform.scale_x, transform.scale_y, self.anchor_x, self.anchor_y)
   love.graphics.setColor(1, 1, 1, 1)
 end
 

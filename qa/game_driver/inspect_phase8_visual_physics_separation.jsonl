@@ -1,0 +1,11 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":5}
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_visual_baseline","command":"snapshot","name":"phase8_visual_baseline"}
+{"id":"spawn_enemy","command":"press","key":"g"}
+{"id":"drive_and_turn","command":"hold","key":"up","duration":0.8}
+{"id":"hold_drift_visual_spin","command":"hold","key":"shift","duration":0.8}
+{"id":"snapshot_visual_overlap","command":"snapshot","name":"phase8_visual_overlap"}
+{"id":"release_controls","command":"release","key":"shift"}
+{"id":"release_gas","command":"release","key":"up"}
+{"id":"snapshot_visual_after_release","command":"snapshot","name":"phase8_visual_after_release"}

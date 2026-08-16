@@ -24,6 +24,8 @@ local MotocrotteAudio = require("game.systems.motocrotte_audio")
 local AudioManager = require("game.systems.audio_manager")
 local MudHose = require("game.systems.mud_hose")
 local mud_hose_definition = require("game_data.effects.mud_hose")
+local PhysicsCollisionWorld = require("game.systems.physics_collision_world")
+local PhysicsBumperRenderer = require("game.systems.physics_bumper_renderer")
 
 local function states_manager()
   return require("game.states_manager")
@@ -50,9 +52,12 @@ local Playground = {
   -- Start with the canonical motorcycle hero; H still toggles between variants.
   hero_variant_index = 1,
   active_level_definition = level_definition,
+  physics_config = nil,
   loaded_content = {},
   enemy_manager = nil,
-  respawn_events = {}
+  physics_world = nil,
+  respawn_events = {},
+  rectangle_lab = nil
 }
 
 local hero_definitions = { hero_definition, scooter_hero_definition }
@@ -68,6 +73,81 @@ local function selected_hero_content(content)
   return content.character
 end
 
+local function is_rectangle_profile(profile)
+  return profile and profile.projection == "rectangles"
+end
+
+local function make_rectangle_entity(id, x, y, width, height, color)
+  return {
+    id = id,
+    qa_type = "physics_rectangle",
+    position = { x = x, ground_y = y, z = 0 },
+    scale = 1,
+    physics_footprint = { width = width, height = height, offset_x = 0, offset_y = 0 },
+    lab_color = color,
+    active = true
+  }
+end
+
+local function create_rectangle_lab(profile)
+  local config = profile.bumper_lab or {}
+  local bounds = config.bounds or profile.physics.bounds
+  local hero_config = config.hero or {}
+  local hero = make_rectangle_entity(
+    hero_config.id or "bumper_hero",
+    profile.spawn.x,
+    profile.spawn.ground_y,
+    hero_config.width or 84,
+    hero_config.height or 28,
+    hero_config.color or { 0.2, 0.85, 1, 0.85 }
+  )
+  hero.motocrotte_motion = { vx = 0, vy = 0, speed = 0, heading = 0, desired_heading = 0 }
+  local enemies = {}
+  for _, enemy_config in ipairs(config.enemies or {}) do
+    enemies[#enemies + 1] = make_rectangle_entity(
+      enemy_config.id,
+      enemy_config.x,
+      enemy_config.y,
+      enemy_config.width or 70,
+      enemy_config.height or 26,
+      enemy_config.color or { 1, 0.35, 0.35, 0.85 }
+    )
+  end
+  return { hero = hero, enemies = enemies, bounds = bounds, last_contacts = {} }
+end
+
+local function approach(current, target, amount)
+  if current < target then return math.min(target, current + amount) end
+  return math.max(target, current - amount)
+end
+
+local function update_rectangle_lab(intent, dt)
+  local lab = Playground.rectangle_lab
+  local hero = lab.hero
+  local movement = Playground.profile.movement or {}
+  local horizontal = intent.horizontal or 0
+  local vertical = intent.vertical or 0
+  local length = math.sqrt(horizontal * horizontal + vertical * vertical)
+  if length > 0 then
+    horizontal, vertical = horizontal / length, vertical / length
+  end
+  local max_speed = movement.max_speed or 360
+  local target_x, target_y = horizontal * max_speed, vertical * max_speed
+  local current_x, current_y = hero.physics_body:getLinearVelocity()
+  local response = (movement.acceleration or 900) * dt
+  local vx = approach(current_x, target_x, response)
+  local vy = approach(current_y, target_y, response)
+  if length == 0 then
+    local coast = (movement.coast_deceleration or movement.deceleration or 700) * dt
+    vx, vy = approach(current_x, 0, coast), approach(current_y, 0, coast)
+  end
+  hero.motocrotte_motion.vx = vx
+  hero.motocrotte_motion.vy = vy
+  hero.motocrotte_motion.speed = math.sqrt(vx * vx + vy * vy)
+  if length > 0 then hero.motocrotte_motion.heading = math.atan2(vertical, horizontal) end
+  Playground.physics_world:set_velocity(hero, vx, vy)
+end
+
 local function create_enemy_manager()
   local spawning = Playground.profile and Playground.profile.enemy_spawning or {}
   local manager = EnemyManager.new({
@@ -78,7 +158,9 @@ local function create_enemy_manager()
     definitions = { motocrotte_bike_enemy = enemy_definition },
     content = Playground.loaded_content,
     content_by_definition = { motocrotte_bike_enemy = "prop" },
-    spawn_template = spawning.enabled and spawning.template or nil
+    spawn_template = spawning.enabled and spawning.template or nil,
+    physics_world = Playground.physics_world,
+    physics_options = { bullet = true, high_speed = true, bounds = Playground.active_level_definition.hero_bounds }
   })
   manager:spawn_all()
   return manager
@@ -125,7 +207,17 @@ local function switch_hero()
     ground_y = position.ground_y or position.y or 0,
     z = position.z or 0
   }
+  if Playground.physics_world then
+    Playground.physics_world:remove_entity(Playground.hero)
+  end
   Playground.hero = replacement
+  if Playground.physics_world then
+    Playground.physics_world:add_entity(replacement, {
+      bullet = true,
+      high_speed = true,
+      bounds = Playground.active_level_definition.hero_bounds
+    })
+  end
   Playground.set_visual_mode(HeroRenderer.mode_index(Playground.hero_definition.visual.test_mode, Playground.hero_definition))
   Playground.reset_visual_lab()
 end
@@ -204,6 +296,10 @@ function Playground.set_profile(index_or_id)
   Playground.profile = Playground.base_profile
   Playground.profile_id = Playground.profile.id
   Playground.profile_index = selected_index
+  local active_level = LevelManager.get_active_level()
+  Playground.physics_config = active_level and active_level.physics or {
+    enabled = true, gravity_x = 0, gravity_y = 0, fixed_timestep = 1 / 60
+  }
   Playground.hero_definition = GameplayProfile.resolve_hero_definition(selected_hero_definition(), Playground.profile)
   Playground.active_level_definition = {}
   for key, value in pairs(level_definition) do Playground.active_level_definition[key] = value end
@@ -219,6 +315,14 @@ function Playground.set_profile(index_or_id)
     if bounds then
       Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
       Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
+    end
+    if Playground.physics_world then
+      Playground.physics_world:set_bounds(Playground.hero, bounds)
+      if Playground.physics_config.enabled == false or Playground.physics_config.bounds == false then
+        Playground.physics_world:set_boundaries(false)
+      else
+        Playground.physics_world:set_boundaries(bounds)
+      end
     end
   end
   Playground.set_visual_mode(HeroRenderer.mode_index(Playground.hero_definition.visual.test_mode, Playground.hero_definition))
@@ -272,6 +376,19 @@ function Playground.apply_experiment(rebuild_background)
       Playground.hero.position.x = clamp(Playground.hero.position.x, bounds.left, bounds.right)
       Playground.hero.position.ground_y = clamp(Playground.hero.position.ground_y, bounds.top, bounds.bottom)
     end
+    if Playground.physics_world then
+      Playground.physics_world:set_bounds(Playground.hero, bounds)
+      for _, enemy in ipairs(Playground.enemies) do
+        Playground.physics_world:set_bounds(enemy, bounds)
+      end
+      if effective.physics and (effective.physics.enabled == false or effective.physics.bounds == false) then
+        Playground.physics_world:set_boundaries(false)
+      else
+        -- Experiment movement modes can change the resolved hero bounds. The
+        -- static boundary rectangle follows that resolved envelope.
+        Playground.physics_world:set_boundaries(bounds)
+      end
+    end
   end
   if Playground.camera then
     Playground.camera:set_bounds(Playground.active_level_definition.world)
@@ -291,6 +408,9 @@ function Playground.apply_experiment(rebuild_background)
     end
   end
   if rebuild_background then rebuild_parallax() end
+  if Playground.physics_world then
+    Playground.physics_world:sync_bodies_to_entities(false)
+  end
 end
 
 function Playground.reset_experiment()
@@ -299,7 +419,7 @@ function Playground.reset_experiment()
 end
 
 function Playground.load_slot(slot)
-  local profiles = { [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card", [5] = "park_arena_follow" }
+  local profiles = { [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card", [5] = "park_arena_follow", [7] = "physics_bumper_lab" }
   local profile_id = profiles[slot]
   if profile_id then
     local requested_profile = GameplayProfile.load(profile_id)
@@ -401,11 +521,14 @@ function Playground.reset_visual_lab()
 end
 
 function Playground.profile_id_for_slot(slot)
-  return ({ [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card", [5] = "park_arena_follow" })[slot]
+  return ({ [1] = "arena_follow", [2] = "side_view", [3] = "rear_view", [4] = "rear_view_yaw_card", [5] = "park_arena_follow", [7] = "physics_bumper_lab" })[slot]
 end
 
 function Playground.get_load_requests(_context, profile_id)
   local requested_profile = GameplayProfile.load(profile_id or level_definition.gameplay_profile_id or "arena_follow")
+  if is_rectangle_profile(requested_profile) then
+    return {}, "playground"
+  end
   return {
     { kind = "character", asset_id = hero_definition.asset_id, options = { include_image = false, animations = { "motorcycle_direction_set", "motorcycle_direction_full" } } },
     { kind = "character", asset_id = scooter_hero_definition.asset_id, options = { include_image = false, animations = { "omnidirectional_sprites" } } },
@@ -424,6 +547,54 @@ function Playground.enter(context, profile_id)
   LevelManager.load("playground", profile_id or level_definition.gameplay_profile_id or "arena_follow")
   AudioManager.load_manifest(asset_manifest)
   local requested_profile = GameplayProfile.load(profile_id or level_definition.gameplay_profile_id or "arena_follow")
+  if is_rectangle_profile(requested_profile) then
+    -- Playground 7 deliberately has no ContentManager requests. It still
+    -- owns the same physics scope and uses the same profile/level lifecycle.
+    Playground.loaded_content = {}
+    Playground.rectangle_lab = nil
+    Playground.hero = nil
+    Playground.enemies = {}
+    Playground.set_profile(requested_profile.id)
+    Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
+    Playground.physics_world = context.physics or Playground.physics_world or PhysicsCollisionWorld.new()
+    Playground.physics_config = LevelManager.get_physics_config()
+    Playground.physics_world:begin_scope("playground", Playground.physics_config)
+    Playground.rectangle_lab = create_rectangle_lab(Playground.profile)
+    Playground.hero = Playground.rectangle_lab.hero
+    Playground.enemies = Playground.rectangle_lab.enemies
+    local physics_options = { bullet = true, bounds = Playground.rectangle_lab.bounds }
+    Playground.physics_world:add_entity(Playground.hero, {
+      footprint = Playground.hero.physics_footprint,
+      bullet = physics_options.bullet,
+      high_speed = true,
+      bounds = physics_options.bounds
+    })
+    for _, enemy in ipairs(Playground.enemies) do
+      Playground.physics_world:add_entity(enemy, {
+        footprint = enemy.physics_footprint,
+        bullet = false,
+        bounds = physics_options.bounds
+      })
+    end
+    Playground.last_collision_events = {}
+    Playground.combat_events = {}
+    Playground.camera = CameraManager.new({
+      width = level_definition.camera.width,
+      height = level_definition.camera.height,
+      bounds = Playground.rectangle_lab.bounds,
+      smoothing = Playground.profile.camera.smoothing,
+      zoom = Playground.profile.camera.zoom,
+      behavior = "static",
+      follow_x = false,
+      follow_y = false
+    })
+    Playground.camera:set_center(
+      (Playground.rectangle_lab.bounds.left + Playground.rectangle_lab.bounds.right) * 0.5,
+      (Playground.rectangle_lab.bounds.top + Playground.rectangle_lab.bounds.bottom) * 0.5
+    )
+    return
+  end
+  Playground.rectangle_lab = nil
   Playground.loaded_content = {
     character = context.content.get("character", hero_definition.asset_id),
     scooter_character = context.content.get("character", scooter_hero_definition.asset_id),
@@ -434,6 +605,14 @@ function Playground.enter(context, profile_id)
   Playground.set_profile(profile_id or level_definition.gameplay_profile_id or "arena_follow")
   Playground.experiment = PlaygroundExperiment.default(Playground.base_profile)
   Playground.hero = Character.new(Playground.hero_definition, selected_hero_content(Playground.loaded_content))
+  Playground.physics_world = context.physics or Playground.physics_world or PhysicsCollisionWorld.new()
+  Playground.physics_config = LevelManager.get_physics_config()
+  Playground.physics_world:begin_scope("playground", Playground.physics_config)
+  Playground.physics_world:add_entity(Playground.hero, {
+    bullet = true,
+    high_speed = true,
+    bounds = Playground.active_level_definition.hero_bounds
+  })
   Playground.mud_hose = MudHose.new(mud_hose_definition, Playground.loaded_content.effect)
   Playground.enemy_manager = create_enemy_manager()
   Playground.enemies = Playground.enemy_manager:get_active()
@@ -496,15 +675,35 @@ function Playground.exit()
   Playground.hero = nil
   if Playground.enemy_manager then Playground.enemy_manager:clear() end
   Playground.enemy_manager = nil
+  if Playground.physics_world then
+    Playground.physics_world:end_scope("playground")
+    Playground.physics_world = nil
+  end
   Playground.respawn_events = {}
   ContentManager.end_scope("playground")
   AudioManager.end_scope("playground")
   LevelManager.unload()
   Playground.loaded_content = {}
+  Playground.rectangle_lab = nil
 end
 
 function Playground.update(dt)
   local intent = MotocrotteDriver.get_intent(Playground.profile)
+  if Playground.rectangle_lab then
+    if intent.profile_slot_pressed then
+      local profile_id = Playground.profile_id_for_slot(intent.profile_slot_pressed)
+      if profile_id then
+        states_manager().change("playground", profile_id)
+        return
+      end
+    end
+    update_rectangle_lab(intent, dt)
+    Playground.physics_world:step(dt)
+    Playground.last_collision_events = Playground.physics_world:consume_contacts()
+    Playground.rectangle_lab.last_contacts = Playground.last_collision_events
+    Playground.camera:update(dt)
+    return
+  end
   if intent.cycle_hero_pressed then
     switch_hero()
   end
@@ -541,6 +740,9 @@ function Playground.update(dt)
     Playground.hero.visual_yaw = Playground.visual_yaw
     Playground.hero.animation:update(dt)
   else
+    if Playground.physics_world then
+      Playground.physics_world:sync_entities()
+    end
     local changed = false
     if Playground.profile_id == "park_arena_follow" and intent.spawn_enemy_pressed then
       spawn_enemy_near_hero()
@@ -597,11 +799,18 @@ function Playground.update(dt)
   Playground.enemy_manager:update(dt, world)
   Playground.enemies = Playground.enemy_manager:get_active()
   Playground.respawn_events = Playground.enemy_manager:get_events()
-  local collision_entities = { Playground.hero }
-  for _, enemy in ipairs(Playground.enemies) do
-    collision_entities[#collision_entities + 1] = enemy
+  if Playground.physics_world then
+    Playground.physics_world:capture_entity_velocities(dt)
+    Playground.physics_world:step(dt)
   end
-  local collision_events = CollisionDetection.check(collision_entities)
+  local collision_events
+  if Playground.physics_world then
+    collision_events = Playground.physics_world:consume_contacts()
+  else
+    local fallback_entities = { Playground.hero }
+    for _, enemy in ipairs(Playground.enemies) do fallback_entities[#fallback_entities + 1] = enemy end
+    collision_events = CollisionDetection.check(fallback_entities)
+  end
   Playground.last_collision_events = collision_events
   Playground.hero.collision_active = false
   for _, enemy in ipairs(Playground.enemies) do enemy.collision_active = false end
@@ -627,6 +836,41 @@ function Playground.update(dt)
 end
 
 function Playground.get_debug_context()
+  if Playground.rectangle_lab then
+    return {
+      entities = (function()
+        local entities = { Playground.rectangle_lab.hero }
+        for _, enemy in ipairs(Playground.rectangle_lab.enemies) do entities[#entities + 1] = enemy end
+        return entities
+      end)(),
+      hero_motion = Playground.rectangle_lab.hero.motocrotte_motion,
+      camera = Playground.camera,
+      collision_events = Playground.last_collision_events,
+      combat_events = {},
+      movement_bounds = Playground.rectangle_lab.bounds,
+      background_id = nil,
+      background_path = nil,
+      content = ContentManager.debug_snapshot(),
+      physics = Playground.physics_world and Playground.physics_world:debug_snapshot() or nil,
+      bumper_lab = {
+        projection = "rectangles",
+        body_count = Playground.physics_world and Playground.physics_world:debug_snapshot().body_count or 0,
+        contact_count = #Playground.last_collision_events,
+        bounds = Playground.rectangle_lab.bounds
+      },
+      gameplay_profile = {
+        id = Playground.profile_id,
+        version = Playground.profile and Playground.profile.version or nil,
+        label = Playground.profile and Playground.profile.label or nil,
+        controls = Playground.profile and Playground.profile.controls.schema or nil,
+        movement = Playground.profile and Playground.profile.movement.constraint or nil,
+        camera = Playground.profile and Playground.profile.camera.behavior or nil,
+        projection = Playground.profile and Playground.profile.projection or nil,
+        drift_enabled = false
+      },
+      visual_lab = { active = false, mode = "rectangles", mode_index = 1, modes = {} }
+    }
+  end
   return {
     entities = (function()
       local entities = { Playground.hero }
@@ -646,6 +890,7 @@ function Playground.get_debug_context()
     background_path = Playground.parallax and Playground.parallax.layers[1] and Playground.parallax.layers[1].image_path or nil,
     movement_bounds = Playground.active_level_definition and Playground.active_level_definition.hero_bounds or nil,
     content = ContentManager.debug_snapshot(),
+    physics = Playground.physics_world and Playground.physics_world:debug_snapshot() or nil,
     experiment = {
       sprite_policy = Playground.experiment.sprite_policy,
       yaw_mode = Playground.experiment.yaw_mode,
@@ -730,6 +975,20 @@ end
 
 function Playground.draw()
   love.graphics.clear(0.08, 0.1, 0.14, 1)
+  if Playground.rectangle_lab then
+    if not Playground.camera then return end
+    Playground.camera:attach()
+    PhysicsBumperRenderer.draw(
+      Playground.rectangle_lab,
+      Playground.rectangle_lab.bounds,
+      Playground.last_collision_events
+    )
+    Playground.camera:detach()
+    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.print("Playground 7: Physics Bumper Lab", 24, 24)
+    love.graphics.print("No sprites loaded  |  Physics bodies are authoritative", 24, 46)
+    return
+  end
   if not Playground.camera or not Playground.parallax or not Playground.hero then
     return
   end

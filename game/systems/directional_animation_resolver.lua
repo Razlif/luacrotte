@@ -1,4 +1,7 @@
--- Converts movement/drift angles into stable directional animation choices.
+-- Converts synchronized movement/drift state into stable directional choices.
+-- This module is presentation-only: it does not move entities, inspect masks,
+-- or apply collision/physics responses.  Its visual transition state is kept
+-- separately from the physics position and velocity.
 local Resolver = {}
 
 local DIRECTION_NAMES = {

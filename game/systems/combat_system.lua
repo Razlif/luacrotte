@@ -253,6 +253,16 @@ local function block_hero_motion(hero, normal_x, normal_y, state)
   motion.speed = magnitude(motion.vx, motion.vy)
 end
 
+local function separate_contact(first, second, contact, padding)
+  -- Box2D has already solved overlap for physics-backed fixtures. Combat only
+  -- records the solver's penetration here; ImpactResponse keeps the direct
+  -- positional fallback for legacy/non-physics entities.
+  if first and second and first.physics_body and second.physics_body then
+    return contact and contact.penetration or 0
+  end
+  return ImpactResponse.separate(first, second, contact, { padding = padding })
+end
+
 -- Resolve hero/enemy contacts. This function is intentionally side-effect-free
 -- with respect to collision detection itself: it only consumes event data and
 -- mutates the gameplay entities that own the response.
@@ -277,13 +287,12 @@ function CombatSystem.resolve(events, options)
   for _, event in ipairs(events or {}) do
     local source = by_id[event.source_id]
     local target = by_id[event.target_id]
-    if source and target and source ~= hero and target ~= hero then
+    if event.blocking ~= false and source and target and source ~= hero and target ~= hero then
       local enemy_pair = pair_key(entity_id(source), entity_id(target))
       if not separated_pairs[enemy_pair] then
         local profile_combat = options.profile and options.profile.combat or {}
-        ImpactResponse.separate(source, target, contact_for(event), {
-          padding = profile_combat.separation_distance or DEFAULTS.separation_padding
-        })
+        separate_contact(source, target, contact_for(event),
+          profile_combat.separation_distance or DEFAULTS.separation_padding)
         separated_pairs[enemy_pair] = true
       end
     end
@@ -292,16 +301,16 @@ function CombatSystem.resolve(events, options)
       and enemy.controller
       and enemy.controller.is_impact_locked
       and enemy.controller:is_impact_locked()
-    if enemy and enemy ~= hero then
+    if event.blocking ~= false and enemy and enemy ~= hero then
       local key = pair_key(hero_id, entity_id(enemy))
       local settings = configuration(options, enemy)
       local contact, normal_x, normal_y, relative_x, relative_y = hero_to_enemy_contact(event, hero_id)
       local separated = 0
       if not separated_pairs[key] then
-        separated = ImpactResponse.separate(hero, enemy, {
+        separated = separate_contact(hero, enemy, {
           normal = { x = normal_x, y = normal_y },
           penetration = contact.penetration
-        }, { padding = settings.separation_padding })
+        }, settings.separation_padding)
         separated_pairs[key] = true
       end
       local state = CombatSystem.classify_hero(hero)

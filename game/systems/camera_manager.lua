@@ -1,4 +1,6 @@
 -- Smooth 2D camera with bounds and deterministic screen shake.
+-- The camera reads a synchronized world position; it never writes to the
+-- followed entity or participates in collision resolution.
 local CameraManager = {}
 CameraManager.__index = CameraManager
 
@@ -60,6 +62,8 @@ function CameraManager:refresh_viewport()
 end
 
 function CameraManager:follow(position)
+  -- Store the position reference intentionally. Physics owns its values and
+  -- syncs them before camera update; this service only reads the reference.
   self.target = position
 end
 

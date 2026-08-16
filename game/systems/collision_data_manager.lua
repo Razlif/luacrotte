@@ -11,6 +11,10 @@ end
 
 function CollisionDataManager.definition(asset_definition, image)
   local collision = copy(asset_definition.collision or {})
+  local pixel_mask = collision.pixel_mask or {}
+  if collision.mode == nil and pixel_mask.enabled == true then
+    collision.mode = "pixel_mask"
+  end
   if collision.mode == nil then collision.mode = "shape" end
   if collision.mode == "shape" and (not collision.sensors or #collision.sensors == 0) then
     collision.sensors = {
@@ -42,8 +46,10 @@ end
 
 function CollisionDataManager.attach_pixel_masks(asset, asset_definition)
   local collision = asset_definition.collision or {}
-  if collision.mode ~= "pixel_mask" then return asset end
+  local pixel_mask = collision.pixel_mask or {}
+  if collision.mode ~= "pixel_mask" and pixel_mask.enabled ~= true then return asset end
   if collision.cache == false then return asset end
+  if pixel_mask.cache == false then return asset end
   asset.image.mask = MaskCreation.from_image(asset.image.texture, asset.image.image_data)
   for name, animation in pairs(asset.animations or {}) do
     animation.mask_frames = MaskCreation.from_animation(animation)

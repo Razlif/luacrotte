@@ -18,6 +18,18 @@ return {
     top = 284,
     bottom = 1147
   },
+  physics = {
+    enabled = true,
+    gravity_x = 0,
+    gravity_y = 0,
+    fixed_timestep = 1 / 60,
+    bounds = {
+      left = 0,
+      right = 1285,
+      top = 284,
+      bottom = 1147
+    }
+  },
   camera = {
     width = 1280,
     height = 720,

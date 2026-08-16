@@ -13,6 +13,13 @@ profile.id = "park_arena_follow"
 profile.version = 1
 profile.status = "experimental"
 profile.label = "Park Arena: Smooth Follow"
+profile.physics = {
+  enabled = true,
+  gravity_x = 0,
+  gravity_y = 0,
+  fixed_timestep = 1 / 60,
+  bounds = { left = 333, right = 2191, top = 586, bottom = 1771 }
+}
 profile.camera.follow_y = true
 profile.camera.center_y = nil
 profile.camera.smoothing = 16

@@ -13,10 +13,6 @@ local function approach(value, target, amount)
   return target
 end
 
-local function clamp(value, minimum, maximum)
-  return math.max(minimum, math.min(maximum, value))
-end
-
 function Movement.update(hero, intent, definition, level_definition, dt)
   local config = definition.movement
   local bounds = level_definition.hero_bounds
@@ -95,8 +91,10 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     end
     hero.animation:update(dt)
   end
-  hero.position.x = clamp(hero.position.x + motion.vx * dt, bounds.left, bounds.right)
-  hero.position.ground_y = clamp(hero.position.ground_y + motion.vy * dt, bounds.top, bounds.bottom)
+  if hero.position.x <= bounds.left and motion.vx < 0 then motion.vx = 0 end
+  if hero.position.x >= bounds.right and motion.vx > 0 then motion.vx = 0 end
+  if hero.position.ground_y <= bounds.top and motion.vy < 0 then motion.vy = 0 end
+  if hero.position.ground_y >= bounds.bottom and motion.vy > 0 then motion.vy = 0 end
   motion.grounded = true
   motion.jump_pressed = intent.jump_pressed == true
 end

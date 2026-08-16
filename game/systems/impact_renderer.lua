@@ -1,5 +1,6 @@
 -- Presentation-only transform for temporary character impacts.
--- It never changes entity.position; it only returns draw parameters.
+-- It never changes entity.position, physics_body, or collision data; it only
+-- returns draw parameters for the renderer to apply to the synchronized pose.
 local ImpactRenderer = {}
 
 local function active_state(entity)

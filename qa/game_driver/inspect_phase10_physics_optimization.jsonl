@@ -1,0 +1,8 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":5}
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"switch_to_physics_bumper_lab","command":"press","key":"7"}
+{"id":"wait_for_bumper_lab","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_zero_content_load","command":"snapshot","name":"phase10_zero_content_load"}
+{"id":"drive_high_speed_body","command":"hold","key":"right","duration":1.0}
+{"id":"snapshot_physics_cache","command":"snapshot","name":"phase10_physics_cache"}

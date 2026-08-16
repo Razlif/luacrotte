@@ -47,7 +47,6 @@ function ImpactResponse.separate(first, second, contact, options)
   if correction <= 0 then
     return 0
   end
-
   local first_mass = math.max(0.001, mass_of(first, 1.5))
   local second_mass = math.max(0.001, mass_of(second, 1))
   local first_inverse = 1 / first_mass
@@ -56,10 +55,17 @@ function ImpactResponse.separate(first, second, contact, options)
   local first_share = first_inverse / inverse_total
   local second_share = second_inverse / inverse_total
 
-  first.position.x = first.position.x - normal_x * correction * first_share
-  first.position.ground_y = first.position.ground_y - normal_y * correction * first_share
-  second.position.x = second.position.x + normal_x * correction * second_share
-  second.position.ground_y = second.position.ground_y + normal_y * correction * second_share
+  -- A physics body is already separated by the active Box2D world. Never
+  -- write its position here; only the non-physics compatibility participant
+  -- receives a direct positional correction.
+  if not first.physics_body then
+    first.position.x = first.position.x - normal_x * correction * first_share
+    first.position.ground_y = first.position.ground_y - normal_y * correction * first_share
+  end
+  if not second.physics_body then
+    second.position.x = second.position.x + normal_x * correction * second_share
+    second.position.ground_y = second.position.ground_y + normal_y * correction * second_share
+  end
   return correction
 end
 
@@ -73,6 +79,18 @@ local function sync_legacy_fields(entity, state)
   entity.impact_mode = state.mode
   entity.impact_direction_x = state.direction_x
   entity.impact_direction_y = state.direction_y
+end
+
+local function apply_motion_channel(entity, state, dt)
+  -- PhysicsCollisionWorld consumes the intent velocity before its fixed-step
+  -- update. A physics-enabled entity must never be translated directly by
+  -- the impact layer.
+  if entity.physics_body then
+    MovementManager.set_velocity(entity, state.velocity_x, state.velocity_y)
+    return
+  end
+  MovementManager.move_by(entity, state.velocity_x * dt, state.velocity_y * dt,
+    entity.definition and entity.definition.movement or {}, dt)
 end
 
 -- Begin a temporary response on an entity. Translation and yaw are deliberately
@@ -109,6 +127,7 @@ function ImpactResponse.apply(entity, response)
     or magnitude(state.velocity_x, state.velocity_y)
   entity.impact_yaw_speed = state.yaw_speed
   entity.separation_distance = response.separation or 0
+  apply_motion_channel(entity, state, 1 / 60)
   sync_legacy_fields(entity, state)
   return state
 end
@@ -128,8 +147,7 @@ function ImpactResponse.update(entity, dt)
     return false
   end
   dt = math.max(0, dt or 0)
-  local movement = entity.definition and entity.definition.movement or {}
-  MovementManager.move_by(entity, state.velocity_x * dt, state.velocity_y * dt, movement)
+  apply_motion_channel(entity, state, dt)
   state.yaw = state.yaw + state.yaw_speed * dt
   local decay = math.max(0, 1 - (state.decay * dt) / state.duration)
   state.velocity_x = state.velocity_x * decay
@@ -145,6 +163,7 @@ function ImpactResponse.update(entity, dt)
     entity.impact_mode = nil
     entity.impact_direction_x = nil
     entity.impact_direction_y = nil
+    MovementManager.set_velocity(entity, 0, 0)
   end
   sync_legacy_fields(entity, state)
   if not entity.impact_response then

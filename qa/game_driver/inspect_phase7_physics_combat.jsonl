@@ -1,0 +1,11 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":5}
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"switch_to_park_profile","command":"press","key":"5"}
+{"id":"wait_for_park","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"spawn_nearby_enemy","command":"press","key":"g"}
+{"id":"snapshot_before_impact","command":"snapshot","name":"phase7_before_impact"}
+{"id":"drive_into_enemy","command":"hold","key":"up","duration":1.5}
+{"id":"snapshot_after_impact","command":"snapshot","name":"phase7_after_impact"}
+{"id":"wait_for_recovery","command":"wait","seconds":0.5}
+{"id":"snapshot_recovery","command":"snapshot","name":"phase7_recovery"}

@@ -79,10 +79,14 @@ local function load_definition(kind, asset_id, options)
     "Unknown " .. kind .. " asset: " .. tostring(asset_id))
   local loaded = copy_table(definition)
   loaded.image = copy_table(definition.image)
-  local include_image = options.include_image ~= false or options.pixel_mask == true
+  local configured_collision = definition.collision or {}
+  local configured_pixel_mask = configured_collision.mode == "pixel_mask"
+    or (configured_collision.pixel_mask and configured_collision.pixel_mask.enabled == true)
+  local pixel_mask_requested = options.pixel_mask == true or configured_pixel_mask
+  local include_image = options.include_image ~= false or pixel_mask_requested
   if include_image then
     loaded.image.texture, loaded.image.image_data = load_image(definition.image.path, asset_id .. ":image")
-    if not options.keep_image_data and not options.pixel_mask then
+    if not options.keep_image_data and not pixel_mask_requested then
       loaded.image.image_data = nil
     end
   end
@@ -98,7 +102,7 @@ local function load_definition(kind, asset_id, options)
     assert(loaded_animation.frame_width > 0 and loaded_animation.frame_height > 0, "Invalid frame size: " .. name)
     assert(loaded_animation.frame_count > 0, "Invalid frame count: " .. name)
     loaded_animation.mask_frames = nil
-    if not options.keep_image_data and not options.pixel_mask then
+    if not options.keep_image_data and not pixel_mask_requested then
       loaded_animation.image_data = nil
     end
     loaded.animations[name] = loaded_animation
@@ -152,7 +156,10 @@ end
 function AssetLoader.get(kind, asset_id, options)
   assert(AssetLoader.loaded, "AssetLoader.load_manifest must run first")
   local asset = load_definition(kind, asset_id, options)
-  if options and options.pixel_mask then
+  local collision = asset.collision or {}
+  local configured_pixel_mask = collision.mode == "pixel_mask"
+    or (collision.pixel_mask and collision.pixel_mask.enabled == true)
+  if options and (options.pixel_mask or configured_pixel_mask) then
     CollisionDataManager.attach_pixel_masks(asset, asset)
   end
   return asset

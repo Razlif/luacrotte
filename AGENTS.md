@@ -36,9 +36,18 @@ manager.
 - Reusable behavior belongs in `game/systems/`; reusable objects belong in
   `game/entities/`; screens belong in `game/game_states/`.
 - Use the template's `x`, `ground_y`, and `z` position model for 2.5D.
-- Draw order uses ground/bottom Y.
-- Collision is mask/sensor overlap reporting only. Game logic decides the
-  response; do not add Love2D physics to the MVP.
+- Draw order uses `entity.position.ground_y` as its primary depth key; visual
+  scale, yaw, sprite bounds, and masks never change depth or collision.
+- Keep physics and presentation separate: `physics_collision_world` owns
+  synchronized positions and base-rectangle contacts. Directional animation,
+  character/impact rendering, draw order, and camera services may read that
+  state but must not move bodies or resolve collisions. Upper sprite pixels may
+  overlap while base footprints remain separated.
+- Collision detection remains report-only unless a migrated level explicitly
+  owns a `game.systems.physics_collision_world` scope. The shared physics
+  service is gravityless, base-footprint-only, and staged separately from the
+  legacy movement path; do not make gameplay depend on it until migration QA
+  is accepted.
 - Cutscene actors reuse rendering systems but never gameplay controllers, AI,
   or gameplay collision responses.
 
@@ -69,9 +78,23 @@ the world rather than being pinned to the viewport.
 - `input_manager`: named held and one-shot actions for gameplay and UI.
 - `movement_manager` and `position_manager`: shared controller intent and 2.5D `x`, `ground_y`, `z` movement.
 - `draw_order`: stable layer and ground-position sorting.
+- `physics_bumper_renderer`: rectangle-only visualization of the shared physics
+  scope. Playground 7 must request no sprites, animations, backgrounds, or
+  masks; keep it pointed at the real physics contacts and body positions.
+- Physics bodies use numeric promoted footprints. Do not decode ImageData or
+  rebuild fixtures per animation frame. Register only active entities, remove
+  defeated entities immediately, and let scope cleanup destroy the remaining
+  bodies. Set `high_speed = true` before requesting bullet collision; ordinary
+  bodies must remain non-bullet. Pixel masks are opt-in only for precise
+  bullets, irregular mud impacts, special hit zones, or debug inspection.
 - `camera_manager` and `parallax`: camera following, bounds, shake, and layered backgrounds.
 - `timer_manager`: deterministic delays, repeats, and cooldowns.
-- `mask_creation` and `collision_detection`: cached mask/sensor overlap reports only.
+- `mask_creation` and `collision_detection`: cached mask/sensor overlap reports.
+  Collision-footprint physics is active in Playground. Ordinary level/profile
+  bounds are static edge fixtures in the zero-gravity physics world. Keep
+  `physics.bounds = false` for intentionally unbounded experiments, and keep
+  special perspective-cone constraints explicit because they are not a simple
+  rectangle.
 - `audio_manager`: named music, one-shot sound, and named looping sound playback
   from the generated manifest. Use `motocrotte_audio` for driving-state audio;
   do not put audio transitions in the movement solver.
@@ -183,6 +206,19 @@ After intake or creation, run the validator and regenerate `manifest.js`:
 python asset_lab/helpers/validate_lab_assets.py
 python asset_lab/helpers/export_browser_manifest.py
 ```
+
+Collision footprint dimensions are generated offline from promoted animation
+sheets, never during gameplay. Run the LÖVE maintenance mode after promotion:
+
+```cmd
+love . --generate-collision-footprints --all
+love . --generate-collision-footprints --asset-id motocrotte_bike_variant_01
+```
+
+The helper writes `game_data/collision_footprints.lua`, reports missing or
+transparent sheets, and releases its temporary `ImageData` before exiting.
+Runtime shape collision consumes the numeric output; pixel masks remain an
+explicit opt-in for precision cases.
 
 AutoSprite is a provider-backed animation route. Upload a reviewed source image
 with `prepare-provider-character`, then use `create-spritesheets` for custom
@@ -314,4 +350,6 @@ now; Love2D QA does not capture system audio.
 - The playground and one cutscene provide working integration examples.
 - Asset Lab supports image, animation, audio search/import, previews, and promotion.
 - QA supports scripted runs, persistent sessions, stable logs, screenshots, snapshots, and local agent inspection.
-- Physics responses, generic level loading, save menus, settings screens, packaging, and AutoSprite generation remain future work.
+- Physics response migration beyond the Playground base-footprint service, generic
+  level loading, save menus, settings screens, packaging, and AutoSprite
+  generation remain future work.

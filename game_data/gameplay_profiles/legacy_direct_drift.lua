@@ -3,6 +3,13 @@ return {
   version = 1,
   status = "experiment",
   label = "Legacy: Direct Drift",
+  physics = {
+    enabled = true,
+    gravity_x = 0,
+    gravity_y = 0,
+    fixed_timestep = 1 / 60,
+    bounds = { left = 0, right = 1285, top = 284, bottom = 1147 }
+  },
   camera = {
     behavior = "smooth_follow", target = "hero", follow_x = true, follow_y = true,
     smoothing = 8, zoom = 1, look_ahead_x = 0, look_ahead_y = 0

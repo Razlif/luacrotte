@@ -1,0 +1,11 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":5}
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_default_boundaries","command":"snapshot","name":"physics_boundaries_default"}
+{"id":"drive_left_into_boundary","command":"hold","key":"left","duration":2.0}
+{"id":"snapshot_left_boundary","command":"snapshot","name":"physics_boundary_left"}
+{"id":"switch_to_park_profile","command":"press","key":"5"}
+{"id":"wait_for_park","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_park_boundaries","command":"snapshot","name":"physics_boundaries_park"}
+{"id":"drive_up_into_boundary","command":"hold","key":"up","duration":2.0}
+{"id":"snapshot_park_top_boundary","command":"snapshot","name":"physics_boundary_park_top"}

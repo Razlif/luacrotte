@@ -296,10 +296,8 @@ function Movement.update(hero, intent, definition, level_definition, dt)
     end
   end
   hero.animation:update(dt)
-  Locomotion.apply_position(hero, motion, bounds, dt)
+  Locomotion.constrain_velocity(hero, motion, bounds)
   if dash_context.wheelie_spin_active and not minimum_orbit_combo then
-    hero.position.x = dash_context.wheelie_contact_x or hero.position.x
-    hero.position.ground_y = dash_context.wheelie_contact_y or hero.position.ground_y
     motion.vx = 0
     motion.vy = 0
     motion.speed = 0
@@ -310,8 +308,6 @@ function Movement.update(hero, intent, definition, level_definition, dt)
       y = hero.position.ground_y
     })
   elseif drift_context.orbit_position then
-    hero.position.x = math.max(bounds.left, math.min(bounds.right, drift_context.orbit_position.x))
-    hero.position.ground_y = math.max(bounds.top, math.min(bounds.bottom, drift_context.orbit_position.y))
     motion.vx = drift_context.orbit_velocity_x or 0
     motion.vy = drift_context.orbit_velocity_y or 0
     motion.speed = math.sqrt(motion.vx * motion.vx + motion.vy * motion.vy)

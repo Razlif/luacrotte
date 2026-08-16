@@ -2,10 +2,10 @@ local root = love.filesystem.getSource() .. "/../.."
 package.path = root .. "/?.lua;" .. root .. "/?/init.lua;" .. package.path
 
 local InputManager, TimerManager, PositionManager, DrawOrder, MaskCreation
-local CollisionDetection, CombatSystem, ImpactResponse, CameraManager, ParallaxManager, AudioManager, Drift, Locomotion
+local CollisionDetection, CombatSystem, ImpactResponse, CameraManager, ParallaxManager, AudioManager, Drift, Locomotion, PhysicsCollisionWorld, CollisionDataManager
 local EnemyManager
 local MotocrotteDriver
-local Json, Menu, Character, FollowEnemyController, ImpactRenderer, EnemyDefinition, ParkProfile, PlaygroundLevel, Telemetry
+local Json, Menu, Character, FollowEnemyController, ImpactRenderer, DirectionalAnimationResolver, EnemyDefinition, HeroDefinition, ScooterDefinition, Footprints, ParkProfile, PlaygroundLevel, Telemetry, RuntimeContext
 local DebugConfig
 
 local function assert_equal(actual, expected, message)
@@ -28,14 +28,22 @@ local function run()
   AudioManager = require("game.systems.audio_manager")
   Drift = require("game.systems.motocrotte_drift")
   Locomotion = require("game.systems.motocrotte_locomotion")
+  PhysicsCollisionWorld = require("game.systems.physics_collision_world")
+  CollisionDataManager = require("game.systems.collision_data_manager")
   Json = require("game.systems.json")
   Character = require("game.entities.characters.character")
   FollowEnemyController = require("game.controllers.follow_enemy_controller")
   ImpactRenderer = require("game.systems.impact_renderer")
+  DirectionalAnimationResolver = require("game.systems.directional_animation_resolver")
   EnemyDefinition = require("game_data.characters.motocrotte_bike_enemy")
+  HeroDefinition = require("game_data.characters.luacrotte_hero_motorcycle_direction_set_v001")
+  ScooterDefinition = require("game_data.characters.luacrote_hero_headband_scooter")
+  Footprints = require("game_data.collision_footprints")
   ParkProfile = require("game_data.gameplay_profiles.park_arena_follow")
   PlaygroundLevel = require("game_data.levels.playground")
   Telemetry = require("game.systems.qa_telemetry")
+  RuntimeContext = require("game.runtime_context")
+  assert(RuntimeContext.physics, "runtime context exposes physics manager")
   Menu = require("game.ui.ui_elements.default_menu")
   DebugConfig = require("game.debug_config")
 
@@ -69,12 +77,27 @@ local function run()
   local back = { position = { ground_y = 10 }, draw_layer = 20, draw_order_id = "back" }
   local front = { position = { ground_y = 20 }, draw_layer = 20, draw_order_id = "front" }
   assert_equal(DrawOrder.sort({ front, back })[1], back, "draw ordering")
+  local visually_lower = { position = { ground_y = 10 }, draw_layer = 999, draw_order_id = "visually_lower" }
+  local visually_higher = { position = { ground_y = 20 }, draw_layer = 0, draw_order_id = "visually_higher" }
+  assert_equal(DrawOrder.sort({ visually_higher, visually_lower })[1], visually_lower,
+    "ground_y remains primary draw ordering")
+
+  local resolved_visual = DirectionalAnimationResolver.resolve(HeroDefinition, {
+    movement_heading = math.pi * 0.25,
+    drift_active = false
+  })
+  assert(resolved_visual.frame and resolved_visual.direction,
+    "directional resolver returns a visual selection")
 
   local image_data = love.image.newImageData(4, 4)
   image_data:setPixel(1, 1, 1, 1, 1, 1)
   local mask = MaskCreation.from_image(image_data)
   assert_equal(MaskCreation.get_pixel(mask, 1, 1), true, "mask opaque pixel")
   assert_equal(MaskCreation.get_pixel(mask, 0, 0), false, "mask transparent pixel")
+  assert_equal(CollisionDataManager.definition({ collision = { pixel_mask = { enabled = false } } }).mode,
+    "shape", "shape collision remains the default")
+  assert_equal(CollisionDataManager.definition({ collision = { pixel_mask = { enabled = true, cache = true } } }).mode,
+    "pixel_mask", "pixel mask declaration opts into pixel collision")
 
   local function entity(id, x, enabled, sensors)
     return {
@@ -118,6 +141,26 @@ local function run()
   first.definition.collision.mode = "shape"
   local shape_events = CollisionDetection.check({ first, second })
   assert_equal(shape_events[2].collision_type, "shape", "shape collision type")
+
+  first.definition.collision.base = { enabled = true, height_ratio = 0.20 }
+  second.definition.collision.base = { enabled = true, height_ratio = 0.20 }
+  local base_events = CollisionDetection.check({ first, second })
+  local base_event
+  local base_mask_event
+  for _, event in ipairs(base_events) do
+    if event.collision_type == "base" then
+      base_event = event
+    elseif event.collision_type == "mask" then
+      base_mask_event = event
+    end
+  end
+  assert(base_event, "base footprint collision is reported")
+  assert_equal(base_event.blocking, true, "base footprint is blocking")
+  assert_equal(base_event.contact.normal.y, 0, "base footprint separates horizontally")
+  assert(base_event.contact.penetration > 0, "base footprint penetration")
+  assert_equal(base_mask_event.blocking, false, "full mask overlap is telemetry-only")
+  first.definition.collision.base = nil
+  second.definition.collision.base = nil
 
   local combat_hero = {
     id = "combat_hero",
@@ -268,6 +311,7 @@ local function run()
     scale = 2,
     source_facing = 1,
     facing = 1,
+    position = { x = 40, ground_y = 60, z = 0 },
     get_render_facing = function(self) return self.facing * self.source_facing end,
     impact_response = {
       remaining = 1,
@@ -276,11 +320,15 @@ local function run()
       direction_x = -1
     }
   }
+  local visual_x = visual_spin.position.x
+  local visual_ground_y = visual_spin.position.ground_y
   local transform = ImpactRenderer.get_transform(visual_spin)
   assert(transform.spinning, "impact renderer activates yaw squash")
   assert(transform.scale_x < 0, "impact renderer flips toward impact direction")
   assert(math.abs(transform.scale_x) < 0.2, "impact renderer reaches edge-on squash")
   assert_equal(transform.scale_y, 2, "impact renderer preserves vertical scale")
+  assert_equal(visual_spin.position.x, visual_x, "visual impact transform preserves world x")
+  assert_equal(visual_spin.position.ground_y, visual_ground_y, "visual impact transform preserves ground y")
 
   assert_equal(EnemyDefinition.combat.health, 3, "enemy combat health")
   assert_equal(EnemyDefinition.combat.mass, 1, "enemy combat mass")
@@ -290,6 +338,175 @@ local function run()
   assert_equal(EnemyDefinition.combat.impacts.spinning_drift.knockback, 60, "enemy spin knockback")
   assert_equal(EnemyDefinition.combat.impacts.spinning_drift.impact_velocity_scale, 0, "enemy spin speed inheritance")
   assert_equal(EnemyDefinition.combat.impacts.straight_drift.duration, 0.6, "enemy straight drift duration")
+  assert_equal(Footprints.luacrotte_hero_motorcycle_direction_set_v001.width, 62, "hero cached mask width")
+  assert_equal(Footprints.luacrotte_hero_motorcycle_direction_set_v001.height, 5.1, "hero cached base height")
+  assert_equal(Footprints.motocrotte_bike_variant_01.width, 39, "enemy cached mask width")
+  assert_equal(Footprints.motocrotte_bike_variant_01.height, 4.8, "enemy cached base height")
+  assert_equal(Footprints.luacrote_hero_headband_scooter.width, 245, "scooter cached mask width")
+
+  local physics_world = PhysicsCollisionWorld.new({ fixed_timestep = 1 / 60, max_substeps = 4 })
+  physics_world:begin_scope("physics_qa")
+  local physics_footprint = { width = 10, height = 2, offset_x = 0, offset_y = -1 }
+  local physics_hero = {
+    id = "physics_hero",
+    position = { x = 0, ground_y = 20 },
+    scale = 1
+  }
+  local physics_enemy = {
+    id = "physics_enemy",
+    position = { x = 12, ground_y = 20 },
+    scale = 1
+  }
+  local hero_body = physics_world:add_entity(physics_hero, {
+    footprint = physics_footprint,
+    bullet = true,
+    high_speed = true
+  })
+  local enemy_body = physics_world:add_entity(physics_enemy, {
+    footprint = physics_footprint
+  })
+  assert(hero_body and enemy_body, "physics bodies created")
+  assert_equal(physics_world:debug_snapshot().body_count, 2, "physics body count")
+  assert_equal(physics_world:debug_snapshot().bullet_body_count, 1,
+    "bullet mode is limited to the explicitly high-speed body")
+  physics_world:set_velocity(physics_hero, 60, 0)
+  local start_x = physics_hero.position.x
+  for _ = 1, 20 do physics_world:step(1 / 60) end
+  assert(physics_world:debug_snapshot().step_count >= 20, "physics fixed steps")
+  assert(physics_hero.position.x > start_x, "physics syncs entity position")
+  local physics_contacts = physics_world:consume_contacts()
+  assert(#physics_contacts > 0, "physics caches contact events")
+  assert(physics_contacts[1].normal and physics_contacts[1].normal.x ~= nil,
+    "physics contact includes normal")
+  assert_equal(physics_world:remove_entity(physics_enemy), true, "physics removes entity")
+  assert_equal(physics_world:get_body("physics_enemy"), nil, "removed physics body is absent")
+  physics_world:end_scope("physics_qa")
+  assert_equal(physics_world:debug_snapshot().active, false, "physics scope cleanup")
+  assert_equal(physics_hero.physics_body, nil, "hero body reference cleanup")
+
+  local impact_world = PhysicsCollisionWorld.new()
+  impact_world:begin_scope("impact_qa")
+  local impact_footprint = { width = 10, height = 2, offset_x = 0, offset_y = -1 }
+  local impact_hero = {
+    id = "impact_hero",
+    position = { x = 0, ground_y = 20, z = 0 },
+    definition = { collision = { mass = 1.5 } },
+    motocrotte_motion = {
+      vx = 300, vy = 0, speed = 300,
+      drift_active = true, drift_mode = "orbit",
+      locomotion_state = "drift"
+    }
+  }
+  local impact_enemy = {
+    id = "impact_enemy",
+    position = { x = 4, ground_y = 20, z = 0 },
+    definition = { collision = { mass = 1 } },
+    apply_combat_impact = function(self, response)
+      ImpactResponse.apply(self, response)
+    end
+  }
+  impact_world:add_entity(impact_hero, { footprint = impact_footprint, bullet = true, high_speed = true })
+  impact_world:add_entity(impact_enemy, { footprint = impact_footprint, bullet = true, high_speed = true })
+  local impact_x = impact_enemy.position.x
+  local physics_impact = CombatSystem.resolve({
+    {
+      source_id = "impact_hero",
+      target_id = "impact_enemy",
+      collision_type = "physics_base",
+      blocking = true,
+      contact = {
+        collision_type = "base",
+        normal = { x = 1, y = 0 },
+        penetration = 4,
+        relative_velocity = { x = 300, y = 0 }
+      }
+    }
+  }, {
+    hero = impact_hero,
+    enemies = { impact_enemy },
+    dt = 0
+  })
+  assert_equal(#physics_impact, 1, "physics-backed impact is dispatched")
+  assert_equal(impact_enemy.position.x, impact_x,
+    "combat does not manually separate physics-backed enemy")
+  assert(impact_enemy.physics_intent_velocity.x > 0,
+    "combat writes physics-backed knockback velocity")
+  local pre_step_x = impact_enemy.position.x
+  ImpactResponse.update(impact_enemy, 0.1)
+  assert_equal(impact_enemy.position.x, pre_step_x,
+    "impact update does not directly move physics-backed enemy")
+  impact_world:capture_entity_velocities(1 / 60)
+  impact_world:step(1 / 60)
+  assert(impact_enemy.position.x ~= pre_step_x,
+    "physics step applies temporary impact velocity")
+  assert(impact_enemy.impact_yaw > 0, "combat impact advances visual yaw channel")
+  ImpactResponse.update(impact_enemy, 4)
+  assert_equal(impact_enemy.impact_mode, nil, "physics impact recovery clears response")
+  impact_world:end_scope("impact_qa")
+
+  local boundary_world = PhysicsCollisionWorld.new()
+  boundary_world:begin_scope("boundary_qa", {
+    enabled = true,
+    gravity_x = 0,
+    gravity_y = 0,
+    fixed_timestep = 1 / 60,
+    bounds = { left = 0, right = 40, top = 0, bottom = 40 }
+  })
+  local boundary_entity = {
+    id = "boundary_entity",
+    position = { x = 20, ground_y = 20 },
+    scale = 1
+  }
+  boundary_world:add_entity(boundary_entity, {
+    footprint = { width = 4, height = 2, offset_x = 0, offset_y = -1 }
+  })
+  assert_equal(boundary_world:debug_snapshot().boundary_count, 4,
+    "physics creates four static boundary fixtures")
+  boundary_world:set_velocity(boundary_entity, -240, 0)
+  for _ = 1, 30 do boundary_world:step(1 / 60) end
+  assert(boundary_entity.position.x >= 1.9,
+    "static left boundary prevents the physics body leaving the level")
+  boundary_world:end_scope("boundary_qa")
+
+  local unbounded_world = PhysicsCollisionWorld.new()
+  unbounded_world:begin_scope("unbounded_qa", { bounds = false })
+  assert_equal(unbounded_world:debug_snapshot().boundary_count, 0,
+    "bounds=false creates no static boundary fixtures")
+  unbounded_world:end_scope("unbounded_qa")
+
+  local manager_world = PhysicsCollisionWorld.new()
+  manager_world:begin_scope("enemy_manager_qa")
+  local manager = EnemyManager.new({
+    entries = { { id = "manager_enemy_spawn", definition = "test_enemy", spawn = { x = 0, ground_y = 20 } } },
+    definitions = {
+      test_enemy = { asset_id = "motocrotte_bike_variant_01", position = { x = 0, ground_y = 0 } }
+    },
+    max_count = 1,
+    physics_world = manager_world,
+    physics_options = { bullet = true, high_speed = true },
+    factory = function(definition)
+      return {
+        id = "manager_enemy",
+        definition = definition,
+        position = { x = 0, ground_y = 20, z = 0 },
+        scale = 1,
+        physics_footprint = physics_footprint,
+        is_defeat_complete = function() return false end,
+        update = function() end
+      }
+    end
+  })
+  manager:spawn_all()
+  assert_equal(manager_world:debug_snapshot().body_count, 1, "enemy manager registers body")
+  manager:get_active()[1].defeat_elapsed = 0
+  manager:update(0)
+  assert_equal(manager_world:debug_snapshot().body_count, 0, "enemy manager unregisters on defeat")
+  manager:clear()
+  assert_equal(manager_world:debug_snapshot().body_count, 0, "enemy manager unregisters body")
+  manager_world:end_scope("enemy_manager_qa")
+  assert_equal(HeroDefinition.collision.base.height_ratio, 0.10, "hero base height ratio")
+  assert_equal(ScooterDefinition.collision.base.width_source, "opaque_bounds_union", "scooter base width source")
+  assert_equal(EnemyDefinition.collision.pixel_mask.enabled, false, "enemy pixel mask opt-in")
   assert_equal(ParkProfile.combat.separation_distance, 2, "profile combat separation")
   assert_equal(ParkProfile.combat.maximum_knockback, 1200, "profile combat knockback cap")
   assert_equal(ParkProfile.combat.impact_cooldown, 0.35, "profile combat cooldown")
@@ -498,6 +715,8 @@ local function run()
   camera:update(1)
   assert_equal(camera.x, 200, "camera follow")
   assert_equal(camera.y, 125, "camera vertical follow")
+  assert_equal(target.x, 250, "camera does not mutate target x")
+  assert_equal(target.ground_y, 150, "camera does not mutate target ground y")
   camera:shake(4, 0.5)
   camera:update(0.25)
   assert(camera.shake_x ~= 0 or camera.shake_y ~= 0, "camera shake active")

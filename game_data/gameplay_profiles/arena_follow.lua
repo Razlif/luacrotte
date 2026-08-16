@@ -3,6 +3,13 @@ return {
   version = 3,
   status = "production",
   label = "Arena: Smooth Follow",
+  physics = {
+    enabled = true,
+    gravity_x = 0,
+    gravity_y = 0,
+    fixed_timestep = 1 / 60,
+    bounds = { left = 0, right = 6325, top = 961, bottom = 1200 }
+  },
   camera = {
     behavior = "smooth_follow",
     target = "hero",

@@ -1,0 +1,10 @@
+{"id":"wait_for_menu","command":"wait_until","condition":{"state_is":"start"},"timeout":5}
+{"id":"enter_playground","command":"press","key":"return"}
+{"id":"wait_for_playground","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"switch_to_physics_bumper_lab","command":"press","key":"7"}
+{"id":"wait_for_bumper_lab","command":"wait_until","condition":{"state_is":"playground"},"timeout":5}
+{"id":"snapshot_bumper_baseline","command":"snapshot","name":"playground7_bumper_baseline"}
+{"id":"drive_into_bumpers","command":"hold","key":"right","duration":1.0}
+{"id":"snapshot_bumper_contact","command":"snapshot","name":"playground7_bumper_contact"}
+{"id":"drive_down","command":"hold","key":"down","duration":0.8}
+{"id":"snapshot_bumper_after_contact","command":"snapshot","name":"playground7_bumper_after_contact"}

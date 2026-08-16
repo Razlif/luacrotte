@@ -137,24 +137,25 @@ function Locomotion.update(motion, intent, config, drift_context, dt)
   return horizontal, vertical, input_length
 end
 
-function Locomotion.apply_position(hero, motion, bounds, dt)
-  if not bounds then
-    hero.position.x = hero.position.x + motion.vx * dt
-    hero.position.ground_y = hero.position.ground_y + motion.vy * dt
-    return
-  end
-  hero.position.x = clamp(hero.position.x + motion.vx * dt, bounds.left, bounds.right)
-  hero.position.ground_y = clamp(hero.position.ground_y + motion.vy * dt, bounds.top, bounds.bottom)
+function Locomotion.constrain_velocity(hero, motion, bounds)
+  if not bounds or not hero or not hero.position then return end
+  local x = hero.position.x or 0
+  local y = hero.position.ground_y or 0
+  if x <= bounds.left and motion.vx < 0 then motion.vx = 0 end
+  if x >= bounds.right and motion.vx > 0 then motion.vx = 0 end
+  if y <= bounds.top and motion.vy < 0 then motion.vy = 0 end
+  if y >= bounds.bottom and motion.vy > 0 then motion.vy = 0 end
   local cone = bounds.perspective_cone
   if cone then
     local far_y = cone.far_y or bounds.top
     local near_y = cone.near_y or bounds.bottom
     local range = math.max(1, near_y - far_y)
-    local amount = clamp((hero.position.ground_y - far_y) / range, 0, 1)
+    local amount = clamp((y - far_y) / range, 0, 1)
     local half_width = (cone.far_half_width or 0)
       + amount * ((cone.near_half_width or 0) - (cone.far_half_width or 0))
     local center_x = cone.center_x or (bounds.left + bounds.right) * 0.5
-    hero.position.x = clamp(hero.position.x, center_x - half_width, center_x + half_width)
+    if x <= center_x - half_width and motion.vx < 0 then motion.vx = 0 end
+    if x >= center_x + half_width and motion.vx > 0 then motion.vx = 0 end
   end
 end
 

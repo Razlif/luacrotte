@@ -3,6 +3,13 @@ return {
   version = 2,
   status = "production",
   label = "Beat-em-Up: Lane",
+  physics = {
+    enabled = true,
+    gravity_x = 0,
+    gravity_y = 0,
+    fixed_timestep = 1 / 60,
+    bounds = { left = 0, right = 1285, top = 560, bottom = 700 }
+  },
   camera = {
     behavior = "follow_x_only",
     target = "hero",

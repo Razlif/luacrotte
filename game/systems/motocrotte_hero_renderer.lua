@@ -1,4 +1,7 @@
 -- MotoCrotte-specific renderer for visual experiments and gameplay fallback.
+-- It consumes the entity pose synchronized by PhysicsCollisionWorld and only
+-- produces presentation transforms/draw calls. It must never move the entity,
+-- physics body, or collision footprint.
 local PositionManager = require("game.systems.position_manager")
 local AnimationResolver = require("game.systems.directional_animation_resolver")
 

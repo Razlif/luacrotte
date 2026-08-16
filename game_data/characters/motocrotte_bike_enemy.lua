@@ -48,5 +48,16 @@ return {
       }
     }
   },
-  collision = { enabled = true, auto_sensor = true, sensors = {} }
+  collision = {
+    enabled = true,
+    auto_sensor = true,
+    sensors = {},
+    base = {
+      enabled = true,
+      width_source = "opaque_bounds_union",
+      width_ratio = 1.0,
+      height_ratio = 0.10
+    },
+    pixel_mask = { enabled = false, cache = true }
+  }
 }

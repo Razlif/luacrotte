@@ -3,6 +3,13 @@ return {
   version = 2,
   status = "production",
   label = "Side-Scroller",
+  physics = {
+    enabled = true,
+    gravity_x = 0,
+    gravity_y = 0,
+    fixed_timestep = 1 / 60,
+    bounds = { left = 325, right = 6325, top = 961, bottom = 1200 }
+  },
   camera = {
     behavior = "follow_x_lookahead",
     target = "hero",

@@ -31,6 +31,8 @@ function EnemyManager.new(options)
     content_by_definition = options.content_by_definition or {},
     factory = options.factory,
     spawn_template = options.spawn_template,
+    physics_world = options.physics_world,
+    physics_options = options.physics_options or {},
     next_spawn_index = 0,
     max_count = options.max_count or #entries,
     active = {},
@@ -89,6 +91,20 @@ function EnemyManager:_spawn(entry)
   return enemy
 end
 
+function EnemyManager:_register_physics(enemy)
+  if self.physics_world and enemy then
+    self.physics_world:add_entity(enemy, self.physics_options)
+    enemy.physics_registered = true
+  end
+end
+
+function EnemyManager:_unregister_physics(enemy)
+  if self.physics_world and enemy and enemy.physics_registered then
+    self.physics_world:remove_entity(enemy)
+    enemy.physics_registered = false
+  end
+end
+
 function EnemyManager:spawn_entry(entry, suppress_event)
   assert(entry and entry.id, "Enemy spawn entry requires an id")
   if self:_active_count() >= self.max_count then return nil end
@@ -98,6 +114,7 @@ function EnemyManager:spawn_entry(entry, suppress_event)
   end
   local enemy = self:_spawn(entry)
   self.active[#self.active + 1] = enemy
+  self:_register_physics(enemy)
   if not suppress_event then
     self.events[#self.events + 1] = { type = "enemy_spawned", enemy_id = enemy.id, spawn_id = entry.id }
   end
@@ -146,6 +163,13 @@ end
 function EnemyManager:_remove_defeated()
   for index = #self.active, 1, -1 do
     local enemy = self.active[index]
+    -- Remove the body as soon as the defeat/fade state begins. The visual
+    -- entity remains in the active list until its fade completes so the
+    -- renderer can finish the defeat presentation.
+    if (enemy.defeat_elapsed ~= nil or enemy.behavior_state == "defeated")
+        and enemy.physics_registered then
+      self:_unregister_physics(enemy)
+    end
     if enemy:is_defeat_complete() then
       table.remove(self.active, index)
       self:_queue_respawn(enemy)
@@ -215,6 +239,10 @@ function EnemyManager:get_respawn_snapshot()
 end
 
 function EnemyManager:clear()
+  for _, enemy in ipairs(self.active) do self:_unregister_physics(enemy) end
+  for _, record in pairs(self.defeated) do
+    if record.enemy then self:_unregister_physics(record.enemy) end
+  end
   self.active = {}
   self.defeated = {}
   self.respawn_timers = {}

@@ -6,5 +6,6 @@ return {
   side_view = require("game_data.gameplay_profiles.side_view"),
   rear_view = require("game_data.gameplay_profiles.rear_view"),
   rear_view_yaw_card = require("game_data.gameplay_profiles.rear_view_yaw_card"),
-  park_arena_follow = require("game_data.gameplay_profiles.park_arena_follow")
+  park_arena_follow = require("game_data.gameplay_profiles.park_arena_follow"),
+  physics_bumper_lab = require("game_data.gameplay_profiles.physics_bumper_lab")
 }

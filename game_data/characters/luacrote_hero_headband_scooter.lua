@@ -79,4 +79,17 @@ definition.visual.directional_pivot = {
 definition.visual.modes = { "directional_views", "hybrid", "yaw_squash" }
 definition.visual.test_mode = "directional_views"
 
+definition.collision = {
+  enabled = true,
+  auto_sensor = true,
+  sensors = {},
+  base = {
+    enabled = true,
+    width_source = "opaque_bounds_union",
+    width_ratio = 1.0,
+    height_ratio = 0.10
+  },
+  pixel_mask = { enabled = false, cache = true }
+}
+
 return definition

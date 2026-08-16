@@ -1,4 +1,5 @@
--- Reports mask and sensor overlaps. It never applies gameplay responses.
+-- Reports mask, sensor, and optional base-footprint overlaps. It never applies
+-- gameplay responses.
 local PositionManager = require("game.systems.position_manager")
 local MaskCreation = require("game.systems.mask_creation")
 
@@ -122,6 +123,102 @@ local function collision_mode(entity)
   end
   local asset_collision = entity.asset and entity.asset.collision
   return asset_collision and asset_collision.mode or nil
+end
+
+local function collision_config(entity)
+  local definition_collision = entity.definition and entity.definition.collision
+  if definition_collision and definition_collision.base then
+    return definition_collision
+  end
+  return entity.asset and entity.asset.collision or definition_collision
+end
+
+local function base_config(entity)
+  local collision = collision_config(entity)
+  return collision and collision.base or nil
+end
+
+local function base_enabled(entity)
+  local base = base_config(entity)
+  return base and base.enabled ~= false
+end
+
+-- The full sprite mask remains useful for visual telemetry, but character
+-- contact is resolved against this smaller footprint at the bottom of the
+-- mask. This keeps upper-body pixels free to overlap in a 2.5D scene.
+local function base_geometry(entity)
+  if not base_enabled(entity) then
+    return nil
+  end
+  local full = geometry_for(entity)
+  local width = math.max(0, full.right - full.left)
+  local height = math.max(0, full.bottom - full.top)
+  if width <= 0 or height <= 0 then
+    return nil
+  end
+  local base = base_config(entity)
+  local height_ratio = math.max(0, math.min(1, base.height_ratio or 0.20))
+  local horizontal_inset = math.max(0, math.min(0.49, base.horizontal_inset or 0))
+  local inset = width * horizontal_inset
+  local left = full.left + inset
+  local right = full.right - inset
+  local top = full.bottom - height * height_ratio
+  return {
+    left = left,
+    top = top,
+    right = right,
+    bottom = full.bottom,
+    center_x = (left + right) * 0.5,
+    center_y = (top + full.bottom) * 0.5
+  }
+end
+
+local function base_contact(first, second)
+  local first_geometry = base_geometry(first)
+  local second_geometry = base_geometry(second)
+  if not first_geometry or not second_geometry then
+    return nil
+  end
+  local overlap_x = math.min(first_geometry.right, second_geometry.right)
+    - math.max(first_geometry.left, second_geometry.left)
+  local overlap_y = math.min(first_geometry.bottom, second_geometry.bottom)
+    - math.max(first_geometry.top, second_geometry.top)
+  if overlap_x <= 0 or overlap_y <= 0 then
+    return nil
+  end
+
+  local dx = second_geometry.center_x - first_geometry.center_x
+  local normal_x
+  if math.abs(dx) > 0.0001 then
+    normal_x = dx < 0 and -1 or 1
+  else
+    local first_velocity_x = velocity_of(first)
+    local second_velocity_x = velocity_of(second)
+    normal_x = first_velocity_x - second_velocity_x < 0 and -1 or 1
+  end
+  local first_velocity_x, first_velocity_y = velocity_of(first)
+  local second_velocity_x, second_velocity_y = velocity_of(second)
+  return {
+    collision_type = "base",
+    normal = { x = normal_x, y = 0 },
+    penetration = overlap_x,
+    relative_velocity = {
+      x = first_velocity_x - second_velocity_x,
+      y = first_velocity_y - second_velocity_y
+    },
+    first_center = { x = first_geometry.center_x, y = first_geometry.center_y },
+    second_center = { x = second_geometry.center_x, y = second_geometry.center_y },
+    first_base = first_geometry,
+    second_base = second_geometry
+  }
+end
+
+function CollisionDetection.base_overlaps(first, second)
+  return base_contact(first, second) ~= nil
+end
+
+function CollisionDetection.base_contact_details(first, second)
+  return base_contact(first, second)
 end
 
 local function contact_normal(first_geometry, second_geometry, overlap_x, overlap_y)
@@ -304,6 +401,7 @@ function CollisionDetection.check(entities, options)
       for second_index = index + 1, #entities do
         local second = entities[second_index]
         local second_collision = second.definition and second.definition.collision
+        local blocking_base_pair = base_enabled(first) and base_enabled(second)
         if second_collision and (second_collision.enabled or options and options.debug) and CollisionDetection.mask_overlaps(first, second) then
           local contact = CollisionDetection.contact_details(first, second, "mask")
           events[#events + 1] = {
@@ -312,6 +410,7 @@ function CollisionDetection.check(entities, options)
             target_id = entity_id(second),
             frame = first.animation and first.animation.current_frame or 1,
             collision_type = contact.collision_type,
+            blocking = not blocking_base_pair,
             contact = contact
           }
         end
@@ -328,9 +427,24 @@ function CollisionDetection.check(entities, options)
                 sensor_id = sensor_definition.id,
                 frame = second.animation and second.animation.current_frame or 1,
                 collision_type = contact.collision_type,
+                blocking = not blocking_base_pair,
                 contact = contact
               }
             end
+          end
+        end
+        if second_collision and (second_collision.enabled or options and options.debug) and blocking_base_pair then
+          local contact = base_contact(first, second)
+          if contact then
+            events[#events + 1] = {
+              kind = "base_overlap",
+              source_id = entity_id(first),
+              target_id = entity_id(second),
+              frame = first.animation and first.animation.current_frame or 1,
+              collision_type = "base",
+              blocking = true,
+              contact = contact
+            }
           end
         end
       end
